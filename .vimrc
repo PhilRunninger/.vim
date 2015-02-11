@@ -1,6 +1,6 @@
 "==============================================================================
-" To use this file from this location, create the file ~/_vimrc with this line:
-"       source ~/OneDrive/vimfiles/_vimrc
+" To use this file from this location, create the file ~/.vimrc with this line:
+"       source ~/.vim/.vimrc
 " (You will have to change the path if the file's location changes.)
 "==============================================================================
 "
@@ -9,8 +9,8 @@
 set nocompatible
 filetype off
 
-set rtp+=~/OneDrive/vimfiles/bundle/Vundle.vim
-call vundle#begin('~/OneDrive/vimfiles/bundle')
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 Plugin 'git@github.com:PhilRunninger/vim-execute-in-shell.git'
 Plugin                 'vim-scripts/NSIS-syntax-highlighting'
 Plugin                'jlanzarotta/bufexplorer.git'

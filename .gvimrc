@@ -1,6 +1,6 @@
 "==============================================================================
-" To use this file from this location, create the file ~/_gvimrc with this line:
-"       source ~/OneDrive/vimfiles/_gvimrc
+" To use this file from this location, create the file ~/.gvimrc with this line:
+"       source ~/.vim/.gvimrc
 " (You will have to change the path if the file's location changes.)
 "==============================================================================
 
