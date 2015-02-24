@@ -48,7 +48,7 @@ noremap <M-Space> :simalt ~<CR>
 set encoding=utf-8
 syntax on
 
-set history=100
+set history=1000
 set showcmd
 set wildmenu
 set wildmode=full
@@ -160,7 +160,7 @@ vnoremap <Enter> <Plug>(EasyAlign)
 " ExecuteInShell:  https://github.com/PhilRunninger/vim-execute-in-shell
 ca shell Shell
 nnoremap <F5> :w<CR>:Shell rebar -r eunit suite=%:t:r skip_deps=true<CR>
-nnoremap <S-F5> :w<CR>:Shell rebar -r eunit skip_deps=true<CR>
+nnoremap <F6> :w<CR>:Shell rebar -r eunit skip_deps=true<CR>
 
 " Fugitive:  git@github.com:tpope/vim-fugitive.git
 set laststatus=2
@@ -180,7 +180,7 @@ inoremap <expr><TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 " Nerdtree:  https://github.com/scrooloose/nerdtree.git
-nnoremap <S-F2> :NERDTreeToggle<CR>
+nnoremap <silent><F3> :NERDTreeToggle<CR>
 let NERDTreeMinimalUI=1
 let NERDTreeSortHiddenFirst=1
 let NERDTreeShowBookmarks=1
@@ -190,7 +190,7 @@ let NERDTreeWinSize=42
 " Repeat:  git://github.com/tpope/vim-repeat.git
 " Surround:  git://github.com/tpope/vim-surround.git
 " Undotree:  https://github.com/mbbill/undotree.git
-nnoremap <F4> :UndotreeToggle<CR>
+nnoremap <silent><F4> :UndotreeToggle<CR>
 let g:undotree_SetFocusWhenToggle = 1
 let g:undotree_TreeNodeShape = '#'
 let g:undotree_WindowLayout = 2
