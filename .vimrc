@@ -13,12 +13,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'git@github.com:PhilRunninger/vim-execute-in-shell.git'
 Plugin                 'vim-scripts/NSIS-syntax-highlighting'
-Plugin                'jlanzarotta/bufexplorer.git'
+"Plugin                'jlanzarotta/bufexplorer.git'
 Plugin                'scrooloose/nerdtree'
 Plugin                 'chrisbra/Recover.vim'
 Plugin                'chrisbra/csv.vim'
 Plugin               'junegunn/vim-easy-align'
-Plugin              'atweiden/vim-dragvisuals'
 Plugin              'morhetz/gruvbox'
 Plugin              'Shougo/neocomplcache.vim'
 Plugin             'mbbill/undotree'
@@ -35,6 +34,7 @@ Plugin    'Milly/vim-openurl'
 Plugin    'mtth/cursorcross.vim'
 Plugin   'elzr/vim-json'
 Plugin  'aklt/plantuml-syntax'
+Plugin              'atweiden/vim-dragvisuals'
 call vundle#end()
 
 filetype plugin indent on
@@ -119,6 +119,9 @@ nnoremap <leader>d<space> :%s/\s\+$//c<CR>
 nnoremap <> m`f"a>><ESC>,,i<<<ESC>``ll
 nnoremap >< m`f"lxx,,XX``hh
 
+" Grab PivotalTracker ID and start commit message.
+autocmd BufReadPost COMMIT_EDITMSG execute "normal! /\On branch.\\{-}\\zs\\d\\{8,}\<CR>ygnggPI[#\<ESC>A] " | startinsert!
+
 "##########################################################################
 "# Disable bad-habit keys                                                 #
 "##########################################################################
@@ -135,12 +138,13 @@ inoremap <Down> <nop>
 "# Settings for managed plugins                                           #
 "##########################################################################
 " Gruvbox (color):  https://github.com/morhetz/gruvbox.git
-" BufExplorer:  https://github.com/jlanzarotta/bufexplorer.git
-let g:bufExplorerDisableDefaultKeyMapping=1
-let g:bufExplorerShowNoName=1
-let g:bufExplorerDefaultHelp=0
-let g:bufExplorerDetailedHelp=0
-nnoremap <silent> <F2> :ToggleBufExplorer<CR>
+"" BufExplorer:  https://github.com/jlanzarotta/bufexplorer.git
+"let g:bufExplorerDisableDefaultKeyMapping=1
+"let g:bufExplorerShowNoName=1
+"let g:bufExplorerDefaultHelp=0
+"let g:bufExplorerDetailedHelp=0
+"nnoremap <silent> <F2> :ToggleBufExplorer<CR>
+nnoremap <leader>b <ESC>:buffers<CR>:buffer 
 
 " Csv:  https://git@github.com:chrisbra/csv.vim.git
 " CursorCross:  https://github.com/mtth/cursorcross.vim.git
