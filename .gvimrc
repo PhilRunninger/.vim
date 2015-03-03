@@ -1,7 +1,6 @@
 "==============================================================================
-" To use this file from this location, create the file ~/.gvimrc with this line:
+" To use this file, simply source it from your ~/.gvimrc like so:
 "       source ~/.vim/.gvimrc
-" (You will have to change the path if the file's location changes.)
 "==============================================================================
 
 "set columns=100 lines=64

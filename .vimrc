@@ -1,7 +1,6 @@
 "==============================================================================
-" To use this file from this location, create the file ~/.vimrc with this line:
+" To use this file, simply source it from your ~/.vimrc like so:
 "       source ~/.vim/.vimrc
-" (You will have to change the path if the file's location changes.)
 "==============================================================================
 "
 " Use Vim settings, rather than Vi settings (much better!).
@@ -11,36 +10,36 @@ filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'git@github.com:PhilRunninger/vim-execute-in-shell.git'
-Plugin                 'vim-scripts/NSIS-syntax-highlighting'
-"Plugin                'jlanzarotta/bufexplorer.git'
-Plugin                'scrooloose/nerdtree'
-Plugin                 'chrisbra/Recover.vim'
-Plugin                'chrisbra/csv.vim'
-Plugin               'junegunn/vim-easy-align'
-Plugin              'morhetz/gruvbox'
-Plugin              'Shougo/neocomplcache.vim'
-Plugin             'mbbill/undotree'
-"Plugin            'idbrii/AsyncCommand'
-Plugin           'idbrii/vim-mark'
-Plugin          'gmarik/Vundle.vim'
-Plugin          'tpope/vim-unimpaired'
-Plugin         'tpope/vim-surround'
-Plugin        'tpope/vim-repeat'
-Plugin       'tpope/vim-markdown'
-Plugin      'tpope/vim-jdaddy'
-Plugin     'tpope/vim-fugitive'
-Plugin    'Milly/vim-openurl'
-Plugin    'mtth/cursorcross.vim'
-Plugin   'elzr/vim-json'
-Plugin  'aklt/plantuml-syntax'
-Plugin              'atweiden/vim-dragvisuals'
+Plugin                       'gmarik/Vundle.vim'
+Plugin                  'vim-scripts/NSIS-syntax-highlighting'
+Plugin                     'chrisbra/Recover.vim'
+Plugin                  'jlanzarotta/bufexplorer.git'
+Plugin                     'chrisbra/csv.vim'
+Plugin                         'mtth/cursorcross.vim'
+Plugin                      'morhetz/gruvbox'
+Plugin                       'Shougo/neocomplcache.vim'
+Plugin                   'scrooloose/nerdtree'
+Plugin                   'scrooloose/syntastic'
+Plugin                         'aklt/plantuml-syntax'
+Plugin                       'mbbill/undotree'
+Plugin                        'tpope/vim-dispatch'
+Plugin                     'junegunn/vim-easy-align'
+"Plugin 'git@github.com:PhilRunninger/vim-execute-in-shell.git'
+Plugin                        'tpope/vim-fugitive'
+Plugin                        'tpope/vim-jdaddy'
+Plugin                         'elzr/vim-json'
+Plugin                        'tpope/vim-markdown'
+Plugin                        'Milly/vim-openurl'
+Plugin                        'tpope/vim-repeat'
+Plugin                        'tpope/vim-surround'
+Plugin                        'tpope/vim-unimpaired'
 call vundle#end()
 
 filetype plugin indent on
 filetype on
 
 :let g:netrw_dirhistmax = 0
+:let g:netrw_banner = 0
 
 " Make sure Alt-Space will open the gvim window's control menu.
 noremap <M-Space> :simalt ~<CR>
@@ -106,10 +105,17 @@ set winminwidth=0
 set hidden
 set showtabline=0
 
+set undolevels=100
+set undofile
+set undodir=~/.vim/tmp/undo//
+set directory=~/.vim/tmp/swapfiles//
+set nobackup
+set backupdir=~/.vim/tmp/backups//
+
 " When editing a file, always jump to its last known cursor position.
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
-:silent cd $HOME                            " change to my most common working directory
+":silent cd $HOME                            " change to my most common working directory
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>   " command to change pwd to current buffer's
 
 " Remove trailing spaces
@@ -138,44 +144,32 @@ inoremap <Down> <nop>
 "# Settings for managed plugins                                           #
 "##########################################################################
 " Gruvbox (color):  https://github.com/morhetz/gruvbox.git
-"" BufExplorer:  https://github.com/jlanzarotta/bufexplorer.git
-"let g:bufExplorerDisableDefaultKeyMapping=1
-"let g:bufExplorerShowNoName=1
-"let g:bufExplorerDefaultHelp=0
-"let g:bufExplorerDetailedHelp=0
+" BufExplorer:  https://github.com/jlanzarotta/bufexplorer.git
+let g:bufExplorerDisableDefaultKeyMapping=1
+let g:bufExplorerShowNoName=1
+let g:bufExplorerDefaultHelp=0
+let g:bufExplorerDetailedHelp=0
 "nnoremap <silent> <F2> :ToggleBufExplorer<CR>
-nnoremap <leader>b <ESC>:buffers<CR>:buffer 
+nnoremap <silent> <leader>b :ToggleBufExplorer<CR>
 
 " Csv:  https://git@github.com:chrisbra/csv.vim.git
 " CursorCross:  https://github.com/mtth/cursorcross.vim.git
 let g:cursorcross_dynamic = 'w'
 nnoremap + :set cursorline! cursorcolumn!<CR>
 
-" DragVisuals:  https://github.com/atweiden/vim-dragvisuals.git
-vnoremap  <expr>  <LEFT>   DVB_Drag('left')
-vnoremap  <expr>  <RIGHT>  DVB_Drag('right')
-vnoremap  <expr>  <DOWN>   DVB_Drag('down')
-vnoremap  <expr>  <UP>     DVB_Drag('up')
-vnoremap  <expr>  D        DVB_Duplicate()
-
 " EasyAlign:  https://github.com/junegunn/vim-easy-align.git
 vnoremap <Enter> <Plug>(EasyAlign)
 
 " ExecuteInShell:  https://github.com/PhilRunninger/vim-execute-in-shell
-ca shell Shell
+cabbrev shell Shell
 nnoremap <F5> :w<CR>:Shell rebar -r eunit suite=%:t:r skip_deps=true<CR>
 nnoremap <F6> :w<CR>:Shell rebar -r eunit skip_deps=true<CR>
 
 " Fugitive:  git@github.com:tpope/vim-fugitive.git
 set laststatus=2
-set statusline=\ %v\ %3*%{fugitive#statusline()}%*\ %f\ %n
-set statusline+=\ %1*%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%*
-set statusline+=\ %2*%{&modified?\"\ mod\ \":\"\"}%*
-set statusline+=%=%p%%\ 
 
 " JDaddy:  https://github.com/tpope/vim-jdaddy.git
 " JSON:  https://github.com/elzr/vim-json.git
-" Mark:  https://github.com/idbrii/vim-mark.git
 " Markdown:  https://github.com/tpope/vim-markdown.git
 " NeoComplCache:  http://github.com/Shougo/neocomplcache.vim.git
 let g:neocomplcache_enable_fuzzy_completion = 1
@@ -184,7 +178,7 @@ inoremap <expr><TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 " Nerdtree:  https://github.com/scrooloose/nerdtree.git
-nnoremap <silent><F3> :NERDTreeToggle<CR>
+nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 let NERDTreeMinimalUI=1
 let NERDTreeSortHiddenFirst=1
 let NERDTreeShowBookmarks=1
@@ -193,11 +187,25 @@ let NERDTreeWinSize=42
 " NSIS:  https://github.com/vim-scripts/NSIS-syntax-highlighting.git
 " Repeat:  git://github.com/tpope/vim-repeat.git
 " Surround:  git://github.com/tpope/vim-surround.git
+" Syntastic: git://github.com/scrooloose/syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 " Undotree:  https://github.com/mbbill/undotree.git
-nnoremap <silent><F4> :UndotreeToggle<CR>
+nnoremap <silent> <leader>u :UndotreeToggle<CR>
 let g:undotree_SetFocusWhenToggle = 1
-let g:undotree_TreeNodeShape = '#'
+let g:undotree_TreeNodeShape = '◘'
 let g:undotree_WindowLayout = 2
 
 " Unimpaired:  https://github.com/tpope/vim-unimpaired.git
-" VisualStarSearch:  https://github.com/nelstrom/vim-visual-star-search.git
+
+"##########################################################################
+"# END: Settings for managed plugins                                      #
+"##########################################################################
+
+set statusline=\ %v\ %3*%{fugitive#statusline()}%*\ %f\ #%n
+set statusline+=\ %1*%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%*
+set statusline+=\ %2*%{&modified?\"\ mod\ \":\"\"}%*
+set statusline+=%=%#warningmsg#%{SyntasticStatuslineFlag()}%*\ %p%%\ 
