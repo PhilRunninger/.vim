@@ -39,10 +39,6 @@ filetype plugin indent on
 filetype on
 
 :let g:netrw_dirhistmax = 0
-:let g:netrw_banner = 0
-
-" Make sure Alt-Space will open the gvim window's control menu.
-noremap <M-Space> :simalt ~<CR>
 
 set encoding=utf-8
 syntax on
@@ -93,10 +89,10 @@ nnoremap <silent> <C-K> :wincmd k<CR>
 nnoremap <silent> <C-J> :wincmd j<CR>
 nnoremap <silent> <C-H> :wincmd h<CR>
 nnoremap <silent> <C-L> :wincmd l<CR>
-nnoremap <silent> <C-Up>  :resize +5<CR>
-nnoremap <silent> <C-Down> :resize -5<CR>
-nnoremap <silent> <C-Right>  :vertical resize +10<CR>
-nnoremap <silent> <C-Left> :vertical resize -10<CR>
+nnoremap <silent> <Up>  :resize +5<CR>
+nnoremap <silent> <Down> :resize -5<CR>
+nnoremap <silent> <Right>  :vertical resize +10<CR>
+nnoremap <silent> <Left> :vertical resize -10<CR>
 set splitbelow
 set splitright
 set winminheight=0
@@ -115,6 +111,8 @@ set backupdir=~/.vim/tmp/backups//
 " When editing a file, always jump to its last known cursor position.
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
+let mapleader=" "
+
 ":silent cd $HOME                            " change to my most common working directory
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>   " command to change pwd to current buffer's
 
@@ -129,18 +127,6 @@ nnoremap >< m`f"lxx,,XX``hh
 autocmd BufReadPost COMMIT_EDITMSG execute "normal! /\On branch.\\{-}\\zs\\d\\{8,}\<CR>ygnggPI[#\<ESC>A] " | startinsert!
 
 "##########################################################################
-"# Disable bad-habit keys                                                 #
-"##########################################################################
-nnoremap <Left> <nop>
-nnoremap <Right> <nop>
-nnoremap <Up> <nop>
-nnoremap <Down> <nop>
-inoremap <Left> <nop>
-inoremap <Right> <nop>
-inoremap <Up> <nop>
-inoremap <Down> <nop>
-
-"##########################################################################
 "# Settings for managed plugins                                           #
 "##########################################################################
 " Gruvbox (color):  https://github.com/morhetz/gruvbox.git
@@ -149,8 +135,9 @@ let g:bufExplorerDisableDefaultKeyMapping=1
 let g:bufExplorerShowNoName=1
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerDetailedHelp=0
-"nnoremap <silent> <F2> :ToggleBufExplorer<CR>
 nnoremap <silent> <leader>b :ToggleBufExplorer<CR>
+nnoremap <silent> <leader>vb <C-W>v:ToggleBufExplorer<CR>
+nnoremap <silent> <leader>hb <C-W>s:ToggleBufExplorer<CR>
 
 " Csv:  https://git@github.com:chrisbra/csv.vim.git
 " CursorCross:  https://github.com/mtth/cursorcross.vim.git
@@ -183,6 +170,8 @@ let NERDTreeMinimalUI=1
 let NERDTreeSortHiddenFirst=1
 let NERDTreeShowBookmarks=1
 let NERDTreeWinSize=42
+let NERDTreeQuitOnOpen=1
+let NERDTreeIgnore=['^ntuser\.', '^NTUSER\.']
 
 " NSIS:  https://github.com/vim-scripts/NSIS-syntax-highlighting.git
 " Repeat:  git://github.com/tpope/vim-repeat.git
@@ -208,4 +197,4 @@ let g:undotree_WindowLayout = 2
 set statusline=\ %v\ %3*%{fugitive#statusline()}%*\ %f\ #%n
 set statusline+=\ %1*%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%*
 set statusline+=\ %2*%{&modified?\"\ mod\ \":\"\"}%*
-set statusline+=%=%#warningmsg#%{SyntasticStatuslineFlag()}%*\ %p%%\ 
+set statusline+=%=%#warningmsg#%{SyntasticStatuslineFlag()}%*\ %{&ff}\ %p%%\ 
