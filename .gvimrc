@@ -1,18 +1,15 @@
-"==============================================================================
-" To use this file, simply source it from your ~/.gvimrc like so:
-"       source ~/.vim/.gvimrc
-"==============================================================================
-
-"set columns=100 lines=64
+"set columns=9999 lines=9999
+set fullscreen
 
 set cursorline cursorcolumn
-if has("unix")
-    set guifont=Monospace\ 12
-    set listchars=tab:▷┄,extends:┄,precedes:┄,trail:◎
-else
+if has("windows")
     set guifont=Consolas:h9
-    set listchars=tab:†.,extends:»,precedes:«,trail:●
+elseif has("mac")
+    set guifont=Menlo:h12
+else
+    set guifont=Monospace\ 9
 endif
+set listchars=tab:†.,extends:»,precedes:«,trail:●
 set guioptions-=m
 set guioptions-=T
 set guioptions-=L

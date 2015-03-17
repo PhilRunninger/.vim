@@ -1,13 +1,8 @@
-"==============================================================================
-" To use this file, simply source it from your ~/.vimrc like so:
-"       source ~/.vim/.vimrc
-"==============================================================================
-"
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
-filetype off
 
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin                       'gmarik/Vundle.vim'
@@ -36,7 +31,6 @@ Plugin                        'tpope/vim-unimpaired'
 call vundle#end()
 
 filetype plugin indent on
-filetype on
 
 :let g:netrw_dirhistmax = 0
 
@@ -66,9 +60,9 @@ set autoread
 " tab settings and behavior
 set autoindent
 set smartindent
-set softtabstop=4
-set tabstop=4
-set shiftwidth=4
+set softtabstop=2
+set tabstop=2
+set shiftwidth=2
 set expandtab
 
 set scrolloff=3
@@ -89,10 +83,10 @@ nnoremap <silent> <C-K> :wincmd k<CR>
 nnoremap <silent> <C-J> :wincmd j<CR>
 nnoremap <silent> <C-H> :wincmd h<CR>
 nnoremap <silent> <C-L> :wincmd l<CR>
-nnoremap <silent> <Up>  :resize +5<CR>
-nnoremap <silent> <Down> :resize -5<CR>
-nnoremap <silent> <Right>  :vertical resize +10<CR>
-nnoremap <silent> <Left> :vertical resize -10<CR>
+nnoremap <silent> <C-Up>  :resize +5<CR>
+nnoremap <silent> <C-Down> :resize -5<CR>
+nnoremap <silent> <C-Right>  :vertical resize +10<CR>
+nnoremap <silent> <C-Left> :vertical resize -10<CR>
 set splitbelow
 set splitright
 set winminheight=0
