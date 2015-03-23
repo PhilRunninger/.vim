@@ -19,7 +19,7 @@ Plugin                         'aklt/plantuml-syntax'
 Plugin                       'mbbill/undotree'
 Plugin                        'tpope/vim-dispatch'
 Plugin                     'junegunn/vim-easy-align'
-"Plugin 'git@github.com:PhilRunninger/vim-execute-in-shell.git'
+Plugin 'git@github.com:PhilRunninger/vim-execute-in-shell.git'
 Plugin                        'tpope/vim-fugitive'
 Plugin                        'tpope/vim-jdaddy'
 Plugin                         'elzr/vim-json'
@@ -107,8 +107,20 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 
 let mapleader=" "
 
-":silent cd $HOME                            " change to my most common working directory
-nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>   " command to change pwd to current buffer's
+" command to change pwd to current buffer's directory
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+
+" Show all search text in Quickfix window
+function! SmartGrep(search_str)
+  if fugitive#extract_git_dir(expand("%:h")) == ""
+    execute 'silent grep "' . a:search_str . '" %'
+  else
+    execute 'silent Ggrep "' . a:search_str . '"'
+  endif
+  copen
+endfunction
+command! -nargs=1 SG :call SmartGrep('<args>')
+nnoremap <leader>* *:execute ':SG ' . expand('<cword>')<CR>
 
 " Remove trailing spaces
 nnoremap <leader>d<space> :%s/\s\+$//c<CR>

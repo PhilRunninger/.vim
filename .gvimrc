@@ -1,8 +1,8 @@
-"set columns=9999 lines=9999
+" To fix the fullscreen bug in MacOSX, http://shorts.jeffkreeftmeijer.com/2014/full-screen-macvim-on-yosemite/
 set fullscreen
 
 set cursorline cursorcolumn
-if has("windows")
+if has("win32") || has("win16")
     set guifont=Consolas:h9
 elseif has("mac")
     set guifont=Menlo:h12
