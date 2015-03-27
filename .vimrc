@@ -15,6 +15,7 @@ Plugin                      'morhetz/gruvbox'
 Plugin                       'Shougo/neocomplcache.vim'
 Plugin                   'scrooloose/nerdtree'
 Plugin                   'scrooloose/syntastic'
+Plugin                   'scrooloose/nerdcommenter'
 Plugin                         'aklt/plantuml-syntax'
 Plugin                       'mbbill/undotree'
 Plugin                        'tpope/vim-dispatch'
@@ -113,9 +114,9 @@ nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 " Show all search text in Quickfix window
 function! SmartGrep(search_str)
   if fugitive#extract_git_dir(expand("%:h")) == ""
-    execute 'silent grep "' . a:search_str . '" %'
+    execute 'silent grep -e "' . a:search_str . '" %'
   else
-    execute 'silent Ggrep "' . a:search_str . '"'
+    execute 'silent Ggrep -e "' . a:search_str . '"'
   endif
   copen
 endfunction
@@ -130,7 +131,7 @@ nnoremap <> m`f"a>><ESC>,,i<<<ESC>``ll
 nnoremap >< m`f"lxx,,XX``hh
 
 " Grab PivotalTracker ID and start commit message.
-autocmd BufReadPost COMMIT_EDITMSG execute "normal! /\On branch.\\{-}\\zs\\d\\{8,}\<CR>ygnggPI[#\<ESC>A] " | startinsert!
+autocmd BufReadPost COMMIT_EDITMSG execute "normal! /# On branch.\\{-}\\zs\\d\\{8,}\<CR>y//e\<CR>ggPI[#\<ESC>A] " | startinsert!
 
 "##########################################################################
 "# Settings for managed plugins                                           #
@@ -151,7 +152,7 @@ let g:cursorcross_dynamic = 'w'
 nnoremap + :set cursorline! cursorcolumn!<CR>
 
 " EasyAlign:  https://github.com/junegunn/vim-easy-align.git
-vnoremap <Enter> <Plug>(EasyAlign)
+vmap <Enter> <Plug>(EasyAlign)
 
 " ExecuteInShell:  https://github.com/PhilRunninger/vim-execute-in-shell
 cabbrev shell Shell
