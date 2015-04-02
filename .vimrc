@@ -92,7 +92,7 @@ function! SmartGrep(search_str)
   copen
 endfunction
 command! -nargs=1 SG :call SmartGrep('<args>')
-nnoremap <leader>* *:execute ':SG ' . expand('<cword>')<CR>
+"nnoremap <leader>* *:execute ':SG ' . expand('<cword>')<CR>
 
 " Remove trailing spaces
 nnoremap <leader>d<space> :%s/\s\+$//c<CR>
@@ -143,7 +143,7 @@ inoremap <expr><TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 " Nerdtree:  https://github.com/scrooloose/nerdtree.git
-nnoremap <silent> <leader>n :NERDTreeToggle<CR>
+nnoremap <silent> <leader>t :NERDTreeToggle<CR>
 let NERDTreeMinimalUI=1
 let NERDTreeSortHiddenFirst=1
 let NERDTreeShowBookmarks=1

@@ -1,5 +1,9 @@
-" To fix the fullscreen bug in MacOSX, http://shorts.jeffkreeftmeijer.com/2014/full-screen-macvim-on-yosemite/
-set fullscreen
+if has("mac")
+  " To fix the fullscreen bug in MacOSX, http://shorts.jeffkreeftmeijer.com/2014/full-screen-macvim-on-yosemite/
+  set fullscreen
+else
+  set lines=9999 columns=9999
+endif
 
 set cursorline cursorcolumn
 if has("win32") || has("win16")
