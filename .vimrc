@@ -77,6 +77,9 @@ set backupdir=~/.vim/tmp/backups//
 " When editing a file, always jump to its last known cursor position.
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
+" Set syntax highlighting for our log files
+autocmd BufRead,BufNewFile MainOutputLog*.txt setfiletype vht
+
 let mapleader=" "
 
 " command to change pwd to current buffer's directory
