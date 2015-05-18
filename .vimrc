@@ -9,7 +9,7 @@ source ~/.vim/.vundlerc
 set encoding=utf-8
 syntax on
 
-set history=2000
+set history=500
 set showcmd
 set wildmenu
 set wildmode=full
