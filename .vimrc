@@ -1,4 +1,6 @@
-" BASE
+" CHANGE 
+" ON 
+" MAC
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
