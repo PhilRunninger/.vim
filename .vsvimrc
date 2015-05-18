@@ -1,0 +1,37 @@
+set nocompatible
+
+filetype plugin indent on
+
+set history=1000
+set showcmd
+set wildmenu
+set wildmode=full
+
+" Searching settings
+set hlsearch    " highlight search results
+set incsearch   " incremental searching
+set ignorecase  " case insensitive search
+set smartcase   " ... unless using capital letters
+
+nnoremap <silent> n   nzzzv
+nnoremap <silent> N   Nzzzv
+
+set backspace=indent,eol,start  " backspace and cursor keys wrap to previous/next line
+set whichwrap+=<,>,[,]
+
+set autoindent
+set smartindent
+set softtabstop=2
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
+set scrolloff=3
+set showmatch
+
+set undolevels=100
+set undofile
+set undodir=~/.vim/tmp/undo//
+set directory=~/.vim/tmp/swapfiles//
+set nobackup
+set backupdir=~/.vim/tmp/backups//
