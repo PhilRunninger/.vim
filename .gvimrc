@@ -5,7 +5,7 @@ else
   set lines=9999 columns=9999
 endif
 
-set cursorline cursorcolumn
+set nocursorline nocursorcolumn
 if has("win32") || has("win16")
     set guifont=Consolas:h9
 elseif has("mac")
@@ -13,7 +13,7 @@ elseif has("mac")
 else
     set guifont=Monospace\ 9
 endif
-set listchars=tab:†.,extends:»,precedes:«,trail:●
+set listchars=tab:†.,extends:»,precedes:«,trail:∘
 set guioptions-=m
 set guioptions-=T
 set guioptions-=L
@@ -35,7 +35,3 @@ hi CursorColumn term=reverse guibg=#1f1f1a
 
 let NERDTreeDirArrows=1
 hi NERDTreeBookmarksLeader guifg=#83a598
-
-hi User1 ctermbg=green ctermfg=black guibg=#20ff20 guifg=#010101 gui=NONE
-hi User2 ctermbg=red   ctermfg=white guibg=#ff2020 guifg=white   gui=NONE
-hi User3 ctermbg=black ctermfg=blue  guibg=#20207f guifg=white   gui=bold

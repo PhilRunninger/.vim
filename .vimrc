@@ -24,6 +24,8 @@ runtime macros/matchit.vim
 nnoremap <silent> n   nzzzv
 nnoremap <silent> N   Nzzzv
 
+nnoremap j gj
+nnoremap k gk
 set backspace=indent,eol,start  " backspace and cursor keys wrap to previous/next line
 set whichwrap+=<,>,[,]
 
@@ -104,6 +106,10 @@ nnoremap >< m`f"lxx,,XX``hh
 " Grab PivotalTracker ID and start commit message.
 autocmd BufReadPost COMMIT_EDITMSG execute "normal! /# On branch.\\{-}\\zs\\d\\{8,}\<CR>y//e\<CR>ggPI[#\<ESC>A] " | startinsert!
 
+" Set filetype of VHT Log files
+autocmd BufReadPost MainOutputLog*.txt set filetype=vht
+autocmd BufReadPost IVROutputLog*.txt set filetype=vht
+
 "##########################################################################
 "# Settings for managed plugins                                           #
 "##########################################################################
@@ -172,7 +178,11 @@ let g:undotree_WindowLayout = 2
 "# END: Settings for managed plugins                                      #
 "##########################################################################
 
+hi User1 ctermbg=green ctermfg=black guibg=#20ff20 guifg=#010101 gui=NONE
+hi User2 ctermbg=red   ctermfg=white guibg=#ff2020 guifg=white   gui=NONE
+hi User3 ctermbg=black ctermfg=blue  guibg=#20207f guifg=white   gui=bold
+
 set statusline=\ %v\ %3*%{fugitive#statusline()}%*\ %f\ #%n
 set statusline+=\ %1*%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%*
 set statusline+=\ %2*%{&modified?\"\ mod\ \":\"\"}%*
-set statusline+=%=%#warningmsg#%{SyntasticStatuslineFlag()}%*\ %{&ff}\ %p%%\ 
+set statusline+=%=%#warningmsg#%{SyntasticStatuslineFlag()}%*\ %{&ft}\ %{&ff}\ %p%%\ 
