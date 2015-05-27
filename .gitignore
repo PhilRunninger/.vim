@@ -1,4 +1,3 @@
-tags
 *.orig
-*.sw[a-p]
-*/
+bundle/
+syntax/
