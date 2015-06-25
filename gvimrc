@@ -2,7 +2,7 @@ if has("mac")
   " To fix the fullscreen bug in MacOSX, http://shorts.jeffkreeftmeijer.com/2014/full-screen-macvim-on-yosemite/
   set fullscreen
 else
-  set lines=9999 columns=9999
+  set lines=999 columns=999
 endif
 
 set nocursorline nocursorcolumn
@@ -24,8 +24,13 @@ set guioptions-=b
 set guioptions-=h
 set guioptions-=e
 
-color gruvbox
+colorscheme gruvbox
 set background=dark
+
+" Duplicated here because .gvimrc runs after .vimrc, and some colorschemes clear highlighting first.
+hi User1 ctermbg=green ctermfg=black guibg=#20ff20 guifg=#010101 gui=NONE
+hi User2 ctermbg=red   ctermfg=white guibg=#ff2020 guifg=white   gui=NONE
+hi User3 ctermbg=black ctermfg=blue  guibg=#20207f guifg=white   gui=bold
 
 hi Search guifg=white guibg=darkcyan gui=bold
 hi Normal ctermfg=223 ctermbg=235 guifg=#eddbb2 guibg=#141414

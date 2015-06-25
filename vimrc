@@ -2,7 +2,7 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-source ~/.vim/.vundlerc
+execute 'source' expand('<sfile>:p:h') . '/vundlerc'
 
 :let g:netrw_dirhistmax = 0
 
@@ -181,6 +181,7 @@ let g:undotree_WindowLayout = 2
 "# END: Settings for managed plugins                                      #
 "##########################################################################
 
+" Duplicated in .gvimrc because it runs after .vimrc, and some colorschemes clear highlighting first.
 hi User1 ctermbg=green ctermfg=black guibg=#20ff20 guifg=#010101 gui=NONE
 hi User2 ctermbg=red   ctermfg=white guibg=#ff2020 guifg=white   gui=NONE
 hi User3 ctermbg=black ctermfg=blue  guibg=#20207f guifg=white   gui=bold
