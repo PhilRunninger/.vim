@@ -84,20 +84,8 @@ autocmd BufRead,BufNewFile MainOutputLog*.txt setfiletype vht
 
 let mapleader=" "
 
-" command to change pwd to current buffer's directory
+" mapping to change pwd to current buffer's directory
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
-
-" Show all search text in Quickfix window
-function! SmartGrep(search_str)
-  if fugitive#extract_git_dir(expand("%:h")) == ""
-    execute 'silent grep -e "' . a:search_str . '" %'
-  else
-    execute 'silent Ggrep -e "' . a:search_str . '"'
-  endif
-  copen
-endfunction
-command! -nargs=1 SG :call SmartGrep('<args>')
-"nnoremap <leader>* *:execute ':SG ' . expand('<cword>')<CR>
 
 " Remove trailing spaces
 nnoremap <leader>d<space> :%s/\s\+$//c<CR>
@@ -141,7 +129,7 @@ nnoremap <F6> :w<CR>:Shell rebar -r eunit skip_deps=true<CR>
 
 " Fugitive:  git@github.com:tpope/vim-fugitive.git
 set laststatus=2
-command -nargs=+ Ggr execute 'silent Ggrep!' <q-args> | cw | redraw!<F37>
+command! -nargs=+ Ggr execute 'silent Ggrep!' <q-args> | cw | redraw!
 nnoremap <F3> *:Ggr <cword><CR>
 
 " JDaddy:  https://github.com/tpope/vim-jdaddy.git
