@@ -141,6 +141,8 @@ nnoremap <F6> :w<CR>:Shell rebar -r eunit skip_deps=true<CR>
 
 " Fugitive:  git@github.com:tpope/vim-fugitive.git
 set laststatus=2
+command -nargs=+ Ggr execute 'silent Ggrep!' <q-args> | cw | redraw!<F37>
+nnoremap <F3> *:Ggr <cword><CR>
 
 " JDaddy:  https://github.com/tpope/vim-jdaddy.git
 " JSON:  https://github.com/elzr/vim-json.git
@@ -180,6 +182,12 @@ let g:undotree_WindowLayout = 2
 "##########################################################################
 "# END: Settings for managed plugins                                      #
 "##########################################################################
+
+if has("nvim")
+  colorscheme industry
+else
+  colorscheme gruvbox
+endif
 
 " Duplicated in .gvimrc because it runs after .vimrc, and some colorschemes clear highlighting first.
 hi User1 ctermbg=green ctermfg=black guibg=#20ff20 guifg=#010101 gui=NONE
