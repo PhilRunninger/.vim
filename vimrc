@@ -129,8 +129,8 @@ nnoremap <F6> :w<CR>:Shell rebar -r eunit skip_deps=true<CR>
 
 " Fugitive:  git@github.com:tpope/vim-fugitive.git
 set laststatus=2
-command! -nargs=+ Ggr execute 'silent Ggrep!' <q-args> | cw | redraw!
-nnoremap <F3> *:Ggr <cword><CR>
+command! -nargs=+ Ggr execute '/'.<q-args> | execute 'silent Ggrep!'<q-args> | cw | redraw!
+nnoremap <F3> :Ggr <C-R>=expand('<cword>')<CR><CR>
 
 " JDaddy:  https://github.com/tpope/vim-jdaddy.git
 " JSON:  https://github.com/elzr/vim-json.git
