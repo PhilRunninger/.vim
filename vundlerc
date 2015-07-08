@@ -1,7 +1,7 @@
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set rtp+=$VIMHOME/bundle/Vundle.vim
+call vundle#begin($VIMHOME.'/bundle')
 Plugin                       'gmarik/Vundle.vim'
 Plugin                  'vim-scripts/NSIS-syntax-highlighting'
 Plugin                     'chrisbra/Recover.vim'

@@ -2,7 +2,8 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-execute 'source' expand('<sfile>:p:h') . '/vundlerc'
+let $VIMHOME=expand('<sfile>:p:h')
+execute 'source' $VIMHOME . '/vundlerc'
 
 :let g:netrw_dirhistmax = 0
 
@@ -71,10 +72,10 @@ set showtabline=0
 
 set undolevels=100
 set undofile
-set undodir=~/.vim/tmp/undo//
-set directory=~/.vim/tmp/swapfiles//
+set undodir=$VIMHOME/tmp/undo//
+set directory=$VIMHOME/tmp/swapfiles//
 set nobackup
-set backupdir=~/.vim/tmp/backups//
+set backupdir=$VIMHOME/tmp/backups//
 
 " When editing a file, always jump to its last known cursor position.
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
