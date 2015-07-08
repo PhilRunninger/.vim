@@ -8,7 +8,7 @@ These instructions assume you will be running them from a bash shell, whether in
 
 ```
 cd ~
-git@github.com:PhilRunninger/my_vim_setup.git vimfiles
+git clone git@github.com:PhilRunninger/my_vim_setup.git vimfiles
 cd vimfiles/bundle
 git clone git@github.com:gmarik/Vundle.vim
 ```
@@ -17,7 +17,7 @@ git clone git@github.com:gmarik/Vundle.vim
 
 ```
 cd ~
-git@github.com:PhilRunninger/my_vim_setup.git .vim
+git clone git@github.com:PhilRunninger/my_vim_setup.git .vim
 cd .vim/bundle
 git clone git@github.com:gmarik/Vundle.vim
 ```
