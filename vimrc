@@ -53,15 +53,14 @@ set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
 " Window behavior and commands
-nnoremap <silent> <C-Tab> :wincmd w<CR>
 nnoremap <silent> <C-K> :wincmd k<CR>
 nnoremap <silent> <C-J> :wincmd j<CR>
 nnoremap <silent> <C-H> :wincmd h<CR>
 nnoremap <silent> <C-L> :wincmd l<CR>
-nnoremap <silent> <C-Up>  :resize +5<CR>
-nnoremap <silent> <C-Down> :resize -5<CR>
-nnoremap <silent> <C-Right>  :vertical resize +10<CR>
-nnoremap <silent> <C-Left> :vertical resize -10<CR>
+nnoremap <silent> <S-Up>  :resize +5<CR>
+nnoremap <silent> <S-Down> :resize -5<CR>
+nnoremap <silent> <S-Right>  :vertical resize +10<CR>
+nnoremap <silent> <S-Left> :vertical resize -10<CR>
 set splitbelow
 set splitright
 set winminheight=0
