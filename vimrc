@@ -176,6 +176,7 @@ if has("nvim")
 else
   colorscheme gruvbox
 endif
+set background=dark
 
 " Duplicated in .gvimrc because it runs after .vimrc, and some colorschemes clear highlighting first.
 hi User1 ctermbg=green ctermfg=black guibg=#20ff20 guifg=#010101 gui=NONE
