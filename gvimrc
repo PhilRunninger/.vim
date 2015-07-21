@@ -33,7 +33,7 @@ hi User2 ctermbg=red   ctermfg=white guibg=#ff2020 guifg=white   gui=NONE
 hi User3 ctermbg=black ctermfg=blue  guibg=#20207f guifg=white   gui=bold
 
 hi Search guifg=white guibg=darkcyan gui=bold
-hi Normal ctermfg=223 ctermbg=235 guifg=#eddbb2 guibg=#141414
+hi Normal guifg=#eddbb2 guibg=black
 hi WhiteOnRed ctermbg=red ctermfg=white guibg=red guifg=white
 hi CursorLine term=reverse guibg=#1f1f1a
 hi CursorColumn term=reverse guibg=#1f1f1a
