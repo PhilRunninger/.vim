@@ -95,7 +95,7 @@ nnoremap <> m`f"a>><ESC>,,i<<<ESC>``ll
 nnoremap >< m`f"lxx,,XX``hh
 
 " Grab PivotalTracker ID and start commit message.
-autocmd BufReadPost COMMIT_EDITMSG execute "normal! /# On branch.\\{-}\\zs\\d\\{8,}\<CR>y//e\<CR>ggPI[#\<ESC>A] " | startinsert!
+autocmd BufReadPost COMMIT_EDITMSG execute "normal! /# On branch.\\{-}\\zs\\d\\{8,}\<CR>y//e\<CR>ggPI[#\<ESC>A] "
 
 " Set filetype of VHT Log files
 autocmd BufReadPost MainOutputLog*.txt set filetype=vht
@@ -155,7 +155,7 @@ let NERDTreeIgnore=['^ntuser\.', '^NTUSER\.']
 " Surround:  git://github.com/tpope/vim-surround.git
 " Syntastic: git://github.com/scrooloose/syntastic
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 2
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
