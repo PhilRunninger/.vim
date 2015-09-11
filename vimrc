@@ -104,8 +104,7 @@ autocmd BufReadPost IVROutputLog*.txt set filetype=vht
 "##########################################################################
 "# Settings for managed plugins                                           #
 "##########################################################################
-" Gruvbox (color):  https://github.com/morhetz/gruvbox.git
-" BufExplorer:  https://github.com/jlanzarotta/bufexplorer.git
+" BufExplorer
 let g:bufExplorerDisableDefaultKeyMapping=1
 let g:bufExplorerShowNoName=1
 let g:bufExplorerDefaultHelp=0
@@ -114,34 +113,25 @@ nnoremap <silent> <leader>b :ToggleBufExplorer<CR>
 nnoremap <silent> <leader>vb <C-W>v:ToggleBufExplorer<CR>
 nnoremap <silent> <leader>hb <C-W>s:ToggleBufExplorer<CR>
 
-" Csv:  https://git@github.com:chrisbra/csv.vim.git
-" CursorCross:  https://github.com/mtth/cursorcross.vim.git
+" CursorCross
 let g:cursorcross_dynamic = 'w'
 nnoremap + :set cursorline! cursorcolumn!<CR>
 
-" EasyAlign:  https://github.com/junegunn/vim-easy-align.git
+" EasyAlign
 vmap <Enter> <Plug>(EasyAlign)
 
-" ExecuteInShell:  https://github.com/PhilRunninger/vim-execute-in-shell
-cabbrev shell Shell
-nnoremap <F5> :w<CR>:Shell rebar -r eunit suite=%:t:r skip_deps=true<CR>
-nnoremap <F6> :w<CR>:Shell rebar -r eunit skip_deps=true<CR>
-
-" Fugitive:  git@github.com:tpope/vim-fugitive.git
+" Fugitive
 set laststatus=2
 nnoremap <F3> "zyiw/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
 vnoremap <F3> "zy/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
 
-" JDaddy:  https://github.com/tpope/vim-jdaddy.git
-" JSON:  https://github.com/elzr/vim-json.git
-" Markdown:  https://github.com/tpope/vim-markdown.git
-" NeoComplCache:  http://github.com/Shougo/neocomplcache.vim.git
+" NeoComplCache
 let g:neocomplcache_enable_fuzzy_completion = 1
 let g:neocomplcache_enable_at_startup = 1
 inoremap <expr><TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
-" Nerdtree:  https://github.com/scrooloose/nerdtree.git
+" Nerdtree
 nnoremap <silent> <leader>t :NERDTreeToggle<CR>
 let NERDTreeMinimalUI=1
 let NERDTreeSortHiddenFirst=1
@@ -150,22 +140,20 @@ let NERDTreeWinSize=42
 let NERDTreeQuitOnOpen=1
 let NERDTreeIgnore=['^ntuser\.', '^NTUSER\.']
 
-" NSIS:  https://github.com/vim-scripts/NSIS-syntax-highlighting.git
-" Repeat:  git://github.com/tpope/vim-repeat.git
-" Surround:  git://github.com/tpope/vim-surround.git
-" Syntastic: git://github.com/scrooloose/syntastic
+" Scratch
+let g:scratch_insert_autohide = 0
+
+" Syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 2
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" Undotree:  https://github.com/mbbill/undotree.git
+" Undotree
 nnoremap <silent> <leader>u :UndotreeToggle<CR>
 let g:undotree_SetFocusWhenToggle = 1
 let g:undotree_TreeNodeShape = '◘'
 let g:undotree_WindowLayout = 2
-
-" Unimpaired:  https://github.com/tpope/vim-unimpaired.git
 
 "##########################################################################
 "# END: Settings for managed plugins                                      #
