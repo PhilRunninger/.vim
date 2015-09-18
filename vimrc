@@ -84,7 +84,7 @@ autocmd BufRead,BufNewFile MainOutputLog*.txt setfiletype vht
 
 let mapleader=" "
 
-" mapping to change pwd to current buffer's directory
+" mapping to change cwd to current buffer's directory
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " Remove trailing spaces
