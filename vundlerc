@@ -3,6 +3,7 @@ filetype off
 set rtp+=$VIMHOME/bundle/Vundle.vim
 call vundle#begin($VIMHOME.'/bundle')
 Plugin        'aklt/plantuml-syntax'
+Plugin 'altercation/vim-colors-solarized'
 Plugin    'chrisbra/csv.vim'
 Plugin    'chrisbra/Recover.vim'
 Plugin      'cuican/vim-mark'

@@ -159,15 +159,9 @@ let g:undotree_WindowLayout = 2
 "# END: Settings for managed plugins                                      #
 "##########################################################################
 
-if has("nvim")
-  colorscheme industry
-else
-  colorscheme gruvbox
-endif
-set background=dark
-hi Normal ctermbg=0 guibg=black
+colorscheme solarized
+set background=light
 
-" Duplicated in .gvimrc because it runs after .vimrc, and some colorschemes clear highlighting first.
 hi User1 ctermbg=green ctermfg=black guibg=#20ff20 guifg=#010101 gui=NONE
 hi User2 ctermbg=red   ctermfg=white guibg=#ff2020 guifg=white   gui=NONE
 hi User3 ctermbg=black ctermfg=blue  guibg=#20207f guifg=white   gui=bold
