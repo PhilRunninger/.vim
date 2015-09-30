@@ -14,6 +14,10 @@ set history=1000
 set showcmd
 set wildmenu
 set wildmode=full
+set wildignore+=*.a,*.o
+set wildignore+=*.bmp,*.gif,*.jpg,*.ico,*.png
+set wildignore+=.DS_Store,.git,.ht,.svn
+set wildignore+=*~,*.swp,*.tmp
 
 " Searching settings
 set hlsearch    " highlight search results
@@ -170,3 +174,12 @@ set statusline=\ %v\ %3*%{fugitive#statusline()}%*\ %f\ #%n
 set statusline+=\ %1*%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%*
 set statusline+=\ %2*%{&modified?\"\ mod\ \":\"\"}%*
 set statusline+=%=%#warningmsg#%{SyntasticStatuslineFlag()}%*\ %{&ft}\ %{&ff}\ %p%%\ 
+
+"##########################################################################
+" Give an opportunity to override anything done by this script.
+" http://stackoverflow.com/a/18734557/510067
+let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h') . '/post_vimrc'
+if filereadable(s:path)
+  execute 'source' s:path
+endif
+"##########################################################################

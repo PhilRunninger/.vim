@@ -1,8 +1,25 @@
 # Vim Cheatsheet
 
-**Important Note:** *Make sure you type commands as you see them in rendered form. Do not type Markup's escape characters (backtick, in particular) when issuing the commands.*
- 
+## Customized vimrc Processing
+
+These vim settings are under source code control in github. You are free to clone the repo and pull it as often as you wish; however, I may change things that you do not like, or the changes may not work well in your terminal.
+
+One option is to fork the repo, and keep your own version. The problem with that is if you choose to sync with my repo, you could end up with conflicts. Another option is to use a separate file, `post_vimrc` to execute your own commands after vimrc finishes. Here is the code at the end of vimrc that executes `post_vimrc`, which is ignored by git.
+
+```
+"##########################################################################
+" Give an opportunity to override anything done by this script.
+" http://stackoverflow.com/a/18734557/510067
+let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h') . '/post_vimrc'
+if filereadable(s:path)
+  execute 'source' s:path
+endif
+"##########################################################################
+```
+
 ## Custom Mappings
+
+**Important Note:** *Make sure you type commands as you see them in rendered form. Do not type Markup's escape characters (backtick, in particular) when issuing the commands.*
 
 The `<leader>` key is used to expand the number of possible key mappings. By default it is the backslash key, but many Vimmers, including me, have it redefined as the spacebar. It's always within reach, and normally has no useful function anyway.
 
