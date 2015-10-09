@@ -35,6 +35,7 @@ set backspace=indent,eol,start  " backspace and cursor keys wrap to previous/nex
 set whichwrap+=<,>,[,]
 
 set autoread
+set confirm
 
 " tab settings and behavior
 set autoindent
@@ -105,18 +106,15 @@ autocmd BufReadPost COMMIT_EDITMSG execute "normal! /# On branch.\\{-}\\zs\\d\\{
 autocmd BufReadPost MainOutputLog*.txt set filetype=vht
 autocmd BufReadPost IVROutputLog*.txt set filetype=vht
 
+" Set statusline
+set statusline=\ %v\ %3*%{fugitive#statusline()}%*\ %f\ #%n
+set statusline+=\ %1*%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%*
+set statusline+=\ %2*%{&modified?\"\ mod\ \":\"\"}%*
+set statusline+=%=%#warningmsg#%{SyntasticStatuslineFlag()}%*\ %{&ft}\ %{&ff}\ %p%%\ 
+
 "##########################################################################
 "# Settings for managed plugins                                           #
 "##########################################################################
-" BufExplorer
-let g:bufExplorerDisableDefaultKeyMapping=1
-let g:bufExplorerShowNoName=1
-let g:bufExplorerDefaultHelp=0
-let g:bufExplorerDetailedHelp=0
-nnoremap <silent> <leader>b :ToggleBufExplorer<CR>
-nnoremap <silent> <leader>vb <C-W>v:ToggleBufExplorer<CR>
-nnoremap <silent> <leader>hb <C-W>s:ToggleBufExplorer<CR>
-
 " CursorCross
 let g:cursorcross_dynamic = 'w'
 nnoremap + :set cursorline! cursorcolumn!<CR>
@@ -166,14 +164,11 @@ let g:undotree_WindowLayout = 2
 colorscheme solarized
 set background=light
 
-hi User1 ctermbg=green ctermfg=black guibg=#20ff20 guifg=#010101 gui=NONE
-hi User2 ctermbg=red   ctermfg=white guibg=#ff2020 guifg=white   gui=NONE
-hi User3 ctermbg=black ctermfg=blue  guibg=#20207f guifg=white   gui=bold
+hi WildMenu cterm=reverse ctermfg=208 ctermbg=0 guifg=Orange guibg=Black
 
-set statusline=\ %v\ %3*%{fugitive#statusline()}%*\ %f\ #%n
-set statusline+=\ %1*%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%*
-set statusline+=\ %2*%{&modified?\"\ mod\ \":\"\"}%*
-set statusline+=%=%#warningmsg#%{SyntasticStatuslineFlag()}%*\ %{&ft}\ %{&ff}\ %p%%\ 
+hi User1 ctermbg=40  ctermfg=0 guibg=#20ff20 guifg=#010101 gui=NONE
+hi User2 ctermbg=196 ctermfg=7 guibg=#ff2020 guifg=white   gui=NONE
+hi User3 ctermbg=20  ctermfg=7 guibg=#20207f guifg=white   gui=bold
 
 "##########################################################################
 " Give an opportunity to override anything done by this script.
