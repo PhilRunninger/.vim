@@ -106,7 +106,7 @@ autocmd BufReadPost IVROutputLog*.txt set filetype=vht
 set statusline=\ %v\ %3*%{fugitive#statusline()}%*\ %f\ #%n
 set statusline+=\ %1*%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%*
 set statusline+=\ %2*%{&modified?\"\ mod\ \":\"\"}%*
-set statusline+=%=%#warningmsg#%{SyntasticStatuslineFlag()}%*\ %{&ft}\ %{&ff}\ %p%%\ 
+set statusline+=%=%{&ft}\ %{&ff}\ %p%%\ 
 
 "##########################################################################
 "# Settings for managed plugins                                           #
@@ -140,12 +140,6 @@ let NERDTreeIgnore=['^ntuser\.', '^NTUSER\.']
 
 " Scratch
 let g:scratch_insert_autohide = 0
-
-" Syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 2
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 
 " Undotree
 nnoremap <silent> <leader>u :UndotreeToggle<CR>
