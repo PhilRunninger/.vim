@@ -113,15 +113,22 @@ set statusline+=%=%{&ft}\ %{&ff}\ %p%%\
 "##########################################################################
 " CursorCross
 let g:cursorcross_dynamic = 'w'
-nnoremap + :set cursorline! cursorcolumn!<CR>
+nnoremap <silent> + :set cursorline! cursorcolumn!<CR>
 
 " EasyAlign
 vmap <Enter> <Plug>(EasyAlign)
 
 " Fugitive
 set laststatus=2
-nnoremap <F3> "zyiw/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
-vnoremap <F3> "zy/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
+nnoremap <silent> <F3> "zyiw/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
+vnoremap <silent> <F3> "zy/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
+
+" MiniBufExplorer
+let g:miniBufExplBRSplit = 0   " Put new window above current or on the left for vertical split
+let g:miniBufExplBuffersNeeded = 1
+let g:miniBufExplShowBufNumbers = 0
+nnoremap <silent> <TAB>   :MBEbb<CR>
+nnoremap <silent> <S-TAB> :MBEbf<CR>
 
 " NeoComplCache
 let g:neocomplcache_enable_fuzzy_completion = 1
