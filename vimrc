@@ -129,6 +129,7 @@ let g:miniBufExplBuffersNeeded = 1
 let g:miniBufExplShowBufNumbers = 0
 nnoremap <silent> <TAB>   :MBEbb<CR>
 nnoremap <silent> <S-TAB> :MBEbf<CR>
+nnoremap <silent> <Del>   :MBEbd<CR>
 
 " NeoComplCache
 let g:neocomplcache_enable_fuzzy_completion = 1

@@ -27,7 +27,21 @@ Mappings of more than one character must be fully typed within a short timeout p
 
 ### Plugin Mappings
 
-These are additional mappings written to enhance plugin functionality. The table does not include mappings defined by these plugins.
+#### Useful Mappings Defined by Plugins
+
+Mode | Keystroke | Function | For more help...
+---|---|---|---
+Normal             | `-`                     | Toggle cursorline (highlight, or not, the current line)                                            | See [github](https://github.com/mtth/cursorcross.vim)
+Normal             | `                       | `                                                                                                  | Toggle cursorcolumn (highlight, or not, the current column) |
+Normal / Selection | `gs`                    | Open scratch buffer in its window                                                                  | `:h Scratch`
+Normal / Selection | `gS`                    | Open an empty scratch buffer in its window                                                         |
+Normal / Selection | `<leader>cl`            | Comment line(s) of code, left aligned                                                              | `:h NERDCommenter`
+Normal / Selection | `<leader>cu`            | Uncomment line(s) of code                                                                          |
+Normal             | `ys[text object][char]` | Surround text obect with char and its matching charcter, ie. ( and ), { and }, [ and ], or < and > | `:h surround`
+Normal             | `cs[oldchar][newchar]`  | Change surrounding characters from old to new                                                      |
+Normal             | `ds[char]`              | Remove closest specified surrounding charcters                                                     |
+
+#### Additional Mappings Defined in vimrc
 
 Mode | Keystroke | Function | For more help...
 ---|---|---|---
