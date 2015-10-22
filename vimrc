@@ -124,11 +124,11 @@ nnoremap <silent> <F3> "zyiw/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redr
 vnoremap <silent> <F3> "zy/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
 
 " MiniBufExplorer
-let g:miniBufExplBRSplit = 0   " Put new window above current or on the left for vertical split
-let g:miniBufExplBuffersNeeded = 1
-let g:miniBufExplShowBufNumbers = 0
-nnoremap <silent> <TAB>   :MBEbb<CR>
-nnoremap <silent> <S-TAB> :MBEbf<CR>
+let g:miniBufExplorerAutoStart = 0
+let g:miniBufExplBRSplit = 0
+" let g:miniBufExplShowBufNumbers = 0
+let g:miniBufExplCloseOnSelect = 1
+nnoremap <silent> <TAB>   :MBEOpen<CR>:MBEFocus<CR>
 nnoremap <silent> <Del>   :MBEbd<CR>
 
 " NeoComplCache
