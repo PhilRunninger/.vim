@@ -31,6 +31,18 @@ set backspace=indent,eol,start  " backspace and cursor keys wrap to previous/nex
 set whichwrap+=<,>,[,]
 
 set autoread
+augroup checktime
+  au!
+  if !has("gui_running")
+    "silent! necessary otherwise throws errors when using command line window.
+    autocmd BufEnter        * silent! checktime
+    autocmd CursorHold      * silent! checktime
+    autocmd CursorHoldI     * silent! checktime
+    "these two _may_ slow things down. Remove if they do.
+    autocmd CursorMoved     * silent! checktime
+    autocmd CursorMovedI    * silent! checktime
+  endif
+augroup END
 set confirm
 
 " tab settings and behavior
