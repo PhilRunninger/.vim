@@ -140,13 +140,13 @@ let g:miniBufExplorerAutoStart = 0
 let g:miniBufExplBRSplit = 0
 " let g:miniBufExplShowBufNumbers = 0
 let g:miniBufExplCloseOnSelect = 1
-nnoremap <silent> <TAB>   :MBEOpen<CR>:MBEFocus<CR>
+nnoremap <silent><expr> <TAB> (bufname(winbufnr(0)) == g:miniBufExplStatusLineText) ? ":MBEClose<CR>" : ":MBEOpen<CR>:MBEFocus<CR>"
 
 " NeoComplCache
 let g:neocomplcache_enable_fuzzy_completion = 1
 let g:neocomplcache_enable_at_startup = 1
-inoremap <expr><TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+inoremap <expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 " Nerdtree
 nnoremap <silent> <leader>t :NERDTreeToggle<CR>
