@@ -141,7 +141,6 @@ let g:miniBufExplBRSplit = 0
 " let g:miniBufExplShowBufNumbers = 0
 let g:miniBufExplCloseOnSelect = 1
 nnoremap <silent> <TAB>   :MBEOpen<CR>:MBEFocus<CR>
-nnoremap <silent> <Del>   :MBEbd<CR>
 
 " NeoComplCache
 let g:neocomplcache_enable_fuzzy_completion = 1
