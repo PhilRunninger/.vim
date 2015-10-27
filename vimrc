@@ -108,7 +108,7 @@ nnoremap <> m`f"a>><ESC>,,i<<<ESC>``ll
 nnoremap >< m`f"lxx,,XX``hh
 
 " Grab PivotalTracker ID and start commit message.
-autocmd BufReadPost COMMIT_EDITMSG execute "silent! normal! /# On branch.\\{-}\\zs\\d\\{8,}\<CR>y//e\<CR>ggPI[#\<ESC>A] \<ESC>:1,1s/\\[#\\] //\<CR>"
+autocmd BufReadPost COMMIT_EDITMSG execute "silent! normal! qzq/# On branch.\\{-}\\zs\\d\\{8,}\<CR>\"zy//e\<CR>gg\"zPI[#\<ESC>A] \<ESC>:1,1s/\\[#\\] //\<CR>"
 
 " Set filetype of VHT Log files
 autocmd BufReadPost MainOutputLog*.txt set filetype=vht
