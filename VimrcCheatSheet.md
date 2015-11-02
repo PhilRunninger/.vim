@@ -33,6 +33,8 @@ Mode | Keystroke | Function | For more help...
 ---|---|---|---
 Normal             | `-`                     | Toggle cursorline (highlight, or not, the current line)                                            | See [github](https://github.com/mtth/cursorcross.vim)
 Normal             | `|`                     | Toggle cursorcolumn (highlight, or not, the current column)                                        |
+Normal / Selection | `gs`                    | Open scratch buffer in its window                                                                  | `:h Scratch`
+Normal / Selection | `gS`                    | Open an empty scratch buffer in its window                                                         |
 Normal / Selection | `<leader>cl`            | Comment line(s) of code, left aligned                                                              | `:h NERDCommenter`
 Normal / Selection | `<leader>cu`            | Uncomment line(s) of code                                                                          |
 Normal             | `ys[text object][char]` | Surround text obect with char and its matching charcter, ie. ( and ), { and }, [ and ], or < and > | `:h surround`
