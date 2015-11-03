@@ -181,11 +181,14 @@ set background=light
 
 if has("mac")
   hi WildMenu cterm=reverse ctermfg=208 ctermbg=0 guifg=Orange guibg=Black
+  hi User1 ctermbg=40  ctermfg=0 guibg=#20ff20 guifg=#010101 gui=NONE
+  hi User2 ctermbg=196 ctermfg=7 guibg=#ff2020 guifg=white   gui=NONE
+  hi User3 ctermbg=20  ctermfg=7 guibg=#20207f guifg=white   gui=bold
+else
+  hi User1 ctermbg=10 ctermfg=0 guibg=#20ff20 guifg=#010101 gui=NONE
+  hi User2 ctermbg=12 ctermfg=7 guibg=#ff2020 guifg=white   gui=NONE
+  hi User3 ctermbg=9  ctermfg=7 guibg=#20207f guifg=white   gui=bold
 endif
-
-hi User1 ctermbg=40  ctermfg=0 guibg=#20ff20 guifg=#010101 gui=NONE
-hi User2 ctermbg=196 ctermfg=7 guibg=#ff2020 guifg=white   gui=NONE
-hi User3 ctermbg=20  ctermfg=7 guibg=#20207f guifg=white   gui=bold
 
 "##########################################################################
 " Give an opportunity to override anything done by this script.
