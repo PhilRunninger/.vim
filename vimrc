@@ -173,7 +173,9 @@ let g:undotree_WindowLayout = 2
 colorscheme solarized
 set background=light
 
-hi WildMenu cterm=reverse ctermfg=208 ctermbg=0 guifg=Orange guibg=Black
+if has("mac")
+  hi WildMenu cterm=reverse ctermfg=208 ctermbg=0 guifg=Orange guibg=Black
+endif
 
 hi User1 ctermbg=40  ctermfg=0 guibg=#20ff20 guifg=#010101 gui=NONE
 hi User2 ctermbg=196 ctermfg=7 guibg=#ff2020 guifg=white   gui=NONE
