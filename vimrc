@@ -58,7 +58,11 @@ set showmatch
 set number
 set list
 set fillchars=stl:\ ,stlnc:\ ,vert:\ 
-set listchars=tab:†.,extends:»,precedes:«,trail:●
+if has("windows")
+  set listchars=tab:†.,extends:»,precedes:«,trail:¤
+else
+  set listchars=tab:†.,extends:»,precedes:«,trail:●
+endif
 set tags=./tags;/
 
 " Disable the bells (audible and visual).
