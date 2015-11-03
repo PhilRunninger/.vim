@@ -108,7 +108,7 @@ nnoremap <> m`f"a>><ESC>,,i<<<ESC>``ll
 nnoremap >< m`f"lxx,,XX``hh
 
 " Grab PivotalTracker ID and start commit message.
-autocmd BufReadPost COMMIT_EDITMSG execute "silent! normal! /# On branch.\\{-}\\zs\\d\\{8,}\<CR>y//e\<CR>ggPI[#\<ESC>A] \<ESC>:1,1s/\\[#\\] //\<CR>"
+autocmd BufReadPost COMMIT_EDITMSG execute "silent! normal! qzq/# On branch.\\{-}\\zs\\d\\{8,}\<CR>\"zy//e\<CR>gg\"zPI[#\<ESC>A] \<ESC>:1,1s/\\[#\\] //\<CR>"
 
 " Set filetype of VHT Log files
 autocmd BufReadPost MainOutputLog*.txt set filetype=vht
@@ -123,6 +123,15 @@ set statusline+=%=%{&ft}\ %{&ff}\ %p%%\
 "##########################################################################
 "# Settings for managed plugins                                           #
 "##########################################################################
+" BufExplorer
+let g:bufExplorerDisableDefaultKeyMapping=1
+let g:bufExplorerShowNoName=1
+let g:bufExplorerDefaultHelp=0
+let g:bufExplorerDetailedHelp=0
+nnoremap <silent> <Tab> :ToggleBufExplorer<CR>
+nnoremap <silent> <leader>v<Tab> <C-W>v:ToggleBufExplorer<CR>
+nnoremap <silent> <leader>h<Tab> <C-W>s:ToggleBufExplorer<CR>
+
 " CursorCross
 let g:cursorcross_dynamic = 'w'
 nnoremap <silent> + :set cursorline! cursorcolumn!<CR>
@@ -134,13 +143,6 @@ vmap <Enter> <Plug>(EasyAlign)
 set laststatus=2
 nnoremap <silent> <F3> "zyiw/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
 vnoremap <silent> <F3> "zy/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
-
-" MiniBufExplorer
-let g:miniBufExplorerAutoStart = 0
-let g:miniBufExplBRSplit = 0
-" let g:miniBufExplShowBufNumbers = 0
-let g:miniBufExplCloseOnSelect = 1
-nnoremap <silent><expr> <TAB> (bufname(winbufnr(0)) == g:miniBufExplStatusLineText) ? ":MBEClose<CR>" : ":MBEOpen<CR>:MBEFocus<CR>"
 
 " NeoComplCache
 let g:neocomplcache_enable_fuzzy_completion = 1
