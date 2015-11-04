@@ -131,6 +131,7 @@ nnoremap <silent><expr> <Tab> bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBu
 "# Settings for managed plugins                                           #
 "##########################################################################
 " BufExplorer
+nnoremap <silent> <leader>b :ToggleBufExplorer<CR>
 let g:bufExplorerDisableDefaultKeyMapping=1
 let g:bufExplorerShowNoName=1
 let g:bufExplorerDefaultHelp=0

@@ -45,14 +45,15 @@ Normal             | `ds[char]`              | Remove closest specified surround
 
 Mode | Keystroke | Function | For more help...
 ---|---|---|---
-Visual | `Enter`     | Start **EasyAlign** plugin                           | `:h easyalign`
-Normal | `F3`        | Perform git grep on word under cursor                | `:h fugitive`
-Visual | `F3`        | Perform git grep on visual selection                 |
-Insert | `Tab`       | Highlight next item in autocomplete popup            | `:h neocomplcache`
-Insert | `Shift+Tab` | Highlight previous item in autocomplete popup        |
-Normal | `<leader>t` | Toggle **NERDTree** window                           | `:h NERDTree`
-Normal | `<leader>u` | Toggle **UndoTree** window                           | `:h undotree.txt`
-Normal | `Tab`       | Open and focus, or close, **MiniBufExplorer** window | `:h minibufexpl.txt`
+Visual | `Enter`     | Start **EasyAlign** plugin                     | `:h easyalign`
+Normal | `F3`        | Perform git grep on word under cursor          | `:h fugitive`
+Visual | `F3`        | Perform git grep on visual selection           |
+Insert | `Tab`       | Highlight next item in autocomplete popup      | `:h neocomplcache`
+Insert | `Shift+Tab` | Highlight previous item in autocomplete popup  |
+Normal | `<leader>u` | Toggle **UndoTree** window                     | `:h undotree.txt`
+Normal | `<leader>b` | Toggle **BufExplorer** window                  | `:h bufexplorer`
+Normal | `<leader>t` | Toggle **NERDTree** window                     | `:h NERDTree`
+Normal | `Tab`       | Cycle between **NERDTree** and **BufExplorer** |
 
 ### Windowing and Movement
 
