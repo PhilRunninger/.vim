@@ -58,7 +58,7 @@ set showmatch
 set number
 set list
 set fillchars=stl:\ ,stlnc:\ ,vert:\ 
-if has("windows")
+if has("win32")
   set listchars=tab:†.,extends:»,precedes:«,trail:¤
 else
   set listchars=tab:†.,extends:»,precedes:«,trail:●
@@ -124,6 +124,9 @@ set statusline+=\ %1*%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%*
 set statusline+=\ %2*%{&modified?\"\ mod\ \":\"\"}%*
 set statusline+=%=%{&ft}\ %{&ff}\ %p%%\ 
 
+" Cycle through NERDTree, BufExplorer, and other buffers.
+nnoremap <silent><expr> <Tab> bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>" : (bufname(winbufnr(0))=~'NERD_Tree_\d\+' ? ":NERDTreeToggle\<CR>:ToggleBufExplorer\<CR>" : ":NERDTreeToggle\<CR>")
+
 "##########################################################################
 "# Settings for managed plugins                                           #
 "##########################################################################
@@ -132,9 +135,6 @@ let g:bufExplorerDisableDefaultKeyMapping=1
 let g:bufExplorerShowNoName=1
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerDetailedHelp=0
-nnoremap <silent> <Tab> :ToggleBufExplorer<CR>
-nnoremap <silent> <leader>v<Tab> <C-W>v:ToggleBufExplorer<CR>
-nnoremap <silent> <leader>h<Tab> <C-W>s:ToggleBufExplorer<CR>
 
 " CursorCross
 let g:cursorcross_dynamic = 'w'
@@ -179,15 +179,15 @@ let g:undotree_WindowLayout = 2
 colorscheme solarized
 set background=light
 
-if has("mac")
+if has("win32")
+  hi User1 ctermbg=10 ctermfg=0 guibg=#20ff20 guifg=#010101 gui=NONE
+  hi User2 ctermbg=12 ctermfg=7 guibg=#ff2020 guifg=white   gui=NONE
+  hi User3 ctermbg=9  ctermfg=7 guibg=#20207f guifg=white   gui=bold
+else
   hi WildMenu cterm=reverse ctermfg=208 ctermbg=0 guifg=Orange guibg=Black
   hi User1 ctermbg=40  ctermfg=0 guibg=#20ff20 guifg=#010101 gui=NONE
   hi User2 ctermbg=196 ctermfg=7 guibg=#ff2020 guifg=white   gui=NONE
   hi User3 ctermbg=20  ctermfg=7 guibg=#20207f guifg=white   gui=bold
-else
-  hi User1 ctermbg=10 ctermfg=0 guibg=#20ff20 guifg=#010101 gui=NONE
-  hi User2 ctermbg=12 ctermfg=7 guibg=#ff2020 guifg=white   gui=NONE
-  hi User3 ctermbg=9  ctermfg=7 guibg=#20207f guifg=white   gui=bold
 endif
 
 "##########################################################################
