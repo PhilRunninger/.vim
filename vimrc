@@ -125,7 +125,9 @@ set statusline+=\ %2*%{&modified?\"\ mod\ \":\"\"}%*
 set statusline+=%=%{&ft}\ %{&ff}\ %p%%\ 
 
 " Cycle through NERDTree, BufExplorer, and other buffers.
-nnoremap <silent><expr> <Tab> bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>" : (bufname(winbufnr(0))=~'NERD_Tree_\d\+' ? ":NERDTreeToggle\<CR>:ToggleBufExplorer\<CR>" : ":NERDTreeToggle\<CR>")
+nnoremap <silent><expr> <Tab>   bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>" : (bufname(winbufnr(0))=~'NERD_Tree_\d\+' ? ":NERDTreeToggle\<CR>:ToggleBufExplorer\<CR>" : ":NERDTreeToggle\<CR>")
+nnoremap <silent><expr> <S-Tab> bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>:NERDTreeToggle\<CR>" : (bufname(winbufnr(0))=~'NERD_Tree_\d\+' ? ":NERDTreeToggle\<CR>" : ":ToggleBufExplorer\<CR>")
+nnoremap <silent> # :b#<CR>
 
 "##########################################################################
 "# Settings for managed plugins                                           #
