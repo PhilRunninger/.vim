@@ -14,6 +14,7 @@ set wildignore+=*.a,*.o
 set wildignore+=*.bmp,*.gif,*.jpg,*.ico,*.png
 set wildignore+=.DS_Store,.git,.ht,.svn
 set wildignore+=*~,*.swp,*.tmp
+set wildignorecase
 
 " Searching settings
 set hlsearch    " highlight search results
