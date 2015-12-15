@@ -1,4 +1,3 @@
 .DS_Store
 post_vimrc
-nvimrc
-syntax/
+init.vim
