@@ -28,6 +28,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'vim-scripts/NSIS-syntax-highlighting'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 call vundle#end()
 
 filetype plugin indent on
