@@ -114,6 +114,9 @@ nnoremap <leader>d<space> :%s/\s\+$//c<CR>
 nnoremap <> m`f"a>><ESC>,,i<<<ESC>``ll
 nnoremap >< m`f"lxx,,XX``hh
 
+" Disable q: key sequence
+nnoremap q: <nop>
+
 " Grab PivotalTracker ID and start commit message.
 autocmd BufReadPost COMMIT_EDITMSG execute "silent! normal! qzq/# On branch.\\{-}\\zs\\d\\{8,}\<CR>\"zy//e\<CR>gg\"zPI[#\<ESC>A] \<ESC>:1,1s/\\[#\\] //\<CR>"
 
