@@ -39,7 +39,7 @@ Normal / Selection | `<leader>cl`            | Comment line(s) of code, left ali
 Normal / Selection | `<leader>cu`            | Uncomment line(s) of code                                                                          |
 Normal             | `ys[text object][char]` | Surround text obect with char and its matching charcter, ie. ( and ), { and }, [ and ], or < and > | `:h surround`
 Normal             | `cs[oldchar][newchar]`  | Change surrounding characters from old to new                                                      |
-Normal             | `ds[char]`              | Remove closest specified surrounding charcters                                                     |
+Normal             | `ds[char]`              | Remove closest specified surrounding characters                                                    |
 
 #### Additional Mappings Defined in vimrc
 
