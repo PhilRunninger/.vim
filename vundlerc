@@ -32,3 +32,5 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 call vundle#end()
 
 filetype plugin indent on
+
+" vi: ft=vim
