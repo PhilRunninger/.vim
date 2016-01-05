@@ -170,6 +170,7 @@ inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 " Nerdtree
 nnoremap <silent> <leader>t :NERDTreeToggle<CR>
+nnoremap <silent> <leader>f :NERDTreeFind<CR>
 let NERDTreeChDirMode=2
 let NERDTreeMinimalUI=1
 let NERDTreeSortHiddenFirst=1
