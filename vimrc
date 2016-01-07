@@ -44,7 +44,7 @@ set number          " print the line number in front of each line
 set list            " show <tab> and <eol>
 set confirm         " ask what to do with unsave/read-only files
 if has("win32")
-  set listchars=tab:†.,extends:»,precedes:«,trail:¤   " characters for displaying in list mode
+  set listchars=tab:�-,extends:�,precedes:�,trail:�   " characters for displaying in list mode
 else
   set listchars=tab:†.,extends:»,precedes:«,trail:●   " characters for displaying in list mode
 endif
