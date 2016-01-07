@@ -15,6 +15,7 @@ syntax on           " Turn syntax highlighting on.
 
 set history=1000    " number of command-lines that are remembered.
 set showcmd         " show (partial) command in last line of screen
+set noshowmode      " [no] message on status line show current mode
 set wildmenu        " use menu for command line completion
 set wildmode=full   " mode for 'wildchar' command-line expansion
 set wildignorecase  " specifies how command line completion is done
