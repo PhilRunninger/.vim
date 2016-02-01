@@ -2,8 +2,6 @@ filetype off
 
 set rtp+=$VIMHOME/bundle/Vundle.vim
 call vundle#begin($VIMHOME.'/bundle')
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'aklt/plantuml-syntax'
 Plugin 'bling/vim-airline'
@@ -23,6 +21,7 @@ Plugin 'PhilRunninger/nerdtree-bwipeout-plugin'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Shougo/neocomplcache.vim'
+Plugin 'Shougo/neosnippet'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-jdaddy'
