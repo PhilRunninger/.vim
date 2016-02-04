@@ -15,6 +15,7 @@ syntax on           " Turn syntax highlighting on.
 
 set history=1000    " number of command-lines that are remembered.
 set showcmd         " show (partial) command in last line of screen
+set noshowmode      " [no] message on status line show current mode
 set wildmenu        " use menu for command line completion
 set wildmode=full   " mode for 'wildchar' command-line expansion
 set wildignorecase  " specifies how command line completion is done
@@ -163,11 +164,20 @@ vmap <Enter> <Plug>(EasyAlign)
 nnoremap <silent> <F3> "zyiw/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
 vnoremap <silent> <F3> "zy/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
 
-" NeoComplCache
+" NeoComplCache / NeoSnippet
+set completeopt=longest,menuone
+
 let g:neocomplcache_enable_fuzzy_completion = 1
 let g:neocomplcache_enable_at_startup = 1
-inoremap <expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+
+let g:neosnippet#disable_runtime_snippets = { '_' : 1  }
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " Nerdtree
 nnoremap <silent> <leader>t :NERDTreeToggle<CR>
