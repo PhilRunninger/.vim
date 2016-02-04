@@ -43,6 +43,7 @@ set showmatch       " briefly jump to matching bracket if inserting one
 set number          " print the line number in front of each line
 set list            " show <tab> and <eol>
 set confirm         " ask what to do with unsave/read-only files
+set guioptions=     " gui: which components and options are used
 if has("win32")
   set listchars=tab:¬-,extends:»,precedes:«,trail:¤   " characters for displaying in list mode
 else
