@@ -111,6 +111,11 @@ nnoremap k gk
 " When editing a file, always jump to its last known cursor position.
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
+" Show/hide cursorline and cursorcolumn
+nnoremap <silent> + :set cursorline! cursorcolumn!<CR>
+nnoremap <silent> - :set cursorline!<CR>
+nnoremap <silent> \| :set cursorcolumn!<CR>
+
 " mapping to change cwd to current buffer's directory
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
@@ -151,10 +156,6 @@ let g:bufExplorerDisableDefaultKeyMapping=1
 let g:bufExplorerShowNoName=1
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerDetailedHelp=0
-
-" CursorCross
-let g:cursorcross_dynamic = 'w'
-nnoremap <silent> + :set cursorline! cursorcolumn!<CR>
 
 " EasyAlign
 vmap <Enter> <Plug>(EasyAlign)
@@ -197,6 +198,11 @@ nnoremap <silent> <leader>u :UndotreeToggle<CR>
 let g:undotree_SetFocusWhenToggle = 1
 let g:undotree_TreeNodeShape = '●'
 let g:undotree_WindowLayout = 2
+
+" vim-snippets
+let g:snips_author = "Phil Runninger"
+let g:snips_email = "prunninger@virtualhold.com"
+let g:snips_github = "https://github.com/PhilRunninger"
 
 "##########################################################################
 "# END: Settings for managed plugins                                      #
