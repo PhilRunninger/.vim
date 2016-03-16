@@ -213,6 +213,7 @@ let g:snips_github = "https://github.com/PhilRunninger"
 "# END: Settings for managed plugins                                      #
 "##########################################################################
 
+let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 set background=dark
 hi WildMenu cterm=reverse ctermfg=208 ctermbg=0 guifg=Orange guibg=Black
