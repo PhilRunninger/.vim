@@ -46,9 +46,9 @@ set list            " show <tab> and <eol>
 set confirm         " ask what to do with unsave/read-only files
 set guioptions=     " gui: which components and options are used
 if has("win32")
-  set listchars=tab:�-,extends:�,precedes:�,trail:�   " characters for displaying in list mode
+  set listchars=tab:¬-,extends:»,precedes:«,trail:¤   " characters for displaying in list mode
 else
-  set listchars=tab:†.,extends:»,precedes:«,trail:●   " characters for displaying in list mode
+  set listchars=tab:â€ .,extends:Â»,precedes:Â«,trail:â—   " characters for displaying in list mode
 endif
 set fillchars=stl:\ ,stlnc:\ ,vert:\      " characters to use for displaying special items
 set tags=./tags;/                         " list of filenames used by the tag command
@@ -130,6 +130,9 @@ nnoremap >< m`f"lxx,,XX``hh
 " Disable q: key sequence
 nnoremap q: <nop>
 
+" Exit insert mode withoutmode
+
+inoremap jk <esc>
 " Grab PivotalTracker ID and start commit message.
 autocmd BufReadPost COMMIT_EDITMSG execute "silent! normal! qzq/# On branch.\\{-}\\zs\\d\\{8,}\<CR>\"zy//e\<CR>gg\"zPI[#\<ESC>A] \<ESC>:1,1s/\\[#\\] //\<CR>"
 
@@ -201,7 +204,7 @@ let g:scratch_insert_autohide = 0
 " Undotree
 nnoremap <silent> <leader>u :UndotreeToggle<CR>
 let g:undotree_SetFocusWhenToggle = 1
-let g:undotree_TreeNodeShape = '●'
+let g:undotree_TreeNodeShape = 'â—'
 let g:undotree_WindowLayout = 2
 
 " vim-snippets
