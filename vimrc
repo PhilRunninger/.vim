@@ -130,6 +130,28 @@ nnoremap >< m`f"lxx,,XX``hh
 " Disable q: key sequence
 nnoremap q: <nop>
 
+" HARD MODE: Disable the arrow and Pg Up/Down keys
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
+nnoremap <PageUp> <Nop>
+nnoremap <PageDown> <Nop>
+
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
+inoremap <PageUp> <Nop>
+inoremap <PageDown> <Nop>
+
+vnoremap <Left> <Nop>
+vnoremap <Right> <Nop>
+vnoremap <Up> <Nop>
+vnoremap <Down> <Nop>
+vnoremap <PageUp> <Nop>
+vnoremap <PageDown> <Nop>
+
 " Grab PivotalTracker ID and start commit message.
 autocmd BufReadPost COMMIT_EDITMSG execute "silent! normal! qzq/# On branch.\\{-}\\zs\\d\\{8,}\<CR>\"zy//e\<CR>gg\"zPI[#\<ESC>A] \<ESC>:1,1s/\\[#\\] //\<CR>"
 

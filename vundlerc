@@ -2,6 +2,10 @@ filetype off
 
 set rtp+=$VIMHOME/bundle/Vundle.vim
 call vundle#begin($VIMHOME.'/bundle')
+Plugin 'vim-scripts/ingo-library'
+Plugin 'vim-scripts/SyntaxRange'
+Plugin 'tybenz/vimdeck'
+
 Plugin 'airblade/vim-gitgutter'
 Plugin 'aklt/plantuml-syntax'
 Plugin 'benekastah/neomake'
