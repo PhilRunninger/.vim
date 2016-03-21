@@ -227,7 +227,6 @@ let g:scratch_insert_autohide = 0
 " Undotree
 nnoremap <silent> <leader>u :UndotreeToggle<CR>
 let g:undotree_SetFocusWhenToggle = 1
-let g:undotree_TreeNodeShape = 'â—'
 let g:undotree_WindowLayout = 2
 
 " vim-snippets
