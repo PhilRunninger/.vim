@@ -46,11 +46,9 @@ set list            " show <tab> and <eol>
 set confirm         " ask what to do with unsave/read-only files
 set guioptions=     " gui: which components and options are used
 if has("win32")
-  set listchars=tab:¬-,extends:»,precedes:«,trail:¤   " characters for displaying in list mode
   set guifont=Consolas:h12:w6
-else
-  set listchars=tab:â€ .,extends:Â»,precedes:Â«,trail:â—   " characters for displaying in list mode
 endif
+set listchars=tab:¬-,extends:»,precedes:«,trail:¤   " characters for displaying in list mode
 set fillchars=stl:\ ,stlnc:\ ,vert:\      " characters to use for displaying special items
 set tags=./tags;/                         " list of filenames used by the tag command
 
