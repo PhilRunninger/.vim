@@ -46,7 +46,8 @@ set list            " show <tab> and <eol>
 set confirm         " ask what to do with unsave/read-only files
 set guioptions=     " gui: which components and options are used
 if has("win32")
-  set listchars=tab:ï¿½-,extends:ï¿½,precedes:ï¿½,trail:ï¿½   " characters for displaying in list mode
+  set listchars=tab:¬-,extends:»,precedes:«,trail:¤   " characters for displaying in list mode
+  set guifont=Consolas:h12:w6
 else
   set listchars=tab:â€ .,extends:Â»,precedes:Â«,trail:â—   " characters for displaying in list mode
 endif
@@ -200,7 +201,7 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 let g:neosnippet#disable_runtime_snippets = { '_' : 1  }
 let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+let g:neosnippet#snippets_directory=$VIMHOME . '/bundle/vim-snippets/snippets'
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
@@ -226,7 +227,6 @@ let g:scratch_insert_autohide = 0
 " Undotree
 nnoremap <silent> <leader>u :UndotreeToggle<CR>
 let g:undotree_SetFocusWhenToggle = 1
-let g:undotree_TreeNodeShape = 'Ã¢â€”Â'
 let g:undotree_WindowLayout = 2
 
 " vim-snippets
