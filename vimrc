@@ -143,6 +143,7 @@ nnoremap >< m`f"lxx,,XX``hh
 
 " Disable q: key sequence
 nnoremap q: <nop>
+nnoremap Q <nop>
 
 " HARD MODE: Disable the arrow and Pg Up/Down keys
 nnoremap <Left> <Nop>
