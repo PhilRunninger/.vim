@@ -31,6 +31,19 @@ set incsearch       " highlight match wile typing search pattern
 set ignorecase      " ignore case in search patterns
 set smartcase       " no ignore case when pattern has uppercase
 
+" Function to toggle visual selection between: lowercase, Title Case, and UPPERCASE.
+function! TwiddleCase(str)
+  if a:str ==# toupper(a:str)
+    let result = tolower(a:str)
+  elseif a:str ==# tolower(a:str)
+    let result = substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
+  else
+    let result = toupper(a:str)
+  endif
+  return result
+endfunction
+vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
+
 " Tab settings and behavior
 set autoindent      " take indent for new line from previous line
 set smartindent     " smart autoindenting for c programs
