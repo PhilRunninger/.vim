@@ -52,9 +52,11 @@ set tabstop=2       " number of spaces that <tab> in file uses
 set shiftwidth=2    " number of spaces to use for (auto)indent step
 set expandtab       " use spaces when <tab> is inserted
 
+set number          " print the line number in front of each line
+nnoremap <C-N> :set relativenumber!<CR>
+
 set scrolloff=3     " minimum # of lines above and below cursor
 set showmatch       " briefly jump to matching bracket if inserting one
-set number          " print the line number in front of each line
 set list            " show <tab> and <eol>
 set confirm         " ask what to do with unsave/read-only files
 set guioptions=     " gui: which components and options are used
