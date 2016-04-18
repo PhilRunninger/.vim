@@ -42,7 +42,7 @@ function! TwiddleCase(str)
   endif
   return result
 endfunction
-vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
+vnoremap <silent> ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 
 " Tab settings and behavior
 set autoindent      " take indent for new line from previous line
