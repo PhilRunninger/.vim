@@ -237,6 +237,15 @@ let NERDTreeIgnore=['^ntuser\.', '^NTUSER\.', '^deps$', '^ebin$']
 " Scratch
 let g:scratch_insert_autohide = 0
 
+" Tagbar
+nnoremap <silent> <F9> :TagbarOpen fj<CR>
+let g:tagbar_sort = 0
+let g:tagbar_show_linenumbers = -1
+augroup reload_vimrc
+  autocmd!
+  autocmd VimEnter * nested :call tagbar#autoopen(1)
+augroup END
+
 " Undotree
 nnoremap <silent> <leader>u :UndotreeToggle<CR>
 let g:undotree_SetFocusWhenToggle = 1
