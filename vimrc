@@ -181,10 +181,6 @@ autocmd BufReadPost IVROutputLog*.txt set filetype=vht
 " Shortcut for swapping between current and previous buffers
 nnoremap <silent> # :b#<CR>
 
-" Cycle through NERDTree, BufExplorer, and other buffers.
-nnoremap <silent><expr> <Tab>   bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>" : (bufname(winbufnr(0))=~'NERD_Tree_\d\+' ? ":NERDTreeToggle\<CR>:ToggleBufExplorer\<CR>" : ":NERDTreeToggle\<CR>")
-nnoremap <silent><expr> <S-Tab> bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>:NERDTreeToggle\<CR>" : (bufname(winbufnr(0))=~'NERD_Tree_\d\+' ? ":NERDTreeToggle\<CR>" : ":ToggleBufExplorer\<CR>")
-
 "##########################################################################
 "# Settings for managed plugins                                           #
 "##########################################################################
@@ -192,7 +188,7 @@ nnoremap <silent><expr> <S-Tab> bufname(winbufnr(0))=='[BufExplorer]' ? ":Toggle
 let g:airline_powerline_fonts = 1
 
 " BufExplorer
-nnoremap <silent> <leader>b :ToggleBufExplorer<CR>
+nnoremap <silent><expr> <leader>b bufname(winbufnr(0))=~'NERD_Tree_\d\+' ? ":NERDTreeClose\<CR>:ToggleBufExplorer\<CR>" : ":ToggleBufExplorer\<CR>"
 let g:bufExplorerDisableDefaultKeyMapping=1
 let g:bufExplorerShowNoName=1
 let g:bufExplorerDefaultHelp=0
@@ -224,8 +220,8 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 autocmd! BufWritePost * Neomake
 
 " Nerdtree
-nnoremap <silent> <leader>t :NERDTreeToggle<CR>
-nnoremap <silent> <leader>f :NERDTreeFind<CR>
+nnoremap <silent><expr> <leader>t bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>:NERDTreeFocus\<CR>" : (bufname(winbufnr(0))=~'NERD_Tree_\d\+' ? ":NERDTreeClose\<CR>" : ":NERDTreeFocus\<CR>")
+nnoremap <silent><expr> <leader>f bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>:NERDTreeFind\<CR>" : ":NERDTreeFind\<CR>"
 let NERDTreeChDirMode=2
 let NERDTreeMinimalUI=1
 let NERDTreeSortHiddenFirst=1
