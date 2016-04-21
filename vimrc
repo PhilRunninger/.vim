@@ -5,7 +5,7 @@ augroup reload_vimrc
 augroup END
 
 let $VIMHOME=expand('<sfile>:p:h')
-execute 'source' $VIMHOME . '/vundlerc'
+execute 'source' $VIMHOME . '/pluginsrc'
 
 :let g:netrw_dirhistmax = 0 " Prevent creation of .netrwhist files.
 
