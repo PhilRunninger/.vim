@@ -235,6 +235,7 @@ let g:scratch_insert_autohide = 0
 
 " Tagbar
 nnoremap <silent> <F9> :TagbarOpen fj<CR>
+nnoremap <silent> <F21> :TagbarClose<CR>
 let g:tagbar_sort = 0
 let g:tagbar_show_linenumbers = -1
 augroup reload_vimrc
