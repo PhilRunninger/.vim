@@ -1,36 +1,57 @@
 filetype off
 
 call plug#begin($VIMHOME.'/bundle')
-Plug 'git@github.com:airblade/vim-gitgutter'
-Plug 'git@github.com:aklt/plantuml-syntax'
-Plug 'git@github.com:benekastah/neomake'
-Plug 'git@github.com:bling/vim-airline'
-Plug 'git@github.com:chrisbra/csv.vim'
-Plug 'git@github.com:chrisbra/Recover.vim'
-Plug 'git@github.com:elzr/vim-json'
-Plug 'git@github.com:flazz/vim-colorschemes'
-Plug 'git@github.com:jlanzarotta/bufexplorer.git'
-Plug 'git@github.com:junegunn/vim-easy-align'
-Plug 'git@github.com:kshenoy/vim-signature'
-Plug 'git@github.com:majutsushi/tagbar'
-Plug 'git@github.com:mbbill/undotree'
-Plug 'git@github.com:mtth/scratch.vim'
-Plug 'git@github.com:PhilRunninger/vimdeck' | Plug 'git@github.com:vim-scripts/SyntaxRange' | Plug 'git@github.com:vim-scripts/ingo-library'
-Plug 'git@github.com:scrooloose/nerdtree' | Plug 'git@github.com:PhilRunninger/nerdtree-bwipeout-plugin'
-Plug 'git@github.com:Shougo/neocomplcache.vim'
-Plug 'git@github.com:Shougo/neosnippet' | Plug 'git@github.com:PhilRunninger/vim-snippets'
-Plug 'git@github.com:tpope/vim-commentary.git'
-Plug 'git@github.com:tpope/vim-dispatch'
-Plug 'git@github.com:tpope/vim-fugitive'
-Plug 'git@github.com:tpope/vim-jdaddy'
-Plug 'git@github.com:tpope/vim-markdown'
-Plug 'git@github.com:tpope/vim-repeat'
-Plug 'git@github.com:tpope/vim-surround'
-Plug 'git@github.com:tpope/vim-unimpaired'
-Plug 'git@github.com:uguu-org/vim-matrix-screensaver'
-Plug 'git@github.com:vim-scripts/NSIS-syntax-highlighting'
-Plug 'git@github.com:vim-scripts/ScrollColors'
-Plug 'git@github.com:Xuyuanp/nerdtree-git-plugin'
+
+  " Git-related
+  Plug 'git@github.com:tpope/vim-fugitive'
+  Plug 'git@github.com:airblade/vim-gitgutter'
+
+  " NerdTree
+  Plug 'git@github.com:scrooloose/nerdtree'
+  Plug 'git@github.com:Xuyuanp/nerdtree-git-plugin'
+  Plug 'git@github.com:PhilRunninger/nerdtree-bwipeout-plugin'
+
+  " Syntax highlighting and color
+  Plug 'git@github.com:flazz/vim-colorschemes'
+  Plug 'git@github.com:vim-scripts/ScrollColors'
+  Plug 'git@github.com:aklt/plantuml-syntax'
+  Plug 'git@github.com:tpope/vim-markdown'
+  Plug 'git@github.com:elzr/vim-json'
+  Plug 'git@github.com:vim-scripts/NSIS-syntax-highlighting'
+
+  " Coding / Development
+  Plug 'git@github.com:benekastah/neomake'
+  Plug 'git@github.com:majutsushi/tagbar'
+  Plug 'git@github.com:tpope/vim-commentary.git'
+  Plug 'git@github.com:Shougo/neosnippet'
+  Plug 'git@github.com:PhilRunninger/vim-snippets'
+  Plug 'git@github.com:tpope/vim-dispatch'
+
+  " Miscellaneous Utilities
+  Plug 'git@github.com:jlanzarotta/bufexplorer.git'
+  Plug 'git@github.com:Shougo/neocomplcache.vim'
+  Plug 'git@github.com:chrisbra/Recover.vim'
+  Plug 'git@github.com:bling/vim-airline'
+  Plug 'git@github.com:kshenoy/vim-signature'
+  Plug 'git@github.com:mbbill/undotree'
+  Plug 'git@github.com:junegunn/vim-easy-align'
+  Plug 'git@github.com:mtth/scratch.vim'
+  Plug 'git@github.com:tpope/vim-repeat'
+  Plug 'git@github.com:tpope/vim-surround'
+  Plug 'git@github.com:tpope/vim-unimpaired'
+
+  " Filetype-specific
+  Plug 'git@github.com:chrisbra/csv.vim'
+  Plug 'git@github.com:tpope/vim-jdaddy'
+
+  " Vimdeck and its Dependencies
+  Plug 'git@github.com:vim-scripts/ingo-library'
+  Plug 'git@github.com:vim-scripts/SyntaxRange'
+  Plug 'git@github.com:PhilRunninger/vimdeck'
+
+  "Fun Stuff
+  Plug 'git@github.com:uguu-org/vim-matrix-screensaver'
+
 call plug#end()
 
 filetype plugin indent on
