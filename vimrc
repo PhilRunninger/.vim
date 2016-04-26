@@ -239,7 +239,7 @@ let g:scratch_insert_autohide = 0
 nnoremap <silent><expr> <leader>t bufname(winbufnr(0))=~'^__Tagbar__$' ? ":TagbarClose\<CR>" : ":TagbarOpen fj\<CR>"
 let g:tagbar_sort = 0
 let g:tagbar_show_linenumbers = -1
-augroup reload_vimrc
+augroup tagbar_autoopen
   autocmd!
   autocmd VimEnter * nested :call tagbar#autoopen(1)
 augroup END
