@@ -93,6 +93,7 @@ set splitbelow                            " new window from split is below the c
 set splitright                            " new window is put right of the current one
 set winminheight=0                        " minimum number of lines for any window
 set winminwidth=0                         " minimum number of columns for any window
+nnoremap <silent> <Tab> :wincmd w<CR>
 nnoremap <silent> <C-K> :wincmd k<CR>
 nnoremap <silent> <C-J> :wincmd j<CR>
 nnoremap <silent> <C-H> :wincmd h<CR>
