@@ -222,7 +222,7 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 autocmd! BufWritePost * Neomake
 
 " Nerdtree
-nnoremap <silent><expr> <leader>t bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>:NERDTreeFocus\<CR>" : (bufname(winbufnr(0))=~'NERD_Tree_\d\+' ? ":NERDTreeClose\<CR>" : ":NERDTreeFocus\<CR>")
+nnoremap <silent><expr> <leader>n bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>:NERDTreeFocus\<CR>" : (bufname(winbufnr(0))=~'NERD_Tree_\d\+' ? ":NERDTreeClose\<CR>" : ":NERDTreeFocus\<CR>")
 nnoremap <silent><expr> <leader>f bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>:NERDTreeFind\<CR>" : ":NERDTreeFind\<CR>"
 let NERDTreeChDirMode=2
 let NERDTreeMinimalUI=1
@@ -236,8 +236,7 @@ let NERDTreeIgnore=['^ntuser\.', '^NTUSER\.', '^deps$', '^ebin$']
 let g:scratch_insert_autohide = 0
 
 " Tagbar
-nnoremap <silent> <F9> :TagbarOpen fj<CR>
-nnoremap <silent> <F21> :TagbarClose<CR>
+nnoremap <silent><expr> <leader>t bufname(winbufnr(0))=~'^__Tagbar__$' ? ":TagbarClose\<CR>" : ":TagbarOpen fj\<CR>"
 let g:tagbar_sort = 0
 let g:tagbar_show_linenumbers = -1
 augroup reload_vimrc
