@@ -187,6 +187,7 @@ nnoremap <silent> # :b#<CR>
 "##########################################################################
 " Airline
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tagbar#enabled = 0
 
 " BufExplorer
 nnoremap <silent><expr> <leader>b bufname(winbufnr(0))=~'NERD_Tree_\d\+' ? ":NERDTreeClose\<CR>:ToggleBufExplorer\<CR>" : ":ToggleBufExplorer\<CR>"
