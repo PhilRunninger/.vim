@@ -224,6 +224,8 @@ autocmd! BufWritePost * Neomake
 " Nerdtree
 nnoremap <silent><expr> <leader>n bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>:NERDTreeFocus\<CR>" : (bufname(winbufnr(0))=~'NERD_Tree_\d\+' ? ":NERDTreeClose\<CR>" : ":NERDTreeFocus\<CR>")
 nnoremap <silent><expr> <leader>f bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>:NERDTreeFind\<CR>" : ":NERDTreeFind\<CR>"
+let NERDTreeAutoCenter=1
+let NERDTreeAutoCenterThreshold=5
 let NERDTreeChDirMode=2
 let NERDTreeMinimalUI=1
 let NERDTreeSortHiddenFirst=1
