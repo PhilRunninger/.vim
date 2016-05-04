@@ -4,6 +4,9 @@ augroup reload_vimrc
   autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
 augroup END
 
+set encoding=utf-8
+set fileencoding=utf-8
+
 let $VIMHOME=expand('<sfile>:p:h')
 
 filetype off
@@ -119,7 +122,7 @@ set guioptions=     " gui: which components and options are used
 if has("win32")
   set guifont=Consolas:h12:w6
 endif
-set listchars=tab:�-,extends:�,precedes:�,trail:�   " characters for displaying in list mode
+set listchars=tab:¬-,extends:»,precedes:«,trail:¤   " characters for displaying in list mode
 set fillchars=stl:\ ,stlnc:\ ,vert:\      " characters to use for displaying special items
 set tags=./tags;/                         " list of filenames used by the tag command
 
@@ -242,11 +245,16 @@ nnoremap <silent> # :b#<CR>
 "# Settings for managed plugins                                           #
 "##########################################################################
 " Airline
-let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = '␤'
 let g:airline#extensions#tagbar#enabled = 0
 
 " BufExplorer
@@ -284,6 +292,9 @@ autocmd! BufWritePost * Neomake
 " Nerdtree
 nnoremap <silent><expr> <leader>n bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>:NERDTreeFocus\<CR>" : (winnr()==g:NERDTree.GetWinNum() ? ":NERDTreeClose\<CR>" : ":NERDTreeFocus\<CR>")
 nnoremap <silent><expr> <leader>f bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>:NERDTreeFind\<CR>" : ":NERDTreeFind\<CR>"
+let NERDTreeDirArrowExpandable=''
+let NERDTreeDirArrowCollapsible=''
+let NERDTreeGlyphReadOnly=''
 let NERDTreeAutoCenter=1
 let NERDTreeAutoCenterThreshold=5
 let NERDTreeChDirMode=2
