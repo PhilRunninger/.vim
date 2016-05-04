@@ -250,7 +250,7 @@ let g:airline_right_alt_sep = ''
 let g:airline#extensions#tagbar#enabled = 0
 
 " BufExplorer
-nnoremap <silent><expr> <leader>b bufname(winbufnr(0))=~'NERD_Tree_\d\+' ? ":NERDTreeClose\<CR>:ToggleBufExplorer\<CR>" : ":ToggleBufExplorer\<CR>"
+nnoremap <silent><expr> <leader>b winnr()==g:NERDTree.GetWinNum() ? ":NERDTreeClose\<CR>:ToggleBufExplorer\<CR>" : ":ToggleBufExplorer\<CR>"
 let g:bufExplorerDisableDefaultKeyMapping=1
 let g:bufExplorerShowNoName=1
 let g:bufExplorerDefaultHelp=0
@@ -282,7 +282,7 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 autocmd! BufWritePost * Neomake
 
 " Nerdtree
-nnoremap <silent><expr> <leader>n bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>:NERDTreeFocus\<CR>" : (bufname(winbufnr(0))=~'NERD_Tree_\d\+' ? ":NERDTreeClose\<CR>" : ":NERDTreeFocus\<CR>")
+nnoremap <silent><expr> <leader>n bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>:NERDTreeFocus\<CR>" : (winnr()==g:NERDTree.GetWinNum() ? ":NERDTreeClose\<CR>" : ":NERDTreeFocus\<CR>")
 nnoremap <silent><expr> <leader>f bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>:NERDTreeFind\<CR>" : ":NERDTreeFind\<CR>"
 let NERDTreeAutoCenter=1
 let NERDTreeAutoCenterThreshold=5
