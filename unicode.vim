@@ -1,4 +1,7 @@
-" vim:tabstop=12:nolist
+" vim: tabstop=12:nolist:foldmethod=expr 
+" vim: foldexpr=getline(v\:lnum-1)=~'^\\s*$'&&getline(v\:lnum)=~'\\S'?'>1'\:1
+
+" Script To Enumerate Unicode Characters
 let i = 32
 let s = ''
 while i < 65537
@@ -10,9 +13,129 @@ while i < 65537
   endif
   let i = i + 1
 endwhile
-finish  " Delete below this line before sourcing the file.
+finish  
 
+The headers below need to be manually inserted in the table when it is recreated.
+FFF0 - FFFF	Specials
+FF00 - FFEF	Halfwidth And Fullwidth Forms
+FE70 - FEFF	Arabic Presentation Forms-B
+FE50 - FE6F	Small Form Variants
+FE30 - FE4F	CJK Compatibility Forms
+FE20 - FE2F	Combining Half Marks
+FE10 - FE1F	Vertical Forms
+FB50 - FDFF	Arabic Presentation Forms-A
+FB00 - FB4F	Alphabetic Presentation Forms
+F900 - FAFF	CJK Compatibility Ideographs
+E000 - F8FF	Private Use Area
+D800 - DFFF	Non-Plane 0 
+AC00 - D7AF	Hangul Syllables
+A840 - A87F	Phags-pa
+A720 - A7FF	Latin Extended-D
+A700 - A71F	Modifier Tone Letters
+A640 - A69F	Cyrillic Extended-B
+A500 - A63F	Vai
+A490 - A4CF	Yi Radicals
+A000 - A48F	Yi Syllables
+4E00 - 9FFF	CJK Unified Ideographs
+3400 - 4DBF	CJK Unified Ideographs Extension A
+3300 - 33FF	CJK Compatibility
+3200 - 32FF	Enclosed CJK Letters And Months
+31F0 - 31FF	Katakana Phonetic Extensions
+31C0 - 31EF	CJK Strokes
+31A0 - 31BF	Bopomofo Extended
+3190 - 319F	Kanbun
+3130 - 318F	Hangul Compatibility Jamo
+3100 - 312F	Bopomofo
+30A0 - 30FF	Katakana
+3040 - 309F	Hiragana
+3000 - 303F	CJK Symbols And Punctuation
+2FF0 - 2FFF	Ideographic Description Characters
+2F00 - 2FDF	Kangxi Radicals
+2E80 - 2EFF	CJK Radicals Supplement
+2E00 - 2E7F	Supplemental Punctuation
+2DE0 - 2DFF	Cyrillic Extended-A
+2D80 - 2DDF	Ethiopic Extended
+2D00 - 2D2F	Georgian Supplement
+2C80 - 2CFF	Coptic
+2C60 - 2C7F	Latin Extended-C
+2B00 - 2BFF	Miscellaneous Symbols and Arrows
+2A00 - 2AFF	Supplemental Mathematical Operators
+2980 - 29FF	Miscellaneous Mathematical Symbols-B
+2900 - 297F	Supplemental Arrows-B
+2800 - 28FF	Braille Patterns
+27F0 - 27FF	Supplemental Arrows-A
+27C0 - 27EF	Miscellaneous Mathematical Symbols-A
+2700 - 27BF	Dingbats
+2600 - 26FF	Miscellaneous Symbols
+25A0 - 25FF	Geometric Shapes
+2580 - 259F	Block Elements
+2500 - 257F	Box Drawing
+2460 - 24FF	Enclosed Alphanumerics
+2440 - 245F	Optical Character Recognition
+2400 - 243F	Control Pictures
+2300 - 23FF	Miscellaneous Technical
+2200 - 22FF	Mathematical Operators
+2190 - 21FF	Arrows
+2150 - 218F	Number Forms
+2100 - 214F	Letterlike Symbols
+20D0 - 20FF	Combining Diacritical Marks For Symbols
+20A0 - 20CF	Currency Symbols
+2070 - 209F	Superscripts And Subscripts
+2000 - 206F	General Punctuation
+1F00 - 1FFF	Greek Extended
+1E00 - 1EFF	Latin Extended Additional
+1DC0 - 1DFF	Combining Diacritical Marks Supplement
+1D80 - 1DBF	Phonetic Extensions Supplement
+1D00 - 1D7F	Phonetic Extensions
+1B00 - 1B7F	Balinese
+19E0 - 19FF	Khmer Symbols
+1800 - 18AF	Mongolian
+1780 - 17FF	Khmer
+1760 - 177F	Tagbanwa
+1740 - 175F	Buhid
+1720 - 173F	Hanunoo
+1700 - 171F	Tagalog
+16A0 - 16FF	Runic
+1680 - 169F	Ogham
+1400 - 167F	Unified Canadian Aboriginal Syllabics
+13A0 - 13FF	Cherokee
+1380 - 139F	Ethiopic Supplement
+1200 - 137F	Ethiopic
+1100 - 11FF	Hangul Jamo
+10A0 - 10FF	Georgian
+1000 - 109F	Myanmar
+0F00 - 0FFF	Tibetan
+0E80 - 0EFF	Lao
+0E00 - 0E7F	Thai
+0D80 - 0DFF	Sinhala
+0D00 - 0D7F	Malayalam
+0C80 - 0CFF	Kannada
+0C00 - 0C7F	Telugu
+0B80 - 0BFF	Tamil
+0B00 - 0B7F	Odia
+0A80 - 0AFF	Gujarati
+0A00 - 0A7F	Gurmukhi
+0980 - 09FF	Bangla
+0900 - 097F	Devanagari
+07C0 - 07FF	NKo
+0780 - 07BF	Thaana
+0750 - 077F	Arabic Supplement
+0700 - 074F	Syriac
+0600 - 06FF	Arabic
+0590 - 05FF	Hebrew
+0530 - 058F	Armenian
+0500 - 052F	Cyrillic Supplement
+0400 - 04FF	Cyrillic
+0370 - 03FF	Greek and Coptic
+0300 - 036F	Combining Diacritical Marks
+02B0 - 02FF	Spacing Modifier Letters
+0250 - 02AF	IPA Extensions
+0180 - 024F	Latin Extended-B
+0100 - 017F	Latin Extended-A
+0080 - 00FF	Latin-1 Supplement
+0000 - 007F	Basic Latin
 
+Delete everything below the next line before sourcing the file.
 
 0000 - 007F	Basic Latin
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
