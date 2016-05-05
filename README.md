@@ -132,8 +132,7 @@ Normal | `|`                | Toggle cursorcolumn (highlight, or not, the curren
 Normal | `+`                | Toggle display of line/column indicators
 Visual | `~`                | Toggle visual selection between lowercase, Title Case, and UPPERCASE
 Normal | `Ctrl+N`           | Toggle relativenumber on and off.
-Normal / Insert / Visual | _arrow keys_ | No operation (to break bad keyboard habits)
-Normal / Insert / Visual | `Page Up` or `Page Down` | No operation (to break bad keyboard habits)
+Normal / Insert / Visual | `Up`, `Down`, `Left`, `Right`, `Page Up` or `Page Down` | No operation (to break bad keyboard habits)
 Insert | `jk`               | Same as pressing Escape, only easier to reach
 Normal | `#`                | Switch to previous buffer in current window
 
