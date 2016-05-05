@@ -78,7 +78,7 @@ Mode | Keystroke | Function | For more help...
 ---|---|---|---
 Normal / Selection | `gs`                    | Open scratch buffer in its window                                                                  | `:h Scratch`
 Normal / Selection | `gS`                    | Open an empty scratch buffer in its window                                                         |
-Normal             | `gcc` `gc[motion]`      | Comment or uncomment line(s) of code                                                               | `:h commentary.txt`
+Normal             | `gcc` or `gc[motion]`   | Comment or uncomment line(s) of code                                                               | `:h commentary.txt`
 Selection          | `gc`                    | Command or uncomment selected line(s) of code                                                      |
 Normal             | `ys[text object][char]` | Surround text obect with char and its matching character, ie. ( and ), { and }, [ and ], or < and > | `:h surround`
 Normal             | `cs[oldchar][newchar]`  | Change surrounding characters from old to new                                                      |
@@ -132,7 +132,7 @@ Normal | `|`                | Toggle cursorcolumn (highlight, or not, the curren
 Normal | `+`                | Toggle display of line/column indicators
 Visual | `~`                | Toggle visual selection between lowercase, Title Case, and UPPERCASE
 Normal | `Ctrl+N`           | Toggle relativenumber on and off.
-Normal / Insert / Visual | arrow keys | No operation (to break bad keyboard habits)
+Normal / Insert / Visual | _arrow keys_ | No operation (to break bad keyboard habits)
 Normal / Insert / Visual | `Page Up` or `Page Down` | No operation (to break bad keyboard habits)
 Insert | `jk`               | Same as pressing Escape, only easier to reach
 Normal | `#`                | Switch to previous buffer in current window
