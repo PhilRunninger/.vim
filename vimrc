@@ -54,11 +54,6 @@ call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:chrisbra/csv.vim'
   Plug 'git@github.com:tpope/vim-jdaddy'
 
-  " Vimdeck and its Dependencies
-  Plug 'git@github.com:vim-scripts/ingo-library'
-  Plug 'git@github.com:vim-scripts/SyntaxRange'
-  Plug 'git@github.com:PhilRunninger/vimdeck'
-
   "Fun Stuff
   Plug 'git@github.com:uguu-org/vim-matrix-screensaver'
 
