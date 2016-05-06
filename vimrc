@@ -22,6 +22,7 @@ call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:PhilRunninger/nerdtree-bwipeout-plugin'
 
   " Syntax highlighting and color
+  Plug 'git@github.com:guns/xterm-color-table.vim'
   Plug 'git@github.com:flazz/vim-colorschemes'
   Plug 'git@github.com:vim-scripts/ScrollColors'
   Plug 'git@github.com:aklt/plantuml-syntax'
@@ -41,7 +42,6 @@ call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:jlanzarotta/bufexplorer.git'
   Plug 'git@github.com:Shougo/neocomplcache.vim'
   Plug 'git@github.com:chrisbra/Recover.vim'
-  Plug 'git@github.com:bling/vim-airline'
   Plug 'git@github.com:kshenoy/vim-signature'
   Plug 'git@github.com:mbbill/undotree'
   Plug 'git@github.com:junegunn/vim-easy-align'
@@ -135,6 +135,12 @@ set nobackup                              " [do not] keep backup file after over
 set backupdir=$VIMHOME/tmp/backups//      " list of directory namde for the backup file
 
 set laststatus=2                          " tells when last window has status line
+set statusline=%4v%4*\ %*
+set statusline+=%3*%{fugitive#head()}%*%4*\ %*
+set statusline+=#%n\ %f
+set statusline+=\ %1*%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%*
+set statusline+=\ %2*%{&modified?\"\ mod\ \":\"\"}%*
+set statusline+=%=%4*\ %*\%{&ft}%4*\ %*%{&ff}%4*\ %*%p%%
 
 " Disable the bells (audible and visual).
 set noerrorbells    " [do not] ring the bells for error messages
@@ -161,7 +167,7 @@ set autoread        " automatically read file when changed outside of vim
 augroup checktime   " terminal mode hack for autoread option
   au!
   if !has("gui_running")
-    "silent! necessary otherwise throws errors when using command line window.
+    "silent! necessary; otherwise, throws errors when using command line window.
     autocmd BufEnter        * silent! checktime
     autocmd CursorHold      * silent! checktime
     autocmd CursorHoldI     * silent! checktime
@@ -239,18 +245,6 @@ nnoremap <silent> # :b#<CR>
 "##########################################################################
 "# Settings for managed plugins                                           #
 "##########################################################################
-" Airline
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = '␤'
-let g:airline#extensions#tagbar#enabled = 0
 
 " BufExplorer
 nnoremap <silent><expr> <leader>b winnr()==g:NERDTree.GetWinNum() ? ":NERDTreeClose\<CR>:ToggleBufExplorer\<CR>" : ":ToggleBufExplorer\<CR>"
@@ -287,9 +281,6 @@ autocmd! BufWritePost * Neomake
 " Nerdtree
 nnoremap <silent><expr> <leader>n bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>:NERDTreeFocus\<CR>" : (winnr()==g:NERDTree.GetWinNum() ? ":NERDTreeClose\<CR>" : ":NERDTreeFocus\<CR>")
 nnoremap <silent><expr> <leader>f bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>:NERDTreeFind\<CR>" : ":NERDTreeFind\<CR>"
-let NERDTreeDirArrowExpandable=''
-let NERDTreeDirArrowCollapsible=''
-let NERDTreeGlyphReadOnly=''
 let NERDTreeAutoCenter=1
 let NERDTreeAutoCenterThreshold=5
 let NERDTreeChDirMode=2
@@ -329,7 +320,11 @@ let g:snips_github = "https://github.com/PhilRunninger"
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 set background=dark
-hi WildMenu cterm=reverse ctermfg=208 ctermbg=0 guifg=Orange guibg=Black
+hi WildMenu ctermfg=208 ctermbg=0   guifg=#000000 guibg=#ff8700          " Black on    Orange
+hi User1    ctermbg=22  ctermfg=40  guibg=#005f00 guifg=#00df00 gui=NONE " Green on Dark Green
+hi User2    ctermbg=52  ctermfg=160 guibg=#5f0000 guifg=#df0000 gui=NONE " Red   on Dark Red
+hi User3    ctermbg=17  ctermfg=27  guibg=#00005f guifg=#0000ff gui=bold " Blue  on Dark Blue
+hi User4    ctermbg=232 ctermfg=232 guibg=#080808 guifg=#080808 gui=NONE " Gray  on Gray
 
 "##########################################################################
 " Give an opportunity to override anything done by this script.
