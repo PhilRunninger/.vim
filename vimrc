@@ -136,7 +136,7 @@ set backupdir=$VIMHOME/tmp/backups//      " list of directory namde for the back
 
 set laststatus=2                          " tells when last window has status line
 set statusline=%4v%4*\ %*
-set statusline+=%3*%{fugitive#head()}%*%4*\ %*
+set statusline+=%3*%{fugitive#head(8)}%*%4*\ %*
 set statusline+=#%n\ %f
 set statusline+=\ %1*%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%*
 set statusline+=\ %2*%{&modified?\"\ mod\ \":\"\"}%*
