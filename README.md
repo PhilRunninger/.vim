@@ -30,7 +30,7 @@ That should do it. You can close and reopen vim to see that there are no longer 
 
 ## Customized vimrc Processing
 
-This setup is designed for my primary development environment on a MacBook, with a specific font: [DroidSansMonoForPowerline NF](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20for%20Powerline%20Nerd%20Font%20Complete%20Mono%20Windows%20Compatible.otf). Using this setup in another OS, or with a different font or different colors, will produce undesirable behavior. To alleviate this behavior, a post processing step can be used. This is done with a separate file - **post_vimrc** in the same folder as vimrc - that is sourced after vimrc. In this file, you can change settings for the particular environment.
+This setup is designed for my primary development environment on a MacBook. Using this setup in another OS, or with different colors, will most likely produce undesirable side effects. To alleviate this behavior, a post processing step can be used. This is done with a separate file - **post_vimrc** in the same folder as vimrc - that is sourced after vimrc. In this file, you can change settings for the particular environment.
 
 ### Example
 
@@ -39,15 +39,9 @@ Here is the post_vimrc I use on my Windows environment, which has fewer color an
 ```
 " vim: filetype=vim
 
-colorscheme af
-
-unlet g:airline_symbols
+colorscheme SlateDark
 
 let g:gitgutter_enabled = 0
-
-unlet NERDTreeDirArrowExpandable
-unlet NERDTreeDirArrowCollapsible
-unlet NERDTreeGlyphReadOnly
 
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "M",
