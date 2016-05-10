@@ -1,36 +1,33 @@
 # My Vim Setup
 
-## Setup Instructions
+## Installation
 
-These instructions assume you will be running them from a bash shell, whether in Windows or not. Even so, there are differences between Windows and other OSs in the way vim looks for these files.
-
-### Windows
+These instructions assume you will be running them from a bash shell. First, clone the repository into your home directory. On Windows, use the folder name `vimfiles`; on all other OSes, use the folder name `.vim`.
 
 ```
 $ cd ~
 $ git clone git@github.com:PhilRunninger/my_vim_setup.git vimfiles
+$ vim
 ```
-
-### Unix and Mac
+__or__
 
 ```
 $ cd ~
 $ git clone git@github.com:PhilRunninger/my_vim_setup.git .vim
+$ vim
 ```
 
-### All OSes
-
-The rest of the setup takes place in vim. Ignore the error messages when you first start vim. They will go away after you run this command.
+The rest of the setup takes place in vim. Ignore the error messages when it first starts. They will go away after you run this command.
 
 ```
 :PlugInstall
 ```
 
-That should do it. You can close and reopen vim to see that there are no longer any messages on startup.
+That should do it. Close and reopen vim to see that there are no longer any messages on startup.
 
 ## Customized vimrc Processing
 
-This setup is designed for my primary development environment on a MacBook. Using this setup in another OS, or with different colors, will most likely produce undesirable side effects. To alleviate this behavior, a post processing step can be used. This is done with a separate file - **post_vimrc** in the same folder as vimrc - that is sourced after vimrc. In this file, you can change settings for the particular environment.
+This setup is designed for my primary development environment on a MacBook. Using this setup in another OS, or with different colors, will most likely produce undesirable side effects. To alleviate this behavior, a post processing step can be added. This is done with a separate file - **post_vimrc** in the same folder as vimrc - that is sourced by vimrc at the end of its processing. In this file, you can change settings for the particular environment.
 
 ### Example
 
@@ -74,7 +71,7 @@ Normal / Selection | `gs`                    | Open scratch buffer in its window
 Normal / Selection | `gS`                    | Open an empty scratch buffer in its window                                                         |
 Normal             | `gcc` or `gc[motion]`   | Comment or uncomment line(s) of code                                                               | `:h commentary.txt`
 Selection          | `gc`                    | Command or uncomment selected line(s) of code                                                      |
-Normal             | `ys[text object][char]` | Surround text obect with char and its matching character, ie. ( and ), { and }, [ and ], or < and > | `:h surround`
+Normal             | `ys[text object][char]` | Surround text obect with char and its matching character, ie. ', ", \`, ( and ), { and }, [ and ], or < and >. | `:h surround`
 Normal             | `cs[oldchar][newchar]`  | Change surrounding characters from old to new                                                      |
 Normal             | `ds[char]`              | Remove closest specified surrounding characters                                                    |
 
