@@ -27,7 +27,7 @@ That should do it. Close and reopen vim to see that there are no longer any mess
 
 ## Customized vimrc Processing
 
-This setup is designed for my primary development environment on a MacBook. Using this setup in another OS, or with different colors, will most likely produce undesirable side effects. To alleviate this behavior, a post processing step can be added. This is done with a separate file - **post_vimrc** in the same folder as vimrc - that is sourced by vimrc at the end of its processing. In this file, you can change settings for the particular environment.
+This setup is designed for my primary development environment on a MacBook. Using this setup in another OS, or with different available colors, will most likely produce undesirable side effects. To alleviate this behavior, a post processing step can be added. This is done with a separate file - **post_vimrc** in the same folder as vimrc - that is sourced by vimrc at the end of its processing. In this file, you can change settings for the particular environment.
 
 ### Example
 
