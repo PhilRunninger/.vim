@@ -60,8 +60,7 @@ call plug#begin($VIMHOME.'/bundle')
 call plug#end()
 filetype plugin indent on
 
-" vi: ft=vim
-:let g:netrw_dirhistmax = 0 " Prevent creation of .netrwhist files.
+let g:netrw_dirhistmax = 0 " Prevent creation of .netrwhist files.
 
 let mapleader=" "
 
@@ -327,10 +326,9 @@ hi User3    ctermbg=17  ctermfg=27  guibg=#00005f guifg=#0000ff gui=bold " Blue 
 hi User4    ctermbg=232 ctermfg=232 guibg=#080808 guifg=#080808 gui=NONE " Gray  on Gray
 
 "##########################################################################
-" Give an opportunity to override anything done by this script.
-" http://stackoverflow.com/a/18734557/510067
+" Post processing setup for custom machine-specific overrides.
+"##########################################################################
 let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h') . '/post_vimrc'
 if filereadable(s:path)
   execute 'source' s:path
 endif
-"##########################################################################
