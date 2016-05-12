@@ -134,6 +134,7 @@ set nobackup                              " [do not] keep backup file after over
 set backupdir=$VIMHOME/tmp/backups//      " list of directory namde for the backup file
 set laststatus=2                          " tells when last window has status line
 
+
 " Disable the bells (audible and visual).
 set noerrorbells    " [do not] ring the bells for error messages
 set visualbell      " use visual bell instead of beeping
@@ -308,26 +309,31 @@ let g:snips_github = "https://github.com/PhilRunninger"
 "##########################################################################
 "# Color Settings                                                         #
 "##########################################################################
-function! StatusLineUserColors()
-  highlight WildMenu cterm=none ctermfg=16 ctermbg=178 guifg=#000000 guibg=#dfaf00  " Black on Gold
-  highlight User1    cterm=none ctermbg=22 ctermfg=40  guibg=#005f00 guifg=#00df00  " Green on Dark Green
-  highlight User2    cterm=none ctermbg=52 ctermfg=160 guibg=#5f0000 guifg=#df0000  " Red on Dark Red
-  highlight User3    cterm=none ctermbg=17  ctermfg=12 guibg=#00005f guifg=#0000ff  " Blue on Dark Blue
-endfunction
+let g:gruvbox_contrast_dark = 'hard'
+colorscheme gruvbox
+set background=dark
+
+let g:statusline_insert='cterm=none ctermfg=15 ctermbg=19 guifg=#000000 guibg=#dfaf00'     " white on Blue
+let g:statusline_modified='cterm=none ctermfg=15 ctermbg=52 guifg=#000000 guibg=#5f0000'   " White on Dark Red
+let g:statusline_unmodified='cterm=none ctermfg=15 ctermbg=22 guifg=#000000 guibg=#005f00' " White on Dark Green
+
+highlight WildMenu cterm=none ctermfg=16 ctermbg=178 guifg=#000000 guibg=#dfaf00  " Black on Gold
+highlight User1    cterm=none ctermbg=22 ctermfg=40  guibg=#005f00 guifg=#00df00  " Green on Dark Green
+highlight User2    cterm=none ctermbg=52 ctermfg=160 guibg=#5f0000 guifg=#df0000  " Red on Dark Red
+highlight User3    cterm=none ctermbg=17  ctermfg=12 guibg=#00005f guifg=#0000ff  " Blue on Dark Blue
 
 function! StatuslineColor(mode)
   if a:mode == 'i'
-    highlight StatusLine cterm=none ctermfg=15 ctermbg=19 guifg=#000000 guibg=#dfaf00  " White on Blue
+    exec 'highlight StatusLine '.g:statusline_insert
   elseif &modified
-    highlight StatusLine cterm=none ctermfg=15 ctermbg=52 guifg=#000000 guibg=#5f0000   " White on Dark Red
+    exec 'highlight StatusLine '.g:statusline_modified
   else
-    highlight StatusLine cterm=none ctermfg=15 ctermbg=22 guifg=#000000 guibg=#005f00   " White on Dark Green
+    exec 'highlight StatusLine '.g:statusline_unmodified
   endif
 endfunction
 
 augroup set_statusline_colors
   autocmd!
-  autocmd ColorScheme * call StatusLineUserColors()
   autocmd InsertEnter,InsertChange,TextChangedI * call StatuslineColor('i')
   autocmd InsertLeave,TextChanged,BufWritePost,BufEnter * call StatuslineColor('n')
 augroup END
@@ -339,9 +345,6 @@ set statusline+=\ %1*%(%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%)%*
 set statusline+=\ \%{&ft}\ %{&ff}
 set statusline+=\ #%n\ %f
 
-let g:gruvbox_contrast_dark = 'hard'
-colorscheme gruvbox
-set background=dark
 call StatuslineColor('n')
 
 "##########################################################################

@@ -36,21 +36,32 @@ Here is the post_vimrc I use on my Windows environment, which has fewer color an
 ```
 " vim: filetype=vim
 
-colorscheme SlateDark
-
 let g:gitgutter_enabled = 0
 
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "M",
-    \ "Staged"    : "S",
-    \ "Untracked" : "?",
-    \ "Renamed"   : "R",
-    \ "Unmerged"  : "U",
-    \ "Deleted"   : "D",
-    \ "Dirty"     : "d",
-    \ "Clean"     : "c",
-    \ "Unknown"   : "u"
-    \ }
+if !has("gui_win32")
+
+  colorscheme SlateDark
+  let g:statusline_insert='cterm=none ctermfg=15 ctermbg=4'     " White on Dark Blue
+  let g:statusline_modified='cterm=none ctermfg=15 ctermbg=1'   " White on Dark Red
+  let g:statusline_unmodified='cterm=none ctermfg=15 ctermbg=2' " White on Dark Green
+
+  highlight WildMenu cterm=none ctermfg=0  ctermbg=3 " Black on Dark Yellow
+  highlight User1    cterm=none ctermfg=11 ctermbg=2 " Yellow on Dark Green
+  highlight User2    cterm=none ctermfg=11 ctermbg=1 " Yellow on Dark Red
+  highlight User3    cterm=none ctermfg=11 ctermbg=4 " Yellow on Dark Blue
+
+  let g:NERDTreeIndicatorMapCustom = {
+      \ "Modified"  : "M",
+      \ "Staged"    : "S",
+      \ "Untracked" : "?",
+      \ "Renamed"   : "R",
+      \ "Unmerged"  : "U",
+      \ "Deleted"   : "D",
+      \ "Dirty"     : "d",
+      \ "Clean"     : "c",
+      \ "Unknown"   : "u"
+      \ }
+endif
 ```
 
 ## Custom Key Mappings
@@ -95,16 +106,16 @@ Insert / Selection | `Ctrl+K` | Choose snippet or jump to next field in it  | `:
 
 To create windows (splits), I use these Vim commands:
 
-* `Ctrl+W`, `S` to split the current window horizontally
-* `Ctrl+W`, `V` to split the current window vertically
+* `Ctrl+W`, `s` to split the current window horizontally
+* `Ctrl+W`, `v` to split the current window vertically
 
 Mode | Mapping | Function | Replaces This Vim Command
 ---|---|---|---
 Normal | `Tab`         | Move to next window          | `Ctrl+W`, `W`
-Normal | `Ctrl+J`      | Move to next window below    | `Ctrl+W`, `J`
-Normal | `Ctrl+K`      | Move to next window above    | `Ctrl+W`, `K`
-Normal | `Ctrl+H`      | Move to next window at left  | `Ctrl+W`, `H`
-Normal | `Ctrl+L`      | Move to next window at right | `Ctrl+W`, `L`
+Normal | `Ctrl+j`      | Move to next window below    | `Ctrl+W`, `j`
+Normal | `Ctrl+k`      | Move to next window above    | `Ctrl+W`, `k`
+Normal | `Ctrl+h`      | Move to next window at left  | `Ctrl+W`, `h`
+Normal | `Ctrl+l`      | Move to next window at right | `Ctrl+W`, `l`
 Normal | `Shift+Up`    | Resize window taller         | `:resize +5<Enter>`
 Normal | `Shift+Down`  | Resize window shorter        | `:resize -5<Enter>`
 Normal | `Shift+Right` | Resize window wider          | `:vertical resize +10<Enter>`
@@ -122,8 +133,7 @@ Normal | `-`                | Toggle cursorline (highlight, or not, the current 
 Normal | `|`                | Toggle cursorcolumn (highlight, or not, the current column)
 Normal | `+`                | Toggle display of line/column indicators
 Visual | `~`                | Toggle visual selection between lowercase, Title Case, and UPPERCASE
-Normal | `Ctrl+N`           | Toggle relativenumber on and off.
+Normal | `Ctrl+n`           | Toggle relativenumber on and off.
 Normal / Insert / Visual | `Up`, `Down`, `Left`, `Right`, `Page Up` or `Page Down` | No operation (to break bad keyboard habits)
 Insert | `jk`               | Same as pressing Escape, only easier to reach
 Normal | `#`                | Switch to previous buffer in current window
-
