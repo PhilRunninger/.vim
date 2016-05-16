@@ -49,6 +49,7 @@ if !has("gui_win32")
   highlight User1    cterm=none ctermfg=11 ctermbg=2 " Yellow on Dark Green
   highlight User2    cterm=none ctermfg=11 ctermbg=1 " Yellow on Dark Red
   highlight User3    cterm=none ctermfg=11 ctermbg=4 " Yellow on Dark Blue
+  highlight User4    cterm=none ctermfg=0  ctermbg=0 " Black on Black
 
   let g:NERDTreeIndicatorMapCustom = {
       \ "Modified"  : "M",
