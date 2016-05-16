@@ -317,10 +317,11 @@ let g:statusline_insert='cterm=none ctermfg=15 ctermbg=19 guifg=#000000 guibg=#d
 let g:statusline_modified='cterm=none ctermfg=15 ctermbg=52 guifg=#000000 guibg=#5f0000'   " White on Dark Red
 let g:statusline_unmodified='cterm=none ctermfg=15 ctermbg=22 guifg=#000000 guibg=#005f00' " White on Dark Green
 
-highlight WildMenu cterm=none ctermfg=16 ctermbg=178 guifg=#000000 guibg=#dfaf00  " Black on Gold
-highlight User1    cterm=none ctermbg=22 ctermfg=40  guibg=#005f00 guifg=#00df00  " Green on Dark Green
-highlight User2    cterm=none ctermbg=52 ctermfg=160 guibg=#5f0000 guifg=#df0000  " Red on Dark Red
-highlight User3    cterm=none ctermbg=17  ctermfg=12 guibg=#00005f guifg=#0000ff  " Blue on Dark Blue
+highlight WildMenu cterm=none ctermfg=16 ctermbg=178  guifg=#000000 guibg=#dfaf00  " Black on Gold
+highlight User1    cterm=none ctermbg=22 ctermfg=40   guibg=#005f00 guifg=#00df00  " Green on Dark Green
+highlight User2    cterm=none ctermbg=52 ctermfg=160  guibg=#5f0000 guifg=#df0000  " Red on Dark Red
+highlight User3    cterm=none ctermbg=17  ctermfg=12  guibg=#00005f guifg=#0000ff  " Blue on Dark Blue
+highlight User4    cterm=none ctermbg=234 ctermfg=234 guibg=#1d2021 guifg=#1d2021  " Normal on Normal
 
 function! StatuslineColor(mode)
   if a:mode == 'i'
@@ -338,12 +339,13 @@ augroup set_statusline_colors
   autocmd InsertLeave,TextChanged,BufWritePost,BufEnter * call StatuslineColor('n')
 augroup END
 
-set statusline=%3p%%\ %4v
-set statusline+=\ %3*%(\ %{fugitive#head(8)}\ %)%*
-set statusline+=\ %2*%(%{&modified?\"\ modified\ \":\"\"}%)%*
-set statusline+=\ %1*%(%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%)%*
-set statusline+=\ \%{&ft}\ %{&ff}
-set statusline+=\ #%n\ %f
+set statusline=%3p%%\ %4v\ %4*\|
+set statusline+=%*%3*%(\ %{fugitive#head(8)}\ %)%*%4*\|
+set statusline+=%*%2*%(%{&modified?\"\ modified\ \":\"\"}%)%*%4*\|
+set statusline+=%*%1*%(%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%)%*%4*\|
+set statusline+=%*\ %{&ft}\ %4*\|
+set statusline+=%*\ %{&ff}\ %4*\|
+set statusline+=%*\ #%n\ %f
 
 call StatuslineColor('n')
 
