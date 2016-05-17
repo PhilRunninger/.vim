@@ -4,12 +4,14 @@
 
 These instructions assume you will be running them from a bash shell. First, clone the repository into your home directory. On Windows, use the folder name `vimfiles`; on all other OSes, use the folder name `.vim`.
 
+__Windows__
+
 ```
 $ cd ~
 $ git clone git@github.com:PhilRunninger/my_vim_setup.git vimfiles
 $ vim
 ```
-__or__
+__Mac or Linux__
 
 ```
 $ cd ~
@@ -31,7 +33,7 @@ This setup is designed for my primary development environment on a MacBook. Usin
 
 ### Example
 
-Here is the post_vimrc I use on my Windows environment, which has fewer color and font options, and gitgutter (for now, at least) is not working correctly.
+Here is the post_vimrc I use on my Windows environment, which has a broken gitgutter plugin, and fewer color and font options.
 
 ```
 " vim: filetype=vim
@@ -39,7 +41,6 @@ Here is the post_vimrc I use on my Windows environment, which has fewer color an
 let g:gitgutter_enabled = 0
 
 if !has("gui_win32")
-
   colorscheme SlateDark
   let g:statusline_insert='cterm=none ctermfg=15 ctermbg=4'     " White on Dark Blue
   let g:statusline_modified='cterm=none ctermfg=15 ctermbg=1'   " White on Dark Red
