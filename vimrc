@@ -345,7 +345,7 @@ set statusline+=%*%2*%(%{&modified?\"\ modified\ \":\"\"}%)%*%4*\|
 set statusline+=%*%1*%(%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%)%*%4*\|
 set statusline+=%*\ %{&ft}\ %4*\|
 set statusline+=%*\ %{&ff}\ %4*\|
-set statusline+=%*\ #%n\ %f
+set statusline+=%*\ %n:\ %f
 
 call StatuslineColor('n')
 
