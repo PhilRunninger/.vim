@@ -49,6 +49,8 @@ call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:tpope/vim-repeat'
   Plug 'git@github.com:tpope/vim-surround'
   Plug 'git@github.com:tpope/vim-unimpaired'
+  Plug 'git@github.com:xolox/vim-misc.git'
+  Plug 'git@github.com:xolox/vim-session.git'
 
   " Filetype-specific
   Plug 'git@github.com:chrisbra/csv.vim'
