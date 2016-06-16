@@ -4,9 +4,6 @@ augroup reload_vimrc
   autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
 augroup END
 
-set encoding=utf-8
-set fileencoding=utf-8
-
 let $VIMHOME=expand('<sfile>:p:h')
 
 filetype off
