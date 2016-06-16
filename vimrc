@@ -294,6 +294,10 @@ let NERDTreeIgnore=['^ntuser\.', '^NTUSER\.', '^deps$', '^ebin$']
 " Scratch
 let g:scratch_insert_autohide = 0
 
+" Session
+let g:session_autosave = 'yes'
+let g:session_autoload = 'no'
+
 " Tagbar
 nnoremap <silent><expr> <leader>t bufname(winbufnr(0))=~'^__Tagbar__$' ? ":TagbarClose\<CR>" : ":TagbarOpen fj\<CR>"
 let g:tagbar_sort = 0
