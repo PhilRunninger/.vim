@@ -11,7 +11,9 @@ call plug#begin($VIMHOME.'/bundle')
 
   " Git-related
   Plug 'git@github.com:tpope/vim-fugitive'
-  Plug 'git@github.com:airblade/vim-gitgutter'
+  if v:version > 703
+    Plug 'git@github.com:airblade/vim-gitgutter'
+  endif
 
   " NerdTree
   Plug 'git@github.com:scrooloose/nerdtree'
@@ -36,7 +38,9 @@ call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:tpope/vim-dispatch'
 
   " Miscellaneous Utilities
-  Plug 'git@github.com:jlanzarotta/bufexplorer.git'
+  if v:version > 703
+    Plug 'git@github.com:jlanzarotta/bufexplorer.git'
+  endif
   Plug 'git@github.com:Shougo/neocomplcache.vim'
   Plug 'git@github.com:chrisbra/Recover.vim'
   Plug 'git@github.com:kshenoy/vim-signature'
@@ -63,15 +67,17 @@ let g:netrw_dirhistmax = 0 " Prevent creation of .netrwhist files.
 
 let mapleader=" "
 
-syntax on           " Turn syntax highlighting on.
+syntax on             " Turn syntax highlighting on.
 
-set history=1000    " number of command-lines that are remembered.
-set showcmd         " show (partial) command in last line of screen
-set noshowmode      " [no] message on status line show current mode
-set wildmenu        " use menu for command line completion
-set wildmode=full   " mode for 'wildchar' command-line expansion
-set wildignorecase  " specifies how command line completion is done
-                    " files matching these patterns are not completed
+set history=1000      " number of command-lines that are remembered.
+set showcmd           " show (partial) command in last line of screen
+set noshowmode        " [no] message on status line show current mode
+set wildmenu          " use menu for command line completion
+set wildmode=full     " mode for 'wildchar' command-line expansion
+if v:version > 703
+  set wildignorecase  " specifies how command line completion is done
+endif
+                      " files matching these patterns are not completed
 set wildignore+=*.a,*.o,*.beam
 set wildignore+=*.bmp,*.gif,*.jpg,*.ico,*.png
 set wildignore+=.DS_Store,.git,.ht,.svn
@@ -344,11 +350,13 @@ function! StatuslineColor(mode)
   endif
 endfunction
 
-augroup set_statusline_colors
-  autocmd!
-  autocmd InsertEnter,InsertChange,TextChangedI * call StatuslineColor('i')
-  autocmd InsertLeave,TextChanged,BufWritePost,BufEnter * call StatuslineColor('n')
-augroup END
+if v:version > 703
+  augroup set_statusline_colors
+    autocmd!
+    autocmd InsertEnter,InsertChange,TextChangedI * call StatuslineColor('i')
+    autocmd InsertLeave,TextChanged,BufWritePost,BufEnter * call StatuslineColor('n')
+  augroup END
+endif
 
 set statusline=%3p%%\ %4v\ %4*\|
 set statusline+=%*%3*%(\ %{fugitive#head(8)}\ %)%*%4*\|
