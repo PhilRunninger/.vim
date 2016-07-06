@@ -50,8 +50,6 @@ call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:tpope/vim-repeat'
   Plug 'git@github.com:tpope/vim-surround'
   Plug 'git@github.com:tpope/vim-unimpaired'
-  Plug 'git@github.com:xolox/vim-misc.git'
-  Plug 'git@github.com:xolox/vim-session.git'
 
   " Filetype-specific
   Plug 'git@github.com:chrisbra/csv.vim'
@@ -189,6 +187,8 @@ vnoremap <silent> <leader>/ y:vimgrep "<C-R>0" %<CR>gv:copen<CR>
 
 nnoremap j gj
 nnoremap k gk
+nnoremap gj j
+nnoremap gk k
 
 " When editing a file, always jump to its last known cursor position.
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
@@ -299,10 +299,6 @@ let NERDTreeIgnore=['^ntuser\.', '^NTUSER\.', '^deps$', '^ebin$']
 
 " Scratch
 let g:scratch_insert_autohide = 0
-
-" Session
-let g:session_autosave = 'yes'
-let g:session_autoload = 'no'
 
 " Tagbar
 nnoremap <silent><expr> <leader>t bufname(winbufnr(0))=~'^__Tagbar__$' ? ":TagbarClose\<CR>" : ":TagbarOpen fj\<CR>"
