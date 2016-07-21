@@ -236,9 +236,6 @@ vnoremap <Down> <Nop>
 vnoremap <PageUp> <Nop>
 vnoremap <PageDown> <Nop>
 
-" Exit insert mode without Escape
-inoremap jk <esc>
-
 " Grab PivotalTracker ID and start commit message.
 autocmd BufReadPost COMMIT_EDITMSG execute "silent! normal! qzq/# On branch.\\{-}\\zs\\d\\{8,}\<CR>\"zy//e\<CR>gg\"zPI[#\<ESC>A] \<ESC>:1,1s/\\[#\\] //\<CR>"
 
