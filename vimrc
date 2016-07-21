@@ -88,6 +88,7 @@ set hlsearch        " highlight matches with last search pattern
 set incsearch       " highlight match wile typing search pattern
 set ignorecase      " ignore case in search patterns
 set smartcase       " no ignore case when pattern has uppercase
+nnoremap <silent> <leader><Space> :nohlsearch<CR>   " clear highlighting temporarily
 
 " Function to toggle visual selection between: lowercase, Title Case, and UPPERCASE.
 function! TwiddleCase(str)
