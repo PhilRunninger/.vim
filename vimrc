@@ -106,9 +106,9 @@ vnoremap <silent> ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pg
 " Tab settings and behavior
 set autoindent      " take indent for new line from previous line
 set smartindent     " smart autoindenting for c programs
-set softtabstop=2   " number of spaces that <tab> uses when editing
-set tabstop=2       " number of spaces that <tab> in file uses
-set shiftwidth=2    " number of spaces to use for (auto)indent step
+set softtabstop=4   " number of spaces that <tab> uses when editing
+set tabstop=4       " number of spaces that <tab> in file uses
+set shiftwidth=4    " number of spaces to use for (auto)indent step
 set expandtab       " use spaces when <tab> is inserted
 
 set number          " print the line number in front of each line
@@ -165,7 +165,7 @@ nnoremap <silent> <S-Left> :vertical resize -10<CR>
 
 set autoread        " automatically read file when changed outside of vim
 augroup checktime   " terminal mode hack for autoread option
-  au!
+  autocmd!
   if !has("gui_running")
     "silent! necessary; otherwise, throws errors when using command line window.
     autocmd BufEnter        * silent! checktime
@@ -193,8 +193,10 @@ nnoremap k gk
 nnoremap gj j
 nnoremap gk k
 
-" When editing a file, always jump to its last known cursor position.
-autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup jumpToPreviousLocation " When editing a file, always jump to its last known cursor position.
+    autocmd!
+    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
 
 " Show/hide cursorline and cursorcolumn
 nnoremap <silent> + :set cursorline! cursorcolumn!<CR>
@@ -237,13 +239,17 @@ vnoremap <Down> <Nop>
 vnoremap <PageUp> <Nop>
 vnoremap <PageDown> <Nop>
 
-" Grab PivotalTracker ID and start commit message.
-autocmd BufReadPost COMMIT_EDITMSG execute "silent! normal! qzq/# On branch.\\{-}\\zs\\d\\{8,}\<CR>\"zy//e\<CR>gg\"zPI[#\<ESC>A] \<ESC>:1,1s/\\[#\\] //\<CR>"
+augroup pivotalTrackerIDToCommitMesage " Grab PivotalTracker ID and start commit message.
+    autocmd!
+    autocmd BufReadPost COMMIT_EDITMSG execute "silent! normal! qzq/# On branch.\\{-}\\zs\\d\\{8,}\<CR>\"zy//e\<CR>gg\"zPI[#\<ESC>A] \<ESC>:1,1s/\\[#\\] //\<CR>"
+augroup END
 
-" Set filetype of VHT Log files
-autocmd BufRead,BufNewFile MainOutputLog*.txt setfiletype vht
-autocmd BufReadPost MainOutputLog*.txt set filetype=vht
-autocmd BufReadPost IVROutputLog*.txt set filetype=vht
+augroup vhtFileTypes " Set filetype of VHT Log files
+    autocmd!
+    autocmd BufRead,BufNewFile MainOutputLog*.txt setfiletype vht
+    autocmd BufReadPost MainOutputLog*.txt set filetype=vht
+    autocmd BufReadPost IVROutputLog*.txt set filetype=vht
+augroup END
 
 " Shortcut for swapping between current and previous buffers
 nnoremap <silent> # :b#<CR>
@@ -282,7 +288,10 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " NeoMake
-autocmd! BufWritePost * Neomake
+augroup runNeoMakeOnSave
+    autocmd!
+    autocmd! BufWritePost * Neomake
+augroup END
 
 " Nerdtree
 nnoremap <silent><expr> <leader>n bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>:NERDTreeFocus\<CR>" : (winnr()==g:NERDTree.GetWinNum() ? ":NERDTreeClose\<CR>" : ":NERDTreeFocus\<CR>")
