@@ -21,6 +21,7 @@ call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:scrooloose/nerdtree'
   Plug 'git@github.com:Xuyuanp/nerdtree-git-plugin'
   Plug 'git@github.com:PhilRunninger/nerdtree-bwipeout-plugin'
+  Plug 'git@github.com:tiagofumo/vim-nerdtree-syntax-highlight.git'
 
   " Syntax highlighting and color
   Plug 'git@github.com:guns/xterm-color-table.vim'
@@ -305,6 +306,7 @@ let NERDTreeShowBookmarks=1
 let NERDTreeWinSize=42
 let NERDTreeQuitOnOpen=1
 let NERDTreeIgnore=['^ntuser\.', '^NTUSER\.', '^deps$', '^ebin$']
+let g:NERDTreeFileExtensionHighlightFullName = 1
 
 " Scratch
 let g:scratch_insert_autohide = 0
