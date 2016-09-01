@@ -21,6 +21,7 @@ call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:scrooloose/nerdtree'
   Plug 'git@github.com:Xuyuanp/nerdtree-git-plugin'
   Plug 'git@github.com:PhilRunninger/nerdtree-bwipeout-plugin'
+  Plug 'git@github.com:tiagofumo/vim-nerdtree-syntax-highlight.git'
 
   " Syntax highlighting and color
   Plug 'git@github.com:guns/xterm-color-table.vim'
@@ -106,9 +107,9 @@ vnoremap <silent> ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pg
 " Tab settings and behavior
 set autoindent      " take indent for new line from previous line
 set smartindent     " smart autoindenting for c programs
-set softtabstop=2   " number of spaces that <tab> uses when editing
-set tabstop=2       " number of spaces that <tab> in file uses
-set shiftwidth=2    " number of spaces to use for (auto)indent step
+set softtabstop=4   " number of spaces that <tab> uses when editing
+set tabstop=4       " number of spaces that <tab> in file uses
+set shiftwidth=4    " number of spaces to use for (auto)indent step
 set expandtab       " use spaces when <tab> is inserted
 
 set number          " print the line number in front of each line
@@ -165,7 +166,7 @@ nnoremap <silent> <S-Left> :vertical resize -10<CR>
 
 set autoread        " automatically read file when changed outside of vim
 augroup checktime   " terminal mode hack for autoread option
-  au!
+  autocmd!
   if !has("gui_running")
     "silent! necessary; otherwise, throws errors when using command line window.
     autocmd BufEnter        * silent! checktime
@@ -193,8 +194,10 @@ nnoremap k gk
 nnoremap gj j
 nnoremap gk k
 
-" When editing a file, always jump to its last known cursor position.
-autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup jumpToPreviousLocation " When editing a file, always jump to its last known cursor position.
+    autocmd!
+    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
 
 " Show/hide cursorline and cursorcolumn
 nnoremap <silent> + :set cursorline! cursorcolumn!<CR>
@@ -237,13 +240,17 @@ vnoremap <Down> <Nop>
 vnoremap <PageUp> <Nop>
 vnoremap <PageDown> <Nop>
 
-" Grab PivotalTracker ID and start commit message.
-autocmd BufReadPost COMMIT_EDITMSG execute "silent! normal! qzq/# On branch.\\{-}\\zs\\d\\{8,}\<CR>\"zy//e\<CR>gg\"zPI[#\<ESC>A] \<ESC>:1,1s/\\[#\\] //\<CR>"
+augroup pivotalTrackerIDToCommitMesage " Grab PivotalTracker ID and start commit message.
+    autocmd!
+    autocmd BufReadPost COMMIT_EDITMSG execute "silent! normal! qzq/# On branch.\\{-}\\zs\\d\\{8,}\<CR>\"zy//e\<CR>gg\"zPI[#\<ESC>A] \<ESC>:1,1s/\\[#\\] //\<CR>"
+augroup END
 
-" Set filetype of VHT Log files
-autocmd BufRead,BufNewFile MainOutputLog*.txt setfiletype vht
-autocmd BufReadPost MainOutputLog*.txt set filetype=vht
-autocmd BufReadPost IVROutputLog*.txt set filetype=vht
+augroup vhtFileTypes " Set filetype of VHT Log files
+    autocmd!
+    autocmd BufRead,BufNewFile MainOutputLog*.txt setfiletype vht
+    autocmd BufReadPost MainOutputLog*.txt set filetype=vht
+    autocmd BufReadPost IVROutputLog*.txt set filetype=vht
+augroup END
 
 " Shortcut for swapping between current and previous buffers
 nnoremap <silent> # :b#<CR>
@@ -282,7 +289,10 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " NeoMake
-autocmd! BufWritePost * Neomake
+augroup runNeoMakeOnSave
+    autocmd!
+    autocmd! BufWritePost * Neomake
+augroup END
 
 " Nerdtree
 nnoremap <silent><expr> <leader>n bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>:NERDTreeFocus\<CR>" : (winnr()==g:NERDTree.GetWinNum() ? ":NERDTreeClose\<CR>" : ":NERDTreeFocus\<CR>")
@@ -296,6 +306,7 @@ let NERDTreeShowBookmarks=1
 let NERDTreeWinSize=42
 let NERDTreeQuitOnOpen=1
 let NERDTreeIgnore=['^ntuser\.', '^NTUSER\.']
+let g:NERDTreeFileExtensionHighlightFullName = 1
 
 " Scratch
 let g:scratch_insert_autohide = 0
@@ -330,10 +341,10 @@ let g:statusline_insert='cterm=none ctermfg=15 ctermbg=19 gui=none guifg=#ffffff
 let g:statusline_modified='cterm=none ctermfg=15 ctermbg=52 gui=none guifg=#ffffff guibg=#5f0000'   " White on Dark Red
 let g:statusline_unmodified='cterm=none ctermfg=15 ctermbg=22 gui=none guifg=#ffffff guibg=#005f00' " White on Dark Green
 
-highlight WildMenu cterm=none ctermfg=16 ctermbg=178  guifg=#000000 guibg=#dfaf00  " Black on Gold
-highlight User1    cterm=none ctermbg=22 ctermfg=40   guibg=#005f00 guifg=#00df00  " Green on Dark Green
-highlight User2    cterm=none ctermbg=52 ctermfg=160  guibg=#5f0000 guifg=#df0000  " Red on Dark Red
-highlight User3    cterm=none ctermbg=4   ctermfg=33  guibg=#000080 guifg=#0087ff  " Blue on Dark Blue
+highlight WildMenu cterm=none ctermfg=16  ctermbg=178 guifg=#000000 guibg=#dfaf00  " Black on Gold
+highlight User1    cterm=none ctermbg=22  ctermfg=40  guibg=#005f00 guifg=#00df00  " Green on Dark Green
+highlight User2    cterm=none ctermbg=52  ctermfg=160 guibg=#5f0000 guifg=#df0000  " Red on Dark Red
+highlight User3    cterm=none ctermbg=17  ctermfg=12  guibg=#000080 guifg=#0087ff  " Blue on Dark Blue
 highlight User4    cterm=none ctermbg=234 ctermfg=234 guibg=#1d2021 guifg=#1d2021  " Normal on Normal
 
 function! StatuslineColor(mode)
