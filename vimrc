@@ -295,7 +295,7 @@ let NERDTreeSortHiddenFirst=1
 let NERDTreeShowBookmarks=1
 let NERDTreeWinSize=42
 let NERDTreeQuitOnOpen=1
-let NERDTreeIgnore=['^ntuser\.', '^NTUSER\.', '^deps$', '^ebin$']
+let NERDTreeIgnore=['^ntuser\.', '^NTUSER\.']
 
 " Scratch
 let g:scratch_insert_autohide = 0
