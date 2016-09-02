@@ -210,13 +210,12 @@ nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 " Remove trailing spaces
 nnoremap <leader>d<space> :%s/\s\+$//c<CR>
 
-" Convert Erlang "list strings" to <<"binary strings">>, and back again.
-nnoremap <> m`f"a>><ESC>,,i<<<ESC>``ll
-nnoremap >< m`f"lxx,,XX``hh
-
 " Disable q: key sequence
 nnoremap q: <nop>
 nnoremap Q <nop>
+
+" A quick exit
+nnoremap QQ :qa<CR>
 
 " HARD MODE: Disable the arrow and Pg Up/Down keys
 nnoremap <Left> <Nop>
