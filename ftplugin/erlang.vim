@@ -1,3 +1,9 @@
+" Tab settings
+set softtabstop=4   " number of spaces that <tab> uses when editing
+set tabstop=4       " number of spaces that <tab> in file uses
+set shiftwidth=4    " number of spaces to use for (auto)indent step
+set expandtab       " use spaces when <tab> is inserted
+
 " Convert Erlang "list strings" to <<"binary strings">>, and back again.
 nnoremap <> m`f"a>><ESC>,,i<<<ESC>``ll
 nnoremap >< m`f"lxx,,XX``hh
