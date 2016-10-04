@@ -7,15 +7,13 @@ These instructions assume you will be running them from a bash shell. First, clo
 __Windows__
 
 ```
-$ cd ~
-$ git clone git@github.com:PhilRunninger/my_vim_setup.git vimfiles
+$ git clone git@github.com:PhilRunninger/my_vim_setup.git ~/vimfiles
 $ vim
 ```
 __Mac or Linux__
 
 ```
-$ cd ~
-$ git clone git@github.com:PhilRunninger/my_vim_setup.git .vim
+$ git clone git@github.com:PhilRunninger/my_vim_setup.git ~/.vim
 $ vim
 ```
 
@@ -40,28 +38,30 @@ Here is the post_vimrc I use on my Windows environment, which has a broken gitgu
 
 let g:gitgutter_enabled = 0
 
-if !has("gui_win32")
+if has("gui_win32")
+  set guifont=Consolas:h12:w6
+else
   colorscheme SlateDark
-  let g:statusline_insert='cterm=none ctermfg=15 ctermbg=4'     " White on Dark Blue
-  let g:statusline_modified='cterm=none ctermfg=15 ctermbg=1'   " White on Dark Red
-  let g:statusline_unmodified='cterm=none ctermfg=15 ctermbg=2' " White on Dark Green
+  let g:statusline_insert='cterm=none ctermfg=15 ctermbg=1'     " White on Blue
+  let g:statusline_modified='cterm=none ctermfg=15 ctermbg=4'   " White on Red
+  let g:statusline_unmodified='cterm=none ctermfg=15 ctermbg=2' " White on Green
 
-  highlight WildMenu cterm=none ctermfg=0  ctermbg=3 " Black on Dark Yellow
-  highlight User1    cterm=none ctermfg=11 ctermbg=2 " Yellow on Dark Green
-  highlight User2    cterm=none ctermfg=11 ctermbg=1 " Yellow on Dark Red
-  highlight User3    cterm=none ctermfg=11 ctermbg=4 " Yellow on Dark Blue
-  highlight User4    cterm=none ctermfg=0  ctermbg=0 " Black on Black
+  highlight WildMenu cterm=none ctermfg=0 ctermbg=3 " Black on Yellow
+  highlight User1    cterm=none ctermfg=7 ctermbg=2 " White on Green
+  highlight User2    cterm=none ctermfg=7 ctermbg=4 " White on Red
+  highlight User3    cterm=none ctermfg=7 ctermbg=1 " White on Blue
+  highlight User4    cterm=none ctermfg=0 ctermbg=0 " Black on Black
 
-  let g:NERDTreeIndicatorMapCustom = {
-      \ "Modified"  : "M",
-      \ "Staged"    : "S",
-      \ "Untracked" : "?",
-      \ "Renamed"   : "R",
-      \ "Unmerged"  : "U",
-      \ "Deleted"   : "D",
-      \ "Dirty"     : "d",
-      \ "Clean"     : "c",
-      \ "Unknown"   : "u"
+ let g:NERDTreeIndicatorMapCustom = {
+      \ "Modified"  : "¤",
+      \ "Staged"    : "+",
+      \ "Untracked" : "*",
+      \ "Renamed"   : "►",
+      \ "Unmerged"  : "=",
+      \ "Deleted"   : "X",
+      \ "Dirty"     : "x",
+      \ "Clean"     : "º",
+      \ "Unknown"   : "?"
       \ }
 endif
 ```
@@ -97,31 +97,13 @@ Normal | `F3`        | Perform git grep on word under cursor                | `:
 Visual | `F3`        | Perform git grep on visual selection                 |
 Insert | `Tab`       | Highlight next item in autocomplete popup            | `:h neocomplcache`
 Insert | `Shift+Tab` | Highlight previous item in autocomplete popup        |
+Normal | `Tab`        | Start **Winteract** plugin | [romgrk/winteract.vim](https://github.com/romgrk/winteract.vim)
 Normal | `<leader>u` | Toggle **UndoTree** window                           | `:h undotree.txt`
 Normal | `<leader>b` | Toggle **BufExplorer** window                        | `:h bufexplorer`
 Normal | `<leader>n` | Toggle **NERDTree** window                           | `:h NERDTree`
 Normal | `<leader>f` | Open **NERDTree** window, focused on current buffer  |
 Normal | `<leader>t` | Toggle the **Tagbar** window                         | `:h tagbar`
 Insert / Selection | `Ctrl+K` | Choose snippet or jump to next field in it  | `:h neosnippet`
-
-### Windowing and Movement
-
-To create windows (splits), I use these Vim commands:
-
-* `Ctrl+W`, `s` to split the current window horizontally
-* `Ctrl+W`, `v` to split the current window vertically
-
-Mode | Mapping | Function | Replaces This Vim Command
----|---|---|---
-Normal | `Tab`         | Move to next window          | `Ctrl+W`, `W`
-Normal | `Ctrl+j`      | Move to next window below    | `Ctrl+W`, `j`
-Normal | `Ctrl+k`      | Move to next window above    | `Ctrl+W`, `k`
-Normal | `Ctrl+h`      | Move to next window at left  | `Ctrl+W`, `h`
-Normal | `Ctrl+l`      | Move to next window at right | `Ctrl+W`, `l`
-Normal | `Shift+Up`    | Resize window taller         | `:resize +5<Enter>`
-Normal | `Shift+Down`  | Resize window shorter        | `:resize -5<Enter>`
-Normal | `Shift+Right` | Resize window wider          | `:vertical resize +10<Enter>`
-Normal | `Shift+Left`  | Resize window narrower       | `:vertical resize -10<Enter>`
 
 ### Miscellaneous
 
@@ -137,5 +119,4 @@ Normal | `+`                | Toggle display of line/column indicators
 Visual | `~`                | Toggle visual selection between lowercase, Title Case, and UPPERCASE
 Normal | `Ctrl+n`           | Toggle relativenumber on and off.
 Normal / Insert / Visual | `Up`, `Down`, `Left`, `Right`, `Page Up` or `Page Down` | No operation (to break bad keyboard habits)
-Insert | `jk`               | Same as pressing Escape, only easier to reach
 Normal | `#`                | Switch to previous buffer in current window
