@@ -26,7 +26,6 @@ call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:guns/xterm-color-table.vim'
   Plug 'git@github.com:flazz/vim-colorschemes'
   Plug 'git@github.com:vim-scripts/ScrollColors'
-  Plug 'git@github.com:aklt/plantuml-syntax'
   Plug 'git@github.com:tpope/vim-markdown'
   Plug 'git@github.com:elzr/vim-json'
   Plug 'git@github.com:vim-scripts/NSIS-syntax-highlighting'
@@ -39,10 +38,11 @@ call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:PhilRunninger/vim-snippets'
   Plug 'git@github.com:tpope/vim-dispatch'
 
+  " Buffers and Windows
+  Plug 'git@github.com:ap/vim-buftabline.git'
+  Plug 'git@github.com:romgrk/winteract.vim.git'
+
   " Miscellaneous Utilities
-  if v:version > 703
-    Plug 'git@github.com:jlanzarotta/bufexplorer.git'
-  endif
   Plug 'git@github.com:Shougo/neocomplcache.vim'
   Plug 'git@github.com:chrisbra/Recover.vim'
   Plug 'git@github.com:kshenoy/vim-signature'
@@ -112,16 +112,12 @@ set shiftwidth=4    " number of spaces to use for (auto)indent step
 set expandtab       " use spaces when <tab> is inserted
 
 set number          " print the line number in front of each line
-nnoremap <C-N> :set relativenumber!<CR>
 
 set scrolloff=3     " minimum # of lines above and below cursor
 set showmatch       " briefly jump to matching bracket if inserting one
-set list            " show <tab> and <eol>
 set confirm         " ask what to do with unsave/read-only files
 set guioptions=     " gui: which components and options are used
-if has("win32")
-  set guifont=Consolas:h12:w6
-endif
+set list                                            " show <tab> and <eol>
 set listchars=tab:¬-,extends:»,precedes:«,trail:¤   " characters for displaying in list mode
 set fillchars=stl:\ ,stlnc:\ ,vert:\      " characters to use for displaying special items
 set tags=./tags;/                         " list of filenames used by the tag command
@@ -140,7 +136,6 @@ set nobackup                              " [do not] keep backup file after over
 set backupdir=$VIMHOME/tmp/backups//      " list of directory namde for the backup file
 set laststatus=2                          " tells when last window has status line
 
-
 " Disable the bells (audible and visual).
 set noerrorbells    " [do not] ring the bells for error messages
 set visualbell      " use visual bell instead of beeping
@@ -152,16 +147,6 @@ set splitbelow                            " new window from split is below the c
 set splitright                            " new window is put right of the current one
 set winminheight=0                        " minimum number of lines for any window
 set winminwidth=0                         " minimum number of columns for any window
-nnoremap <silent> <Tab> <C-W>w
-nnoremap <silent> <S-Tab> <C-W>W
-nnoremap <silent> <C-K> :wincmd k<CR>
-nnoremap <silent> <C-J> :wincmd j<CR>
-nnoremap <silent> <C-H> :wincmd h<CR>
-nnoremap <silent> <C-L> :wincmd l<CR>
-nnoremap <silent> <S-Up>  :resize +5<CR>
-nnoremap <silent> <S-Down> :resize -5<CR>
-nnoremap <silent> <S-Right>  :vertical resize +10<CR>
-nnoremap <silent> <S-Left> :vertical resize -10<CR>
 
 set autoread        " automatically read file when changed outside of vim
 augroup checktime   " terminal mode hack for autoread option
@@ -213,9 +198,6 @@ nnoremap <leader>d<space> :%s/\s\+$//c<CR>
 nnoremap q: <nop>
 nnoremap Q <nop>
 
-" A quick exit
-nnoremap QQ :qa<CR>
-
 " HARD MODE: Disable the arrow and Pg Up/Down keys
 nnoremap <Left> <Nop>
 nnoremap <Right> <Nop>
@@ -250,19 +232,13 @@ augroup vhtFileTypes " Set filetype of VHT Log files
     autocmd BufReadPost IVROutputLog*.txt set filetype=vht
 augroup END
 
-" Shortcut for swapping between current and previous buffers
+" Buffer-related mappings
 nnoremap <silent> # :b#<CR>
+nnoremap <silent> <Tab> :InteractiveWindow<CR>
 
 "##########################################################################
 "# Settings for managed plugins                                           #
 "##########################################################################
-
-" BufExplorer
-nnoremap <silent><expr> <leader>b winnr()==g:NERDTree.GetWinNum() ? ":NERDTreeClose\<CR>:ToggleBufExplorer\<CR>" : ":ToggleBufExplorer\<CR>"
-let g:bufExplorerDisableDefaultKeyMapping=1
-let g:bufExplorerShowNoName=1
-let g:bufExplorerDefaultHelp=0
-let g:bufExplorerDetailedHelp=0
 
 " EasyAlign
 vmap <Enter> <Plug>(EasyAlign)
