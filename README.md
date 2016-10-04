@@ -97,13 +97,15 @@ Normal | `F3`        | Perform git grep on word under cursor                | `:
 Visual | `F3`        | Perform git grep on visual selection                 |
 Insert | `Tab`       | Highlight next item in autocomplete popup            | `:h neocomplcache`
 Insert | `Shift+Tab` | Highlight previous item in autocomplete popup        |
-Normal | `Tab`        | Start **Winteract** plugin | [romgrk/winteract.vim](https://github.com/romgrk/winteract.vim)
 Normal | `<leader>u` | Toggle **UndoTree** window                           | `:h undotree.txt`
 Normal | `<leader>b` | Toggle **BufExplorer** window                        | `:h bufexplorer`
 Normal | `<leader>n` | Toggle **NERDTree** window                           | `:h NERDTree`
 Normal | `<leader>f` | Open **NERDTree** window, focused on current buffer  |
 Normal | `<leader>t` | Toggle the **Tagbar** window                         | `:h tagbar`
-Insert / Selection | `Ctrl+K` | Choose snippet or jump to next field in it  | `:h neosnippet`
+Normal | `Tab`       | Go to next window - `Ctrl+w` `w` |
+Normal | `Shift+Tab` | Go to previous window - `Ctrl+w` `W` |
+Normal | `gw`        | Start **Winteract** plugin | [romgrk/winteract.vim](https://github.com/romgrk/winteract.vim)
+Insert / Selection | `Ctrl+k` | Choose snippet or jump to next field in it  | `:h neosnippet`
 
 ### Miscellaneous
 

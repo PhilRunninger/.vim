@@ -234,7 +234,9 @@ augroup END
 
 " Buffer-related mappings
 nnoremap <silent> # :b#<CR>
-nnoremap <silent> <Tab> :InteractiveWindow<CR>
+nnoremap <silent> <Tab> <C-W>w
+nnoremap <silent> <S-Tab> <C-W>W
+nnoremap <silent> gw :InteractiveWindow<CR>
 
 "##########################################################################
 "# Settings for managed plugins                                           #
