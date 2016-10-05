@@ -236,7 +236,7 @@ augroup END
 nnoremap <silent> # :b#<CR>
 nnoremap <silent> <Tab> <C-W>w
 nnoremap <silent> <S-Tab> <C-W>W
-nnoremap <silent> gw :InteractiveWindow<CR>
+nnoremap <silent> <leader>w :InteractiveWindow<CR>
 
 "##########################################################################
 "# Settings for managed plugins                                           #
