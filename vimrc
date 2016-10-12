@@ -17,10 +17,13 @@ call plug#begin($VIMHOME.'/bundle')
     Plug 'git@github.com:airblade/vim-gitgutter'
   endif
 
+  " Vifm
+  Plug 'git@github.com:vifm/vifm.vim.git'
+
   " NerdTree
-  Plug 'git@github.com:scrooloose/nerdtree'
-  Plug 'git@github.com:Xuyuanp/nerdtree-git-plugin'
-  Plug 'git@github.com:PhilRunninger/nerdtree-bwipeout-plugin'
+  "Plug 'git@github.com:scrooloose/nerdtree'
+  "Plug 'git@github.com:Xuyuanp/nerdtree-git-plugin'
+  "Plug 'git@github.com:PhilRunninger/nerdtree-bwipeout-plugin'
 
   " Syntax highlighting and color
   Plug 'git@github.com:guns/xterm-color-table.vim'
@@ -270,20 +273,23 @@ augroup runNeoMakeOnSave
     autocmd! BufWritePost * Neomake
 augroup END
 
+" Vifm
+nnoremap <silent> <leader>n :EditVifm<CR>
+
 " Nerdtree
-nnoremap <silent><expr> <leader>n bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>:NERDTreeFocus\<CR>" : (winnr()==g:NERDTree.GetWinNum() ? ":NERDTreeClose\<CR>" : ":NERDTreeFocus\<CR>")
-nnoremap <silent><expr> <leader>f bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>:NERDTreeFind\<CR>" : ":NERDTreeFind\<CR>"
-let NERDTreeAutoCenter=1
-let NERDTreeAutoCenterThreshold=5
-let NERDTreeChDirMode=2
-let NERDTreeMinimalUI=1
-let NERDTreeSortHiddenFirst=1
-let NERDTreeShowBookmarks=1
-let NERDTreeWinSize=42
-let NERDTreeQuitOnOpen=1
-let NERDTreeIgnore=['^ntuser\.', '^NTUSER\.']
-let NERDTreeCascadeSingleChildDir = 0
-let NERDTreeCascadeOpenSingleChildDir = 1
+"nnoremap <silent><expr> <leader>n bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>:NERDTreeFocus\<CR>" : (winnr()==g:NERDTree.GetWinNum() ? ":NERDTreeClose\<CR>" : ":NERDTreeFocus\<CR>")
+"nnoremap <silent><expr> <leader>f bufname(winbufnr(0))=='[BufExplorer]' ? ":ToggleBufExplorer\<CR>:NERDTreeFind\<CR>" : ":NERDTreeFind\<CR>"
+"let NERDTreeAutoCenter=1
+"let NERDTreeAutoCenterThreshold=5
+"let NERDTreeChDirMode=2
+"let NERDTreeMinimalUI=1
+"let NERDTreeSortHiddenFirst=1
+"let NERDTreeShowBookmarks=1
+"let NERDTreeWinSize=42
+"let NERDTreeQuitOnOpen=1
+"let NERDTreeIgnore=['^ntuser\.', '^NTUSER\.']
+"let NERDTreeCascadeSingleChildDir = 0
+"let NERDTreeCascadeOpenSingleChildDir = 1
 
 " Scratch
 let g:scratch_insert_autohide = 0
