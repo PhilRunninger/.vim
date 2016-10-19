@@ -9,7 +9,7 @@ set encoding=utf-8
 let $VIMHOME=expand('<sfile>:p:h')
 
 filetype off
-call plug#begin($VIMHOME.'/bundle')
+silent! call plug#begin($VIMHOME.'/bundle')
 
   " Git-related
   Plug 'git@github.com:tpope/vim-fugitive'
