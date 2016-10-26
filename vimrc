@@ -1,14 +1,8 @@
-" Re-source this file when saving it
-augroup reload_vimrc
-  autocmd!
-  autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
-augroup END
+" vim: foldmethod=marker
 
-set encoding=utf-8
-
-let $VIMHOME=expand('<sfile>:p:h')
-
+" Plugin Management  {{{1
 filetype off
+let $VIMHOME=expand('<sfile>:p:h')
 call plug#begin($VIMHOME.'/bundle')
 
   " Git-related
@@ -18,15 +12,15 @@ call plug#begin($VIMHOME.'/bundle')
   endif
 
   " Vifm
-  Plug 'git@github.com:vifm/vifm.vim.git'
+  Plug 'git@github.com:vifm/vifm.vim.git', { 'on': 'EditVifm' }
 
   " Syntax highlighting and color
-  Plug 'git@github.com:guns/xterm-color-table.vim'
+  Plug 'git@github.com:guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
   Plug 'git@github.com:flazz/vim-colorschemes'
-  Plug 'git@github.com:vim-scripts/ScrollColors'
-  Plug 'git@github.com:tpope/vim-markdown'
-  Plug 'git@github.com:elzr/vim-json'
-  Plug 'git@github.com:vim-scripts/NSIS-syntax-highlighting'
+  Plug 'git@github.com:vim-scripts/ScrollColors', { 'on': 'SCROLLCOLOR' }
+  Plug 'git@github.com:tpope/vim-markdown', { 'for': 'markdown' }
+  Plug 'git@github.com:elzr/vim-json', { 'for': 'json' }
+  Plug 'git@github.com:vim-scripts/NSIS-syntax-highlighting', { 'for': ['nsi', 'nsh'] }
 
   " Coding / Development
   Plug 'git@github.com:benekastah/neomake'
@@ -34,42 +28,43 @@ call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:tpope/vim-commentary.git'
   Plug 'git@github.com:Shougo/neosnippet'
   Plug 'git@github.com:PhilRunninger/vim-snippets'
-  Plug 'git@github.com:tpope/vim-dispatch'
+  Plug 'git@github.com:tpope/vim-dispatch', { 'on': 'Dispatch' }
 
   " Buffers and Windows
   Plug 'git@github.com:ap/vim-buftabline.git'
-  Plug 'git@github.com:romgrk/winteract.vim.git'
+  Plug 'git@github.com:romgrk/winteract.vim.git', { 'on': 'InteractiveWindow' }
 
   " Miscellaneous Utilities
   Plug 'git@github.com:Shougo/neocomplcache.vim'
   Plug 'git@github.com:chrisbra/Recover.vim'
   Plug 'git@github.com:kshenoy/vim-signature'
-  Plug 'git@github.com:mbbill/undotree'
-  Plug 'git@github.com:junegunn/vim-easy-align'
+  Plug 'git@github.com:mbbill/undotree', { 'on': 'UndotreeToggle' }
+  Plug 'git@github.com:junegunn/vim-easy-align', { 'on': 'EasyAlign' }
   Plug 'git@github.com:mtth/scratch.vim'
   Plug 'git@github.com:tpope/vim-repeat'
   Plug 'git@github.com:tpope/vim-surround'
   Plug 'git@github.com:tpope/vim-unimpaired'
 
   " Filetype-specific
-  Plug 'git@github.com:chrisbra/csv.vim'
-  Plug 'git@github.com:tpope/vim-jdaddy'
-
-  "Fun Stuff
-  Plug 'git@github.com:uguu-org/vim-matrix-screensaver'
+  Plug 'git@github.com:chrisbra/csv.vim', { 'for': 'csv' }
+  Plug 'git@github.com:tpope/vim-jdaddy', { 'for': 'json' }
 
 call plug#end()
 filetype plugin indent on
-
+" }}}1
+" Miscellaneous settings   {{{1
+set encoding=utf-8
+set scrolloff=3     " minimum # of lines above and below cursor
+set confirm         " ask what to do with unsave/read-only files
+set tags=./tags;/                         " list of filenames used by the tag command
+set backspace=indent,eol,start            " how backspace works at start of line
+set whichwrap+=<,>,[,]                    " allow specified keys to cross line boundaries
 let g:netrw_dirhistmax = 0 " Prevent creation of .netrwhist files.
-
 let mapleader=" "
-
 syntax on             " Turn syntax highlighting on.
 
+" Command line options   {{{1
 set history=1000      " number of command-lines that are remembered.
-set showcmd           " show (partial) command in last line of screen
-set noshowmode        " [no] message on status line show current mode
 set wildmenu          " use menu for command line completion
 set wildmode=full     " mode for 'wildchar' command-line expansion
 if v:version > 703
@@ -81,14 +76,7 @@ set wildignore+=*.bmp,*.gif,*.jpg,*.ico,*.png
 set wildignore+=.DS_Store,.git,.ht,.svn
 set wildignore+=*~,*.swp,*.tmp
 
-" Searching settings
-set hlsearch        " highlight matches with last search pattern
-set incsearch       " highlight match wile typing search pattern
-set ignorecase      " ignore case in search patterns
-set smartcase       " no ignore case when pattern has uppercase
-nnoremap <silent> <leader><Space> :nohlsearch<CR>   " clear highlighting temporarily
-
-" Function to toggle visual selection between: lowercase, Title Case, and UPPERCASE.
+" Function to toggle visual selection between: lowercase, Title Case, and UPPERCASE.   {{{1
 function! TwiddleCase(str)
   if a:str ==# toupper(a:str)
     let result = tolower(a:str)
@@ -101,7 +89,7 @@ function! TwiddleCase(str)
 endfunction
 vnoremap <silent> ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 
-" Tab settings and behavior
+" Tab settings and behavior   {{{1
 set autoindent      " take indent for new line from previous line
 set smartindent     " smart autoindenting for c programs
 set softtabstop=4   " number of spaces that <tab> uses when editing
@@ -109,23 +97,18 @@ set tabstop=4       " number of spaces that <tab> in file uses
 set shiftwidth=4    " number of spaces to use for (auto)indent step
 set expandtab       " use spaces when <tab> is inserted
 
-set number          " print the line number in front of each line
-
-set scrolloff=3     " minimum # of lines above and below cursor
+" Which things are displayed on screen?   {{{1
+set showcmd           " show (partial) command in last line of screen
+set noshowmode        " [no] message on status line show current mode
 set showmatch       " briefly jump to matching bracket if inserting one
-set confirm         " ask what to do with unsave/read-only files
 set guioptions=     " gui: which components and options are used
+set number          " print the line number in front of each line
 set list                                            " show <tab> and <eol>
 set listchars=tab:¬-,extends:»,precedes:«,trail:¤   " characters for displaying in list mode
 set fillchars=stl:\ ,stlnc:\ ,vert:\      " characters to use for displaying special items
-set tags=./tags;/                         " list of filenames used by the tag command
-
-set backspace=indent,eol,start            " how backspace works at start of line
-set whichwrap+=<,>,[,]                    " allow specified keys to cross line boundaries
-
-set hidden                                " don't unload buffer when it is abandoned
 set showtabline=0                         " tells when the tab pages line is displayed
 
+" Undo/Backup/Swap file settings   {{{1
 set undolevels=100                        " maximum number of changes that can be undone
 set undofile                              " automatically save undo history to an undo file
 set undodir=$VIMHOME/tmp/undo//           " list of directory names for undo files
@@ -134,32 +117,24 @@ set nobackup                              " [do not] keep backup file after over
 set backupdir=$VIMHOME/tmp/backups//      " list of directory namde for the backup file
 set laststatus=2                          " tells when last window has status line
 
-" Disable the bells (audible and visual).
+" Disable the bells (audible and visual).   {{{1
 set noerrorbells    " [do not] ring the bells for error messages
 set visualbell      " use visual bell instead of beeping
 set t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
-" Window behavior and commands
+" Window behavior and commands   {{{1
 set splitbelow                            " new window from split is below the current one
 set splitright                            " new window is put right of the current one
 set winminheight=0                        " minimum number of lines for any window
 set winminwidth=0                         " minimum number of columns for any window
 
-set autoread        " automatically read file when changed outside of vim
-augroup checktime   " terminal mode hack for autoread option
-  autocmd!
-  if !has("gui_running")
-    "silent! necessary; otherwise, throws errors when using command line window.
-    autocmd BufEnter        * silent! checktime
-    autocmd CursorHold      * silent! checktime
-    autocmd CursorHoldI     * silent! checktime
-    "these two _may_ slow things down. Remove if they do.
-    autocmd CursorMoved     * silent! checktime
-    autocmd CursorMovedI    * silent! checktime
-  endif
-augroup END
-
+" Searching settings   {{{1
+set hlsearch        " highlight matches with last search pattern
+set incsearch       " highlight match wile typing search pattern
+set ignorecase      " ignore case in search patterns
+set smartcase       " no ignore case when pattern has uppercase
+nnoremap <silent> <leader><Space> :nohlsearch<CR>   " clear highlighting temporarily
 runtime macros/matchit.vim
 nnoremap <silent> n   nzzzv
 nnoremap <silent> N   Nzzzv
@@ -171,32 +146,24 @@ vnoremap <silent> * :<C-U>
 nnoremap <silent> <leader>/ :vimgrep "<C-R>/" %<CR>:copen<CR>
 vnoremap <silent> <leader>/ y:vimgrep "<C-R>0" %<CR>gv:copen<CR>
 
+" Swap j/k and gj/gk   {{{1
 nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
 
-augroup jumpToPreviousLocation " When editing a file, always jump to its last known cursor position.
-    autocmd!
-    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-augroup END
-
-" Show/hide cursorline and cursorcolumn
+" Show/hide cursorline and cursorcolumn   {{{1
 nnoremap <silent> + :set cursorline! cursorcolumn!<CR>
 nnoremap <silent> - :set cursorline!<CR>
 nnoremap <silent> \| :set cursorcolumn!<CR>
 
-" mapping to change cwd to current buffer's directory
+" Change cwd to current buffer's directory   {{{1
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
-" Remove trailing spaces
+" Remove trailing spaces   {{{1
 nnoremap <leader>d<space> :%s/\s\+$//c<CR>
 
-" Disable q: key sequence
-nnoremap q: <nop>
-nnoremap Q <nop>
-
-" HARD MODE: Disable the arrow and Pg Up/Down keys
+" HARD MODE: Disable the arrow and Pg Up/Down keys {{{1
 nnoremap <Left> <Nop>
 nnoremap <Right> <Nop>
 nnoremap <Up> <Nop>
@@ -218,36 +185,60 @@ vnoremap <Down> <Nop>
 vnoremap <PageUp> <Nop>
 vnoremap <PageDown> <Nop>
 
-augroup pivotalTrackerIDToCommitMesage " Grab PivotalTracker ID and start commit message.
+" Auto-command Definitions   {{{1
+augroup reload_vimrc " Re-source this file when saving it   {{{2
+  autocmd!
+  autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
+augroup END
+
+augroup checktime   " terminal mode hack for autoread option   {{{2
+  autocmd!
+  if !has("gui_running")
+    "silent! necessary; otherwise, throws errors when using command line window.
+    autocmd BufEnter        * silent! checktime
+    autocmd CursorHold      * silent! checktime
+    autocmd CursorHoldI     * silent! checktime
+    "these two _may_ slow things down. Remove if they do.
+    autocmd CursorMoved     * silent! checktime
+    autocmd CursorMovedI    * silent! checktime
+  endif
+augroup END
+set autoread        " automatically read file when changed outside of vim
+
+augroup jumpToPreviousLocation " When editing a file, always jump to its last known cursor position.
+    autocmd!
+    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
+
+augroup pivotalTrackerIDToCommitMesage " Grab PivotalTracker ID and start commit message.  {{{2
     autocmd!
     autocmd BufReadPost COMMIT_EDITMSG execute "silent! normal! qzq/# On branch.\\{-}\\zs\\d\\{8,}\<CR>\"zy//e\<CR>gg\"zPI[#\<ESC>A] \<ESC>:1,1s/\\[#\\] //\<CR>"
 augroup END
 
-augroup vhtFileTypes " Set filetype of VHT Log files
+augroup vhtFileTypes " Set filetype of VHT Log files   {{{2
     autocmd!
     autocmd BufRead,BufNewFile MainOutputLog*.txt setfiletype vht
     autocmd BufReadPost MainOutputLog*.txt set filetype=vht
     autocmd BufReadPost IVROutputLog*.txt set filetype=vht
 augroup END
 
-" Buffer-related mappings
+" Buffer-related settings and mappings   {{{1
+set hidden                                " don't unload buffer when it is abandoned
 nnoremap <silent> # :b#<CR>
 nnoremap <silent> <Tab> <C-W>w
 nnoremap <silent> <S-Tab> <C-W>W
 nnoremap <silent> <leader>w :InteractiveWindow<CR>
 
-"##########################################################################
-"# Settings for managed plugins                                           #
-"##########################################################################
+" Settings for managed plugins   {{{1
 
-" EasyAlign
+" EasyAlign   {{{2
 vmap <Enter> <Plug>(EasyAlign)
 
-" Fugitive
+" Fugitive   {{{2
 nnoremap <silent> <F3> "zyiw/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
 vnoremap <silent> <F3> "zy/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
 
-" NeoComplCache / NeoSnippet
+" NeoComplCache / NeoSnippet   {{{2
 set completeopt=longest,menuone
 
 let g:neocomplcache_enable_fuzzy_completion = 1
@@ -262,20 +253,20 @@ imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-" NeoMake
+" NeoMake   {{{2
 augroup runNeoMakeOnSave
     autocmd!
     autocmd! BufWritePost * Neomake
 augroup END
 
-" Vifm
+" Vifm   {{{2
 nnoremap <silent> <leader>n :EditVifm<CR>
 let g:vifm_exec_args = '+only'
 
-" Scratch
+" Scratch   {{{2
 let g:scratch_insert_autohide = 0
 
-" Tagbar
+" Tagbar   {{{2
 nnoremap <silent><expr> <leader>t bufname(winbufnr(0))=~'^__Tagbar__$' ? ":TagbarClose\<CR>" : ":TagbarOpen fj\<CR>"
 let g:tagbar_sort = 0
 let g:tagbar_show_linenumbers = -1
@@ -284,19 +275,17 @@ augroup tagbar_autoopen
   autocmd VimEnter * nested :call tagbar#autoopen(1)
 augroup END
 
-" Undotree
+" Undotree   {{{2
 nnoremap <silent> <leader>u :UndotreeToggle<CR>
 let g:undotree_SetFocusWhenToggle = 1
 let g:undotree_WindowLayout = 2
 
-" vim-snippets
+" vim-snippets   {{{2
 let g:snips_author = "Phil Runninger"
 let g:snips_email = "prunninger@virtualhold.com"
 let g:snips_github = "https://github.com/PhilRunninger"
 
-"##########################################################################
-"# Color Settings                                                         #
-"##########################################################################
+" Color Settings   {{{1
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 set background=dark
@@ -339,9 +328,7 @@ set statusline+=%*\ %n:\ %f
 
 call StatuslineColor('n')
 
-"##########################################################################
-" Post processing setup for custom machine-specific overrides.
-"##########################################################################
+" Post processing setup for custom machine-specific overrides.   {{{1
 let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h') . '/post_vimrc'
 if filereadable(s:path)
   execute 'source' s:path
