@@ -5,11 +5,17 @@ filetype off
 let $VIMHOME=expand('<sfile>:p:h')
 call plug#begin($VIMHOME.'/bundle')
 
-  " Git-related
+  " Coding / Development
   Plug 'git@github.com:tpope/vim-fugitive'
   if v:version > 703
     Plug 'git@github.com:airblade/vim-gitgutter'
   endif
+  Plug 'git@github.com:benekastah/neomake'
+  Plug 'git@github.com:majutsushi/tagbar'
+  Plug 'git@github.com:tpope/vim-commentary.git'
+  Plug 'git@github.com:Shougo/neosnippet'
+  Plug 'git@github.com:PhilRunninger/vim-snippets'
+  Plug 'git@github.com:tpope/vim-dispatch', { 'on': 'Dispatch' }
 
   " Vifm
   Plug 'git@github.com:vifm/vifm.vim.git', { 'on': 'EditVifm' }
@@ -21,14 +27,6 @@ call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:tpope/vim-markdown', { 'for': 'markdown' }
   Plug 'git@github.com:elzr/vim-json', { 'for': 'json' }
   Plug 'git@github.com:vim-scripts/NSIS-syntax-highlighting', { 'for': ['nsi', 'nsh'] }
-
-  " Coding / Development
-  Plug 'git@github.com:benekastah/neomake'
-  Plug 'git@github.com:majutsushi/tagbar'
-  Plug 'git@github.com:tpope/vim-commentary.git'
-  Plug 'git@github.com:Shougo/neosnippet'
-  Plug 'git@github.com:PhilRunninger/vim-snippets'
-  Plug 'git@github.com:tpope/vim-dispatch', { 'on': 'Dispatch' }
 
   " Buffers and Windows
   Plug 'git@github.com:ap/vim-buftabline.git'
@@ -53,25 +51,24 @@ call plug#end()
 filetype plugin indent on
 " }}}1
 " Miscellaneous settings   {{{1
-set encoding=utf-8
-set scrolloff=3     " minimum # of lines above and below cursor
-set confirm         " ask what to do with unsave/read-only files
-set tags=./tags;/                         " list of filenames used by the tag command
-set backspace=indent,eol,start            " how backspace works at start of line
-set whichwrap+=<,>,[,]                    " allow specified keys to cross line boundaries
-let g:netrw_dirhistmax = 0 " Prevent creation of .netrwhist files.
-let mapleader=" "
-syntax on             " Turn syntax highlighting on.
+set encoding=utf-8                  " Sets the character encoding to use inside vim.
+set scrolloff=3                     " Minimum # of lines above and below cursor
+set confirm                         " Ask what to do with unsave/read-only files
+set tags=./tags;/                   " List of filenames used by the tag command
+set backspace=indent,eol,start      " How backspace works at start of line
+set whichwrap+=<,>,[,]              " Allow specified keys to cross line boundaries
+let g:netrw_dirhistmax = 0          " Prevent creation of .netrwhist files.
+let mapleader=" "                   " Character to use for <leader> mappings
+syntax on                           " Turn syntax highlighting on.
 
 " Command line options   {{{1
-set history=1000      " number of command-lines that are remembered.
-set wildmenu          " use menu for command line completion
-set wildmode=full     " mode for 'wildchar' command-line expansion
+set history=1000                    " number of command-lines that are remembered.
+set wildmenu                        " use menu for command line completion
+set wildmode=full                   " mode for 'wildchar' command-line expansion
 if v:version > 703
-  set wildignorecase  " specifies how command line completion is done
+  set wildignorecase                " specifies how command line completion is done
 endif
-                      " files matching these patterns are not completed
-set wildignore+=*.a,*.o,*.beam
+set wildignore+=*.a,*.o,*.beam      " files matching these patterns are not completed
 set wildignore+=*.bmp,*.gif,*.jpg,*.ico,*.png
 set wildignore+=.DS_Store,.git,.ht,.svn
 set wildignore+=*~,*.swp,*.tmp
@@ -98,15 +95,15 @@ set shiftwidth=4    " number of spaces to use for (auto)indent step
 set expandtab       " use spaces when <tab> is inserted
 
 " Which things are displayed on screen?   {{{1
-set showcmd           " show (partial) command in last line of screen
-set noshowmode        " [no] message on status line show current mode
+set showcmd         " show (partial) command in last line of screen
+set noshowmode      " [no] message on status line show current mode
 set showmatch       " briefly jump to matching bracket if inserting one
 set guioptions=     " gui: which components and options are used
 set number          " print the line number in front of each line
 set list                                            " show <tab> and <eol>
 set listchars=tab:¬-,extends:»,precedes:«,trail:¤   " characters for displaying in list mode
-set fillchars=stl:\ ,stlnc:\ ,vert:\      " characters to use for displaying special items
-set showtabline=0                         " tells when the tab pages line is displayed
+set fillchars=stl:\ ,stlnc:\ ,vert:\                " characters to use for displaying special items
+set showtabline=0                                   " tells when the tab pages line is displayed
 
 " Undo/Backup/Swap file settings   {{{1
 set undolevels=100                        " maximum number of changes that can be undone
@@ -124,17 +121,17 @@ set t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
 " Window behavior and commands   {{{1
-set splitbelow                            " new window from split is below the current one
-set splitright                            " new window is put right of the current one
-set winminheight=0                        " minimum number of lines for any window
-set winminwidth=0                         " minimum number of columns for any window
+set splitbelow      " new window from split is below the current one
+set splitright      " new window is put right of the current one
+set winminheight=0  " minimum number of lines for any window
+set winminwidth=0   " minimum number of columns for any window
 
 " Searching settings   {{{1
 set hlsearch        " highlight matches with last search pattern
 set incsearch       " highlight match wile typing search pattern
 set ignorecase      " ignore case in search patterns
 set smartcase       " no ignore case when pattern has uppercase
-nnoremap <silent> <leader><Space> :nohlsearch<CR>   " clear highlighting temporarily
+nnoremap <silent> <leader><Space> :nohlsearch<CR>
 runtime macros/matchit.vim
 nnoremap <silent> n   nzzzv
 nnoremap <silent> N   Nzzzv
@@ -260,7 +257,7 @@ augroup runNeoMakeOnSave
 augroup END
 
 " Vifm   {{{2
-nnoremap <silent> <leader>n :EditVifm<CR>
+nnoremap <silent> <leader>v :EditVifm<CR>
 let g:vifm_exec_args = '+only'
 
 " Scratch   {{{2

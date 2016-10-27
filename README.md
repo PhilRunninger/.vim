@@ -51,18 +51,6 @@ else
   highlight User2    cterm=none ctermfg=7 ctermbg=4 " White on Red
   highlight User3    cterm=none ctermfg=7 ctermbg=1 " White on Blue
   highlight User4    cterm=none ctermfg=0 ctermbg=0 " Black on Black
-
- let g:NERDTreeIndicatorMapCustom = {
-      \ "Modified"  : "¤",
-      \ "Staged"    : "+",
-      \ "Untracked" : "*",
-      \ "Renamed"   : "►",
-      \ "Unmerged"  : "=",
-      \ "Deleted"   : "X",
-      \ "Dirty"     : "x",
-      \ "Clean"     : "º",
-      \ "Unknown"   : "?"
-      \ }
 endif
 ```
 
@@ -98,13 +86,11 @@ Visual | `F3`        | Perform git grep on visual selection                 |
 Insert | `Tab`       | Highlight next item in autocomplete popup            | `:h neocomplcache`
 Insert | `Shift+Tab` | Highlight previous item in autocomplete popup        |
 Normal | `<leader>u` | Toggle **UndoTree** window                           | `:h undotree.txt`
-Normal | `<leader>b` | Toggle **BufExplorer** window                        | `:h bufexplorer`
-Normal | `<leader>n` | Toggle **NERDTree** window                           | `:h NERDTree`
-Normal | `<leader>f` | Open **NERDTree** window, focused on current buffer  |
+Normal | `<leader>v` | Open the **Vifm** window to select file(s) to open   | `:h vifm-:EditVifm`
 Normal | `<leader>t` | Toggle the **Tagbar** window                         | `:h tagbar`
 Normal | `Tab`       | Go to next window - `Ctrl+w` `w` |
 Normal | `Shift+Tab` | Go to previous window - `Ctrl+w` `W` |
-Normal | `gw`        | Start **Winteract** plugin | [romgrk/winteract.vim](https://github.com/romgrk/winteract.vim)
+Normal | `<leader>w` | Start **Winteract** plugin | [romgrk/winteract.vim](https://github.com/romgrk/winteract.vim)
 Insert / Selection | `Ctrl+k` | Choose snippet or jump to next field in it  | `:h neosnippet`
 
 ### Miscellaneous
@@ -119,6 +105,5 @@ Normal | `-`                | Toggle cursorline (highlight, or not, the current 
 Normal | `|`                | Toggle cursorcolumn (highlight, or not, the current column)
 Normal | `+`                | Toggle display of line/column indicators
 Visual | `~`                | Toggle visual selection between lowercase, Title Case, and UPPERCASE
-Normal | `Ctrl+n`           | Toggle relativenumber on and off.
-Normal / Insert / Visual | `Up`, `Down`, `Left`, `Right`, `Page Up` or `Page Down` | No operation (to break bad keyboard habits)
 Normal | `#`                | Switch to previous buffer in current window
+Normal / Insert / Visual | `Up`, `Down`, `Left`, `Right`, `Page Up` or `Page Down` | No operation (to break bad keyboard habits)
