@@ -3,7 +3,7 @@
 " Plugin Management  {{{1
 filetype off
 let $VIMHOME=expand('<sfile>:p:h')
-call plug#begin($VIMHOME.'/bundle')
+silent! call plug#begin($VIMHOME.'/bundle')
 
   " Coding / Development
   Plug 'git@github.com:tpope/vim-fugitive'
