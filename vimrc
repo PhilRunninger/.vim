@@ -224,7 +224,6 @@ set hidden                                " don't unload buffer when it is aband
 nnoremap <silent> # :b#<CR>
 nnoremap <silent> <Tab> <C-W>w
 nnoremap <silent> <S-Tab> <C-W>W
-nnoremap <silent> <leader>w :InteractiveWindow<CR>
 
 " Settings for managed plugins   {{{1
 
@@ -281,6 +280,36 @@ let g:undotree_WindowLayout = 2
 let g:snips_author = "Phil Runninger"
 let g:snips_email = "prunninger@virtualhold.com"
 let g:snips_github = "https://github.com/PhilRunninger"
+
+" Winteract   {{{2
+nnoremap <silent> <leader>w :InteractiveWindow<CR>
+let g:winmap = {}
+let g:winmap.normal = { "h": "normal! \<C-w><",
+             \        "j": "normal! \<C-w>-",
+             \        "k": "normal! \<C-w>+",
+             \        "l": "normal! \<C-w>>",
+             \        "=": "normal! \<C-w>=",
+             \        "f": "normal! \<C-w>_",         "F": "normal! \<C-w>|",
+             \
+             \        "H": "normal! \<C-w>H",
+             \        "J": "normal! \<C-w>J",
+             \        "K": "normal! \<C-w>K",
+             \        "L": "normal! \<C-w>L",
+             \
+             \        "o": "normal! \<C-w>o",         "c": "normal! \<C-w>c",
+             \
+             \        "n": "normal! :bn\<CR>",        "p": "normal! :bp\<CR>",
+             \
+             \        "s": "normal! \<C-w>s",         "v": "normal! \<C-w>v",
+             \
+             \   "\<TAB>": "normal! \<C-w>w",  "\<S-TAB>": "normal! \<C-w>W",
+             \
+             \        "q": "normal! :copen\<CR>",
+             \
+             \        "d": "bdelete",
+             \
+             \ "\<space>": "let exitwin=1"
+             \      }
 
 " Color Settings   {{{1
 let g:gruvbox_contrast_dark = 'hard'
