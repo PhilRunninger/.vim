@@ -227,6 +227,10 @@ nnoremap <silent> <S-Tab> <C-W>W
 
 " Settings for managed plugins   {{{1
 
+" BufTabLine   {{{2
+let g:buftabline_indicators = 1
+let g:buftabline_separators = 1
+
 " EasyAlign   {{{2
 vmap <Enter> <Plug>(EasyAlign)
 
@@ -261,9 +265,14 @@ let g:vifm_exec_args = '+only'
 
 " Scratch   {{{2
 let g:scratch_insert_autohide = 0
+let g:scratch_no_mappings = 1
+nnoremap gs :Scratch<CR>
+nnoremap gS :Scratch!<CR>
+xnoremap gs :ScratchSelection<CR>
+xnoremap gS :ScratchSelection!<CR>
 
 " Tagbar   {{{2
-nnoremap <silent><expr> <leader>t bufname(winbufnr(0))=~'^__Tagbar__$' ? ":TagbarClose\<CR>" : ":TagbarOpen fj\<CR>"
+nnoremap <silent><expr> <leader>t bufname(winbufnr(0))=~'^__Tagbar__\(\.\d\+\)\?$' ? ":TagbarClose\<CR>" : ":TagbarOpen fj\<CR>"
 let g:tagbar_sort = 0
 let g:tagbar_show_linenumbers = -1
 augroup tagbar_autoopen
@@ -298,7 +307,7 @@ let g:winmap.normal = { "h": "normal! \<C-w><",
              \
              \        "o": "normal! \<C-w>o",         "c": "normal! \<C-w>c",
              \
-             \        "n": "normal! :bn\<CR>",        "p": "normal! :bp\<CR>",
+             \        "n": "normal! :bn\<CR>",        "N": "normal! :bp\<CR>",
              \
              \        "s": "normal! \<C-w>s",         "v": "normal! \<C-w>v",
              \
@@ -308,7 +317,7 @@ let g:winmap.normal = { "h": "normal! \<C-w><",
              \
              \        "d": "bdelete",
              \
-             \ "\<space>": "let exitwin=1"
+             \ "\<space>": "let exitwin=1",      "\<ESC>": "let exitwin=1",    "\<CR>": "let exitwin=1"
              \      }
 
 " Color Settings   {{{1
@@ -344,6 +353,27 @@ if v:version > 703
   augroup END
 endif
 
+let g:currentmode={
+    \ 'n'  : 'Normal',
+    \ 'no' : 'N·Operator Pending',
+    \ 'v'  : 'Visual',
+    \ 'V'  : 'V·Line',
+    \ '' : 'V·Block',
+    \ 's'  : 'Select',
+    \ 'S'  : 'S·Line',
+    \ '' : 'S·Block',
+    \ 'i'  : 'Insert',
+    \ 'R'  : 'Replace',
+    \ 'Rv' : 'V·Replace',
+    \ 'c'  : 'Command',
+    \ 'cv' : 'Vim Ex',
+    \ 'ce' : 'Ex',
+    \ 'r'  : 'Prompt',
+    \ 'rm' : 'More',
+    \ 'r?' : 'Confirm',
+    \ '!'  : 'Shell',
+    \}
+
 set statusline=%3p%%\ %4v\ %4*\|
 set statusline+=%*%3*%(\ %{fugitive#head(8)}\ %)%*%4*\|
 set statusline+=%*%2*%(%{&modified?\"\ modified\ \":\"\"}%)%*%4*\|
@@ -351,10 +381,11 @@ set statusline+=%*%1*%(%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%)%*%4
 set statusline+=%*\ %{&ft}\ %4*\|
 set statusline+=%*\ %{&ff}\ %4*\|
 set statusline+=%*\ %n:\ %f
+set statusline+=%=%{g:currentmode[mode()]}
 
 call StatuslineColor('n')
 
-" Post processing setup for custom machine-specific overrides.   {{{1
+" Custom, machine-specific post processing   {{{1
 let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h') . '/post_vimrc'
 if filereadable(s:path)
   execute 'source' s:path
