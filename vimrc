@@ -11,39 +11,38 @@ silent! call plug#begin($VIMHOME.'/bundle')
     Plug 'git@github.com:airblade/vim-gitgutter'
   endif
   Plug 'git@github.com:benekastah/neomake'
-  Plug 'git@github.com:majutsushi/tagbar'
   Plug 'git@github.com:tpope/vim-commentary.git'
   Plug 'git@github.com:Shougo/neosnippet'
   Plug 'git@github.com:PhilRunninger/vim-snippets'
   Plug 'git@github.com:tpope/vim-dispatch', { 'on': 'Dispatch' }
 
-  " Vifm
+  " File Management
   Plug 'git@github.com:vifm/vifm.vim.git', { 'on': 'EditVifm' }
 
-  " Syntax highlighting and color
+  " Colorschemes
   Plug 'git@github.com:guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
   Plug 'git@github.com:flazz/vim-colorschemes'
   Plug 'git@github.com:vim-scripts/ScrollColors', { 'on': 'SCROLLCOLOR' }
-  Plug 'git@github.com:tpope/vim-markdown', { 'for': 'markdown' }
-  Plug 'git@github.com:elzr/vim-json', { 'for': 'json' }
-  Plug 'git@github.com:vim-scripts/NSIS-syntax-highlighting', { 'for': ['nsi', 'nsh'] }
 
   " Buffers and Windows
   Plug 'git@github.com:ap/vim-buftabline.git'
   Plug 'git@github.com:romgrk/winteract.vim.git', { 'on': 'InteractiveWindow' }
 
   " Miscellaneous Utilities
+  Plug 'git@github.com:sotte/presenting.vim.git'
   Plug 'git@github.com:Shougo/neocomplcache.vim'
-  Plug 'git@github.com:chrisbra/Recover.vim'
   Plug 'git@github.com:kshenoy/vim-signature'
   Plug 'git@github.com:mbbill/undotree', { 'on': 'UndotreeToggle' }
-  Plug 'git@github.com:junegunn/vim-easy-align', { 'on': 'EasyAlign' }
+  Plug 'git@github.com:junegunn/vim-easy-align'
   Plug 'git@github.com:mtth/scratch.vim'
   Plug 'git@github.com:tpope/vim-repeat'
   Plug 'git@github.com:tpope/vim-surround'
   Plug 'git@github.com:tpope/vim-unimpaired'
 
   " Filetype-specific
+  Plug 'git@github.com:tpope/vim-markdown', { 'for': 'markdown' }
+  Plug 'git@github.com:elzr/vim-json', { 'for': 'json' }
+  Plug 'git@github.com:vim-scripts/NSIS-syntax-highlighting', { 'for': ['nsi', 'nsh'] }
   Plug 'git@github.com:chrisbra/csv.vim', { 'for': 'csv' }
   Plug 'git@github.com:tpope/vim-jdaddy', { 'for': 'json' }
 
@@ -227,6 +226,10 @@ nnoremap <silent> <S-Tab> <C-W>W
 
 " Settings for managed plugins   {{{1
 
+" Presenting   {{{2
+au FileType markdown let b:presenting_slide_separator = '\v(^|\n)\ze#\s'
+let g:presenting_top_margin = 2
+
 " BufTabLine   {{{2
 let g:buftabline_indicators = 1
 let g:buftabline_separators = 1
@@ -260,7 +263,7 @@ augroup runNeoMakeOnSave
 augroup END
 
 " Vifm   {{{2
-nnoremap <silent> <leader>v :EditVifm<CR>
+nnoremap <silent> <leader>o :EditVifm<CR>
 let g:vifm_exec_args = '+only'
 
 " Scratch   {{{2
@@ -270,15 +273,6 @@ nnoremap gs :Scratch<CR>
 nnoremap gS :Scratch!<CR>
 xnoremap gs :ScratchSelection<CR>
 xnoremap gS :ScratchSelection!<CR>
-
-" Tagbar   {{{2
-nnoremap <silent><expr> <leader>t bufname(winbufnr(0))=~'^__Tagbar__\(\.\d\+\)\?$' ? ":TagbarClose\<CR>" : ":TagbarOpen fj\<CR>"
-let g:tagbar_sort = 0
-let g:tagbar_show_linenumbers = -1
-augroup tagbar_autoopen
-  autocmd!
-  autocmd VimEnter * nested :call tagbar#autoopen(1)
-augroup END
 
 " Undotree   {{{2
 nnoremap <silent> <leader>u :UndotreeToggle<CR>
@@ -320,7 +314,7 @@ let g:winmap.normal = { "h": "normal! \<C-w><",
              \ "\<space>": "let exitwin=1",      "\<ESC>": "let exitwin=1",    "\<CR>": "let exitwin=1"
              \      }
 
-" Color Settings   {{{1
+" Color Settings and Status Line   {{{1
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 set background=dark
@@ -365,6 +359,7 @@ let g:currentmode={
     \ 'i'  : 'Insert',
     \ 'R'  : 'Replace',
     \ 'Rv' : 'V·Replace',
+    \ 't'  : 'Terminal',
     \ 'c'  : 'Command',
     \ 'cv' : 'Vim Ex',
     \ 'ce' : 'Ex',
