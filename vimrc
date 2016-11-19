@@ -233,7 +233,6 @@ nnoremap <silent> <S-Tab> <C-W>W
 " Settings for managed plugins   {{{1
 
 " Presenting   {{{2
-au FileType markdown let b:presenting_slide_separator = '\v(^|\n)\ze#\s'
 let g:presenting_top_margin = 2
 
 " BufTabLine   {{{2
@@ -270,7 +269,6 @@ augroup END
 
 " Vifm   {{{2
 nnoremap <silent> <leader>o :EditVifm<CR>
-let g:vifm_exec_args = '+only'
 
 " Scratch   {{{2
 let g:scratch_insert_autohide = 0
