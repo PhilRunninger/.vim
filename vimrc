@@ -159,6 +159,9 @@ nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 " Remove trailing spaces   {{{1
 nnoremap <leader>d<space> :%s/\s\+$//c<CR>
 
+" Show what highlighting is used under the cursor {{{1
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
 " HARD MODE: Disable the arrow and Pg Up/Down keys {{{1
 nnoremap <Left> <Nop>
 nnoremap <Right> <Nop>
