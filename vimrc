@@ -216,6 +216,9 @@ augroup vhtFileTypes " Set filetype of VHT Log files   {{{2
     autocmd BufRead,BufNewFile MainOutputLog*.txt setfiletype vht
     autocmd BufReadPost MainOutputLog*.txt set filetype=vht
     autocmd BufReadPost IVROutputLog*.txt set filetype=vht
+    autocmd BufReadPost debug.log set filetype=vht
+    autocmd BufReadPost error.log set filetype=vht
+    autocmd BufReadPost *.{[0123456789]}\\\{1,99\} set filetype=vht
 augroup END
 
 " Buffer-related settings and mappings   {{{1
