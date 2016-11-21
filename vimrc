@@ -380,7 +380,8 @@ set statusline+=%*%1*%(%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%)%*%4
 set statusline+=%*\ %{&ft}\ %4*\|
 set statusline+=%*\ %{&ff}\ %4*\|
 set statusline+=%*\ %n:\ %f
-set statusline+=%=%{g:currentmode[mode()]}
+set statusline+=%=\%4*\|
+set statusline+=%*\ %{g:currentmode[mode()]}
 
 call StatuslineColor('n')
 
