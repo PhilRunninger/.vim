@@ -20,7 +20,10 @@ syn match   vhError   '\[error\]'
 syn match   vhWarning '\[debug\]'
 syn match   vhInfo    '\[info\]'
 
-syn match   vhPidFuncLine  '<\d\+\.\d\+\.\d\+>@\(.\{-}:\)\{2}\d\+'
+syn keyword vhtOTP    Application Supervisor
+
+syn match   vhPid          '<\d\+\.\d\+\.\d\+>'
+syn match   vhModFuncLine  '\([a-z]\w\{-}:\)\{2}\d\+'
 
 syn keyword vhTIAL         TIALEvent
 syn match   vhTIAL         'CTIAL\w\+::'
@@ -54,4 +57,6 @@ hi def link vhThreadId     Character
 hi def link vhNumberString Number
 hi def link vhString       String
 hi def link vhBinaryString Comment
-hi def link vhPidFuncLine  Identifier
+hi def link vhPid          Macro
+hi def link vhModFuncLine  Identifier
+hi def link vhtOTP         Keyword
