@@ -15,6 +15,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:Shougo/neosnippet'
   Plug 'git@github.com:PhilRunninger/vim-snippets'
   Plug 'git@github.com:tpope/vim-dispatch', { 'on': 'Dispatch' }
+  Plug 'git@github.com:editorconfig/editorconfig-vim.git'
 
   " File Management
   Plug 'git@github.com:vifm/vifm.vim.git', { 'on': 'EditVifm' }
@@ -328,10 +329,8 @@ let g:statusline_modified='cterm=none ctermfg=15 ctermbg=52 gui=none guifg=#ffff
 let g:statusline_unmodified='cterm=none ctermfg=15 ctermbg=22 gui=none guifg=#ffffff guibg=#005f00' " White on Dark Green
 
 highlight WildMenu cterm=none ctermfg=16  ctermbg=178 guifg=#000000 guibg=#dfaf00  " Black on Gold
-highlight User1    cterm=none ctermbg=22  ctermfg=40  guibg=#005f00 guifg=#00df00  " Green on Dark Green
+highlight User1    cterm=none ctermbg=17  ctermfg=12  guibg=#000080 guifg=#0087ff  " Blue on Dark Blue
 highlight User2    cterm=none ctermbg=52  ctermfg=160 guibg=#5f0000 guifg=#df0000  " Red on Dark Red
-highlight User3    cterm=none ctermbg=17  ctermfg=12  guibg=#000080 guifg=#0087ff  " Blue on Dark Blue
-highlight User4    cterm=none ctermbg=234 ctermfg=234 guibg=#1d2021 guifg=#1d2021  " Normal on Normal
 
 function! StatuslineColor(mode)
   if a:mode == 'i'
@@ -373,15 +372,14 @@ let g:currentmode={
     \ '!'  : 'Shell',
     \}
 
-set statusline=%3p%%\ %4v\ %4*\|
-set statusline+=%*%3*%(\ %{fugitive#head(8)}\ %)%*%4*\|
-set statusline+=%*%2*%(%{&modified?\"\ modified\ \":\"\"}%)%*%4*\|
-set statusline+=%*%1*%(%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%)%*%4*\|
-set statusline+=%*\ %{&ft}\ %4*\|
-set statusline+=%*\ %{&ff}\ %4*\|
-set statusline+=%*\ %n:\ %f
-set statusline+=%=\%4*\|
-set statusline+=%*\ %{g:currentmode[mode()]}
+set statusline=%3p%%\ %4v
+set statusline+=\ %1*%(\ %{fugitive#head(8)}\ %)%*
+set statusline+=%2*%(%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%)%*
+set statusline+=\ %{&ft}
+set statusline+=\ %{&ff}
+set statusline+=\ %f
+set statusline+=%=
+set statusline+=\ %{g:currentmode[mode()]}
 
 call StatuslineColor('n')
 
