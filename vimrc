@@ -225,10 +225,20 @@ augroup vhtFileTypes " Set filetype of VHT Log files   {{{2
 augroup END
 
 " Buffer-related settings and mappings   {{{1
-set hidden                                " don't unload buffer when it is abandoned
+set hidden          " don't unload buffer when it is abandoned
 nnoremap <silent> # :b#<CR>
 nnoremap <silent> <Tab> <C-W>w
 nnoremap <silent> <S-Tab> <C-W>W
+
+set nostartofline   " commands (don't) move cursor to first non-blank in line
+augroup bufferEvents
+    autocmd!
+    " Remember and set the position of text in buffer when switching
+    autocmd BufLeave * let b:winview = winsaveview()
+    autocmd BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+    " Flash the cursor when entering buffer
+    autocmd BufEnter * let i=0|while i<6|let i+=1|set cursorline! cursorcolumn!|sleep 50m|redraw|endwhile
+augroup END
 
 " Settings for managed plugins   {{{1
 
