@@ -15,7 +15,6 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:Shougo/neosnippet'
   Plug 'git@github.com:PhilRunninger/vim-snippets'
   Plug 'git@github.com:tpope/vim-dispatch', { 'on': 'Dispatch' }
-  Plug 'git@github.com:editorconfig/editorconfig-vim.git'
 
   " File Management
   Plug 'git@github.com:vifm/vifm.vim.git', { 'on': 'EditVifm' }
