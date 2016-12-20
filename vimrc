@@ -323,7 +323,7 @@ let g:winmap.normal = { "h": "normal! \<C-w><",
              \
              \        "q": "normal! :copen\<CR>",
              \
-             \        "d": "bdelete",
+             \        "d": "bprevious \| bdelete \#",
              \
              \ "\<space>": "let exitwin=1",      "\<ESC>": "let exitwin=1",    "\<CR>": "let exitwin=1"
              \      }
