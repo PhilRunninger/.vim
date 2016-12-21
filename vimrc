@@ -242,8 +242,6 @@ augroup bufferEvents
     " Remember and set the position of text in buffer when switching
     autocmd BufLeave * let b:winview = winsaveview()
     autocmd BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
-    " Flash the cursor when entering buffer
-    autocmd BufEnter * let i=0|while i<6|let i+=1|set cursorline! cursorcolumn!|sleep 50m|redraw|endwhile
 augroup END
 
 " Settings for managed plugins   {{{1
