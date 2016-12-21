@@ -17,13 +17,11 @@ $ git clone git@github.com:PhilRunninger/my_vim_setup.git ~/.vim
 $ vim
 ```
 
-The rest of the setup takes place in vim. Ignore the error messages when it first starts. They will go away after you run this command.
+The rest of the setup takes place in vim. Ignore the error messages when it first starts. They will go away when you restart vim after running this command.
 
 ```
 :PlugInstall
 ```
-
-That should do it. Close and reopen vim to see that there are no longer any messages on startup.
 
 ## Customized vimrc Processing
 
@@ -31,12 +29,17 @@ This setup is designed for my primary development environment on a MacBook. Usin
 
 ### Example
 
-Here is the post_vimrc I use on my Windows environment, which has a broken gitgutter plugin, and fewer color and font options.
+Here is the post_vimrc I use on my Windows environment, which fewer color and font options.
 
 ```
 " vim: filetype=vim
 
-let g:gitgutter_enabled = 0
+let NERDTreeDirArrowExpandable = '►'
+let NERDTreeDirArrowCollapsible = '▼'
+
+let g:buftabline_separators = 0
+
+nnoremap <leader>r :redraw!<CR>
 
 if has("gui_win32")
   set guifont=Consolas:h12:w6
@@ -47,10 +50,20 @@ else
   let g:statusline_unmodified='cterm=none ctermfg=15 ctermbg=2' " White on Green
 
   highlight WildMenu cterm=none ctermfg=0 ctermbg=3 " Black on Yellow
-  highlight User1    cterm=none ctermfg=7 ctermbg=2 " White on Green
+  highlight User1    cterm=none ctermfg=7 ctermbg=1 " White on Blue
   highlight User2    cterm=none ctermfg=7 ctermbg=4 " White on Red
-  highlight User3    cterm=none ctermfg=7 ctermbg=1 " White on Blue
-  highlight User4    cterm=none ctermfg=0 ctermbg=0 " Black on Black
+
+  let g:NERDTreeIndicatorMapCustom = {
+      \ "Modified"  : "¤",
+      \ "Staged"    : "+",
+      \ "Untracked" : "*",
+      \ "Renamed"   : "►",
+      \ "Unmerged"  : "=",
+      \ "Deleted"   : "X",
+      \ "Dirty"     : "x",
+      \ "Clean"     : "º",
+      \ "Unknown"   : "?"
+      \ }
 endif
 ```
 
@@ -86,8 +99,7 @@ Visual | `F3`        | Perform git grep on visual selection                 |
 Insert | `Tab`       | Highlight next item in autocomplete popup            | `:h neocomplcache`
 Insert | `Shift+Tab` | Highlight previous item in autocomplete popup        |
 Normal | `<leader>u` | Toggle **UndoTree** window                           | `:h undotree.txt`
-Normal | `<leader>v` | Open the **Vifm** window to select file(s) to open   | `:h vifm-:EditVifm`
-Normal | `<leader>t` | Toggle the **Tagbar** window                         | `:h tagbar`
+Normal | `<leader>o` | Open the **Vifm** window to select file(s) to open   | `:h vifm-:EditVifm`
 Normal | `Tab`       | Go to next window - `Ctrl+w` `w` |
 Normal | `Shift+Tab` | Go to previous window - `Ctrl+w` `W` |
 Normal | `<leader>w` | Start **Winteract** plugin | [romgrk/winteract.vim](https://github.com/romgrk/winteract.vim)

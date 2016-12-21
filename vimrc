@@ -15,7 +15,6 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:Shougo/neosnippet'
   Plug 'git@github.com:PhilRunninger/vim-snippets'
   Plug 'git@github.com:tpope/vim-dispatch', { 'on': 'Dispatch' }
-  "Plug 'git@github.com:editorconfig/editorconfig-vim.git'
 
   " File Management
   Plug 'git@github.com:vifm/vifm.vim.git', { 'on': 'EditVifm' }
@@ -232,11 +231,20 @@ augroup ldrawFileTypes " Set filetype of Lego model files {{{2
 augroup END
 
 " Buffer-related settings and mappings   {{{1
-set nostartofline       " commands [don't] move cursor to first non-blank in line
-set hidden              " don't unload buffer when it is abandoned
+set hidden          " don't unload buffer when it is abandoned
 nnoremap <silent> # :b#<CR>
 nnoremap <silent> <Tab> <C-W>w
 nnoremap <silent> <S-Tab> <C-W>W
+
+set nostartofline   " commands (don't) move cursor to first non-blank in line
+augroup bufferEvents
+    autocmd!
+    " Remember and set the position of text in buffer when switching
+    autocmd BufLeave * let b:winview = winsaveview()
+    autocmd BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+    " Flash the cursor when entering buffer
+    autocmd BufEnter * let i=0|while i<6|let i+=1|set cursorline! cursorcolumn!|sleep 50m|redraw|endwhile
+augroup END
 
 " Settings for managed plugins   {{{1
 
@@ -321,7 +329,7 @@ let g:winmap.normal = { "h": "normal! \<C-w><",
              \
              \        "q": "normal! :copen\<CR>",
              \
-             \        "d": "bdelete",
+             \        "d": "bprevious \| bdelete \#",
              \
              \ "\<space>": "let exitwin=1",      "\<ESC>": "let exitwin=1",    "\<CR>": "let exitwin=1"
              \      }
