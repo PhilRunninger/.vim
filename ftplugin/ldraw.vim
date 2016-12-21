@@ -1,22 +1,26 @@
-let s:current_line=0
-let s:current_description=""
-setlocal statusline=%f%=%{GetPartDescription()}
+if !exists("g:ldraw_parts_list")
+    echoerr "Define g:ldraw_parts_list, the full path to LDraw's parts.lst, in your vimrc."
+    finish
+endif
 
-function! UpdatePartDescription()
-    if !exists("g:ldraw_parts_list")
-        echoerr "Define g:ldraw_parts_list, the full path to LDraw's parts.lst, in your vimrc."
+let s:prev_line_visited=0
+let s:prev_part_file=""
+let s:part_description=""
+setlocal statusline=%{GetPartDescription()}%=%f
+
+function! s:UpdatePartDescription()
+
+    if s:prev_line_visited == line('.')
         return
     endif
+    let s:prev_line_visited=line('.')
 
-    if s:current_line == line('.')
+    " Get part file at end of line in model file.
+    let s:part_file = matchstr(getbufline('%', s:prev_line_visited)[0], '\w\+\.dat$')
+    if s:part_file == ""
+        let s:part_description=""
         return
-    endif
-    let s:current_line=line('.')
-
-    " Get dat file at end of line in model file.
-    let s:dat_file = matchstr(getbufline('%', s:current_line)[0], '\w\+\.dat$')
-    if s:dat_file == ""
-        let s:current_description=""
+    elseif s:part_file == s:prev_part_file
         return
     endif
 
@@ -27,20 +31,20 @@ function! UpdatePartDescription()
     else
         execute "buffer parts.lst"
     endif
-    let s:line_num = search('^'.s:dat_file.'\s*', 'w')
-    if s:line_num != 0
-        let s:current_description=matchstr(getbufline('%', s:line_num)[0], '^'.s:dat_file.'\s*\zs.*$')
+    let s:line_num = search('^'.s:part_file.'\s*', 'w')
+    if s:line_num == 0
+        let s:part_description=s:part_file." not found"
+    else
+        let s:part_description=matchstr(getbufline('%', s:line_num)[0], '^'.s:part_file.'\s*\zs.*$')
     endif
     execute "buffer #"
 endfunction
 
 function! GetPartDescription()
-    return s:current_description
+    return s:part_description
 endfunction
 
 augroup LDraw
     autocmd!
-    autocmd CursorMoved *.ldr,*.mpd call UpdatePartDescription()
-    autocmd BufLeave *.ldr,*.mpd let b:winview = winsaveview()
-    autocmd BufEnter *.ldr,*.mpd if(exists('b:winview')) | call winrestview(b:winview) | endif
+    autocmd CursorMoved *.ldr,*.mpd call s:UpdatePartDescription()
 augroup END
