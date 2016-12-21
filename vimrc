@@ -15,7 +15,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:Shougo/neosnippet'
   Plug 'git@github.com:PhilRunninger/vim-snippets'
   Plug 'git@github.com:tpope/vim-dispatch', { 'on': 'Dispatch' }
-  Plug 'git@github.com:editorconfig/editorconfig-vim.git'
+  "Plug 'git@github.com:editorconfig/editorconfig-vim.git'
 
   " File Management
   Plug 'git@github.com:vifm/vifm.vim.git', { 'on': 'EditVifm' }
@@ -46,6 +46,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:vim-scripts/NSIS-syntax-highlighting', { 'for': ['nsi', 'nsh'] }
   Plug 'git@github.com:chrisbra/csv.vim', { 'for': 'csv' }
   Plug 'git@github.com:tpope/vim-jdaddy', { 'for': 'json' }
+  Plug 'git@github.com:vim-scripts/ldraw.vim.git', { 'for': ['ldr', 'mpd'] }
 
 call plug#end()
 filetype plugin indent on
@@ -217,7 +218,6 @@ augroup END
 
 augroup vhtFileTypes " Set filetype of VHT Log files   {{{2
     autocmd!
-    autocmd BufRead,BufNewFile MainOutputLog*.txt setfiletype vht
     autocmd BufReadPost MainOutputLog*.txt set filetype=vht
     autocmd BufReadPost IVROutputLog*.txt set filetype=vht
     autocmd BufReadPost debug.log set filetype=vht
@@ -225,8 +225,15 @@ augroup vhtFileTypes " Set filetype of VHT Log files   {{{2
     autocmd BufReadPost *.{[0123456789]}\\\{1,99\} set filetype=vht
 augroup END
 
+augroup ldrawFileTypes " Set filetype of Lego model files {{{2
+    autocmd!
+    autocmd BufReadPost *.ldr set filetype=ldraw
+    autocmd BufReadPost *.mpd set filetype=ldraw
+augroup END
+
 " Buffer-related settings and mappings   {{{1
-set hidden                                " don't unload buffer when it is abandoned
+set nostartofline       " commands [don't] move cursor to first non-blank in line
+set hidden              " don't unload buffer when it is abandoned
 nnoremap <silent> # :b#<CR>
 nnoremap <silent> <Tab> <C-W>w
 nnoremap <silent> <S-Tab> <C-W>W
