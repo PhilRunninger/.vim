@@ -224,12 +224,6 @@ augroup vhtFileTypes " Set filetype of VHT Log files   {{{2
     autocmd BufReadPost *.{[0123456789]}\\\{1,99\} set filetype=vht
 augroup END
 
-augroup ldrawFileTypes " Set filetype of Lego model files {{{2
-    autocmd!
-    autocmd BufReadPost *.ldr set filetype=ldraw
-    autocmd BufReadPost *.mpd set filetype=ldraw
-augroup END
-
 " Buffer-related settings and mappings   {{{1
 set hidden          " don't unload buffer when it is abandoned
 nnoremap <silent> # :b#<CR>
