@@ -265,7 +265,7 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 let g:neosnippet#disable_runtime_snippets = { '_' : 1  }
 let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory=$VIMHOME . '/bundle/vim-snippets/snippets'
+let g:neosnippet#snippets_directory=$VIMHOME.'/bundle/vim-snippets/snippets'
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
@@ -282,6 +282,7 @@ nnoremap <silent> <leader>o :EditVifm<CR>
 " Scratch   {{{2
 let g:scratch_insert_autohide = 0
 let g:scratch_no_mappings = 1
+let g:scratch_persistence_file = $VIMHOME.'/tmp/scratch.txt'
 nnoremap gs :Scratch<CR>
 nnoremap gS :Scratch!<CR>
 xnoremap gs :ScratchSelection<CR>
