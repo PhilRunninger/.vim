@@ -6,7 +6,7 @@ let $VIMHOME=expand('<sfile>:p:h')
 silent! call plug#begin($VIMHOME.'/bundle')
 
   " Coding / Development
-  Plug 'git@github.com:itchyny/vim-gitbranch.git'
+  Plug 'git@github.com:tpope/vim-fugitive'
   " Plug 'git@github.com:tpope/vim-fugitive'
   if v:version > 703
     Plug 'git@github.com:airblade/vim-gitgutter'
@@ -382,7 +382,7 @@ let g:currentmode={
     \}
 
 set statusline=%3p%%\ %4v
-set statusline+=\ %1*%(\ %{gitbranch#name()}\ %)%*
+set statusline+=\ %1*%(\ %{fugitive#head(8)}\ %)%*
 set statusline+=%2*%(%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%)%*
 set statusline+=\ %{&ft}
 set statusline+=\ %{&ff}
