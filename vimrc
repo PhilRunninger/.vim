@@ -7,7 +7,6 @@ silent! call plug#begin($VIMHOME.'/bundle')
 
   " Coding / Development
   Plug 'git@github.com:tpope/vim-fugitive'
-  " Plug 'git@github.com:tpope/vim-fugitive'
   if v:version > 703
     Plug 'git@github.com:airblade/vim-gitgutter'
   endif
@@ -18,6 +17,9 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:tpope/vim-dispatch', { 'on': 'Dispatch' }
 
   " File Management
+  Plug 'git@github.com:scrooloose/nerdtree.git'
+  Plug 'git@github.com:Xuyuanp/nerdtree-git-plugin'
+  Plug 'git@github.com:PhilRunninger/nerdtree-bwipeout-plugin'"
   Plug 'git@github.com:vifm/vifm.vim.git', { 'on': 'EditVifm' }
 
   " Colorschemes
@@ -27,7 +29,6 @@ silent! call plug#begin($VIMHOME.'/bundle')
 
   " Buffers and Windows
   Plug 'git@github.com:ap/vim-buftabline.git'
-  Plug 'git@github.com:romgrk/winteract.vim.git', { 'on': 'InteractiveWindow' }
 
   " Miscellaneous Utilities
   Plug 'git@github.com:sotte/presenting.vim.git'
@@ -39,6 +40,8 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:tpope/vim-repeat'
   Plug 'git@github.com:tpope/vim-surround'
   Plug 'git@github.com:tpope/vim-unimpaired'
+  Plug 'git@github.com:scrooloose/vim-slumlord'
+  Plug 'git@github.com:aklt/plantuml-syntax'
 
   " Filetype-specific
   Plug 'git@github.com:tpope/vim-markdown', { 'for': 'markdown' }
@@ -127,6 +130,20 @@ set splitright      " new window is put right of the current one
 set winminheight=0  " minimum number of lines for any window
 set winminwidth=0   " minimum number of columns for any window
 
+nnoremap <silent> <Left> <C-W>h
+nnoremap <silent> <Right> <C-W>l
+nnoremap <silent> <Up> <C-W>k
+nnoremap <silent> <Down> <C-W>j
+nnoremap <silent> <Tab> <C-W>w
+nnoremap <silent> <S-Tab> <C-W>W
+
+nnoremap <silent> <S-Up>           :resize +5<CR>
+nnoremap <silent> <S-Down>         :resize -5<CR>
+nnoremap <silent> <S-Right>        :vertical resize +10<CR>
+nnoremap <silent> <S-Left>         :vertical resize -10<CR>
+nnoremap <silent> <S-Up><S-Right>  <C-W>\|<C-W>_
+nnoremap <silent> <S-Left><S-Down> <C-W>=
+
 " Searching settings   {{{1
 set hlsearch        " highlight matches with last search pattern
 set incsearch       " highlight match wile typing search pattern
@@ -165,10 +182,6 @@ nnoremap <leader>d<space> :%s/\s\+$//c<CR>
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " HARD MODE: Disable the arrow and Pg Up/Down keys {{{1
-nnoremap <Left> <Nop>
-nnoremap <Right> <Nop>
-nnoremap <Up> <Nop>
-nnoremap <Down> <Nop>
 nnoremap <PageUp> <Nop>
 nnoremap <PageDown> <Nop>
 
@@ -228,8 +241,8 @@ augroup END
 " Buffer-related settings and mappings   {{{1
 set hidden          " don't unload buffer when it is abandoned
 nnoremap <silent> # :b#<CR>
-nnoremap <silent> <Tab> <C-W>w
-nnoremap <silent> <S-Tab> <C-W>W
+nnoremap <silent> <leader>n :bnext<CR>
+nnoremap <silent> <leader>p :bprevious<CR>
 
 set nostartofline   " commands (don't) move cursor to first non-blank in line
 augroup bufferEvents
@@ -276,8 +289,26 @@ augroup runNeoMakeOnSave
     autocmd! BufWritePost * Neomake
 augroup END
 
+" Nerdtree   {{{2
+nnoremap <silent><expr> <leader>t (winnr()==g:NERDTree.GetWinNum() ? ":NERDTreeClose\<CR>" : ":NERDTreeFocus\<CR>")
+nnoremap <silent> <leader>f :NERDTreeFind<CR>
+let NERDTreeAutoCenter=1
+let NERDTreeAutoCenterThreshold=5
+let NERDTreeChDirMode=2
+let NERDTreeMinimalUI=1
+let NERDTreeSortHiddenFirst=1
+let NERDTreeShowBookmarks=1
+let NERDTreeWinSize=42
+let NERDTreeQuitOnOpen=1
+let NERDTreeIgnore=['^ntuser\.', '^NTUSER\.']
+let NERDTreeCascadeSingleChildDir = 0
+let NERDTreeCascadeOpenSingleChildDir = 1
+let NERDTreeMapActivateNode='l'
+let NERDTreeMapOpenRecursively='L'
+let NERDTreeMapCloseDir='h'
+
 " Vifm   {{{2
-nnoremap <silent> <leader>o :EditVifm<CR>
+nnoremap <silent> <leader>v :EditVifm<CR>
 
 " Scratch   {{{2
 let g:scratch_insert_autohide = 0
@@ -297,36 +328,6 @@ let g:undotree_WindowLayout = 2
 let g:snips_author = "Phil Runninger"
 let g:snips_email = "prunninger@virtualhold.com"
 let g:snips_github = "https://github.com/PhilRunninger"
-
-" Winteract   {{{2
-nnoremap <silent> <leader>w :InteractiveWindow<CR>
-let g:winmap = {}
-let g:winmap.normal = { "h": "normal! \<C-w><",
-             \        "j": "normal! \<C-w>-",
-             \        "k": "normal! \<C-w>+",
-             \        "l": "normal! \<C-w>>",
-             \        "=": "normal! \<C-w>=",
-             \        "f": "normal! \<C-w>_",         "F": "normal! \<C-w>|",
-             \
-             \        "H": "normal! \<C-w>H",
-             \        "J": "normal! \<C-w>J",
-             \        "K": "normal! \<C-w>K",
-             \        "L": "normal! \<C-w>L",
-             \
-             \        "o": "normal! \<C-w>o",         "c": "normal! \<C-w>c",
-             \
-             \        "n": "normal! :bn\<CR>",        "N": "normal! :bp\<CR>",
-             \
-             \        "s": "normal! \<C-w>s",         "v": "normal! \<C-w>v",
-             \
-             \   "\<TAB>": "normal! \<C-w>w",  "\<S-TAB>": "normal! \<C-w>W",
-             \
-             \        "q": "normal! :copen\<CR>",
-             \
-             \        "d": "bprevious \| bdelete \#",
-             \
-             \ "\<space>": "let exitwin=1",      "\<ESC>": "let exitwin=1",    "\<CR>": "let exitwin=1"
-             \      }
 
 " Color Settings and Status Line   {{{1
 let g:gruvbox_contrast_dark = 'hard'
