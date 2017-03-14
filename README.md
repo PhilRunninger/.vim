@@ -99,11 +99,23 @@ Visual | `F3`        | Perform git grep on visual selection                 |
 Insert | `Tab`       | Highlight next item in autocomplete popup            | `:h neocomplcache`
 Insert | `Shift+Tab` | Highlight previous item in autocomplete popup        |
 Normal | `<leader>u` | Toggle **UndoTree** window                           | `:h undotree.txt`
-Normal | `<leader>o` | Open the **Vifm** window to select file(s) to open   | `:h vifm-:EditVifm`
-Normal | `Tab`       | Go to next window - `Ctrl+w` `w` |
-Normal | `Shift+Tab` | Go to previous window - `Ctrl+w` `W` |
-Normal | `<leader>w` | Start **Winteract** plugin | [romgrk/winteract.vim](https://github.com/romgrk/winteract.vim)
+Normal | `<leader>v` | Open the **Vifm** window to select file(s) to open   | `:h vifm-:EditVifm`
+Normal | `<leader>t` | Toggle the **NERDTree** window | `:h NERDTree`
 Insert / Selection | `Ctrl+k` | Choose snippet or jump to next field in it  | `:h neosnippet`
+
+### Window Movement
+
+Mode | Mapping | Function
+---|---|---
+Normal | `Tab`       | Go to next window - `Ctrl+w` `w`
+Normal | `Shift+Tab` | Go to previous window - `Ctrl+w` `W`
+Normal | `Up`, `Down`, `Left`, `Right` | Go to the next window in a direction - `Ctrl+w` `k` (or `j` `h` `l`)
+Normal | `Shift+Up` | Resize 5 rows taller
+Normal | `Shift+Down` | Resize 5 rows shorter
+Normal | `Shift+Left` | Resize 10 columns narrower
+Normal | `Shift+Right` | Resize 10 columns wider
+Normal | `Shift+Up` `Shift+Right` | Maximize current window - `Ctrl+w` `|` `Ctrl+w` `_`
+Normal | `Shift+Left` `Shift+Down` | Equalize all window sizes - `Ctrl+w` `=`
 
 ### Miscellaneous
 
@@ -117,5 +129,8 @@ Normal | `-`                | Toggle cursorline (highlight, or not, the current 
 Normal | `|`                | Toggle cursorcolumn (highlight, or not, the current column)
 Normal | `+`                | Toggle display of line/column indicators
 Visual | `~`                | Toggle visual selection between lowercase, Title Case, and UPPERCASE
-Normal | `#`                | Switch to previous buffer in current window
-Normal / Insert / Visual | `Up`, `Down`, `Left`, `Right`, `Page Up` or `Page Down` | No operation (to break bad keyboard habits)
+Normal | `#`                | Toggle between two most recently used buffers, eg. [`A` ⇄ `B` `C`]
+Normal | `<leader>p`        | Switch to previous buffer in the buffer list, eg. [ ← `A` ← `B` ← `C` ↩ ]
+Normal | `<leader>n`        | Switch to next buffer in the buffer list, eg. [ ↪ `A` → `B` → `C` → ]
+Insert / Visual | `Up`, `Down`, `Left`, `Right` | No operation (to break bad keyboard habits)
+Normal / Insert / Visual | `Page Up` or `Page Down` | No operation (to break bad keyboard habits)
