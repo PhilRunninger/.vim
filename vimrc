@@ -27,9 +27,6 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:flazz/vim-colorschemes'
   Plug 'git@github.com:vim-scripts/ScrollColors', { 'on': 'SCROLLCOLOR' }
 
-  " Buffers and Windows
-  Plug 'git@github.com:ap/vim-buftabline.git'
-
   " Miscellaneous Utilities
   Plug 'git@github.com:sotte/presenting.vim.git'
   Plug 'git@github.com:Shougo/neocomplcache.vim'
@@ -257,10 +254,6 @@ augroup END
 
 " Presenting   {{{2
 let g:presenting_top_margin = 2
-
-" BufTabLine   {{{2
-let g:buftabline_indicators = 1
-let g:buftabline_separators = 1
 
 " EasyAlign   {{{2
 vmap <Enter> <Plug>(EasyAlign)
