@@ -237,7 +237,9 @@ augroup END
 
 " Buffer-related settings and mappings   {{{1
 set hidden          " don't unload buffer when it is abandoned
-nnoremap <silent> # :b#<CR>
+set wildcharm=<C-Z>
+nnoremap <leader>b :buffers<CR>:buffer <C-Z>
+nnoremap <silent> # :buffer #<CR>
 nnoremap <silent> <leader>n :bnext<CR>
 nnoremap <silent> <leader>p :bprevious<CR>
 
