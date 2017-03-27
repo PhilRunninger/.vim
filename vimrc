@@ -229,6 +229,7 @@ augroup END
 
 augroup vhtFileTypes " Set filetype of VHT Log files   {{{2
     autocmd!
+    autocmd BufReadPost TIALOutputLog*.txt set filetype=vht
     autocmd BufReadPost MainOutputLog*.txt set filetype=vht
     autocmd BufReadPost IVROutputLog*.txt set filetype=vht
     autocmd BufReadPost debug.log set filetype=vht
