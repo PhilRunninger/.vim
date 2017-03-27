@@ -128,19 +128,13 @@ set splitright      " new window is put right of the current one
 set winminheight=0  " minimum number of lines for any window
 set winminwidth=0   " minimum number of columns for any window
 
-nnoremap <silent> <Left> <C-W>h
-nnoremap <silent> <Right> <C-W>l
-nnoremap <silent> <Up> <C-W>k
-nnoremap <silent> <Down> <C-W>j
 nnoremap <silent> <Tab> <C-W>w
 nnoremap <silent> <S-Tab> <C-W>W
 
-nnoremap <silent> <S-Up>           :resize +5<CR>
-nnoremap <silent> <S-Down>         :resize -5<CR>
-nnoremap <silent> <S-Right>        :vertical resize +10<CR>
-nnoremap <silent> <S-Left>         :vertical resize -10<CR>
-nnoremap <silent> <S-Up><S-Right>  <C-W>\|<C-W>_
-nnoremap <silent> <S-Left><S-Down> <C-W>=
+nnoremap <silent> <S-Up>    :resize +5<CR>
+nnoremap <silent> <S-Down>  :resize -5<CR>
+nnoremap <silent> <S-Right> :vertical resize +10<CR>
+nnoremap <silent> <S-Left>  :vertical resize -11<CR>
 
 " Searching settings   {{{1
 set hlsearch        " highlight matches with last search pattern
@@ -180,6 +174,10 @@ nnoremap <leader>d<space> :%s/\s\+$//c<CR>
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " HARD MODE: Disable the arrow and Pg Up/Down keys {{{1
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
 nnoremap <PageUp> <Nop>
 nnoremap <PageDown> <Nop>
 
