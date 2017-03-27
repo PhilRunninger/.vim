@@ -37,8 +37,8 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:tpope/vim-repeat'
   Plug 'git@github.com:tpope/vim-surround'
   Plug 'git@github.com:tpope/vim-unimpaired'
-  Plug 'git@github.com:scrooloose/vim-slumlord'
-  Plug 'git@github.com:aklt/plantuml-syntax'
+  Plug 'git@github.com:scrooloose/vim-slumlord', { 'for': 'uml' }
+  Plug 'git@github.com:aklt/plantuml-syntax', { 'for': 'uml' }
 
   " Filetype-specific
   Plug 'git@github.com:tpope/vim-markdown', { 'for': 'markdown' }
@@ -46,7 +46,6 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:vim-scripts/NSIS-syntax-highlighting', { 'for': ['nsi', 'nsh'] }
   Plug 'git@github.com:chrisbra/csv.vim', { 'for': 'csv' }
   Plug 'git@github.com:tpope/vim-jdaddy', { 'for': 'json' }
-  Plug 'git@github.com:vim-scripts/ldraw.vim.git', { 'for': ['ldr', 'mpd'] }
 
 call plug#end()
 filetype plugin indent on
