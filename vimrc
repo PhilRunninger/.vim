@@ -27,9 +27,6 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:flazz/vim-colorschemes'
   Plug 'git@github.com:vim-scripts/ScrollColors', { 'on': 'SCROLLCOLOR' }
 
-  " Buffers and Windows
-  Plug 'git@github.com:ap/vim-buftabline.git'
-
   " Miscellaneous Utilities
   Plug 'git@github.com:sotte/presenting.vim.git'
   Plug 'git@github.com:Shougo/neocomplcache.vim'
@@ -40,8 +37,8 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:tpope/vim-repeat'
   Plug 'git@github.com:tpope/vim-surround'
   Plug 'git@github.com:tpope/vim-unimpaired'
-  Plug 'git@github.com:scrooloose/vim-slumlord'
-  Plug 'git@github.com:aklt/plantuml-syntax'
+  Plug 'git@github.com:scrooloose/vim-slumlord', { 'for': 'uml' }
+  Plug 'git@github.com:aklt/plantuml-syntax', { 'for': 'uml' }
 
   " Filetype-specific
   Plug 'git@github.com:tpope/vim-markdown', { 'for': 'markdown' }
@@ -49,7 +46,6 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:vim-scripts/NSIS-syntax-highlighting', { 'for': ['nsi', 'nsh'] }
   Plug 'git@github.com:chrisbra/csv.vim', { 'for': 'csv' }
   Plug 'git@github.com:tpope/vim-jdaddy', { 'for': 'json' }
-  Plug 'git@github.com:vim-scripts/ldraw.vim.git', { 'for': ['ldr', 'mpd'] }
 
 call plug#end()
 filetype plugin indent on
@@ -61,6 +57,7 @@ set confirm                         " Ask what to do with unsave/read-only files
 set tags=./tags;/                   " List of filenames used by the tag command
 set backspace=indent,eol,start      " How backspace works at start of line
 set whichwrap+=<,>,[,]              " Allow specified keys to cross line boundaries
+set ttimeoutlen=10                  " Time out time for key codes in milliseconds (Removes delay after <Esc> in Command mode.)
 let g:netrw_dirhistmax = 0          " Prevent creation of .netrwhist files.
 let mapleader=" "                   " Character to use for <leader> mappings
 syntax on                           " Turn syntax highlighting on.
@@ -130,19 +127,13 @@ set splitright      " new window is put right of the current one
 set winminheight=0  " minimum number of lines for any window
 set winminwidth=0   " minimum number of columns for any window
 
-nnoremap <silent> <Left> <C-W>h
-nnoremap <silent> <Right> <C-W>l
-nnoremap <silent> <Up> <C-W>k
-nnoremap <silent> <Down> <C-W>j
 nnoremap <silent> <Tab> <C-W>w
 nnoremap <silent> <S-Tab> <C-W>W
 
-nnoremap <silent> <S-Up>           :resize +5<CR>
-nnoremap <silent> <S-Down>         :resize -5<CR>
-nnoremap <silent> <S-Right>        :vertical resize +10<CR>
-nnoremap <silent> <S-Left>         :vertical resize -10<CR>
-nnoremap <silent> <S-Up><S-Right>  <C-W>\|<C-W>_
-nnoremap <silent> <S-Left><S-Down> <C-W>=
+nnoremap <silent> <S-Up>    :resize +5<CR>
+nnoremap <silent> <S-Down>  :resize -5<CR>
+nnoremap <silent> <S-Right> :vertical resize +10<CR>
+nnoremap <silent> <S-Left>  :vertical resize -11<CR>
 
 " Searching settings   {{{1
 set hlsearch        " highlight matches with last search pattern
@@ -182,6 +173,10 @@ nnoremap <leader>d<space> :%s/\s\+$//c<CR>
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " HARD MODE: Disable the arrow and Pg Up/Down keys {{{1
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
 nnoremap <PageUp> <Nop>
 nnoremap <PageDown> <Nop>
 
@@ -231,6 +226,7 @@ augroup END
 
 augroup vhtFileTypes " Set filetype of VHT Log files   {{{2
     autocmd!
+    autocmd BufReadPost TIALOutputLog*.txt set filetype=vht
     autocmd BufReadPost MainOutputLog*.txt set filetype=vht
     autocmd BufReadPost IVROutputLog*.txt set filetype=vht
     autocmd BufReadPost debug.log set filetype=vht
@@ -240,7 +236,9 @@ augroup END
 
 " Buffer-related settings and mappings   {{{1
 set hidden          " don't unload buffer when it is abandoned
-nnoremap <silent> # :b#<CR>
+set wildcharm=<C-Z>
+nnoremap <leader>b :buffers<CR>:buffer <C-Z>
+nnoremap <silent> # :buffer #<CR>
 nnoremap <silent> <leader>n :bnext<CR>
 nnoremap <silent> <leader>p :bprevious<CR>
 
@@ -256,10 +254,6 @@ augroup END
 
 " Presenting   {{{2
 let g:presenting_top_margin = 2
-
-" BufTabLine   {{{2
-let g:buftabline_indicators = 1
-let g:buftabline_separators = 1
 
 " EasyAlign   {{{2
 vmap <Enter> <Plug>(EasyAlign)
