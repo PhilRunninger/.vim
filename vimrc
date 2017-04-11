@@ -19,6 +19,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
   " File Management
   Plug 'git@github.com:scrooloose/nerdtree.git'
   Plug 'git@github.com:vifm/vifm.vim.git', { 'on': 'EditVifm' }
+  Plug 'git@github.com:PhilRunninger/bufselect.vim.git'
 
   " Colorschemes
   Plug 'git@github.com:guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
@@ -234,8 +235,7 @@ augroup END
 
 " Buffer-related settings and mappings   {{{1
 set hidden          " don't unload buffer when it is abandoned
-set wildcharm=<C-Z>
-nnoremap <leader>b :buffers<CR>:buffer <C-Z>
+nnoremap <silent> <leader>b :ShowBufferList<CR>
 nnoremap <silent> # :buffer #<CR>
 nnoremap <silent> <leader>n :bnext<CR>
 nnoremap <silent> <leader>p :bprevious<CR>
