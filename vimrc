@@ -300,7 +300,7 @@ let NERDTreeMapOpenRecursively='L'
 let NERDTreeMapCloseDir='h'
 
 " Vifm   {{{2
-nnoremap <silent> <leader>v :EditVifm<CR>
+nnoremap <silent> <leader>o :EditVifm<CR>
 
 " Scratch   {{{2
 let g:scratch_insert_autohide = 0
