@@ -18,9 +18,8 @@ silent! call plug#begin($VIMHOME.'/bundle')
 
   " File Management
   Plug 'git@github.com:scrooloose/nerdtree.git'
-  Plug 'git@github.com:Xuyuanp/nerdtree-git-plugin'
-  Plug 'git@github.com:PhilRunninger/nerdtree-bwipeout-plugin'"
   Plug 'git@github.com:vifm/vifm.vim.git', { 'on': 'EditVifm' }
+  Plug 'git@github.com:PhilRunninger/bufselect.vim.git'
 
   " Colorschemes
   Plug 'git@github.com:guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
@@ -37,8 +36,8 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:tpope/vim-repeat'
   Plug 'git@github.com:tpope/vim-surround'
   Plug 'git@github.com:tpope/vim-unimpaired'
-  Plug 'git@github.com:scrooloose/vim-slumlord', { 'for': 'uml' }
-  Plug 'git@github.com:aklt/plantuml-syntax', { 'for': 'uml' }
+  Plug 'git@github.com:scrooloose/vim-slumlord'
+  Plug 'git@github.com:aklt/plantuml-syntax'
 
   " Filetype-specific
   Plug 'git@github.com:tpope/vim-markdown', { 'for': 'markdown' }
@@ -236,8 +235,7 @@ augroup END
 
 " Buffer-related settings and mappings   {{{1
 set hidden          " don't unload buffer when it is abandoned
-set wildcharm=<C-Z>
-nnoremap <leader>b :buffers<CR>:buffer <C-Z>
+nnoremap <silent> <leader>b :ShowBufferList<CR>
 nnoremap <silent> # :buffer #<CR>
 nnoremap <silent> <leader>n :bnext<CR>
 nnoremap <silent> <leader>p :bprevious<CR>
@@ -302,7 +300,7 @@ let NERDTreeMapOpenRecursively='L'
 let NERDTreeMapCloseDir='h'
 
 " Vifm   {{{2
-nnoremap <silent> <leader>v :EditVifm<CR>
+nnoremap <silent> <leader>o :EditVifm<CR>
 
 " Scratch   {{{2
 let g:scratch_insert_autohide = 0
