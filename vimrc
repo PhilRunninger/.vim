@@ -35,8 +35,8 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:tpope/vim-repeat'
   Plug 'git@github.com:tpope/vim-surround'
   Plug 'git@github.com:tpope/vim-unimpaired'
-  Plug 'git@github.com:scrooloose/vim-slumlord', { 'for': 'uml' }
-  Plug 'git@github.com:aklt/plantuml-syntax', { 'for': 'uml' }
+  Plug 'git@github.com:scrooloose/vim-slumlord'
+  Plug 'git@github.com:aklt/plantuml-syntax'
 
   " Filetype-specific
   Plug 'git@github.com:tpope/vim-markdown', { 'for': 'markdown' }
