@@ -296,9 +296,6 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeIgnore=['^ntuser\.', '^NTUSER\.']
 let NERDTreeCascadeSingleChildDir = 0
 let NERDTreeCascadeOpenSingleChildDir = 1
-let NERDTreeMapActivateNode='l'
-let NERDTreeMapOpenRecursively='L'
-let NERDTreeMapCloseDir='h'
 
 " Vifm   {{{2
 nnoremap <silent> <leader>o :EditVifm<CR>
