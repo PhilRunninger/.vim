@@ -18,6 +18,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
 
   " File Management
   Plug 'git@github.com:scrooloose/nerdtree.git'
+  Plug 'git@github.com:Xuyuanp/nerdtree-git-plugin'
   Plug 'git@github.com:vifm/vifm.vim.git', { 'on': 'EditVifm' }
   Plug 'git@github.com:PhilRunninger/bufselect.vim.git'
 
