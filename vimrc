@@ -102,7 +102,7 @@ set showmatch       " briefly jump to matching bracket if inserting one
 set guioptions=     " gui: which components and options are used
 set number          " print the line number in front of each line
 set list                                            " show <tab> and <eol>
-set listchars=tab:¬-,extends:»,precedes:«,trail:¤   " characters for displaying in list mode
+set listchars=tab:›·,extends:→,precedes:←,trail:●   " characters for displaying in list mode
 set fillchars=stl:\ ,stlnc:\ ,vert:\                " characters to use for displaying special items
 set showtabline=0                                   " tells when the tab pages line is displayed
 
@@ -272,9 +272,9 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 let g:neosnippet#disable_runtime_snippets = { '_' : 1  }
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory=$VIMHOME.'/bundle/vim-snippets/snippets'
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+imap <C-s>     <Plug>(neosnippet_expand_or_jump)
+smap <C-s>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-s>     <Plug>(neosnippet_expand_target)
 
 " NeoMake   {{{2
 augroup runNeoMakeOnSave
