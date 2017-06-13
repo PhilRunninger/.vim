@@ -102,7 +102,7 @@ set showmatch       " briefly jump to matching bracket if inserting one
 set guioptions=     " gui: which components and options are used
 set number          " print the line number in front of each line
 set list                                            " show <tab> and <eol>
-set listchars=tab:›·,extends:→,precedes:←,trail:●   " characters for displaying in list mode
+set listchars=tab:►·,extends:→,precedes:←,trail:●   " characters for displaying in list mode
 set fillchars=stl:\ ,stlnc:\ ,vert:\                " characters to use for displaying special items
 set showtabline=0                                   " tells when the tab pages line is displayed
 
