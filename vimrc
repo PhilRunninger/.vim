@@ -271,9 +271,9 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 let g:neosnippet#disable_runtime_snippets = { '_' : 1  }
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory=$VIMHOME.'/bundle/vim-snippets/snippets'
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+imap <C-s>     <Plug>(neosnippet_expand_or_jump)
+smap <C-s>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-s>     <Plug>(neosnippet_expand_target)
 
 " NeoMake   {{{2
 augroup runNeoMakeOnSave
