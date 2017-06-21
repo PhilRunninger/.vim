@@ -53,6 +53,8 @@ filetype plugin indent on
 " Miscellaneous settings   {{{1
 set encoding=utf-8                  " Sets the character encoding to use inside vim.
 set scrolloff=3                     " Minimum # of lines above and below cursor
+set sidescrolloff=3                 " minimum nr. of columns to left and right of cursor
+set sidescroll=1                    " Minimum number of columns to scroll horizontal
 set confirm                         " Ask what to do with unsave/read-only files
 set tags=./tags;/                   " List of filenames used by the tag command
 set backspace=indent,eol,start      " How backspace works at start of line
@@ -198,6 +200,11 @@ vnoremap <PageDown> <Nop>
 augroup reload_vimrc " Re-source this file when saving it   {{{2
   autocmd!
   autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
+augroup END
+
+augroup meta " Get help (with K key) when editing vimscript
+  autocmd!
+  autocmd FileType vim setlocal keywordprg=:help
 augroup END
 
 augroup checktime   " terminal mode hack for autoread option   {{{2
