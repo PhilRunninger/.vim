@@ -300,7 +300,7 @@ let NERDTreeSortHiddenFirst=1
 let NERDTreeShowBookmarks=1
 let NERDTreeWinSize=42
 let NERDTreeQuitOnOpen=1
-let NERDTreeIgnore=['^ntuser\.', '^NTUSER\.']
+let NERDTreeIgnore=['\c^ntuser\..*']
 let NERDTreeCascadeSingleChildDir = 0
 let NERDTreeCascadeOpenSingleChildDir = 1
 
