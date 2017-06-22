@@ -49,7 +49,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
 
 call plug#end()
 filetype plugin indent on
-" }}}1
+
 " Miscellaneous settings   {{{1
 set encoding=utf-8                  " Sets the character encoding to use inside vim.
 set scrolloff=3                     " Minimum # of lines above and below cursor
@@ -221,7 +221,7 @@ augroup checktime   " terminal mode hack for autoread option   {{{2
 augroup END
 set autoread        " automatically read file when changed outside of vim
 
-augroup jumpToPreviousLocation " When editing a file, always jump to its last known cursor position.
+augroup jumpToPreviousLocation " When editing a file, always jump to its last known cursor position.   {{{2
     autocmd!
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
@@ -257,7 +257,6 @@ augroup bufferEvents
 augroup END
 
 " Settings for managed plugins   {{{1
-
 " Presenting   {{{2
 let g:presenting_top_margin = 2
 
