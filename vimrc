@@ -10,7 +10,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
   if v:version > 703
     Plug 'git@github.com:airblade/vim-gitgutter'
   endif
-  Plug 'git@github.com:benekastah/neomake'
+  Plug 'git@github.com:vim-syntastic/syntastic.git'
   Plug 'git@github.com:tpope/vim-commentary.git'
   Plug 'git@github.com:Shougo/neosnippet'
   Plug 'git@github.com:PhilRunninger/vim-snippets'
@@ -37,8 +37,8 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:tpope/vim-repeat'
   Plug 'git@github.com:tpope/vim-surround'
   Plug 'git@github.com:tpope/vim-unimpaired'
+  Plug 'git@github.com:tommcdo/vim-exchange.git'
   Plug 'git@github.com:scrooloose/vim-slumlord'
-  Plug 'git@github.com:aklt/plantuml-syntax'
 
   " Filetype-specific
   Plug 'git@github.com:tpope/vim-markdown', { 'for': 'markdown' }
@@ -46,6 +46,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:vim-scripts/NSIS-syntax-highlighting', { 'for': ['nsi', 'nsh'] }
   Plug 'git@github.com:chrisbra/csv.vim', { 'for': 'csv' }
   Plug 'git@github.com:tpope/vim-jdaddy', { 'for': 'json' }
+  Plug 'git@github.com:aklt/plantuml-syntax'
 
 call plug#end()
 filetype plugin indent on
@@ -282,12 +283,6 @@ imap <C-O> <Plug>(neosnippet_expand_or_jump)
 smap <C-O> <Plug>(neosnippet_expand_or_jump)
 xmap <C-O> <Plug>(neosnippet_expand_target)
 
-" NeoMake   {{{2
-augroup runNeoMakeOnSave
-    autocmd!
-    autocmd! BufWritePost * Neomake
-augroup END
-
 " Nerdtree   {{{2
 nnoremap <silent><expr> <leader>t (winnr()==g:NERDTree.GetWinNum() ? ":NERDTreeClose\<CR>" : ":NERDTreeFocus\<CR>")
 nnoremap <silent> <leader>f :NERDTreeFind<CR>
@@ -314,6 +309,12 @@ nnoremap gs :Scratch<CR>
 nnoremap gS :Scratch!<CR>
 xnoremap gs :ScratchSelection<CR>
 xnoremap gS :ScratchSelection!<CR>
+
+" Syntastic   {{{2
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " Undotree   {{{2
 nnoremap <silent> <leader>u :UndotreeToggle<CR>
@@ -385,6 +386,7 @@ set statusline+=\ %{&ft}
 set statusline+=\ %{&ff}
 set statusline+=\ %f
 set statusline+=%=
+set statusline+=%#warningmsg#%{SyntasticStatuslineFlag()}%*
 set statusline+=\ %{g:currentmode[mode()]}
 
 call StatuslineColor('n')
