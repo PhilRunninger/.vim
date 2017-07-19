@@ -295,7 +295,7 @@ let NERDTreeShowBookmarks=1
 let NERDTreeWinSize=42
 let NERDTreeQuitOnOpen=1
 let NERDTreeIgnore=['\c^ntuser\..*']
-let NERDTreeCascadeSingleChildDir = 0
+let NERDTreeCascadeSingleChildDir = 1
 let NERDTreeCascadeOpenSingleChildDir = 1
 
 " Vifm   {{{2
