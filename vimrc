@@ -41,6 +41,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:scrooloose/vim-slumlord'
 
   " Filetype-specific
+  Plug 'git@github.com:suan/vim-instant-markdown.git'
   Plug 'git@github.com:tpope/vim-markdown', { 'for': 'markdown' }
   Plug 'git@github.com:elzr/vim-json', { 'for': 'json' }
   Plug 'git@github.com:vim-scripts/NSIS-syntax-highlighting', { 'for': ['nsi', 'nsh'] }
