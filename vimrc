@@ -25,8 +25,9 @@ silent! call plug#begin($VIMHOME.'/bundle')
 
   " Colorschemes
   Plug 'git@github.com:guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
-  Plug 'git@github.com:flazz/vim-colorschemes'
-  Plug 'git@github.com:vim-scripts/ScrollColors', { 'on': 'SCROLLCOLOR' }
+  Plug 'git@github.com:morhetz/gruvbox.git'
+  "Plug 'git@github.com:flazz/vim-colorschemes'
+  "Plug 'git@github.com:vim-scripts/ScrollColors', { 'on': 'SCROLLCOLOR' }
 
   " Miscellaneous Utilities
   Plug 'git@github.com:sotte/presenting.vim.git'
