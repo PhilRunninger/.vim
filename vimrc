@@ -138,8 +138,8 @@ set splitright      " new window is put right of the current one
 set winminheight=0  " minimum number of lines for any window
 set winminwidth=0   " minimum number of columns for any window
 
-nnoremap <silent> <Tab> <C-W>w
-nnoremap <silent> <S-Tab> <C-W>W
+nnoremap <silent> <leader>w <C-W>w
+nnoremap <silent> <leader>W <C-W>W
 
 nnoremap <silent> <S-Up>    :resize +5<CR>
 nnoremap <silent> <S-Down>  :resize -5<CR>
