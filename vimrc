@@ -17,8 +17,9 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:tpope/vim-dispatch', { 'on': 'Dispatch' }
 
   " File Management
-  Plug 'git@github.com:scrooloose/nerdtree.git'
-  Plug 'git@github.com:Xuyuanp/nerdtree-git-plugin'
+  Plug 'git@github.com:ctrlpvim/ctrlp.vim.git'
+  "Plug 'git@github.com:scrooloose/nerdtree.git'
+  "Plug 'git@github.com:Xuyuanp/nerdtree-git-plugin'
   Plug 'git@github.com:vifm/vifm.vim.git', { 'on': 'EditVifm' }
   Plug 'git@github.com:PhilRunninger/bufselect.vim.git'
 
