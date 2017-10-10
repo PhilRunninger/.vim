@@ -7,9 +7,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
 
   " Coding / Development
   Plug 'git@github.com:tpope/vim-fugitive'
-  if v:version > 703
-    Plug 'git@github.com:airblade/vim-gitgutter'
-  endif
+  Plug 'git@github.com:airblade/vim-gitgutter'
   Plug 'git@github.com:vim-syntastic/syntastic.git'
   Plug 'git@github.com:tpope/vim-commentary.git'
   Plug 'git@github.com:Shougo/neosnippet'
@@ -17,17 +15,12 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:tpope/vim-dispatch', { 'on': 'Dispatch' }
 
   " File Management
-  Plug 'git@github.com:ctrlpvim/ctrlp.vim.git'
-  "Plug 'git@github.com:scrooloose/nerdtree.git'
-  "Plug 'git@github.com:Xuyuanp/nerdtree-git-plugin'
   Plug 'git@github.com:vifm/vifm.vim.git', { 'on': 'EditVifm' }
   Plug 'git@github.com:PhilRunninger/bufselect.vim.git'
 
   " Colorschemes
   Plug 'git@github.com:guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
   Plug 'git@github.com:morhetz/gruvbox.git'
-  "Plug 'git@github.com:flazz/vim-colorschemes'
-  "Plug 'git@github.com:vim-scripts/ScrollColors', { 'on': 'SCROLLCOLOR' }
 
   " Miscellaneous Utilities
   Plug 'git@github.com:sotte/presenting.vim.git'
@@ -43,13 +36,13 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:scrooloose/vim-slumlord'
 
   " Filetype-specific
-  Plug 'git@github.com:suan/vim-instant-markdown.git'
+  Plug 'git@github.com:suan/vim-instant-markdown.git', { 'for': 'markdown' }
   Plug 'git@github.com:tpope/vim-markdown', { 'for': 'markdown' }
   Plug 'git@github.com:elzr/vim-json', { 'for': 'json' }
   Plug 'git@github.com:vim-scripts/NSIS-syntax-highlighting', { 'for': ['nsi', 'nsh'] }
   Plug 'git@github.com:chrisbra/csv.vim', { 'for': 'csv' }
   Plug 'git@github.com:tpope/vim-jdaddy', { 'for': 'json' }
-  Plug 'git@github.com:aklt/plantuml-syntax'
+  Plug 'git@github.com:aklt/plantuml-syntax', { 'for': 'uml' }
 
 call plug#end()
 filetype plugin indent on
@@ -113,7 +106,7 @@ set showmatch       " briefly jump to matching bracket if inserting one
 set guioptions=     " gui: which components and options are used
 set number          " print the line number in front of each line
 set list                                            " show <tab> and <eol>
-set listchars=tab:►·,extends:→,precedes:←,trail:●   " characters for displaying in list mode
+set listchars=tab:∴·,extends:→,precedes:←,trail:●   " characters for displaying in list mode
 set fillchars=stl:\ ,stlnc:\ ,vert:\                " characters to use for displaying special items
 set showtabline=0                                   " tells when the tab pages line is displayed
 
@@ -140,11 +133,19 @@ set winminwidth=0   " minimum number of columns for any window
 
 nnoremap <silent> <leader>w <C-W>w
 nnoremap <silent> <leader>W <C-W>W
-
-nnoremap <silent> <S-Up>    :resize +5<CR>
-nnoremap <silent> <S-Down>  :resize -5<CR>
-nnoremap <silent> <S-Right> :vertical resize +10<CR>
-nnoremap <silent> <S-Left>  :vertical resize -11<CR>
+" The numeric keypad keys, codes Op to Oy, are mapped to resize windows like so:
+"     0,1,3,7: no operation    2:shorter      4:narrower
+"     5:same size              6:wider        8:taller        9:maximize
+nnoremap <silent> <Esc>Op <Nop>
+nnoremap <silent> <Esc>Oq <Nop>
+nnoremap <silent> <Esc>Or 5<C-W>-
+nnoremap <silent> <Esc>Os <Nop>
+nnoremap <silent> <Esc>Ot 10<C-W><
+nnoremap <silent> <Esc>Ou <C-W>=
+nnoremap <silent> <Esc>Ov 10<C-W>>
+nnoremap <silent> <Esc>Ow <Nop>
+nnoremap <silent> <Esc>Ox 5<C-W>+
+nnoremap <silent> <Esc>Oy <C-W>_<C-W>\|
 
 " Searching settings   {{{1
 set hlsearch        " highlight matches with last search pattern
@@ -290,21 +291,6 @@ let g:neosnippet#snippets_directory=$VIMHOME.'/bundle/vim-snippets/snippets'
 imap <C-O> <Plug>(neosnippet_expand_or_jump)
 smap <C-O> <Plug>(neosnippet_expand_or_jump)
 xmap <C-O> <Plug>(neosnippet_expand_target)
-
-" Nerdtree   {{{2
-nnoremap <silent><expr> <leader>t (winnr()==g:NERDTree.GetWinNum() ? ":NERDTreeClose\<CR>" : ":NERDTreeFocus\<CR>")
-nnoremap <silent> <leader>f :NERDTreeFind<CR>
-let NERDTreeAutoCenter=1
-let NERDTreeAutoCenterThreshold=5
-let NERDTreeChDirMode=2
-let NERDTreeMinimalUI=1
-let NERDTreeSortHiddenFirst=1
-let NERDTreeShowBookmarks=1
-let NERDTreeWinSize=42
-let NERDTreeQuitOnOpen=1
-let NERDTreeIgnore=['\c^ntuser\..*']
-let NERDTreeCascadeSingleChildDir = 1
-let NERDTreeCascadeOpenSingleChildDir = 1
 
 " Vifm   {{{2
 nnoremap <silent> <leader>o :EditVifm<CR>
