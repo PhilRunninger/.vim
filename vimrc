@@ -317,6 +317,9 @@ nnoremap <silent> <leader>u :UndotreeToggle<CR>
 let g:undotree_SetFocusWhenToggle = 1
 let g:undotree_WindowLayout = 2
 
+" vim-sessions   {{{2
+let g:PathToSessions = $VIMHOME.'/tmp/sessions'
+
 " vim-snippets   {{{2
 let g:snips_author = "Phil Runninger"
 let g:snips_email = "prunninger@virtualhold.com"
