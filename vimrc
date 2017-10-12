@@ -34,6 +34,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:tpope/vim-unimpaired'
   Plug 'git@github.com:tommcdo/vim-exchange.git'
   Plug 'git@github.com:scrooloose/vim-slumlord'
+  Plug 'git@github.com:PhilRunninger/vim-sessions.git'
 
   " Filetype-specific
   Plug 'git@github.com:suan/vim-instant-markdown.git', { 'for': 'markdown' }
@@ -351,28 +352,6 @@ if v:version > 703
   augroup END
 endif
 
-let g:currentmode={
-    \ 'n'  : 'Normal',
-    \ 'no' : 'N·Operator Pending',
-    \ 'v'  : 'Visual',
-    \ 'V'  : 'V·Line',
-    \ '' : 'V·Block',
-    \ 's'  : 'Select',
-    \ 'S'  : 'S·Line',
-    \ '' : 'S·Block',
-    \ 'i'  : 'Insert',
-    \ 'R'  : 'Replace',
-    \ 'Rv' : 'V·Replace',
-    \ 't'  : 'Terminal',
-    \ 'c'  : 'Command',
-    \ 'cv' : 'Vim Ex',
-    \ 'ce' : 'Ex',
-    \ 'r'  : 'Prompt',
-    \ 'rm' : 'More',
-    \ 'r?' : 'Confirm',
-    \ '!'  : 'Shell',
-    \}
-
 set statusline=%3p%%\ %4v
 set statusline+=\ %1*%(\ %{fugitive#head(8)}\ %)%*
 set statusline+=%2*%(%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%)%*
@@ -381,7 +360,7 @@ set statusline+=\ %{&ff}
 set statusline+=\ %f
 set statusline+=%=
 set statusline+=%#warningmsg#%{SyntasticStatuslineFlag()}%*
-set statusline+=\ %{g:currentmode[mode()]}
+set statusline+=\ %{SessionNameStatusLineFlag()}
 
 call StatuslineColor('n')
 
