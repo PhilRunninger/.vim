@@ -132,9 +132,10 @@ set splitright      " new window is put right of the current one
 set winminheight=0  " minimum number of lines for any window
 set winminwidth=0   " minimum number of columns for any window
 
+nnoremap <silent> <S-Tab> <C-W>w
 nnoremap <silent> <leader>w <C-W>w
 nnoremap <silent> <leader>W <C-W>W
-" The numeric keypad keys, codes Op to Oy, are mapped to resize windows like so:
+" The numeric keypad keys, codes <Esc>Op to <Esc>Oy, resize windows like so:
 "     0,1,3,7: no operation    2:shorter      4:narrower
 "     5:same size              6:wider        8:taller        9:maximize
 nnoremap <silent> <Esc>Op <Nop>
