@@ -318,6 +318,9 @@ let g:undotree_SetFocusWhenToggle = 1
 let g:undotree_WindowLayout = 2
 
 " vim-sessions   {{{2
+set sessionoptions-=help
+set sessionoptions-=blank
+set sessionoptions-=tabpages
 let g:PathToSessions = $VIMHOME.'/tmp/sessions'
 
 " vim-snippets   {{{2
