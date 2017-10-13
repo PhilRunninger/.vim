@@ -54,6 +54,7 @@ set scrolloff=3                     " Minimum # of lines above and below cursor
 set sidescrolloff=3                 " minimum nr. of columns to left and right of cursor
 set sidescroll=1                    " Minimum number of columns to scroll horizontal
 set confirm                         " Ask what to do with unsave/read-only files
+set tags=./tags;/                   " List of filenames used by the tag command
 set backspace=indent,eol,start      " How backspace works at start of line
 set whichwrap+=<,>,[,]              " Allow specified keys to cross line boundaries
 set ttimeoutlen=10                  " Time out time for key codes in milliseconds (Removes delay after <Esc> in Command mode.)
