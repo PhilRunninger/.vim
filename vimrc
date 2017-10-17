@@ -342,21 +342,18 @@ highlight WildMenu cterm=none ctermfg=16  ctermbg=178 guifg=#000000 guibg=#dfaf0
 highlight User1    cterm=none ctermbg=17  ctermfg=12  guibg=#000080 guifg=#0087ff  " Blue on Dark Blue
 highlight User2    cterm=none ctermbg=52  ctermfg=160 guibg=#5f0000 guifg=#df0000  " Red on Dark Red
 
-function! StatuslineColor(mode)
-  if a:mode == 'i'
+function! StatuslineColorInsert()
     exec 'highlight StatusLine '.g:statusline_insert
-  elseif &modified
-    exec 'highlight StatusLine '.g:statusline_modified
-  else
-    exec 'highlight StatusLine '.g:statusline_unmodified
-  endif
+endfunction
+function! StatuslineColorNormal( )
+    exec 'highlight StatusLine ' . (&modified ? g:statusline_modified : g:statusline_unmodified)
 endfunction
 
 if v:version > 703
   augroup set_statusline_colors
     autocmd!
-    autocmd InsertEnter,InsertChange,TextChangedI * call StatuslineColor('i')
-    autocmd InsertLeave,TextChanged,BufWritePost,BufEnter * call StatuslineColor('n')
+    autocmd InsertEnter,InsertChange,TextChangedI * call StatuslineColorInsert()
+    autocmd InsertLeave,TextChanged,BufWritePost,BufEnter * call StatuslineColorNormal()
   augroup END
 endif
 
@@ -367,10 +364,10 @@ set statusline+=\ %{&ft}
 set statusline+=\ %{&ff}
 set statusline+=\ %f
 set statusline+=%=
-set statusline+=%#warningmsg#%{SyntasticStatuslineFlag()}%*
+set statusline+=%#WarningMsg#%{SyntasticStatuslineFlag()}%*
 set statusline+=\ %{SessionNameStatusLineFlag()}
 
-call StatuslineColor('n')
+call StatuslineColorNormal()
 
 " Custom, machine-specific post processing   {{{1
 let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h') . '/post_vimrc'
