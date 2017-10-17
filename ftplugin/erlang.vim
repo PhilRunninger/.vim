@@ -21,10 +21,10 @@ if exists("*ErlangTag")
 endif
 
 function! ErlangTag()
-    let isk_orig = &isk
-    set isk+=:
+    let isk_orig = &iskeyword
+    set iskeyword+=:
     let keyword = expand('<cword>')
-    let &isk = isk_orig
+    let &iskeyword = isk_orig
     let parts = split(keyword, ':')
     if len(parts) == 1
         execute 'tag' parts[0]
