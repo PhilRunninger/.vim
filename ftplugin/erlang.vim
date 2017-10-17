@@ -42,4 +42,4 @@ function! ErlangTag()
     endif
 endfunction
 
-nnoremap <buffer> <c-]>    :call ErlangTag()<cr>
+nnoremap <buffer> <c-]> :call ErlangTag()<CR>:set cursorline<CR>:sleep 100m<CR>:set nocursorline<CR>:sleep 100m<CR>:set cursorline<CR>:sleep 500m<CR>:set nocursorline<CR>
