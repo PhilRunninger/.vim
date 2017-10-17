@@ -16,6 +16,10 @@ nnoremap <F7> :w<CR>:Dispatch rebar -r ct skip_deps=true<CR>:copen<CR>
 " doesn't account for the colon separator between module and function. So we
 " just redefine it. Man, I love vim!
 " Credit goes to: jmuc @ https://stackoverflow.com/a/19778777/510067
+if exists("*ErlangTag")
+    finish
+endif
+
 function! ErlangTag()
     let isk_orig = &isk
     set isk+=:
