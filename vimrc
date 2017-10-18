@@ -17,6 +17,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
   " File Management
   Plug 'git@github.com:vifm/vifm.vim.git', { 'on': 'EditVifm' }
   Plug 'git@github.com:PhilRunninger/bufselect.vim.git'
+  Plug 'git@github.com:jlanzarotta/bufexplorer.git'
 
   " Colorschemes
   Plug 'git@github.com:guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
@@ -264,10 +265,20 @@ nnoremap <silent> <leader>p :bprevious<CR>
 set nostartofline   " commands (don't) move cursor to first non-blank in line
 augroup bufferEvents
     autocmd!
-    " Remember and set the position of text in buffer when switching
-    autocmd BufLeave * let b:winview = winsaveview()
-    autocmd BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
-augroup END
+    " remember and set the position of text in buffer when switching
+    autocmd bufleave * let b:winview = winsaveview()
+    autocmd bufenter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+augroup end
+
+" settings for managed plugins   {{{1
+" bufexplorer   {{{2
+let g:bufexplorerdisabledefaultkeymapping=1
+let g:bufexplorershownoname=1
+let g:bufexplorerdefaulthelp=0
+let g:bufexplorerdetailedhelp=0
+nnoremap <silent> <leader>b :togglebufexplorer<cr>
+" nnoremap <silent> <leader>vb <c-w>v:togglebufexplorer<cr>
+" nnoremap <silent> <leader>hb <c-w>s:togglebufexplorer<cr>
 
 " Settings for managed plugins   {{{1
 " Presenting   {{{2
@@ -309,7 +320,7 @@ xnoremap gS :ScratchSelection!<CR>
 
 " Syntastic   {{{2
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
