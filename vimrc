@@ -257,7 +257,6 @@ augroup END
 
 " Buffer-related settings and mappings   {{{1
 set hidden          " don't unload buffer when it is abandoned
-nnoremap <silent> <leader>b :ShowBufferList<CR>
 nnoremap <silent> # :buffer #<CR>
 nnoremap <silent> <leader>n :bnext<CR>
 nnoremap <silent> <leader>p :bprevious<CR>
@@ -270,17 +269,18 @@ augroup bufferEvents
     autocmd bufenter * if(exists('b:winview')) | call winrestview(b:winview) | endif
 augroup end
 
-" settings for managed plugins   {{{1
-" bufexplorer   {{{2
-let g:bufexplorerdisabledefaultkeymapping=1
-let g:bufexplorershownoname=1
-let g:bufexplorerdefaulthelp=0
-let g:bufexplorerdetailedhelp=0
-nnoremap <silent> <leader>b :togglebufexplorer<cr>
-" nnoremap <silent> <leader>vb <c-w>v:togglebufexplorer<cr>
-" nnoremap <silent> <leader>hb <c-w>s:togglebufexplorer<cr>
+" Settings for Managed Plugins   {{{1
+" BufExplorer   {{{2
+let g:bufExplorerDisableDefaultKeyMapping=1
+let g:bufExplorerShowNoName=1
+let g:bufExplorerDefaultHelp=0
+let g:bufExplorerDetailedHelp=0
+let g:bufExplorerShowRelativePath=1
+nnoremap <silent> <leader>b :ToggleBufExplorer<CR>
 
-" Settings for managed plugins   {{{1
+" BufSelect   {{{2
+" nnoremap <silent> <leader>b :ShowBufferList<CR>
+
 " Presenting   {{{2
 let g:presenting_top_margin = 2
 
