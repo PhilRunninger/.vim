@@ -16,7 +16,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
 
   " File Management
   Plug 'git@github.com:vifm/vifm.vim.git', { 'on': 'EditVifm' }
-  Plug 'git@github.com:PhilRunninger/bufselect.vim.git'
+  " Plug 'git@github.com:PhilRunninger/bufselect.vim.git'
   Plug 'git@github.com:jlanzarotta/bufexplorer.git'
 
   " Colorschemes
