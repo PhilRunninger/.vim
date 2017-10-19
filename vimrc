@@ -333,7 +333,7 @@ let g:undotree_WindowLayout = 2
 set sessionoptions-=help
 set sessionoptions-=blank
 set sessionoptions-=tabpages
-let g:PathToSessions = $VIMHOME.'/tmp/sessions'
+let g:pathToSessions = $VIMHOME.'/tmp/sessions'
 
 " vim-snippets   {{{2
 let g:snips_author = "Phil Runninger"
