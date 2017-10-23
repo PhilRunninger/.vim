@@ -81,13 +81,14 @@ Mappings of more than one character must be fully typed within a short timeout p
 
 Mode | Keystroke | Function | For more help...
 ---|---|---|---
-Normal / Selection | `gs`                    | Open scratch buffer in its window                                                                  | `:h Scratch`
-Normal / Selection | `gS`                    | Open an empty scratch buffer in its window                                                         |
-Normal             | `gcc` or `gc[motion]`   | Comment or uncomment line(s) of code                                                               | `:h commentary.txt`
-Selection          | `gc`                    | Command or uncomment selected line(s) of code                                                      |
-Normal             | `ys[text object][char]` | Surround text obect with char and its matching character, ie. ', ", \`, ( and ), { and }, [ and ], or < and >. | `:h surround`
-Normal             | `cs[oldchar][newchar]`  | Change surrounding characters from old to new                                                      |
-Normal             | `ds[char]`              | Remove closest specified surrounding characters                                                    |
+Normal<br>Selection | `gs`                    | Open scratch buffer in its own window                                                              | `:h Scratch`
+Normal<br>Selection | `gS`                    | Open an empty scratch buffer in its own window                                                     |
+Normal              | `gcc` or `gc[motion]`   | Comment or uncomment line(s) of code                                                               | `:h commentary.txt`
+Selection           | `gc`                    | Command or uncomment selected line(s) of code                                                      |
+Normal              | `ys[text object][char]` | Surround text obect with char and its matching character, ie. ', ", \`, ( and ), { and }, [ and ], or < and >. | `:h surround`
+Visual              | `S`                     | Surround selection with char and its matching character, ie. ', ", \`, ( and ), { and }, [ and ], or < and >. |
+Normal              | `cs[oldchar][newchar]`  | Change surrounding characters from old to new                                                      |
+Normal              | `ds[char]`              | Remove closest specified surrounding characters                                                    |
 
 #### Additional Mappings Defined in vimrc
 
@@ -99,38 +100,51 @@ Visual | `F3`        | Perform git grep on visual selection                 |
 Insert | `Tab`       | Highlight next item in autocomplete popup            | `:h neocomplcache`
 Insert | `Shift+Tab` | Highlight previous item in autocomplete popup        |
 Normal | `<leader>u` | Toggle **UndoTree** window                           | `:h undotree.txt`
-Normal | `<leader>v` | Open the **Vifm** window to select file(s) to open   | `:h vifm-:EditVifm`
-Normal | `<leader>t` | Toggle the **NERDTree** window | `:h NERDTree`
-Insert / Selection | `Ctrl+k` | Choose snippet or jump to next field in it  | `:h neosnippet`
+Normal | `<leader>o` | Open the **Vifm** window to select file(s) to open   | `:h vifm-:EditVifm`
+Insert<br>Selection | `Ctrl+o` | Choose snippet or jump to next field in it  | `:h neosnippet`
 
 ### Window Movement
 
 Mode | Mapping | Function
 ---|---|---
-Normal | `Tab`       | Go to next window - `Ctrl+w` `w`
-Normal | `Shift+Tab` | Go to previous window - `Ctrl+w` `W`
-Normal | `Up`, `Down`, `Left`, `Right` | Go to the next window in a direction - `Ctrl+w` `k` (or `j` `h` `l`)
-Normal | `Shift+Up` | Resize 5 rows taller
-Normal | `Shift+Down` | Resize 5 rows shorter
-Normal | `Shift+Left` | Resize 10 columns narrower
-Normal | `Shift+Right` | Resize 10 columns wider
-Normal | `Shift+Up` `Shift+Right` | Maximize current window - `Ctrl+w` `|` `Ctrl+w` `_`
-Normal | `Shift+Left` `Shift+Down` | Equalize all window sizes - `Ctrl+w` `=`
+Normal | `<leader>w` | Go to next window - `<C-W>w`
+Normal | `<leader>W` | Go to previous window - `<C-W>W`
+Normal | `Up` | Resize 5 rows taller - `5<C-W>+`
+Normal | `Down` | Resize 5 rows shorter - `5<C-W>-`
+Normal | `Left` | Resize 10 columns narrower - `10<C-W><`
+Normal | `Right` | Resize 10 columns wider - `10<C-W>>`
+Normal | `<leader>x` | Maximize current window - <code>\<C-W>&#124;\<C-W>_</code>
+Normal | `<leader>=` | Equalize all window sizes - `<C-W>=`
+
+### Buffer Commands
+
+Mode | Mapping | Function
+---|---|---
+Normal | `#`                 | Toggle between two most recently used buffers, eg. [`A` ⇄ `B` `C`]
+Normal | `<leader>p`         | Switch to previous buffer in the buffer list, eg. [ ← `A` ← `B` ← `C` ← ]
+Normal | `<leader>n`         | Switch to next buffer in the buffer list, eg. [ → `A` → `B` → `C` → ]
+Normal | `<leader>b`         | Toggle BufExplorer. See `:h bufexplorer`.
+
+### Searching for Text
+
+Mode | Mapping | Function
+---|---|---
+Visual | `*`                 | Search forward for selected text
+Normal | `n`                 | Search forward, and center match on screen - `nzzzv`
+Normal | `N`                 | Search backward, and center match on screen - `Nzzzv`
+Normal | `<leader><Space>`   | Hide search result highlighting. See `:h :nohlsearch`
+Normal | `<leader>/`         | Show current file's matches in Quickfix window
+Visual | `<leader>/`         | Search for selection, and show matches in Quickfix window
 
 ### Miscellaneous
 
 Mode | Mapping | Function
 ---|---|---
-Normal | `<leader>cd`       | Change vim's current working directory to match the current buffer's
-Normal | `<leader>d<space>` | Remove trailing spaces, pending confirmation of each instance
-Normal | `<>`               | Convert Erlang list string under cursor to binary string
-Normal | `><`               | Convert Erlang binary string under cursor to list string
-Normal | `-`                | Toggle cursorline (highlight, or not, the current line)
-Normal | `|`                | Toggle cursorcolumn (highlight, or not, the current column)
-Normal | `+`                | Toggle display of line/column indicators
-Visual | `~`                | Toggle visual selection between lowercase, Title Case, and UPPERCASE
-Normal | `#`                | Toggle between two most recently used buffers, eg. [`A` ⇄ `B` `C`]
-Normal | `<leader>p`        | Switch to previous buffer in the buffer list, eg. [ ← `A` ← `B` ← `C` ↩ ]
-Normal | `<leader>n`        | Switch to next buffer in the buffer list, eg. [ ↪ `A` → `B` → `C` → ]
-Insert / Visual | `Up`, `Down`, `Left`, `Right` | No operation (to break bad keyboard habits)
-Normal / Insert / Visual | `Page Up` or `Page Down` | No operation (to break bad keyboard habits)
+Normal | `<leader>cd`        | Change vim's current working directory to match the current buffer's
+Normal | `<leader>d<space>`  | Remove trailing spaces, pending confirmation of each instance
+Normal | `<>`                | Convert Erlang list string under cursor to binary string
+Normal | `><`                | Convert Erlang binary string under cursor to list string
+Normal | `-`                 | Toggle cursorline (highlight, or not, the current line)
+Normal | <code>&#124;</code> | Toggle cursorcolumn (highlight, or not, the current column)
+Normal | `+`                 | Toggle both cursorline and cursorcolumn
+Visual | `~`                 | Toggle visual selection between lowercase, Title Case, and UPPERCASE
