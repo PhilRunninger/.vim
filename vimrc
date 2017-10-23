@@ -134,22 +134,14 @@ set splitright      " new window is put right of the current one
 set winminheight=0  " minimum number of lines for any window
 set winminwidth=0   " minimum number of columns for any window
 
-nnoremap <silent> <S-Tab> <C-W>w
 nnoremap <silent> <leader>w <C-W>w
 nnoremap <silent> <leader>W <C-W>W
-" The numeric keypad keys, codes <Esc>Op to <Esc>Oy, resize windows like so:
-"     0,1,3,7: no operation    2:shorter      4:narrower
-"     5:same size              6:wider        8:taller        9:maximize
-nnoremap <silent> <Esc>Op <Nop>
-nnoremap <silent> <Esc>Oq <Nop>
-nnoremap <silent> <Esc>Or 5<C-W>-
-nnoremap <silent> <Esc>Os <Nop>
-nnoremap <silent> <Esc>Ot 10<C-W><
-nnoremap <silent> <Esc>Ou <C-W>=
-nnoremap <silent> <Esc>Ov 10<C-W>>
-nnoremap <silent> <Esc>Ow <Nop>
-nnoremap <silent> <Esc>Ox 5<C-W>+
-nnoremap <silent> <Esc>Oy <C-W>_<C-W>\|
+nnoremap <silent> <Up> 5<C-W>+
+nnoremap <silent> <Down> 5<C-W>-
+nnoremap <silent> <Right> 10<C-W>>
+nnoremap <silent> <Left> 10<C-W><
+nnoremap <silent> <leader>x <C-W>_<C-W>\|
+nnoremap <silent> <leader>= <C-W>=
 
 " Searching settings   {{{1
 set hlsearch        " highlight matches with last search pattern
@@ -187,28 +179,6 @@ nnoremap <leader>d<space> :%s/\s\+$//c<CR>
 
 " Show what highlighting is used under the cursor {{{1
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-
-" HARD MODE: Disable the arrow and Pg Up/Down keys {{{1
-nnoremap <Left> <Nop>
-nnoremap <Right> <Nop>
-nnoremap <Up> <Nop>
-nnoremap <Down> <Nop>
-nnoremap <PageUp> <Nop>
-nnoremap <PageDown> <Nop>
-
-inoremap <Left> <Nop>
-inoremap <Right> <Nop>
-inoremap <Up> <Nop>
-inoremap <Down> <Nop>
-inoremap <PageUp> <Nop>
-inoremap <PageDown> <Nop>
-
-vnoremap <Left> <Nop>
-vnoremap <Right> <Nop>
-vnoremap <Up> <Nop>
-vnoremap <Down> <Nop>
-vnoremap <PageUp> <Nop>
-vnoremap <PageDown> <Nop>
 
 " Auto-command Definitions   {{{1
 augroup reload_vimrc " Re-source this file when saving it   {{{2
