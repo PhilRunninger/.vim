@@ -186,7 +186,7 @@ nnoremap <leader>d<space> :%s/\s\+$//c<CR>
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " Auto-command Definitions   {{{1
-augroup reload_vimrc " Re-source this file when saving it   {{{2
+augroup reloadVimrc " Re-source this file when saving it   {{{2
   autocmd!
   autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
 augroup END
@@ -336,7 +336,7 @@ function! StatuslineColorNormal( )
 endfunction
 
 if v:version > 703
-  augroup set_statusline_colors
+  augroup setStatuslineColors
     autocmd!
     autocmd InsertEnter,InsertChange,TextChangedI * call StatuslineColorInsert()
     autocmd InsertLeave,TextChanged,BufWritePost,BufEnter * call StatuslineColorNormal()
