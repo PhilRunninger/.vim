@@ -212,7 +212,10 @@ set autoread        " automatically read file when changed outside of vim
 
 augroup jumpToPreviousLocation " When editing a file, always jump to its last known cursor position.   {{{2
     autocmd!
-    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+    autocmd BufReadPost *
+             \ if line("'\"") > 1 && line("'\"") <= line("$") |
+             \     execute "normal! g`\"" |
+             \ endif
 augroup END
 
 augroup pivotalTrackerIDToCommitMesage " Grab PivotalTracker ID and start commit message.  {{{2
