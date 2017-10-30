@@ -323,9 +323,9 @@ let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 set background=dark
 
-let g:statusline_insert='cterm=none ctermfg=15 ctermbg=19 gui=none guifg=#ffffff guibg=#0000af'     " white on Blue
-let g:statusline_modified='cterm=none ctermfg=15 ctermbg=52 gui=none guifg=#ffffff guibg=#5f0000'   " White on Dark Red
-let g:statusline_unmodified='cterm=none ctermfg=15 ctermbg=22 gui=none guifg=#ffffff guibg=#005f00' " White on Dark Green
+let g:statusline_insert='cterm=none ctermfg=15 ctermbg=20 gui=none guifg=#ffffff guibg=#0000df'     " white on Blue
+let g:statusline_modified='cterm=none ctermfg=15 ctermbg=160 gui=none guifg=#ffffff guibg=#df0000'  " White on Dark Red
+let g:statusline_unmodified='cterm=none ctermfg=15 ctermbg=40 gui=none guifg=#ffffff guibg=#00df00' " White on Dark Green
 
 highlight WildMenu cterm=none ctermfg=16  ctermbg=178 guifg=#000000 guibg=#dfaf00  " Black on Gold
 highlight User1    cterm=none ctermbg=17  ctermfg=12  guibg=#000080 guifg=#0087ff  " Blue on Dark Blue
