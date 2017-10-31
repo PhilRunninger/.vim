@@ -327,9 +327,10 @@ let g:statusline_insert='cterm=none ctermfg=15 ctermbg=20 gui=none guifg=#ffffff
 let g:statusline_modified='cterm=none ctermfg=15 ctermbg=160 gui=none guifg=#ffffff guibg=#df0000'  " White on Dark Red
 let g:statusline_unmodified='cterm=none ctermfg=15 ctermbg=40 gui=none guifg=#ffffff guibg=#00df00' " White on Dark Green
 
-highlight WildMenu cterm=none ctermfg=16  ctermbg=178 guifg=#000000 guibg=#dfaf00  " Black on Gold
-highlight User1    cterm=none ctermbg=17  ctermfg=12  guibg=#000080 guifg=#0087ff  " Blue on Dark Blue
-highlight User2    cterm=none ctermbg=52  ctermfg=160 guibg=#5f0000 guifg=#df0000  " Red on Dark Red
+highlight VertSplit cterm=reverse ctermfg=237 ctermbg=246 gui=reverse guifg=#3c3836 guibg=#a89984 " Same as StatusLineNC
+highlight WildMenu  cterm=none    ctermfg=16  ctermbg=178 gui=none    guifg=#000000 guibg=#dfaf00 " Black on Gold
+highlight User1     cterm=none    ctermbg=17  ctermfg=12  gui=none    guibg=#000080 guifg=#0087ff " Blue on Dark Blue
+highlight User2     cterm=none    ctermbg=52  ctermfg=160 gui=none    guibg=#5f0000 guifg=#df0000 " Red on Dark Red
 
 function! StatuslineColorInsert()
     exec 'highlight StatusLine '.g:statusline_insert
