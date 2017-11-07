@@ -4,6 +4,8 @@ set tabstop=4       " number of spaces that <tab> in file uses
 set shiftwidth=4    " number of spaces to use for (auto)indent step
 set expandtab       " use spaces when <tab> is inserted
 
+let g:erlang_folding = 1
+
 " Convert Erlang "list strings" to <<"binary strings">>, and back again.
 nnoremap <> m`f"a>><ESC>,,i<<<ESC>``ll
 nnoremap >< m`f"lxx,,XX``hh
