@@ -16,7 +16,6 @@ silent! call plug#begin($VIMHOME.'/bundle')
 
   " File Management
   Plug 'git@github.com:vifm/vifm.vim.git', { 'on': 'EditVifm' }
-  " Plug 'git@github.com:PhilRunninger/bufselect.vim.git'
   Plug 'git@github.com:jlanzarotta/bufexplorer.git'
 
   " Colorschemes
@@ -251,9 +250,6 @@ let g:bufExplorerDefaultHelp=0
 let g:bufExplorerDetailedHelp=0
 let g:bufExplorerShowRelativePath=1
 nnoremap <silent> <leader>b :ToggleBufExplorer<CR>
-
-" BufSelect   {{{2
-" nnoremap <silent> <leader>b :ShowBufferList<CR>
 
 " Presenting   {{{2
 let g:presenting_top_margin = 2
