@@ -119,10 +119,10 @@ set showtabline=0                                   " tells when the tab pages l
 " Undo/Backup/Swap file settings   {{{1
 set undolevels=100                        " maximum number of changes that can be undone
 set undofile                              " automatically save undo history to an undo file
-set undodir=$VIMHOME/tmp/undo//           " list of directory names for undo files
-set directory=$VIMHOME/tmp/swapfiles//    " list of directory names for swap files
+set undodir=$VIMHOME/cache/undo//         " list of directory names for undo files
+set directory=$VIMHOME/cache/swapfiles//  " list of directory names for swap files
 set nobackup                              " [do not] keep backup file after overwriting a file
-set backupdir=$VIMHOME/tmp/backups//      " list of directory namde for the backup file
+set backupdir=$VIMHOME/cache/backups//    " list of directory namde for the backup file
 set laststatus=2                          " tells when last window has status line
 
 " Disable the bells (audible and visual).   {{{1
@@ -282,7 +282,7 @@ nnoremap <silent> <leader>o :EditVifm<CR>
 " Scratch   {{{2
 let g:scratch_insert_autohide = 0
 let g:scratch_no_mappings = 1
-let g:scratch_persistence_file = $VIMHOME.'/tmp/scratch.txt'
+let g:scratch_persistence_file = $VIMHOME.'/cache/scratch.txt'
 nnoremap gs :Scratch<CR>
 nnoremap gS :Scratch!<CR>
 xnoremap gs :ScratchSelection<CR>
@@ -303,7 +303,7 @@ let g:undotree_WindowLayout = 2
 set sessionoptions-=help
 set sessionoptions-=blank
 set sessionoptions-=tabpages
-let g:pathToSessions = $VIMHOME.'/tmp/sessions'
+let g:pathToSessions = $VIMHOME.'/cache/sessions'
 
 " vim-snippets   {{{2
 let g:snips_author = "Phil Runninger"

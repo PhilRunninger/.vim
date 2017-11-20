@@ -30,7 +30,7 @@ set showmatch
 
 set undolevels=100
 set undofile
-set undodir=~/.vim/tmp/undo//
-set directory=~/.vim/tmp/swapfiles//
+set undodir=~/.vim/cache/undo//
+set directory=~/.vim/cache/swapfiles//
 set nobackup
-set backupdir=~/.vim/tmp/backups//
+set backupdir=~/.vim/cache/backups//
