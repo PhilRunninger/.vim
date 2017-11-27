@@ -246,9 +246,11 @@ augroup end
 " BufExplorer   {{{2
 let g:bufExplorerDisableDefaultKeyMapping=1
 let g:bufExplorerShowNoName=1
-let g:bufExplorerDefaultHelp=0
-let g:bufExplorerDetailedHelp=0
+let g:bufExplorerDefaultHelp=1
+let g:bufExplorerDetailedHelp=1
 let g:bufExplorerShowRelativePath=1
+let g:bufExplorerReverseSort=1
+let g:bufExplorerShowDirectories=0
 nnoremap <silent> <leader>b :ToggleBufExplorer<CR>
 
 " Presenting   {{{2
