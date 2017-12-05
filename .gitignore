@@ -3,3 +3,5 @@ post_vimrc
 tags
 cache/scratch.txt
 cache/.NERDTreeBookmarks
+cache/neocomplcache/
+cache/neosnippet/

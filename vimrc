@@ -265,14 +265,19 @@ vnoremap <silent> <F3> "zy/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw
 " NeoComplCache / NeoSnippet   {{{2
 set completeopt=longest,menuone
 
+let g:neocomplcache_enable_ignore_case = 1
+let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_enable_fuzzy_completion = 1
 let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_temporary_dir=$VIMHOME.'/cache/neocomplcache'
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 let g:neosnippet#disable_runtime_snippets = { '_' : 1  }
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory=$VIMHOME.'/bundle/vim-snippets/snippets'
+let g:neosnippet#data_directory=$VIMHOME.'/cache/neosnippet'
+
 imap <C-O> <Plug>(neosnippet_expand_or_jump)
 smap <C-O> <Plug>(neosnippet_expand_or_jump)
 xmap <C-O> <Plug>(neosnippet_expand_target)
