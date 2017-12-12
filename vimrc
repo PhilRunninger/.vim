@@ -115,6 +115,7 @@ augroup trailingSpaces
 augroup END
 set fillchars=stl:\ ,stlnc:\ ,vert:\                " characters to use for displaying special items
 set showtabline=0                                   " tells when the tab pages line is displayed
+set laststatus=2                                    " tells when last window has status line
 
 " Undo/Backup/Swap file settings   {{{1
 set undolevels=100                        " maximum number of changes that can be undone
@@ -123,7 +124,10 @@ set undodir=$VIMHOME/cache/undo//         " list of directory names for undo fil
 set directory=$VIMHOME/cache/swapfiles//  " list of directory names for swap files
 set nobackup                              " [do not] keep backup file after overwriting a file
 set backupdir=$VIMHOME/cache/backups//    " list of directory namde for the backup file
-set laststatus=2                          " tells when last window has status line
+
+if !isdirectory(&undodir) | call mkdir(&undodir, 'p') | endif
+if !isdirectory(&directory) | call mkdir(&directory, 'p') | endif
+if !isdirectory(&backupdir) | call mkdir(&backupdir, 'p') | endif
 
 " Disable the bells (audible and visual).   {{{1
 set noerrorbells    " [do not] ring the bells for error messages
