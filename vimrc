@@ -333,6 +333,7 @@ let g:statusline_insert='cterm=none ctermfg=15 ctermbg=20'     " White on Blue
 let g:statusline_modified='cterm=none ctermfg=217 ctermbg=124' " Pink on Red
 let g:statusline_unmodified='cterm=none ctermfg=16 ctermbg=40' " Black on Green
 
+highlight Folded     cterm=none    ctermbg=53   ctermfg=5   " Dark Magenta on Plum
 highlight MatchParen cterm=bold    ctermbg=none ctermfg=13  " Magenta
 highlight VertSplit  cterm=reverse ctermfg=237  ctermbg=246 " Same as StatusLineNC
 highlight WildMenu   cterm=none    ctermfg=16   ctermbg=178 " Black on Gold
