@@ -17,7 +17,7 @@ $ git clone git@github.com:PhilRunninger/my_vim_setup.git ~/.vim
 $ vim
 ```
 
-The rest of the setup takes place in vim. Ignore the error messages when it first starts. They will go away when you restart vim after running this command.
+The rest of the setup takes place in vim. Ignore the error messages when it first starts. They will go away after you run the following command and restart vim. This command is part of the [vim-plug](https://github.com/junegunn/vim-plug) plugin manager, which is embedded in this repository.
 
 ```
 :PlugInstall
@@ -29,7 +29,7 @@ This setup is designed for my primary development environment on a MacBook. Usin
 
 ### Example
 
-Here is the post_vimrc I use on my Windows environment, which fewer color and font options.
+Here is the post_vimrc I use on my Windows environment, which has fewer color and font options.
 
 ```
 " vim: filetype=vim
@@ -38,8 +38,6 @@ let NERDTreeDirArrowExpandable = '►'
 let NERDTreeDirArrowCollapsible = '▼'
 
 let g:buftabline_separators = 0
-
-nnoremap <leader>r :redraw!<CR>
 
 if has("gui_win32")
   set guifont=Consolas:h12:w6
@@ -52,18 +50,6 @@ else
   highlight WildMenu cterm=none ctermfg=0 ctermbg=3 " Black on Yellow
   highlight User1    cterm=none ctermfg=7 ctermbg=1 " White on Blue
   highlight User2    cterm=none ctermfg=7 ctermbg=4 " White on Red
-
-  let g:NERDTreeIndicatorMapCustom = {
-      \ "Modified"  : "¤",
-      \ "Staged"    : "+",
-      \ "Untracked" : "*",
-      \ "Renamed"   : "►",
-      \ "Unmerged"  : "=",
-      \ "Deleted"   : "X",
-      \ "Dirty"     : "x",
-      \ "Clean"     : "º",
-      \ "Unknown"   : "?"
-      \ }
 endif
 ```
 
@@ -86,7 +72,7 @@ Normal<br>Selection | `gS`                    | Open an empty scratch buffer in 
 Normal              | `gcc` or `gc[motion]`   | Comment or uncomment line(s) of code                                                               | `:h commentary.txt`
 Selection           | `gc`                    | Command or uncomment selected line(s) of code                                                      |
 Normal              | `ys[text object][char]` | Surround text obect with char and its matching character, ie. ', ", \`, ( and ), { and }, [ and ], or < and >. | `:h surround`
-Visual              | `S`                     | Surround selection with char and its matching character, ie. ', ", \`, ( and ), { and }, [ and ], or < and >. |
+Visual              | `S[char]`               | Surround selection with char and its matching character, ie. ', ", \`, ( and ), { and }, [ and ], or < and >. |
 Normal              | `cs[oldchar][newchar]`  | Change surrounding characters from old to new                                                      |
 Normal              | `ds[char]`              | Remove closest specified surrounding characters                                                    |
 
@@ -95,32 +81,35 @@ Normal              | `ds[char]`              | Remove closest specified surroun
 Mode | Keystroke | Function | For more help...
 ---|---|---|---
 Visual | `Enter`     | Start **EasyAlign** plugin                           | `:h easyalign`
-Normal | `F3`        | Perform git grep on word under cursor                | `:h fugitive`
-Visual | `F3`        | Perform git grep on visual selection                 |
+Normal | `F3`        | Perform `git grep` on word under cursor                | `:h fugitive`
+Visual | `F3`        | Perform `git grep` on visual selection                 |
 Insert | `Tab`       | Highlight next item in autocomplete popup            | `:h neocomplcache`
 Insert | `Shift+Tab` | Highlight previous item in autocomplete popup        |
 Normal | `<leader>u` | Toggle **UndoTree** window                           | `:h undotree.txt`
-Normal | `<leader>o` | Open the **Vifm** window to select file(s) to open   | `:h vifm-:EditVifm`
+Normal | `<leader>t` | Toggle the **NERDTree** window | `:h NERDTreeToggle`
+Normal | `<leader>f` | Find the current file in the **NERDTree** window | `:h NERDTreeFind`
 Insert<br>Selection | `Ctrl+o` | Choose snippet or jump to next field in it  | `:h neosnippet`
 
-### Window Movement
+### Window Movement/Sizing
 
 Mode | Mapping | Function
 ---|---|---
-Normal | `<leader>w` | Go to next window - `<C-W>w`
-Normal | `<leader>W` | Go to previous window - `<C-W>W`
+Normal | `<leader>w` | Shortcut for `<C-W>` because of the Macbook's Control key placement.
+Normal | `<C-H>` or `<leader>wh` | Go to next to the left.
+Normal | `<C-J>` or `<leader>wj` | Go to next down.
+Normal | `<C-K>` or `<leader>wk` | Go to next up.
+Normal | `<C-L>` or `<leader>wl` | Go to next to the right.
 Normal | `Up` | Resize 5 rows taller - `5<C-W>+`
 Normal | `Down` | Resize 5 rows shorter - `5<C-W>-`
 Normal | `Left` | Resize 10 columns narrower - `10<C-W><`
 Normal | `Right` | Resize 10 columns wider - `10<C-W>>`
 Normal | `<leader>x` | Maximize current window - <code>\<C-W>&#124;\<C-W>_</code>
-Normal | `<leader>=` | Equalize all window sizes - `<C-W>=`
 
 ### Buffer Commands
 
 Mode | Mapping | Function
 ---|---|---
-Normal | `#`                 | Toggle between two most recently used buffers, eg. [`A` ⇄ `B` `C`]
+Normal | `#`                 | Toggle between two most recently used buffers, eg. [`A` `B` ⇄ `C`]
 Normal | `<leader>p`         | Switch to previous buffer in the buffer list, eg. [ ← `A` ← `B` ← `C` ← ]
 Normal | `<leader>n`         | Switch to next buffer in the buffer list, eg. [ → `A` → `B` → `C` → ]
 Normal | `<leader>b`         | Toggle BufExplorer. See `:h bufexplorer`.
@@ -140,7 +129,7 @@ Visual | `<leader>/`         | Search for selection, and show matches in Quickfi
 
 Mode | Mapping | Function
 ---|---|---
-Normal | `<leader>cd`        | Change vim's current working directory to match the current buffer's
+Normal | `<leader>cd`        | Change vim's current working directory to match the current buffer's directory
 Normal | `<leader>d<space>`  | Remove trailing spaces, pending confirmation of each instance
 Normal | `<>`                | Convert Erlang list string under cursor to binary string
 Normal | `><`                | Convert Erlang binary string under cursor to list string
