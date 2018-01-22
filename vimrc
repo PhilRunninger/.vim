@@ -16,7 +16,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:vim-scripts/AnsiEsc.vim.git'
 
   " File Management
-  Plug 'git@github.com:vifm/vifm.vim.git', { 'on': 'EditVifm' }
+  Plug 'git@github.com:scrooloose/nerdtree'
   Plug 'git@github.com:jlanzarotta/bufexplorer.git'
 
   " Colorschemes
@@ -252,6 +252,21 @@ augroup bufferEvents
 augroup end
 
 " Settings for Managed Plugins   {{{1
+" NERDTree   {{{2
+nnoremap <silent> <leader>t :NERDTreeToggle<CR>
+nnoremap <silent> <leader>f :NERDTreeFind<CR>
+
+let NERDTreeAutoCenter =                1
+let NERDTreeAutoCenterThreshold =       5
+let NERDTreeIgnore =                    ['\c^ntuser\..*']
+let NERDTreeBookmarksFile=expand("~/.vim/cache/.NERDTreeBookmarks")
+let NERDTreeQuitOnOpen =                1
+let NERDTreeShowBookmarks =             1
+let NERDTreeWinSize =                   42
+let NERDTreeMinimalUI =                 1
+let NERDTreeCascadeSingleChildDir =     0
+let NERDTreeCascadeOpenSingleChildDir = 1
+
 " BufExplorer   {{{2
 let g:bufExplorerDisableDefaultKeyMapping=1
 let g:bufExplorerShowNoName=1
@@ -290,9 +305,6 @@ let g:neosnippet#data_directory=$VIMHOME.'/cache/neosnippet'
 imap <C-O> <Plug>(neosnippet_expand_or_jump)
 smap <C-O> <Plug>(neosnippet_expand_or_jump)
 xmap <C-O> <Plug>(neosnippet_expand_target)
-
-" Vifm   {{{2
-nnoremap <silent> <leader>o :EditVifm<CR>
 
 " Scratch   {{{2
 let g:scratch_insert_autohide = 0
