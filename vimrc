@@ -112,11 +112,11 @@ set noshowmode      " [no] message on status line show current mode
 set showmatch       " briefly jump to matching bracket if inserting one
 set number          " print the line number in front of each line
 set list                                            " show <tab> and <eol>
-set listchars=tab:∴·,extends:→,precedes:←,trail:●   " characters for displaying in list mode
+set listchars=tab:●⋅,extends:→,precedes:←,trail:■   " characters for displaying in list mode
 augroup trailingSpaces
     autocmd!
-    autocmd InsertEnter * :set listchars-=trail:●
-    autocmd InsertLeave * :set listchars+=trail:●
+    autocmd InsertEnter * :set listchars-=trail:■
+    autocmd InsertLeave * :set listchars+=trail:■
 augroup END
 set fillchars=stl:\ ,stlnc:\ ,vert:\                " characters to use for displaying special items
 set showtabline=0                                   " tells when the tab pages line is displayed
