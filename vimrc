@@ -257,7 +257,8 @@ augroup end
 
 " Settings for Managed Plugins   {{{1
 " NERDTree   {{{2
-nnoremap <silent> <leader>t :NERDTreeToggle<CR>
+nnoremap <silent> <leader>t <nop>
+nnoremap <silent> <leader>o :NERDTreeToggle<CR>
 nnoremap <silent> <leader>f :NERDTreeFind<CR>
 
 let NERDTreeAutoCenter =                1
