@@ -46,6 +46,10 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:tpope/vim-jdaddy', { 'for': 'json' }
   Plug 'git@github.com:aklt/plantuml-syntax', { 'for': 'uml' }
 
+  " Games
+  Plug 'git@github.com:uguu-org/vim-matrix-screensaver.git'
+  Plug 'git@github.com:vim-scripts/sokoban.vim.git'
+
 call plug#end()
 filetype plugin indent on
 
