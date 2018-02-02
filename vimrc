@@ -17,7 +17,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
 
   " File Management
   Plug 'git@github.com:scrooloose/nerdtree'
-  Plug 'git@github.com:jlanzarotta/bufexplorer.git'
+  Plug 'git@github.com:jeetsukumaran/vim-buffergator.git'
 
   " Colorschemes
   Plug 'git@github.com:guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
@@ -258,9 +258,8 @@ augroup end
 " Settings for Managed Plugins   {{{1
 " NERDTree   {{{2
 nnoremap <silent> <leader>t <nop>
-nnoremap <silent> <leader>o :NERDTreeToggle<CR>
+nnoremap <silent><expr> <leader>o exists("b:is_buffergator_buffer") ? ":BuffergatorClose\<CR>:NERDTreeFocus\<CR>" : ":NERDTreeToggle\<CR>"
 nnoremap <silent> <leader>f :NERDTreeFind<CR>
-
 let NERDTreeAutoCenter =                1
 let NERDTreeAutoCenterThreshold =       5
 let NERDTreeIgnore =                    ['\c^ntuser\..*']
@@ -272,14 +271,13 @@ let NERDTreeMinimalUI =                 1
 let NERDTreeCascadeSingleChildDir =     0
 let NERDTreeCascadeOpenSingleChildDir = 1
 
-" BufExplorer   {{{2
-let g:bufExplorerDisableDefaultKeyMapping=1
-let g:bufExplorerShowNoName=1
-let g:bufExplorerDefaultHelp=0
-let g:bufExplorerDetailedHelp=0
-let g:bufExplorerShowRelativePath=1
-let g:bufExplorerReverseSort=1
-nnoremap <silent> <leader>b :ToggleBufExplorer<CR>
+" Buffergator   {{{2
+nnoremap <silent><expr> <leader>b exists("b:NERDTree") ? ":NERDTreeClose\<CR>:BuffergatorOpen\<CR>" : ":BuffergatorToggle\<CR>"
+
+let g:buffergator_split_size = 36
+let g:buffergator_suppress_keymaps = 1
+let g:buffergator_show_full_directory_path = 0
+let g:buffergator_sort_regime = "mru"
 
 " Presenting   {{{2
 let g:presenting_top_margin = 2
