@@ -36,6 +36,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:tommcdo/vim-exchange.git'
   Plug 'git@github.com:scrooloose/vim-slumlord'
   Plug 'git@github.com:PhilRunninger/vim-sessions.git'
+  Plug 'git@github.com:romainl/vim-cool.git'
 
   " Filetype-specific
   Plug 'git@github.com:suan/vim-instant-markdown.git', { 'for': 'markdown' }
@@ -161,7 +162,6 @@ set hlsearch        " highlight matches with last search pattern
 set incsearch       " highlight match wile typing search pattern
 set ignorecase      " ignore case in search patterns
 set smartcase       " no ignore case when pattern has uppercase
-nnoremap <silent> <leader><Space> :nohlsearch<CR>
 runtime macros/matchit.vim
 nnoremap <silent> n   nzzzv
 nnoremap <silent> N   Nzzzv
