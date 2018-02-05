@@ -258,13 +258,13 @@ augroup end
 " Settings for Managed Plugins   {{{1
 " NERDTree   {{{2
 nnoremap <silent> <leader>t <nop>
-nnoremap <silent><expr> <leader>o exists("b:is_buffergator_buffer") ? ":BuffergatorClose\<CR>:NERDTreeFocus\<CR>" : ":NERDTreeToggle\<CR>"
+nnoremap <silent><expr> <leader>o len(filter(map(range(1,winnr('$')),'bufname(winbufnr(v:val))'), 'v:val == "[[buffergator-buffers]]"')) ? ":BuffergatorClose\<CR>:NERDTreeFocus\<CR>" : ":NERDTreeToggle\<CR>"
 nnoremap <silent> <leader>f :NERDTreeFind<CR>
 let NERDTreeAutoCenter =                1
 let NERDTreeAutoCenterThreshold =       5
 let NERDTreeIgnore =                    ['\c^ntuser\..*']
 let NERDTreeBookmarksFile=expand("~/.vim/cache/.NERDTreeBookmarks")
-let NERDTreeQuitOnOpen =                0
+let NERDTreeQuitOnOpen =                1
 let NERDTreeShowBookmarks =             1
 let NERDTreeWinSize =                   36
 let NERDTreeMinimalUI =                 1
@@ -272,7 +272,7 @@ let NERDTreeCascadeSingleChildDir =     0
 let NERDTreeCascadeOpenSingleChildDir = 1
 
 " Buffergator   {{{2
-nnoremap <silent><expr> <leader>b exists("b:NERDTree") ? ":NERDTreeClose\<CR>:BuffergatorOpen\<CR>" : ":BuffergatorToggle\<CR>"
+nnoremap <silent><expr> <leader>b NERDTree.IsOpen() ? ":NERDTreeClose\<CR>:BuffergatorOpen\<CR>" : ":BuffergatorToggle\<CR>"
 
 let g:buffergator_split_size = 36
 let g:buffergator_suppress_keymaps = 1
