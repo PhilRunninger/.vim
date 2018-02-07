@@ -256,6 +256,9 @@ augroup bufferEvents
 augroup end
 
 " Settings for Managed Plugins   {{{1
+" ANSIEsc   {{{2
+nnoremap <leader>a :AnsiEsc<CR>
+
 " NERDTree   {{{2
 nnoremap <silent> <leader>t <nop>
 nnoremap <silent><expr> <leader>o len(filter(map(range(1,winnr('$')),'bufname(winbufnr(v:val))'), 'v:val == "[[buffergator-buffers]]"')) ? ":BuffergatorClose\<CR>:NERDTreeFocus\<CR>" : ":NERDTreeToggle\<CR>"
