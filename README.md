@@ -86,9 +86,10 @@ Visual | `F3`        | Perform `git grep` on visual selection                 |
 Insert | `Tab`       | Highlight next item in autocomplete popup            | `:h neocomplcache`
 Insert | `Shift+Tab` | Highlight previous item in autocomplete popup        |
 Normal | `<leader>u` | Toggle **UndoTree** window                           | `:h undotree.txt`
-Normal | `<leader>t` | Toggle the **NERDTree** window | `:h NERDTreeToggle`
+Normal | `<leader>o` | Toggle the **NERDTree** window | `:h NERDTreeToggle`
 Normal | `<leader>f` | Find the current file in the **NERDTree** window | `:h NERDTreeFind`
 Insert<br>Selection | `Ctrl+o` | Choose snippet or jump to next field in it  | `:h neosnippet`
+Normal | `<leader>a`         | Toggle the translation of ANSI color codes to vim highlighting | `:h AnsiEsc`
 
 ### Window Movement/Sizing
 
@@ -112,7 +113,7 @@ Mode | Mapping | Function
 Normal | `#`                 | Toggle between two most recently used buffers, eg. [`A` `B` ⇄ `C`]
 Normal | `<leader>p`         | Switch to previous buffer in the buffer list, eg. [ ← `A` ← `B` ← `C` ← ]
 Normal | `<leader>n`         | Switch to next buffer in the buffer list, eg. [ → `A` → `B` → `C` → ]
-Normal | `<leader>b`         | Toggle BufExplorer. See `:h bufexplorer`.
+Normal | `<leader>b`         | Toggle Buffergator. See `:h buffergator`.
 
 ### Searching for Text
 
@@ -121,7 +122,6 @@ Mode | Mapping | Function
 Visual | `*`                 | Search forward for selected text
 Normal | `n`                 | Search forward, and center match on screen - `nzzzv`
 Normal | `N`                 | Search backward, and center match on screen - `Nzzzv`
-Normal | `<leader><Space>`   | Hide search result highlighting. See `:h :nohlsearch`
 Normal | `<leader>/`         | Show current file's matches in Quickfix window
 Visual | `<leader>/`         | Search for selection, and show matches in Quickfix window
 
