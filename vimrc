@@ -36,7 +36,9 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:tommcdo/vim-exchange.git'
   Plug 'git@github.com:scrooloose/vim-slumlord'
   Plug 'git@github.com:PhilRunninger/vim-sessions.git'
-  Plug 'git@github.com:romainl/vim-cool.git'
+  if v:version > 704 || (v:version == 704 && has("patch2008"))
+    Plug 'git@github.com:romainl/vim-cool.git'
+  endif
 
   " Filetype-specific
   Plug 'git@github.com:suan/vim-instant-markdown.git', { 'for': 'markdown' }
