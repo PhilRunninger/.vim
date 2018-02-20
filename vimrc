@@ -1,46 +1,134 @@
 " vim: foldmethod=marker
 
-" Plugin Management  {{{1
-filetype off
 let $VIMHOME=expand('<sfile>:p:h')
+
+" Plugin Management  {{{1
 silent! call plug#begin($VIMHOME.'/bundle')
 
-  " Coding / Development
-  Plug 'git@github.com:tpope/vim-fugitive'
-  Plug 'git@github.com:airblade/vim-gitgutter'
-  Plug 'git@github.com:vim-syntastic/syntastic.git'
-  Plug 'git@github.com:tpope/vim-commentary.git'
-  Plug 'git@github.com:Shougo/neosnippet'
-  Plug 'git@github.com:PhilRunninger/vim-snippets'
-  Plug 'git@github.com:tpope/vim-dispatch', { 'on': 'Dispatch' }
-  Plug 'git@github.com:vim-scripts/AnsiEsc.vim.git'
+  " Coding / Development {{{2
+    " Fugitive ---------------------------------------------
+    Plug 'git@github.com:tpope/vim-fugitive'
+    nnoremap <silent> <F3> "zyiw/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
+    vnoremap <silent> <F3> "zy/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
 
-  " File Management
-  Plug 'git@github.com:scrooloose/nerdtree'
-  Plug 'git@github.com:jeetsukumaran/vim-buffergator.git'
+    " NeoSnippet ---------------------------------------------
+    Plug 'git@github.com:Shougo/neosnippet'
+    let g:neosnippet#disable_runtime_snippets = { '_' : 1  }
+    let g:neosnippet#enable_snipmate_compatibility = 1
+    let g:neosnippet#snippets_directory=$VIMHOME.'/bundle/vim-snippets/snippets'
+    let g:neosnippet#data_directory=$VIMHOME.'/cache/neosnippet'
 
-  " Colorschemes
+    imap <C-O> <Plug>(neosnippet_expand_or_jump)
+    smap <C-O> <Plug>(neosnippet_expand_or_jump)
+    xmap <C-O> <Plug>(neosnippet_expand_target)
+
+    " Syntastic ---------------------------------------------
+    Plug 'git@github.com:vim-syntastic/syntastic.git'
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 0
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
+
+    " vim-snippets ---------------------------------------------
+    Plug 'git@github.com:PhilRunninger/vim-snippets'
+    let g:snips_author = "Phil Runninger"
+    let g:snips_email = "prunninger@virtualhold.com"
+    let g:snips_github = "https://github.com/PhilRunninger"
+
+    " ANSIEsc ---------------------------------------------
+    Plug 'git@github.com:vim-scripts/AnsiEsc.vim.git'
+    nnoremap <leader>a :AnsiEsc<CR>
+
+    " other ---------------------------------------------
+    Plug 'git@github.com:tpope/vim-dispatch', { 'on': 'Dispatch' }
+    Plug 'git@github.com:airblade/vim-gitgutter'
+    Plug 'git@github.com:tpope/vim-commentary.git'
+
+  " File Management {{{2
+    " NERDTree ---------------------------------------------
+    Plug 'git@github.com:scrooloose/nerdtree'
+    nnoremap <silent> <leader>t <nop>
+    nnoremap <silent><expr> <leader>o len(filter(map(range(1,winnr('$')),'bufname(winbufnr(v:val))'), 'v:val == "[[buffergator-buffers]]"')) ? ":BuffergatorClose\<CR>:NERDTreeFocus\<CR>" : ":NERDTreeToggle\<CR>"
+    nnoremap <silent> <leader>f :NERDTreeFind<CR>
+    let NERDTreeAutoCenter =                1
+    let NERDTreeAutoCenterThreshold =       5
+    let NERDTreeIgnore =                    ['\c^ntuser\..*']
+    let NERDTreeBookmarksFile=expand("~/.vim/cache/.NERDTreeBookmarks")
+    let NERDTreeQuitOnOpen =                1
+    let NERDTreeShowBookmarks =             1
+    let NERDTreeWinSize =                   36
+    let NERDTreeMinimalUI =                 1
+    let NERDTreeCascadeSingleChildDir =     0
+    let NERDTreeCascadeOpenSingleChildDir = 1
+
+    " Buffergator ---------------------------------------------
+    Plug 'git@github.com:jeetsukumaran/vim-buffergator.git'
+    nnoremap <silent><expr> <leader>b NERDTree.IsOpen() ? ":NERDTreeClose\<CR>:BuffergatorOpen\<CR>" : ":BuffergatorToggle\<CR>"
+    let g:buffergator_split_size = 36
+    let g:buffergator_suppress_keymaps = 1
+    let g:buffergator_show_full_directory_path = 0
+    let g:buffergator_sort_regime = "mru"
+
+  " Colorschemes {{{2
   Plug 'git@github.com:guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
   Plug 'git@github.com:morhetz/gruvbox.git'
 
-  " Miscellaneous Utilities
-  Plug 'git@github.com:sotte/presenting.vim.git'
-  Plug 'git@github.com:Shougo/neocomplcache.vim'
-  Plug 'git@github.com:kshenoy/vim-signature'
-  Plug 'git@github.com:mbbill/undotree', { 'on': 'UndotreeToggle' }
-  Plug 'git@github.com:junegunn/vim-easy-align'
-  Plug 'git@github.com:mtth/scratch.vim'
-  Plug 'git@github.com:tpope/vim-repeat'
-  Plug 'git@github.com:tpope/vim-surround'
-  Plug 'git@github.com:tpope/vim-unimpaired'
-  Plug 'git@github.com:tommcdo/vim-exchange.git'
-  Plug 'git@github.com:scrooloose/vim-slumlord'
-  Plug 'git@github.com:PhilRunninger/vim-sessions.git'
-  if v:version > 704 || (v:version == 704 && has("patch2008"))
-    Plug 'git@github.com:romainl/vim-cool.git'
-  endif
+  " Miscellaneous Utilities {{{2
+    " Presenting ---------------------------------------------
+    Plug 'git@github.com:sotte/presenting.vim.git'
+    let g:presenting_top_margin = 2
 
-  " Filetype-specific
+    " NeoComplCache ---------------------------------------------
+    Plug 'git@github.com:Shougo/neocomplcache.vim'
+    set completeopt=longest,menuone
+
+    let g:neocomplcache_enable_ignore_case = 1
+    let g:neocomplcache_enable_smart_case = 1
+    let g:neocomplcache_enable_fuzzy_completion = 1
+    let g:neocomplcache_enable_at_startup = 1
+    let g:neocomplcache_temporary_dir=$VIMHOME.'/cache/neocomplcache'
+    inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+
+    " Undotree ---------------------------------------------
+    Plug 'git@github.com:mbbill/undotree', { 'on': 'UndotreeToggle' }
+    nnoremap <silent> <leader>u :UndotreeToggle<CR>
+    let g:undotree_SetFocusWhenToggle = 1
+    let g:undotree_WindowLayout = 2
+
+  " EasyAlign ---------------------------------------------
+    Plug 'git@github.com:junegunn/vim-easy-align'
+    vmap <Enter> <Plug>(EasyAlign)
+
+  " Scratch ---------------------------------------------
+    Plug 'git@github.com:mtth/scratch.vim'
+    let g:scratch_insert_autohide = 0
+    let g:scratch_no_mappings = 1
+    let g:scratch_persistence_file = $VIMHOME.'/cache/scratch.txt'
+    nnoremap gs :Scratch<CR>
+    nnoremap gS :Scratch!<CR>
+    xnoremap gs :ScratchSelection<CR>
+    xnoremap gS :ScratchSelection!<CR>
+
+    " vim-sessions ---------------------------------------------
+    Plug 'git@github.com:PhilRunninger/vim-sessions.git'
+    set sessionoptions-=help
+    set sessionoptions-=blank
+    set sessionoptions-=tabpages
+    let g:pathToSessions = $VIMHOME.'/cache/sessions'
+
+    " other ---------------------------------------------
+    Plug 'git@github.com:kshenoy/vim-signature'
+    Plug 'git@github.com:tpope/vim-repeat'
+    Plug 'git@github.com:tpope/vim-surround'
+    Plug 'git@github.com:tpope/vim-unimpaired'
+    Plug 'git@github.com:tommcdo/vim-exchange.git'
+    Plug 'git@github.com:scrooloose/vim-slumlord'
+    if v:version > 704 || (v:version == 704 && has("patch2008"))
+    Plug 'git@github.com:romainl/vim-cool.git'
+    endif
+
+  " Filetype-specific {{{2
   Plug 'git@github.com:suan/vim-instant-markdown.git', { 'for': 'markdown' }
   Plug 'git@github.com:tpope/vim-markdown', { 'for': 'markdown' }
   Plug 'git@github.com:elzr/vim-json', { 'for': 'json' }
@@ -49,12 +137,13 @@ silent! call plug#begin($VIMHOME.'/bundle')
   Plug 'git@github.com:tpope/vim-jdaddy', { 'for': 'json' }
   Plug 'git@github.com:aklt/plantuml-syntax', { 'for': 'uml' }
 
-  " Games
+  " Games {{{2
   Plug 'git@github.com:uguu-org/vim-matrix-screensaver.git'
   Plug 'git@github.com:vim-scripts/sokoban.vim.git'
 
+  " }}}2
+
 call plug#end()
-filetype plugin indent on
 
 " Miscellaneous settings   {{{1
 set encoding=utf-8                  " Sets the character encoding to use inside vim.
@@ -88,7 +177,7 @@ set wildignore+=*.bmp,*.gif,*.jpg,*.ico,*.png
 set wildignore+=.DS_Store,.git,.ht,.svn
 set wildignore+=*~,*.swp,*.tmp
 
-" Function to toggle visual selection between: lowercase, Title Case, and UPPERCASE.   {{{1
+" Toggle visual selection between: lowercase, Title Case, and UPPERCASE.   {{{1
 function! TwiddleCase(str)
   if a:str ==# toupper(a:str)
     let result = tolower(a:str)
@@ -196,17 +285,17 @@ nnoremap <leader>d<space> :%s/\s\+$//c<CR>
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " Auto-command Definitions   {{{1
-augroup reloadVimrc " Re-source this file when saving it   {{{2
+augroup reloadVimrc                    " Re-source this file when saving it   {{{2
   autocmd!
   autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
 augroup END
 
-augroup meta " Get help (with K key) when editing vimscript
+augroup meta                   " Get help (with K key) when editing vimscript
   autocmd!
   autocmd FileType vim setlocal keywordprg=:help
 augroup END
 
-augroup checktime   " terminal mode hack for autoread option   {{{2
+augroup checktime                      " terminal mode hack for autoread option   {{{2
   autocmd!
   if !has("gui_running")
     "silent! necessary; otherwise, throws errors when using command line window.
@@ -220,7 +309,7 @@ augroup checktime   " terminal mode hack for autoread option   {{{2
 augroup END
 set autoread        " automatically read file when changed outside of vim
 
-augroup jumpToPreviousLocation " When editing a file, always jump to its last known cursor position.   {{{2
+augroup jumpToPreviousLocation         " When editing a file, always jump to its last known cursor position.   {{{2
     autocmd!
     autocmd BufReadPost *
              \ if line("'\"") > 1 && line("'\"") <= line("$") |
@@ -233,7 +322,7 @@ augroup pivotalTrackerIDToCommitMesage " Grab PivotalTracker ID and start commit
     autocmd BufReadPost COMMIT_EDITMSG execute "silent! normal! qzq/# On branch.\\{-}\\zs\\d\\{8,}\<CR>\"zy//e\<CR>gg\"zPI[#\<ESC>A] \<ESC>:1,1s/\\[#\\] //\<CR>"
 augroup END
 
-augroup vhtFileTypes " Set filetype of VHT Log files   {{{2
+augroup vhtFileTypes                   " Set filetype of VHT Log files   {{{2
     autocmd!
     autocmd BufReadPost TIALOutputLog*.txt set filetype=vht
     autocmd BufReadPost MainOutputLog*.txt set filetype=vht
@@ -256,94 +345,6 @@ augroup bufferEvents
     autocmd bufleave * let b:winview = winsaveview()
     autocmd bufenter * if(exists('b:winview')) | call winrestview(b:winview) | endif
 augroup end
-
-" Settings for Managed Plugins   {{{1
-" ANSIEsc   {{{2
-nnoremap <leader>a :AnsiEsc<CR>
-
-" NERDTree   {{{2
-nnoremap <silent> <leader>t <nop>
-nnoremap <silent><expr> <leader>o len(filter(map(range(1,winnr('$')),'bufname(winbufnr(v:val))'), 'v:val == "[[buffergator-buffers]]"')) ? ":BuffergatorClose\<CR>:NERDTreeFocus\<CR>" : ":NERDTreeToggle\<CR>"
-nnoremap <silent> <leader>f :NERDTreeFind<CR>
-let NERDTreeAutoCenter =                1
-let NERDTreeAutoCenterThreshold =       5
-let NERDTreeIgnore =                    ['\c^ntuser\..*']
-let NERDTreeBookmarksFile=expand("~/.vim/cache/.NERDTreeBookmarks")
-let NERDTreeQuitOnOpen =                1
-let NERDTreeShowBookmarks =             1
-let NERDTreeWinSize =                   36
-let NERDTreeMinimalUI =                 1
-let NERDTreeCascadeSingleChildDir =     0
-let NERDTreeCascadeOpenSingleChildDir = 1
-
-" Buffergator   {{{2
-nnoremap <silent><expr> <leader>b NERDTree.IsOpen() ? ":NERDTreeClose\<CR>:BuffergatorOpen\<CR>" : ":BuffergatorToggle\<CR>"
-
-let g:buffergator_split_size = 36
-let g:buffergator_suppress_keymaps = 1
-let g:buffergator_show_full_directory_path = 0
-let g:buffergator_sort_regime = "mru"
-
-" Presenting   {{{2
-let g:presenting_top_margin = 2
-
-" EasyAlign   {{{2
-vmap <Enter> <Plug>(EasyAlign)
-
-" Fugitive   {{{2
-nnoremap <silent> <F3> "zyiw/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
-vnoremap <silent> <F3> "zy/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
-
-" NeoComplCache / NeoSnippet   {{{2
-set completeopt=longest,menuone
-
-let g:neocomplcache_enable_ignore_case = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_fuzzy_completion = 1
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_temporary_dir=$VIMHOME.'/cache/neocomplcache'
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-
-let g:neosnippet#disable_runtime_snippets = { '_' : 1  }
-let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory=$VIMHOME.'/bundle/vim-snippets/snippets'
-let g:neosnippet#data_directory=$VIMHOME.'/cache/neosnippet'
-
-imap <C-O> <Plug>(neosnippet_expand_or_jump)
-smap <C-O> <Plug>(neosnippet_expand_or_jump)
-xmap <C-O> <Plug>(neosnippet_expand_target)
-
-" Scratch   {{{2
-let g:scratch_insert_autohide = 0
-let g:scratch_no_mappings = 1
-let g:scratch_persistence_file = $VIMHOME.'/cache/scratch.txt'
-nnoremap gs :Scratch<CR>
-nnoremap gS :Scratch!<CR>
-xnoremap gs :ScratchSelection<CR>
-xnoremap gS :ScratchSelection!<CR>
-
-" Syntastic   {{{2
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-" Undotree   {{{2
-nnoremap <silent> <leader>u :UndotreeToggle<CR>
-let g:undotree_SetFocusWhenToggle = 1
-let g:undotree_WindowLayout = 2
-
-" vim-sessions   {{{2
-set sessionoptions-=help
-set sessionoptions-=blank
-set sessionoptions-=tabpages
-let g:pathToSessions = $VIMHOME.'/cache/sessions'
-
-" vim-snippets   {{{2
-let g:snips_author = "Phil Runninger"
-let g:snips_email = "prunninger@virtualhold.com"
-let g:snips_github = "https://github.com/PhilRunninger"
 
 " Color Settings and Status Line   {{{1
 let g:gruvbox_contrast_dark = 'hard'
