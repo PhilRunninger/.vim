@@ -341,33 +341,31 @@ augroup bufferEvents
 augroup end
 
 " Color Settings and Status Line   {{{1
-let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_contrast_dark = 'xtrahard'
 colorscheme gruvbox
 set background=dark
 
-let g:statusline_insert='cterm=none ctermfg=15 ctermbg=27'     " White on Blue
-let g:statusline_modified='cterm=none ctermfg=217 ctermbg=124' " Pink on Red
-let g:statusline_unmodified='cterm=none ctermfg=16 ctermbg=40' " Black on Green
+highlight Folded     cterm=none    ctermfg=16  ctermbg=243  " Black on Gray
+highlight MatchParen cterm=bold    ctermfg=5   ctermbg=none " Magenta
+highlight VertSplit  cterm=reverse ctermfg=237 ctermbg=246  " Same as StatusLineNC
+highlight WildMenu   cterm=none    ctermfg=16  ctermbg=178  " Black on Gold
+highlight User1      cterm=none    ctermfg=12  ctermbg=17   " Blue on Dark Blue
+highlight User2      cterm=none    ctermfg=160 ctermbg=52   " Red on Dark Red
+highlight User3      cterm=bold    ctermfg=16  ctermbg=178  " Black on Gold
 
-highlight Folded     cterm=none    ctermbg=243  ctermfg=16  " Black on Gray
-highlight MatchParen cterm=bold    ctermbg=none ctermfg=13  " Magenta
-highlight VertSplit  cterm=reverse ctermfg=237  ctermbg=246 " Same as StatusLineNC
-highlight WildMenu   cterm=none    ctermfg=16   ctermbg=178 " Black on Gold
-highlight User1      cterm=none    ctermbg=17   ctermfg=12  " Blue on Dark Blue
-highlight User2      cterm=none    ctermbg=52   ctermfg=160 " Red on Dark Red
+let g:slInsert='cterm=none ctermfg=15 ctermbg=27'           " White on Blue
+let g:slNormalModified='cterm=none ctermfg=15 ctermbg=124'  " White on Red
+let g:slNormalUnmodified='cterm=none ctermfg=16 ctermbg=40' " Black on Green
 
-function! StatuslineColorInsert()
-    exec 'highlight StatusLine '.g:statusline_insert
-endfunction
-function! StatuslineColorNormal()
-    exec 'highlight StatusLine ' . (&modified ? g:statusline_modified : g:statusline_unmodified)
+function! StatuslineColor(insertMode)
+    exec 'highlight StatusLine ' . (a:insertMode ? g:slInsert : (&modified ? g:slNormalModified : g:slNormalUnmodified))
 endfunction
 
 if v:version > 703
     augroup setStatuslineColors
         autocmd!
-        autocmd InsertEnter,InsertChange,TextChangedI * call StatuslineColorInsert()
-        autocmd InsertLeave,TextChanged,BufWritePost,BufEnter * call StatuslineColorNormal()
+        autocmd InsertEnter,InsertChange,TextChangedI * call StatuslineColor(1)
+        autocmd InsertLeave,TextChanged,BufWritePost,BufEnter * call StatuslineColor(0)
     augroup END
 endif
 
@@ -379,13 +377,12 @@ set statusline+=\ %{&ff}
 set statusline+=\ %f
 set statusline+=%=
 set statusline+=%#ErrorMsg#%{SyntasticStatuslineFlag()}%*
-set statusline+=\ %{SessionNameStatusLineFlag()}
+set statusline+=\ %3*%{SessionNameStatusLineFlag()}%*
 
-call StatuslineColorNormal()
+call StatuslineColor(0)
 
 " Custom, machine-specific post processing   {{{1
 let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h') . '/post_vimrc'
 if filereadable(s:path)
     execute 'source' s:path
 endif
-
