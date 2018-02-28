@@ -37,8 +37,6 @@ Here is the post_vimrc I use on my Windows environment, which has fewer color an
 let NERDTreeDirArrowExpandable = '►'
 let NERDTreeDirArrowCollapsible = '▼'
 
-let g:buftabline_separators = 0
-
 if has("gui_win32")
   set guifont=Consolas:h12:w6
 else
@@ -70,7 +68,7 @@ Mode | Keystroke | Function | For more help...
 Normal<br>Selection | `gs`                    | Open scratch buffer in its own window                                                              | `:h Scratch`
 Normal<br>Selection | `gS`                    | Open an empty scratch buffer in its own window                                                     |
 Normal              | `gcc` or `gc[motion]`   | Comment or uncomment line(s) of code                                                               | `:h commentary.txt`
-Selection           | `gc`                    | Command or uncomment selected line(s) of code                                                      |
+Selection           | `gc`                    | Comment or uncomment selected line(s) of code                                                      |
 Normal              | `ys[text object][char]` | Surround text obect with char and its matching character, ie. ', ", \`, ( and ), { and }, [ and ], or < and >. | `:h surround`
 Visual              | `S[char]`               | Surround selection with char and its matching character, ie. ', ", \`, ( and ), { and }, [ and ], or < and >. |
 Normal              | `cs[oldchar][newchar]`  | Change surrounding characters from old to new                                                      |
@@ -95,7 +93,7 @@ Normal | `<leader>a`         | Toggle the translation of ANSI color codes to vim
 
 Mode | Mapping | Function
 ---|---|---
-Normal | `<leader>w` | Shortcut for `<C-W>` because of the Macbook's Control key placement.
+Normal | `<leader>w` | Shortcut for `<C-W>` because of the Macbook's awkward Control key placement.
 Normal | `<C-H>` or `<leader>wh` | Go to next to the left.
 Normal | `<C-J>` or `<leader>wj` | Go to next down.
 Normal | `<C-K>` or `<leader>wk` | Go to next up.
