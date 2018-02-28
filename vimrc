@@ -36,9 +36,6 @@ silent! call plug#begin($VIMHOME.'/bundle')
     Plug 'git@github.com:tpope/vim-unimpaired'
     Plug 'git@github.com:tommcdo/vim-exchange.git'
     Plug 'git@github.com:scrooloose/vim-slumlord'
-    if v:version > 704 || (v:version == 704 && has("patch2008"))
-    Plug 'git@github.com:romainl/vim-cool.git'
-    endif
 
     " Filetype-specific
     Plug 'git@github.com:suan/vim-instant-markdown.git', { 'for': 'markdown' }
@@ -171,8 +168,9 @@ vnoremap <silent> * :<C-U>
   \gvy/<C-R><C-R>=substitute(
   \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
-nnoremap <silent> <leader>/ :vimgrep "<C-R>/" %<CR>:copen<CR>
-vnoremap <silent> <leader>/ y:vimgrep "<C-R>0" %<CR>gv:copen<CR>
+nnoremap <silent> <leader>/ :vimgrep "<C-R>/" %<CR>n:copen<CR>
+vnoremap <silent> <leader>/ y:vimgrep "<C-R>0" %<CR>/<C-R>0<CR>:copen<CR>
+nnoremap <silent> <leader><space> :nohlsearch<CR>
 
 " Swap j/k and gj/gk   {{{1
 nnoremap j gj
