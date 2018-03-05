@@ -10,9 +10,7 @@ let g:erlang_folding = 1
 nnoremap <> m`f"a>><ESC>,,i<<<ESC>``ll
 nnoremap >< m`f"lxx,,XX``hh
 
-nnoremap <F5> :w<CR>:Dispatch rebar -r eu skip_deps=true<CR>:copen<CR>/\(: \zs.*\*failed\*\\|All \d\+ tests passed\.\)<CR>G<C-W><C-P>
-nnoremap <F6> :w<CR>:Dispatch rebar -r eu skip_deps=true suites=%:t:r<CR>:copen<CR>/\(: \zs.*\*failed\*\\|All \d\+ tests passed\.\)<CR>G<C-W><C-P>
-nnoremap <F7> :w<CR>:Dispatch rebar -r ct skip_deps=true<CR>:copen<CR>
+nnoremap <F5> :w<CR>:Dispatch (erlc % && erl -s %:r test -s init stop -noinput)<CR>
 
 " This function improves Vim's navigation to tags. The default behavior of ^-]
 " doesn't account for the colon separator between module and function. So we
