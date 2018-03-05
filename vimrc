@@ -377,7 +377,7 @@ set statusline+=\ %{&ff}
 set statusline+=\ %f
 set statusline+=%=
 set statusline+=%#ErrorMsg#%{SyntasticStatuslineFlag()}%*
-set statusline+=\ %3*%{SessionNameStatusLineFlag()}%*
+set statusline+=\ %3*%(\ %{SessionNameStatusLineFlag()}\ %)%*
 
 call StatuslineColor(0)
 
