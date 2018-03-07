@@ -21,7 +21,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
 
     " Colorschemes
     Plug 'git@github.com:guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
-    Plug 'git@github.com:morhetz/gruvbox.git'
+    Plug 'git@github.com:PhilRunninger/gruvbox.git'
 
     " Miscellaneous Utilities
     Plug 'git@github.com:sotte/presenting.vim.git'
@@ -341,7 +341,7 @@ augroup bufferEvents
 augroup end
 
 " Color Settings and Status Line   {{{1
-let g:gruvbox_contrast_dark = 'xtrahard'
+let g:gruvbox_contrast_dark = 'black'
 colorscheme gruvbox
 set background=dark
 
