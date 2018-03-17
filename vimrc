@@ -276,12 +276,14 @@ augroup END
     let NERDTreeAutoCenterThreshold =       5
     let NERDTreeIgnore =                    ['\c^ntuser\..*']
     let NERDTreeBookmarksFile=expand("~/.vim/cache/.NERDTreeBookmarks")
-    let NERDTreeQuitOnOpen =                1
-    let NERDTreeShowBookmarks =             1
+    let NERDTreeQuitOnOpen =                0
     let NERDTreeWinSize =                   36
     let NERDTreeMinimalUI =                 1
     let NERDTreeCascadeSingleChildDir =     0
     let NERDTreeCascadeOpenSingleChildDir = 1
+    let g:NERDTreeStatusline = "%{exists('g:NERDTreeFileNode')&&" .
+                \ "has_key(g:NERDTreeFileNode.GetSelected(),'path')?" .
+                \ "g:NERDTreeFileNode.GetSelected().path.getLastPathComponent(0):''}"
 
     " Buffergator   {{{2
     nnoremap <silent><expr> <leader>b NERDTree.IsOpen() ? ":NERDTreeClose\<CR>:BuffergatorOpen\<CR>" : ":BuffergatorToggle\<CR>"
