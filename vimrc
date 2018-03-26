@@ -17,7 +17,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
 
     " File Management
     Plug 'git@github.com:scrooloose/nerdtree'
-    Plug 'git@github.com:Xuyuanp/nerdtree-git-plugin.git'
+    Plug 'git@github.com:PhilRunninger/nerdtree-bwipeout-plugin.git'
     Plug 'git@github.com:jeetsukumaran/vim-buffergator.git'
 
     " Colorschemes
@@ -37,6 +37,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
     Plug 'git@github.com:tpope/vim-unimpaired'
     Plug 'git@github.com:tommcdo/vim-exchange.git'
     Plug 'git@github.com:scrooloose/vim-slumlord'
+    Plug 'git@github.com:chrisbra/Recover.vim.git'
 
     " Filetype-specific
     Plug 'git@github.com:suan/vim-instant-markdown.git', { 'for': 'markdown' }
