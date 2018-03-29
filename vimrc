@@ -333,8 +333,6 @@ augroup END
 " Buffer-related settings and mappings   {{{1
 set hidden          " don't unload buffer when it is abandoned
 nnoremap <silent> # :buffer #<CR>
-nnoremap <silent> <leader>n :bnext<CR>
-nnoremap <silent> <leader>p :bprevious<CR>
 
 set nostartofline   " commands (don't) move cursor to first non-blank in line
 augroup bufferEvents
