@@ -14,6 +14,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
     Plug 'git@github.com:tpope/vim-dispatch', { 'on': 'Dispatch' }
     Plug 'git@github.com:airblade/vim-gitgutter'
     Plug 'git@github.com:tpope/vim-commentary.git'
+    Plug 'git@github.com:diepm/vim-rest-console.git'
 
     " File Management
     Plug 'git@github.com:scrooloose/nerdtree'
