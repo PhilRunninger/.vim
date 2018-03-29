@@ -263,7 +263,7 @@ augroup END
 
     " vim-snippets   {{{2
     let g:snips_author = "Phil Runninger"
-    let g:snips_email = "prunninger@virtualhold.com"
+    let g:snips_email = "prunninger@vhtcx.com"
     let g:snips_github = "https://github.com/PhilRunninger"
 
     " ANSIEsc   {{{2
