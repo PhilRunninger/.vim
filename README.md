@@ -17,11 +17,7 @@ $ git clone git@github.com:PhilRunninger/my_vim_setup.git ~/.vim
 $ vim
 ```
 
-The rest of the setup takes place in vim. Ignore the error messages when it first starts. They will go away after you run the following command and restart vim. This command is part of the [vim-plug](https://github.com/junegunn/vim-plug) plugin manager, which is embedded in this repository.
-
-```
-:PlugInstall
-```
+The rest of the setup takes place in vim. Ignore the error messages when it first starts. They will go away after you run the `:PlugInstall` command and restart vim. This command is part of the [vim-plug](https://github.com/junegunn/vim-plug) plugin manager, which is embedded in this repository. (You should periodically upgrade vim-plug using the `:PlugUpgrade` command.)
 
 ## Customized vimrc Processing
 
@@ -94,24 +90,24 @@ Normal | `<leader>a`         | Toggle the translation of ANSI color codes to vim
 Mode | Mapping | Function
 ---|---|---
 Normal | `<leader>w` | Shortcut for `<C-W>` because of the Macbook's awkward Control key placement.
-Normal | `<C-H>` or `<leader>wh` | Go to next to the left.
-Normal | `<C-J>` or `<leader>wj` | Go to next down.
-Normal | `<C-K>` or `<leader>wk` | Go to next up.
-Normal | `<C-L>` or `<leader>wl` | Go to next to the right.
-Normal | `Up` | Resize 5 rows taller - `5<C-W>+`
-Normal | `Down` | Resize 5 rows shorter - `5<C-W>-`
-Normal | `Left` | Resize 10 columns narrower - `10<C-W><`
-Normal | `Right` | Resize 10 columns wider - `10<C-W>>`
-Normal | `<leader>x` | Maximize current window - <code>\<C-W>&#124;\<C-W>_</code>
+Normal | `<C-H>` or `<leader>wh` | Go to next window to the left.
+Normal | `<C-J>` or `<leader>wj` | Go to next window down.
+Normal | `<C-K>` or `<leader>wk` | Go to next window up.
+Normal | `<C-L>` or `<leader>wl` | Go to next window to the right.
+Normal | `Up` | Resize 5 rows taller. Same as `5<C-W>+`.
+Normal | `Down` | Resize 5 rows shorter. Same as `5<C-W>-`.
+Normal | `Left` | Resize 10 columns narrower. Same as `10<C-W><`.
+Normal | `Right` | Resize 10 columns wider. Same as `10<C-W>>`.
+Normal | `<leader>x` | Maximize current window. Same as <code>\<C-W>&#124;\<C-W>_</code>.
 
 ### Buffer Commands
 
 Mode | Mapping | Function
 ---|---|---
-Normal | `#`                 | Toggle between two most recently used buffers, eg. [`A` `B` ⇄ `C`]
-Normal | `<leader>p`         | Switch to previous buffer in the buffer list, eg. [ ← `A` ← `B` ← `C` ← ]
-Normal | `<leader>n`         | Switch to next buffer in the buffer list, eg. [ → `A` → `B` → `C` → ]
-Normal | `<leader>b`         | Toggle Buffergator. See `:h buffergator`.
+Normal | `#`          | Toggle between two most recently used buffers, eg. [`A` `B` ⇄ `C`]
+Normal | `[b`         | Switch to previous buffer in the buffer list, eg. [ ← `A` ← `B` ← `C` ← ]
+Normal | `]b`         | Switch to next buffer in the buffer list, eg. [ → `A` → `B` → `C` → ]
+Normal | `<leader>b`  | Toggle Buffergator. See `:h buffergator`.
 
 ### Searching for Text
 
@@ -120,6 +116,7 @@ Mode | Mapping | Function
 Visual | `*`                 | Search forward for selected text
 Normal | `n`                 | Search forward, and center match on screen - `nzzzv`
 Normal | `N`                 | Search backward, and center match on screen - `Nzzzv`
+Normal | `<leader><Space>`   | Hide search result highlighting. See `:h :nohlsearch`
 Normal | `<leader>/`         | Show current file's matches in Quickfix window
 Visual | `<leader>/`         | Search for selection, and show matches in Quickfix window
 
