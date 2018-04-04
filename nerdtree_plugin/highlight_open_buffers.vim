@@ -27,7 +27,8 @@ endfunction
 
 " Autocmds to trigger NERDTree flag refreshes   {{{1
 augroup NERDTreeHighlightOpenBuffersPlugin
-    autocmd CursorHold,BufDelete,BufWipeout,BufWritePost,BufReadPost  * silent! call s:RefreshFlags()
+    autocmd BufDelete,BufWipeout * silent! set updatetime=100
+    autocmd CursorHold,BufWritePost,BufReadPost  * silent! set updatetime& | call s:RefreshFlags()
 augroup END
 function! s:RefreshFlags()
     if g:NERDTree.IsOpen() && empty(&l:buftype) " NERDTree must be open and current buffer must not be a special type.
