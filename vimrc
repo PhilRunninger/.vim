@@ -19,6 +19,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
     " File Management
     Plug 'git@github.com:scrooloose/nerdtree'
     Plug 'git@github.com:PhilRunninger/nerdtree-bwipeout-plugin.git'
+    Plug 'git@github.com:PhilRunninger/nerdtree-highlight-open-buffers.git'
     Plug 'git@github.com:jeetsukumaran/vim-buffergator.git'
 
     " Colorschemes
