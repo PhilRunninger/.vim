@@ -53,7 +53,7 @@ augroup AddHighlighting
     autocmd FileType nerdtree call s:AddHighlighting()
 augroup END
 function! s:AddHighlighting()
-    execute 'syntax match NERDTreeOpenBuffer #\[.*' . s:open_buffer_glyph . '.*\].*$# containedin=NERDTreeFile'
+    execute 'syntax match NERDTreeOpenBuffer #\[.*' . s:open_buffer_glyph . '.*\].\+$# containedin=NERDTreeFile'
     highlight default link NERDTreeOpenBuffer Special
     execute 'syntax match hideFlagInNerdTree #\[.*' . s:open_buffer_glyph . '.*\]# conceal containedin=NERDTreeOpenBuffer'
     setlocal conceallevel=2
