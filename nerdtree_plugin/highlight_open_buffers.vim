@@ -31,7 +31,7 @@ augroup NERDTreeHighlightOpenBuffersPlugin
     autocmd CursorHold,BufWritePost,BufReadPost  * silent! set updatetime& | call s:RefreshFlags()
 augroup END
 function! s:RefreshFlags()
-    if g:NERDTree.IsOpen() && empty(&l:buftype) " NERDTree must be open and current buffer must not be a special type.
+    if g:NERDTree.IsOpen() " NERDTree must be open.
         let l:winnr = winnr()
         let l:altwinnr = winnr('#')
 
