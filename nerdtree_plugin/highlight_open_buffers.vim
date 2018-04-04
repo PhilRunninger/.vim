@@ -18,7 +18,7 @@ call g:NERDTreePathNotifier.AddListener('refreshFlags', 'NERDTreeHighlightOpenBu
 
 function! NERDTreeHighlightOpenBuffers(event)
     let l:path = a:event.subject
-    let l:flag = bufloaded(expand(l:path.str())) ? s:open_buffer_glyph : ""
+    let l:flag = buflisted(expand(l:path.str())) ? s:open_buffer_glyph : ""
     call l:path.flagSet.clearFlags('highlight_open')
     if l:flag !=# ''
         call l:path.flagSet.addFlag('highlight_open', l:flag)
