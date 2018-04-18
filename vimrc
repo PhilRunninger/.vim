@@ -114,6 +114,7 @@ set showcmd         " show (partial) command in last line of screen
 set noshowmode      " [no] message on status line show current mode
 set showmatch       " briefly jump to matching bracket if inserting one
 set number          " print the line number in front of each line
+set linebreak       " wrap long lines at a blank
 set list                                            " show <tab> and <eol>
 set listchars=tab:●⋅,extends:→,precedes:←,trail:■   " characters for displaying in list mode
 augroup trailingSpaces
