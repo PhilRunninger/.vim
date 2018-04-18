@@ -273,7 +273,7 @@ augroup END
 
     " NERDTree   {{{2
     nnoremap <silent> <leader>t <nop>
-    nnoremap <silent><expr> <leader>o len(filter(map(range(1,winnr('$')),'bufname(winbufnr(v:val))'), 'v:val == "[[buffergator-buffers]]"')) ? ":BuffergatorClose\<CR>:NERDTreeFocus\<CR>" : ":NERDTreeToggle\<CR>"
+    nnoremap <silent><expr> <leader>o len(filter(map(range(1,winnr('$')),'bufname(winbufnr(v:val))'), 'v:val == "[[buffergator-buffers]]"')) ? ":BuffergatorClose\<CR>:NERDTreeFocus\<CR>" : exists("b:NERDTree") ? ":NERDTreeToggle\<CR>" : ":NERDTreeFocus\<CR>"
     nnoremap <silent> <leader>f :NERDTreeFind<CR>
     let NERDTreeAutoCenter =                1
     let NERDTreeAutoCenterThreshold =       5
