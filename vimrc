@@ -10,11 +10,11 @@ silent! call plug#begin($VIMHOME.'/bundle')
     Plug 'git@github.com:Shougo/neosnippet'
     Plug 'git@github.com:vim-syntastic/syntastic.git'
     Plug 'git@github.com:PhilRunninger/vim-snippets'
-    Plug 'git@github.com:vim-scripts/AnsiEsc.vim.git'
+    Plug 'git@github.com:vim-scripts/AnsiEsc.vim.git', { 'on': 'AnsiEsc' }
     Plug 'git@github.com:tpope/vim-dispatch', { 'on': 'Dispatch' }
     Plug 'git@github.com:airblade/vim-gitgutter'
     Plug 'git@github.com:tpope/vim-commentary.git'
-    Plug 'git@github.com:diepm/vim-rest-console.git'
+    Plug 'git@github.com:diepm/vim-rest-console.git', { 'for': 'rest' }
 
     " File Management
     Plug 'git@github.com:scrooloose/nerdtree'
@@ -27,7 +27,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
     Plug 'git@github.com:PhilRunninger/gruvbox.git'
 
     " Miscellaneous Utilities
-    Plug 'git@github.com:sotte/presenting.vim.git'
+    Plug 'git@github.com:sotte/presenting.vim.git', { 'on': 'PresentingStart' }
     Plug 'git@github.com:Shougo/neocomplcache.vim'
     Plug 'git@github.com:mbbill/undotree', { 'on': 'UndotreeToggle' }
     Plug 'git@github.com:junegunn/vim-easy-align'
@@ -51,8 +51,8 @@ silent! call plug#begin($VIMHOME.'/bundle')
     Plug 'git@github.com:aklt/plantuml-syntax', { 'for': 'uml' }
 
     " Games
-    Plug 'git@github.com:uguu-org/vim-matrix-screensaver.git'
-    Plug 'git@github.com:vim-scripts/sokoban.vim.git'
+    Plug 'git@github.com:uguu-org/vim-matrix-screensaver.git', { 'on': 'Matrix' }
+    Plug 'git@github.com:vim-scripts/sokoban.vim.git', { 'on': 'Sokoban' }
 
 call plug#end()
 
