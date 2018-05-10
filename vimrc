@@ -8,7 +8,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
     " Coding / Development
     Plug 'git@github.com:tpope/vim-fugitive'
     Plug 'git@github.com:Shougo/neosnippet'
-    Plug 'git@github.com:vim-syntastic/syntastic.git'
+    Plug 'git@github.com:w0rp/ale.git'
     Plug 'git@github.com:PhilRunninger/vim-snippets'
     Plug 'git@github.com:vim-scripts/AnsiEsc.vim.git', { 'on': 'AnsiEsc' }
     Plug 'git@github.com:tpope/vim-dispatch', { 'on': 'Dispatch' }
@@ -244,6 +244,18 @@ augroup vhtFileTypes                   " Set filetype of VHT Log files   {{{2
 augroup END
 
 " Settings for managed plugins {{{1
+    " ALE   {{{2
+    let g:ale_linters = {
+                      \     'erlang': ['syntaxerl']
+                      \ }
+
+    function! LinterStatus() abort
+        let l:counts = ale#statusline#Count(bufnr(''))
+        let l:all_errors = l:counts.error + l:counts.style_error
+        let l:all_non_errors = l:counts.total - l:all_errors
+        return l:counts.total == 0 ? '' : printf( '%dW %dE', all_non_errors, all_errors)
+    endfunction
+
     " Fugitive   {{{2
     nnoremap <silent> <F3> "zyiw/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
     vnoremap <silent> <F3> "zy/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
@@ -257,12 +269,6 @@ augroup END
     imap <C-O> <Plug>(neosnippet_expand_or_jump)
     smap <C-O> <Plug>(neosnippet_expand_or_jump)
     xmap <C-O> <Plug>(neosnippet_expand_target)
-
-    " Syntastic   {{{2
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 0
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
 
     " vim-snippets   {{{2
     let g:snips_author = "Phil Runninger"
@@ -381,8 +387,8 @@ set statusline+=\ %{&ft}
 set statusline+=\ %{&ff}
 set statusline+=\ %f
 set statusline+=%=
-set statusline+=%#ErrorMsg#%{SyntasticStatuslineFlag()}%*
-set statusline+=\ %3*%(\ %{SessionNameStatusLineFlag()}\ %)%*
+set statusline+=%#ErrorMsg#%(\ %{LinterStatus()}\ %)%*
+set statusline+=%3*%(\ %{SessionNameStatusLineFlag()}\ %)%*
 
 call StatuslineColor(0)
 
