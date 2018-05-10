@@ -401,11 +401,15 @@ if v:version > 703
     augroup END
 endif
 
+function! Map_ff(ff)
+    return get({ "unix": "␊", "mac": "␍", "dos": "␍␊" }, a:ff, "?")
+endfunction
+
 set statusline=%3p%%\ %4v
 set statusline+=\ %1*%(\ %{fugitive#head(8)}\ %)%*
 set statusline+=%2*%(%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%)%*
 set statusline+=\ %{&ft}
-set statusline+=\ %{&ff}
+set statusline+=\ %{Map_ff(&ff)}
 set statusline+=\ %f
 set statusline+=%=
 set statusline+=%#ErrorMsg#%(\ %{LinterStatus()}\ %)%*
