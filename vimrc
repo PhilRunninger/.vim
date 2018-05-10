@@ -243,6 +243,12 @@ augroup vhtFileTypes                   " Set filetype of VHT Log files   {{{2
     autocmd BufReadPost *.{[0123456789]}\\\{1,99\} set filetype=vht
 augroup END
 
+augroup nerdTreeEvents                 " NERDTree-specific events   {{{2
+    autocmd!
+    " Focus NERDTree on the current buffer
+    autocmd BufEnter * call AutoNTFinder()
+augroup END
+
 " Settings for managed plugins {{{1
     " ALE   {{{2
     let g:ale_linters = {
@@ -293,6 +299,18 @@ augroup END
     let g:NERDTreeStatusline = "%{exists('g:NERDTreeFileNode')&&" .
                 \ "has_key(g:NERDTreeFileNode.GetSelected(),'path')?" .
                 \ "g:NERDTreeFileNode.GetSelected().path.getLastPathComponent(0):''}"
+
+    function! AutoNTFinder()
+        if g:NERDTree.IsOpen() && &buftype == ''
+            let l:winnr = winnr()
+            let l:altwinnr = winnr('#')
+
+            :NERDTreeFind
+
+            execute l:altwinnr . 'wincmd w'
+            execute l:winnr . 'wincmd w'
+        endif
+    endfunction
 
     " Buffergator   {{{2
     nnoremap <silent><expr> <leader>b NERDTree.IsOpen() ? ":NERDTreeClose\<CR>:BuffergatorOpen\<CR>" : ":BuffergatorOpen\<CR>"
