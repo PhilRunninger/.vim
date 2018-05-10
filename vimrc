@@ -279,8 +279,7 @@ augroup END
     nnoremap <leader>a :AnsiEsc<CR>
 
     " NERDTree   {{{2
-    nnoremap <silent> <leader>t <nop>
-    nnoremap <silent><expr> <leader>o len(filter(map(range(1,winnr('$')),'bufname(winbufnr(v:val))'), 'v:val == "[[buffergator-buffers]]"')) ? ":BuffergatorClose\<CR>:NERDTreeFocus\<CR>" : exists("b:NERDTree") ? ":NERDTreeToggle\<CR>" : ":NERDTreeFocus\<CR>"
+    nnoremap <silent><expr> <leader>o len(filter(map(range(1,winnr('$')),'bufname(winbufnr(v:val))'), 'v:val == "[[buffergator-buffers]]"')) ? ":BuffergatorClose\<CR>:NERDTreeFocus\<CR>" : ":NERDTreeFocus\<CR>"
     nnoremap <silent> <leader>f :NERDTreeFind<CR>
     let NERDTreeAutoCenter =                1
     let NERDTreeAutoCenterThreshold =       5
@@ -296,8 +295,8 @@ augroup END
                 \ "g:NERDTreeFileNode.GetSelected().path.getLastPathComponent(0):''}"
 
     " Buffergator   {{{2
-    nnoremap <silent><expr> <leader>b NERDTree.IsOpen() ? ":NERDTreeClose\<CR>:BuffergatorOpen\<CR>" : ":BuffergatorToggle\<CR>"
-    let g:buffergator_split_size = 36
+    nnoremap <silent><expr> <leader>b NERDTree.IsOpen() ? ":NERDTreeClose\<CR>:BuffergatorOpen\<CR>" : ":BuffergatorOpen\<CR>"
+    let g:buffergator_split_size = 40
     let g:buffergator_suppress_keymaps = 1
     let g:buffergator_show_full_directory_path = 0
     let g:buffergator_sort_regime = "mru"
