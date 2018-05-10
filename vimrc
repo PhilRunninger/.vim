@@ -285,8 +285,8 @@ augroup END
     let NERDTreeAutoCenterThreshold =       5
     let NERDTreeIgnore =                    ['\c^ntuser\..*']
     let NERDTreeBookmarksFile=expand("~/.vim/cache/.NERDTreeBookmarks")
-    let NERDTreeQuitOnOpen =                0
-    let NERDTreeWinSize =                   36
+    let NERDTreeQuitOnOpen =                1
+    let NERDTreeWinSize =                   40
     let NERDTreeMinimalUI =                 1
     let NERDTreeCascadeSingleChildDir =     0
     let NERDTreeCascadeOpenSingleChildDir = 1
@@ -299,7 +299,7 @@ augroup END
     let g:buffergator_split_size = 40
     let g:buffergator_suppress_keymaps = 1
     let g:buffergator_show_full_directory_path = 0
-    let g:buffergator_sort_regime = "mru"
+    let g:buffergator_sort_regime = "basename"
 
     " Presenting   {{{2
     let g:presenting_top_margin = 2
@@ -317,8 +317,10 @@ augroup END
 
     " Undotree   {{{2
     nnoremap <silent> <leader>u :UndotreeToggle<CR>
+    let g:undotree_TreeNodeShape = '●'
     let g:undotree_SetFocusWhenToggle = 1
     let g:undotree_WindowLayout = 2
+    let g:undotree_HelpLine = 0
 
     " EasyAlign   {{{2
     vmap <Enter> <Plug>(EasyAlign)
@@ -348,7 +350,7 @@ augroup bufferEvents
     " remember and set the position of text in buffer when switching
     autocmd bufleave * let b:winview = winsaveview()
     autocmd bufenter * if(exists('b:winview')) | call winrestview(b:winview) | endif
-augroup end
+augroup END
 
 " Color Settings and Status Line   {{{1
 let g:gruvbox_contrast_dark = 'black'
