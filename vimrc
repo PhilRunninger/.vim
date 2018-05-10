@@ -247,6 +247,8 @@ augroup nerdTreeEvents                 " NERDTree-specific events   {{{2
     autocmd!
     " Focus NERDTree on the current buffer
     autocmd BufEnter * call AutoNTFinder()
+    " Prevent changing to another buffer in NERDTree window.
+    autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" | b# | endif
 augroup END
 
 " Settings for managed plugins {{{1
