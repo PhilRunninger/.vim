@@ -292,7 +292,7 @@ augroup END
     let NERDTreeAutoCenter =                1
     let NERDTreeAutoCenterThreshold =       5
     let NERDTreeIgnore =                    ['\c^ntuser\..*']
-    let NERDTreeBookmarksFile=expand("~/.vim/cache/.NERDTreeBookmarks")
+    let NERDTreeBookmarksFile=$VIMHOME.'/cache/.NERDTreeBookmarks'
     let NERDTreeQuitOnOpen =                1
     let NERDTreeWinSize =                   40
     let NERDTreeMinimalUI =                 1
