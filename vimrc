@@ -106,7 +106,7 @@ set showmatch       " briefly jump to matching bracket if inserting one
 set number          " print the line number in front of each line
 set linebreak       " wrap long lines at a blank
 set list                                            " show <tab> and <eol>
-set listchars=tab:●⋅,extends:→,precedes:←,trail:■   " characters for displaying in list mode
+set listchars=tab:●·,extends:→,precedes:←,trail:■   " characters for displaying in list mode
 set fillchars=stl:\ ,stlnc:\ ,vert:\                " characters to use for displaying special items
 set showtabline=0                                   " tells when the tab pages line is displayed
 set laststatus=2                                    " tells when last window has status line
@@ -311,7 +311,7 @@ endif
     let NERDTreeAutoCenter =                1
     let NERDTreeAutoCenterThreshold =       5
     let NERDTreeIgnore =                    ['\c^ntuser\..*']
-    let NERDTreeBookmarksFile=expand("~/.vim/cache/.NERDTreeBookmarks")
+    let NERDTreeBookmarksFile=$VIMHOME.'/cache/.NERDTreeBookmarks'
     let NERDTreeQuitOnOpen =                1
     let NERDTreeWinSize =                   40
     let NERDTreeMinimalUI =                 1
