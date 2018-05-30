@@ -406,7 +406,7 @@ endfunction
 
 set statusline=%3p%%\ %4v
 set statusline+=\ %1*%(\ %{fugitive#head(8)}\ %)%*
-set statusline+=%2*%(%{&modifiable?&readonly?\"\ ro\ \":\"\":\"\ RO\ \"}%)%*
+set statusline+=%2*%(%{&modifiable?&readonly?\"\ 🔐\ \":\"\":\"\ 🔒\ \"}%)%*
 set statusline+=\ %{&ft}
 set statusline+=\ %{Map_ff(&ff)}
 set statusline+=\ %f
