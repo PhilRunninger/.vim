@@ -186,6 +186,10 @@ nnoremap <leader>d<space> :%s/\s\+$//c<CR>
 " Show what highlighting is used under the cursor {{{1
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
+" ############################ BREAK BAD HABITS! ############################ {{{1
+" I keep pressing o on a fold to open it. Use za, zo, or zr instead, but don't give me a crutch.
+nnoremap <expr> o foldclosed('.')==-1 ? "o" : ""
+
 " Auto-command Definitions   {{{1
 augroup reloadVimrc     " Re-source this file when saving it   {{{2
     autocmd!
