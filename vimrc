@@ -400,15 +400,19 @@ function! StatuslineColor(insertMode)
     exec 'highlight StatusLine ' . (a:insertMode ? g:slInsert : (&modified ? g:slNormalModified : g:slNormalUnmodified))
 endfunction
 
-function! Map_ff(ff)
-    return get({ "unix": "␊", "mac": "␍", "dos": "␍␊" }, a:ff, "?")
+function! Map_ff()
+    return get({ "unix": "␊", "mac": "␍", "dos": "␍␊" }, &ff, "?")
+endfunction
+
+function! Map_ro_mod()
+    return (&modifiable ? (&readonly ? "🔐" : "") : "🔒") . (&modified ? "🔴" : "")
 endfunction
 
 set statusline=%3p%%\ %4v
 set statusline+=\ %1*%(\ %{fugitive#head(8)}\ %)%*
-set statusline+=%2*%(%{&modifiable?&readonly?\"\ 🔐\ \":\"\":\"\ 🔒\ \"}%)%*
+set statusline+=\ %{Map_ro_mod()}
 set statusline+=\ %{&ft}
-set statusline+=\ %{Map_ff(&ff)}
+set statusline+=\ %{Map_ff()}
 set statusline+=\ %f
 set statusline+=%=
 set statusline+=%#ErrorMsg#%(\ %{LinterStatus()}\ %)%*
