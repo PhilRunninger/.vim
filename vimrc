@@ -54,6 +54,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
     " Games
     Plug 'git@github.com:uguu-org/vim-matrix-screensaver.git', { 'on': 'Matrix' }
     Plug 'git@github.com:vim-scripts/sokoban.vim.git', { 'on': 'Sokoban' }
+    Plug 'git@github.com:katono/rogue.vim.git', { 'on': [ 'Rogue', 'RogueScores', 'RogueRestore', 'RogueResume' ] }
 
 call plug#end()
 
