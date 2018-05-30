@@ -391,12 +391,11 @@ highlight User1      cterm=none    ctermfg=12  ctermbg=17   " Blue on Dark Blue
 highlight User2      cterm=none    ctermfg=160 ctermbg=52   " Red on Dark Red
 highlight User3      cterm=bold    ctermfg=16  ctermbg=178  " Black on Gold
 
-let g:slInsert='cterm=none ctermfg=15 ctermbg=27'           " White on Blue
-let g:slNormalModified='cterm=none ctermfg=15 ctermbg=124'  " White on Red
-let g:slNormalUnmodified='cterm=none ctermfg=16 ctermbg=40' " Black on Green
-
+highlight Insert      cterm=none ctermfg=15  ctermbg=27   " White on Blue
+highlight NormalMod   cterm=none ctermfg=15  ctermbg=124  " White on Red
+highlight NormalNoMod cterm=none ctermfg=16  ctermbg=40   " Black on Green
 function! StatuslineColor(insertMode)
-    exec 'highlight StatusLine ' . (a:insertMode ? g:slInsert : (&modified ? g:slNormalModified : g:slNormalUnmodified))
+    exec 'highlight! link StatusLine ' . (a:insertMode ? 'Insert' : (&modified ? 'NormalMod' : 'NormalNoMod'))
 endfunction
 
 function! Map_ff()
