@@ -24,7 +24,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
 
     " Colorschemes
     Plug 'git@github.com:guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
-    Plug 'git@github.com:PhilRunninger/gruvbox.git'
+    Plug 'git@github.com:morhetz/gruvbox.git'
 
     " Miscellaneous Utilities
     Plug 'git@github.com:sotte/presenting.vim.git', { 'on': 'PresentingStart' }
@@ -380,12 +380,11 @@ endif
     let g:pathToSessions = $VIMHOME.'/cache/sessions'
 
 " Color Settings and Status Line   {{{1
-let g:gruvbox_contrast_dark = 'black'
 colorscheme gruvbox
-set background=dark
 
 highlight Folded     cterm=none    ctermfg=239 ctermbg=232  " Gray on Almost Black
 highlight MatchParen cterm=bold    ctermfg=5   ctermbg=none " Magenta
+highlight Normal                             ctermbg=16   " Black Background
 highlight! link VertSplit StatusLineNC
 highlight WildMenu   cterm=none    ctermfg=16  ctermbg=178  " Black on Gold
 highlight User1      cterm=none    ctermfg=12  ctermbg=17   " Blue on Dark Blue
