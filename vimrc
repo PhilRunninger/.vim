@@ -57,6 +57,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
 call plug#end()
 
 " Miscellaneous settings   {{{1
+set autoread                        " automatically read file when changed outside of vim
 set encoding=utf-8                  " Sets the character encoding to use inside vim.
 set scrolloff=3                     " Minimum # of lines above and below cursor
 set sidescrolloff=3                 " minimum nr. of columns to left and right of cursor
@@ -88,19 +89,6 @@ set wildignore+=*.bmp,*.gif,*.jpg,*.ico,*.png
 set wildignore+=.DS_Store,.git,.ht,.svn
 set wildignore+=*~,*.swp,*.tmp
 
-" Toggle visual selection between: lowercase, Title Case, and UPPERCASE.   {{{1
-function! TwiddleCase(str)
-    if a:str ==# toupper(a:str)
-        let result = tolower(a:str)
-    elseif a:str ==# tolower(a:str)
-        let result = substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
-    else
-        let result = toupper(a:str)
-    endif
-    return result
-endfunction
-vnoremap <silent> ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
-
 " Tab settings and behavior   {{{1
 set autoindent      " take indent for new line from previous line
 set smartindent     " smart autoindenting for c programs
@@ -117,11 +105,6 @@ set number          " print the line number in front of each line
 set linebreak       " wrap long lines at a blank
 set list                                            " show <tab> and <eol>
 set listchars=tab:●⋅,extends:→,precedes:←,trail:■   " characters for displaying in list mode
-augroup trailingSpaces
-    autocmd!
-    autocmd InsertEnter * :set listchars-=trail:■
-    autocmd InsertLeave * :set listchars+=trail:■
-augroup END
 set fillchars=stl:\ ,stlnc:\ ,vert:\                " characters to use for displaying special items
 set showtabline=0                                   " tells when the tab pages line is displayed
 set laststatus=2                                    " tells when last window has status line
@@ -159,6 +142,10 @@ nnoremap <silent> <C-H> <C-W>h
 nnoremap <silent> <C-J> <C-W>j
 nnoremap <silent> <C-K> <C-W>k
 nnoremap <silent> <C-L> <C-W>l
+
+" Buffer-related settings and mappings   {{{1
+set hidden          " don't unload buffer when it is abandoned
+nnoremap <silent> # :buffer #<CR>
 
 " Searching settings   {{{1
 set hlsearch        " highlight matches with last search pattern
@@ -198,29 +185,40 @@ nnoremap <leader>d<space> :%s/\s\+$//c<CR>
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " Auto-command Definitions   {{{1
-augroup reloadVimrc                    " Re-source this file when saving it   {{{2
+augroup reloadVimrc     " Re-source this file when saving it   {{{2
     autocmd!
     autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
 augroup END
 
-augroup meta                   " Get help (with K key) when editing vimscript
+augroup trailingSpaces  " Turn off trailing space indicator in Insert mode   {{{2
+    autocmd!
+    autocmd InsertEnter * :set listchars-=trail:■
+    autocmd InsertLeave * :set listchars+=trail:■
+augroup END
+
+augroup bufferEvents    " Keep cursor in original position when switching buffers   {{{2
+    autocmd!
+    autocmd bufleave * let b:winview = winsaveview()
+    autocmd bufenter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+augroup END
+set nostartofline
+
+augroup vimHelp         " Get help (with K key) when editing vimscript   {{{2
     autocmd!
     autocmd FileType vim setlocal keywordprg=:help
 augroup END
 
-augroup checktime                      " terminal mode hack for autoread option   {{{2
+augroup checktime       " terminal mode hack for autoread option   {{{2
     autocmd!
     if !has("gui_running")
         "silent! necessary; otherwise, throws errors when using command line window.
         autocmd BufEnter        * silent! checktime
         autocmd CursorHold      * silent! checktime
         autocmd CursorHoldI     * silent! checktime
-        "these two _may_ slow things down. Remove if they do.
         autocmd CursorMoved     * silent! checktime
         autocmd CursorMovedI    * silent! checktime
     endif
 augroup END
-set autoread        " automatically read file when changed outside of vim
 
 augroup jumpToPreviousLocation         " When editing a file, always jump to its last known cursor position.   {{{2
     autocmd!
@@ -250,6 +248,14 @@ augroup nerdTreeEvents                 " NERDTree-specific events   {{{2
     " Prevent changing to another buffer in NERDTree window.
     autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" | b# | endif
 augroup END
+
+if v:version > 703                     " Change statusline color, depending on mode.
+    augroup setStatuslineColors
+        autocmd!
+        autocmd InsertEnter,InsertChange,TextChangedI * call StatuslineColor(1)
+        autocmd InsertLeave,TextChanged,BufWritePost,BufEnter * call StatuslineColor(0)
+    augroup END
+endif
 
 " Settings for managed plugins {{{1
     " ALE   {{{2
@@ -360,18 +366,6 @@ augroup END
     set sessionoptions-=tabpages
     let g:pathToSessions = $VIMHOME.'/cache/sessions'
 
-" Buffer-related settings and mappings   {{{1
-set hidden          " don't unload buffer when it is abandoned
-nnoremap <silent> # :buffer #<CR>
-
-set nostartofline   " commands (don't) move cursor to first non-blank in line
-augroup bufferEvents
-    autocmd!
-    " remember and set the position of text in buffer when switching
-    autocmd bufleave * let b:winview = winsaveview()
-    autocmd bufenter * if(exists('b:winview')) | call winrestview(b:winview) | endif
-augroup END
-
 " Color Settings and Status Line   {{{1
 let g:gruvbox_contrast_dark = 'black'
 colorscheme gruvbox
@@ -392,14 +386,6 @@ let g:slNormalUnmodified='cterm=none ctermfg=16 ctermbg=40' " Black on Green
 function! StatuslineColor(insertMode)
     exec 'highlight StatusLine ' . (a:insertMode ? g:slInsert : (&modified ? g:slNormalModified : g:slNormalUnmodified))
 endfunction
-
-if v:version > 703
-    augroup setStatuslineColors
-        autocmd!
-        autocmd InsertEnter,InsertChange,TextChangedI * call StatuslineColor(1)
-        autocmd InsertLeave,TextChanged,BufWritePost,BufEnter * call StatuslineColor(0)
-    augroup END
-endif
 
 function! Map_ff(ff)
     return get({ "unix": "␊", "mac": "␍", "dos": "␍␊" }, a:ff, "?")
