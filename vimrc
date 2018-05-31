@@ -11,7 +11,6 @@ silent! call plug#begin($VIMHOME.'/bundle')
     Plug 'git@github.com:w0rp/ale.git'
     Plug 'git@github.com:PhilRunninger/vim-snippets'
     Plug 'git@github.com:vim-scripts/AnsiEsc.vim.git', { 'on': 'AnsiEsc' }
-    Plug 'git@github.com:tpope/vim-dispatch', { 'on': 'Dispatch' }
     Plug 'git@github.com:airblade/vim-gitgutter'
     Plug 'git@github.com:tpope/vim-commentary.git'
     Plug 'git@github.com:diepm/vim-rest-console.git', { 'for': 'rest' }
@@ -378,6 +377,11 @@ endif
     set sessionoptions-=blank
     set sessionoptions-=tabpages
     let g:pathToSessions = $VIMHOME.'/cache/sessions'
+
+    " rogue   {{{2
+    let g:rogue#name = 'Ṕḧįḹ'
+    let g:rogue#directory = $VIMHOME.'/cache'
+    let g:rogue#fruit = 'pizza'
 
 " Color Settings and Status Line   {{{1
 colorscheme gruvbox
