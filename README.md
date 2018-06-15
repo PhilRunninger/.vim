@@ -7,13 +7,13 @@ These instructions assume you will be running them from a bash shell. First, clo
 __Windows__
 
 ```
-$ git clone git@github.com:PhilRunninger/my_vim_setup.git ~/vimfiles
+$ git clone git@github.com:PhilRunninger/vim.git ~/vimfiles
 $ vim
 ```
 __Mac or Linux__
 
 ```
-$ git clone git@github.com:PhilRunninger/my_vim_setup.git ~/.vim
+$ git clone git@github.com:PhilRunninger/vim.git ~/.vim
 $ vim
 ```
 
@@ -37,13 +37,12 @@ if has("gui_win32")
   set guifont=Consolas:h12:w6
 else
   colorscheme SlateDark
-  let g:statusline_insert='cterm=none ctermfg=15 ctermbg=1'     " White on Blue
-  let g:statusline_modified='cterm=none ctermfg=15 ctermbg=4'   " White on Red
-  let g:statusline_unmodified='cterm=none ctermfg=15 ctermbg=2' " White on Green
 
-  highlight WildMenu cterm=none ctermfg=0 ctermbg=3 " Black on Yellow
-  highlight User1    cterm=none ctermfg=7 ctermbg=1 " White on Blue
-  highlight User2    cterm=none ctermfg=7 ctermbg=4 " White on Red
+  highlight WildMenu    cterm=none ctermfg=0 ctermbg=3   " Black on Yellow
+  highlight GitBranch   cterm=none ctermfg=7 ctermbg=1   " White on Blue
+  highlight Insert      cterm=none ctermfg=15 ctermbg=1  " White on Blue
+  highlight NormalMod   cterm=none ctermfg=15 ctermbg=4  " White on Red
+  highlight NormalNoMod cterm=none ctermfg=15 ctermbg=2  " White on Green
 endif
 ```
 
