@@ -40,6 +40,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
     Plug 'git@github.com:scrooloose/vim-slumlord'
     Plug 'git@github.com:chrisbra/Recover.vim.git'
     Plug 'git@github.com:ggVGc/vim-fuzzysearch.git'
+    Plug 'git@github.com:lfv89/vim-interestingwords.git'
 
     " Filetype-specific
     Plug 'git@github.com:suan/vim-instant-markdown.git', { 'for': 'markdown' }
