@@ -7,13 +7,13 @@ These instructions assume you will be running them from a bash shell. First, clo
 __Windows__
 
 ```
-$ git clone git@github.com:PhilRunninger/my_vim_setup.git ~/vimfiles
+$ git clone git@github.com:PhilRunninger/vim.git ~/vimfiles
 $ vim
 ```
 __Mac or Linux__
 
 ```
-$ git clone git@github.com:PhilRunninger/my_vim_setup.git ~/.vim
+$ git clone git@github.com:PhilRunninger/vim.git ~/.vim
 $ vim
 ```
 
