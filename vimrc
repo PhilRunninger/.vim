@@ -310,7 +310,8 @@ endif
     let NERDTreeAutoCenter =                1
     let NERDTreeAutoCenterThreshold =       5
     let NERDTreeIgnore =                    ['\c^ntuser\..*']
-    let NERDTreeBookmarksFile=$VIMHOME.'/cache/.NERDTreeBookmarks'
+    let NERDTreeRespectWildIgnore =         1
+    let NERDTreeBookmarksFile =             $VIMHOME.'/cache/.NERDTreeBookmarks'
     let NERDTreeQuitOnOpen =                1
     let NERDTreeWinSize =                   40
     let NERDTreeMinimalUI =                 1
