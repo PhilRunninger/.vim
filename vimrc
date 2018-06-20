@@ -10,10 +10,11 @@ silent! call plug#begin($VIMHOME.'/bundle')
     Plug 'git@github.com:Shougo/neosnippet'
     Plug 'git@github.com:w0rp/ale.git'
     Plug 'git@github.com:PhilRunninger/vim-snippets'
-    Plug 'git@github.com:vim-scripts/AnsiEsc.vim.git', { 'on': 'AnsiEsc' }
     Plug 'git@github.com:airblade/vim-gitgutter'
     Plug 'git@github.com:tpope/vim-commentary.git'
     Plug 'git@github.com:diepm/vim-rest-console.git', { 'for': 'rest' }
+    Plug 'git@github.com:scrooloose/vim-slumlord'
+    Plug 'git@github.com:aklt/plantuml-syntax', { 'for': 'uml' }
 
     " File Management
     Plug 'git@github.com:scrooloose/nerdtree'
@@ -37,7 +38,6 @@ silent! call plug#begin($VIMHOME.'/bundle')
     Plug 'git@github.com:tpope/vim-surround'
     Plug 'git@github.com:tpope/vim-unimpaired'
     Plug 'git@github.com:tommcdo/vim-exchange.git'
-    Plug 'git@github.com:scrooloose/vim-slumlord'
     Plug 'git@github.com:chrisbra/Recover.vim.git'
     Plug 'git@github.com:ggVGc/vim-fuzzysearch.git'
     Plug 'git@github.com:lfv89/vim-interestingwords.git'
@@ -45,11 +45,10 @@ silent! call plug#begin($VIMHOME.'/bundle')
     " Filetype-specific
     Plug 'git@github.com:suan/vim-instant-markdown.git', { 'for': 'markdown' }
     Plug 'git@github.com:tpope/vim-markdown', { 'for': 'markdown' }
+    Plug 'git@github.com:tpope/vim-jdaddy', { 'for': 'json' }
     Plug 'git@github.com:elzr/vim-json', { 'for': 'json' }
     Plug 'git@github.com:vim-scripts/NSIS-syntax-highlighting', { 'for': ['nsi', 'nsh'] }
     Plug 'git@github.com:chrisbra/csv.vim', { 'for': 'csv' }
-    Plug 'git@github.com:tpope/vim-jdaddy', { 'for': 'json' }
-    Plug 'git@github.com:aklt/plantuml-syntax', { 'for': 'uml' }
 
     " Games
     Plug 'git@github.com:uguu-org/vim-matrix-screensaver.git', { 'on': 'Matrix' }
@@ -301,9 +300,6 @@ endif
     let g:snips_author = "Phil Runninger"
     let g:snips_email = "prunninger@vhtcx.com"
     let g:snips_github = "https://github.com/PhilRunninger"
-
-    " ANSIEsc   {{{2
-    nnoremap <leader>a :AnsiEsc<CR>
 
     " NERDTree   {{{2
     nnoremap <silent><expr> <leader>o len(filter(map(range(1,winnr('$')),'bufname(winbufnr(v:val))'), 'v:val == "[[buffergator-buffers]]"')) ? ":BuffergatorClose\<CR>:NERDTreeFocus\<CR>" : ":NERDTreeFocus\<CR>"
