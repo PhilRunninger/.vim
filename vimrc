@@ -314,9 +314,6 @@ endif
     let NERDTreeMinimalUI =                 1
     let NERDTreeCascadeSingleChildDir =     0
     let NERDTreeCascadeOpenSingleChildDir = 1
-    let g:NERDTreeStatusline = "%{exists('g:NERDTreeFileNode')&&" .
-                \ "has_key(g:NERDTreeFileNode.GetSelected(),'path')?" .
-                \ "g:NERDTreeFileNode.GetSelected().path.getLastPathComponent(0):''}"
 
     function! AutoNTFinder()
         if g:NERDTree.IsOpen() && &buftype == ''
