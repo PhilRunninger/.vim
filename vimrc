@@ -52,7 +52,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
 
     " Games
     Plug 'git@github.com:uguu-org/vim-matrix-screensaver.git', { 'on': 'Matrix' }
-    Plug 'git@github.com:vim-scripts/sokoban.vim.git', { 'on': 'Sokoban' }
+    Plug 'git@github.com:PhilRunninger/sokoban.vim.git', { 'on': ['Sokoban','SokobanH','SokobanV']}
     Plug 'git@github.com:katono/rogue.vim.git', { 'on': [ 'Rogue', 'RogueScores', 'RogueRestore', 'RogueResume' ] }
 
 call plug#end()
@@ -103,7 +103,6 @@ set showcmd         " show (partial) command in last line of screen
 set noshowmode      " [no] message on status line show current mode
 set showmatch       " briefly jump to matching bracket if inserting one
 set number          " print the line number in front of each line
-set linebreak       " wrap long lines at a blank
 set list                                            " show <tab> and <eol>
 set listchars=tab:●·,extends:→,precedes:←,trail:■   " characters for displaying in list mode
 set fillchars=stl:\ ,stlnc:\ ,vert:\                " characters to use for displaying special items
@@ -254,7 +253,7 @@ augroup nerdTreeEvents                 " NERDTree-specific events   {{{2
     autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" | b# | endif
 augroup END
 
-if v:version > 703                     " Change statusline color, depending on mode.
+if v:version > 703                     " Change statusline color, depending on mode.   {{{2
     augroup setStatuslineColors
         autocmd!
         autocmd InsertEnter,InsertChange,TextChangedI * call StatuslineColor(1)
