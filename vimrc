@@ -28,7 +28,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
 
     " Miscellaneous Utilities
     Plug 'git@github.com:sotte/presenting.vim.git', { 'on': 'PresentingStart' }
-    Plug 'git@github.com:Shougo/neocomplcache.vim'
+    Plug 'git@github.com:Shougo/neocomplete.vim'
     Plug 'git@github.com:mbbill/undotree', { 'on': 'UndotreeToggle' }
     Plug 'git@github.com:junegunn/vim-easy-align'
     Plug 'git@github.com:mtth/scratch.vim'
@@ -343,13 +343,15 @@ endif
     " NeoComplCache   {{{2
     set completeopt=longest,menuone
 
-    let g:neocomplcache_enable_ignore_case = 1
-    let g:neocomplcache_enable_smart_case = 1
-    let g:neocomplcache_enable_fuzzy_completion = 1
-    let g:neocomplcache_enable_at_startup = 1
-    let g:neocomplcache_temporary_dir=$VIMHOME.'/cache/neocomplcache'
+    let g:neocomplete#enable_ignore_case = 1
+    let g:neocomplete#enable_smart_case = 1
+    let g:neocomplete#enable_fuzzy_completion = 1
+    let g:neocomplete#enable_at_startup = 1
+    let g:neocomplete#data_dir=$VIMHOME.'/cache/neocomplete'
     inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
     inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+    inoremap <expr><Space> pumvisible() ? "\<C-y><Space>" : "\<Space>"
+    inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
     " Undotree   {{{2
     nnoremap <silent> <leader>u :UndotreeToggle<CR>
