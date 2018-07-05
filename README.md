@@ -19,13 +19,13 @@ $ vim
 
 The rest of the setup takes place in vim. Ignore the error messages when it first starts. They will go away after you run the `:PlugInstall` command and restart vim. This command is part of the [vim-plug](https://github.com/junegunn/vim-plug) plugin manager, which is embedded in this repository. (You should periodically upgrade vim-plug using the `:PlugUpgrade` command.)
 
-## Customized vimrc Processing
+## Customized vimrc Post-Processing
 
-This setup is designed for my primary development environment on a MacBook. Using this setup in another OS, or with different available colors, will most likely produce undesirable side effects. To alleviate this behavior, a post processing step can be added. This is done with a separate file - **post_vimrc** in the same folder as vimrc - that is sourced by vimrc at the end of its processing. In this file, you can change settings for the particular environment.
+This setup is designed for my primary development environment on a MacBook. Using this setup in different environments may require additional steps or different setting values. To facilitate this, a post processing step can be added. This is done with a separate file - **post_vimrc** in the same folder as vimrc - that is sourced by vimrc at the end of its processing. In this file, you can change settings for the particular environment.
 
 ### Example
 
-Here is the post_vimrc I use on my Windows environment, which has fewer color and font options.
+Here is the post_vimrc I use on my Windows environment, on which a different colorscheme looks better.
 
 ```
 " vim: filetype=vim
@@ -46,45 +46,72 @@ else
 endif
 ```
 
+## My Favorite Plugins
+
+I change my vimrc way more often than is reasonable. As a result, it's hard to keep my key mappings' descriptions, formerly published here, up to date. In its place, I'm just going to list my favorite plugins and reasons why I like them.
+
+### [NERDTree](https://github.com/scrooloose/nerdtree), [nerdtree-bwipeout](https://github.com/PhilRunninger/nerdtree-bwipeout-plugin.git), and [highlight-open-buffers](https://github.com/PhilRunninger/nerdtree-highlight-open-buffers.git)
+NERDTree is a tree explorer, this is useful for displaying your project tree in a side window. My mind grasps the tree paradigm better than others like fuzzy finders. In the spirit of full disclosure, I'm one of the collaborators of that project.
+
+The other two are plugins for a plugin. *(Can you say "recursion"?)* One of them lets you close an open buffer from its location in the NERDTree window. The other changes the color of a file in the NERDTree window if it's open in the vim session.
+
+### [Fugitive](https://github.com/tpope/vim-fugitive)
+This is one that I don't use to its fullest extent. It's a very powerful in-Vim interface to Git commands. The commands I find most helpful are `:Gdiff` and `:Gblame` (usually to find out **when** a change occurred, not **who** did it.) When the mood strikes, I'll also use `:Gstatus` to review, stage, and commit changes.
+
+### [NeoSnippet](https://github.com/Shougo/neosnippet) and [vim-snippets](https://github.com/PhilRunninger/vim-snippets)
+This plugin inserts snippets of text at the current location, useful for stubbing out a new program. I have my own fork of snippets.
+
+### [](https://github.com/w0rp/ale.git)
+### [GitGutter](https://github.com/airblade/vim-gitgutter)
+This shows where I have uncommitted changes in a file. It also provides key mappings for navigating them: `]c` and `[c` to name a couple.
+
+### [Commentary](https://github.com/tpope/vim-commentary.git)
+Comment or uncomment several lines of code at once. It is smart enough to know the syntax of the language.
+
+### [](https://github.com/diepm/vim-rest-console.git)
+### [Buffergator](https://github.com/jeetsukumaran/vim-buffergator.git)
+Lists open buffers so that you can select one to switch to in the current, or new split, window.
+
+### [](https://github.com/guns/xterm-color-table.vim)
+### [](https://github.com/morhetz/gruvbox.git)
+### [](https://github.com/sotte/presenting.vim.git)
+### [NeoComplete](https://github.com/Shougo/neocomplete.vim)
+A much-improved version of Vim's autocompletion.
+
+### [UndoTree](https://github.com/mbbill/undotree)
+This plugin displays a visual history of the changes made to the active buffer. Most interestingly, it shows how Vim manages these changes as a tree, rather than the expected stack.
+
+### [Easy-Align](https://github.com/junegunn/vim-easy-align)
+I use this plugin to line up columns of text, useful for tables of data or lines of similar code.
+
+### [Scratch](https://github.com/mtth/scratch.vim)
+Need a place to jot a thought down? Put it in a scratch buffer.
+
+### [Vim-Sessions](https://github.com/PhilRunninger/vim-sessions.git)
+This plugin allows you to leave a `.session.vim` file in a folder, so that when you restart vim, you can pick up where you left off. On startup, the plugin looks for a `.session.vim` file in the current folder or anywhere up the hierarchy, and asks whether or not to use it.
+
+### [](https://github.com/kshenoy/vim-signature)
+### [](https://github.com/tpope/vim-repeat)
+### [Vim-Surround](https://github.com/tpope/vim-surround)
+This is a great plugin for surrounding text with delimiters: `" ' [ ] ( ) { } < >` or HTML tags.
+
+### [](https://github.com/tpope/vim-unimpaired)
+### [](https://github.com/tommcdo/vim-exchange.git)
+### [](https://github.com/scrooloose/vim-slumlord)
+### [](https://github.com/chrisbra/Recover.vim.git)
+### [](https://github.com/ggVGc/vim-fuzzysearch.git)
+### [](https://github.com/lfv89/vim-interestingwords.git)
+### [](https://github.com/suan/vim-instant-markdown.git)
+### [](https://github.com/tpope/vim-markdown)
+### [](https://github.com/elzr/vim-json)
+### [](https://github.com/vim-scripts/NSIS-syntax-highlighting)
+### [](https://github.com/chrisbra/csv.vim)
+### [](https://github.com/tpope/vim-jdaddy)
+### [](https://github.com/aklt/plantuml-syntax)
+
 ## Custom Key Mappings
 
-**Important Note:** *Make sure you type commands as you see them in rendered form. Do not type Markup's escape characters (backtick, in particular) when issuing the commands.*
-
-The `<leader>` key is used to increase the number of possible key mappings. By default, it is the backslash key, but many Vimmers, including me, have it redefined as the spacebar, which is always within reach, and normally has no useful function anyway.
-
-Mappings of more than one character must be fully typed within a short timeout period; otherwise, they will be considered as separate keystrokes. For example, `<leader>b` typed too slowly, would move your cursor one character to the right, and then back one word.
-
-### Plugin Mappings
-
-#### Useful Mappings Defined by Plugins
-
-Mode | Keystroke | Function | For more help...
----|---|---|---
-Normal<br>Selection | `gs`                    | Open scratch buffer in its own window                                                              | `:h Scratch`
-Normal<br>Selection | `gS`                    | Open an empty scratch buffer in its own window                                                     |
-Normal              | `gcc` or `gc[motion]`   | Comment or uncomment line(s) of code                                                               | `:h commentary.txt`
-Selection           | `gc`                    | Comment or uncomment selected line(s) of code                                                      |
-Normal              | `ys[text object][char]` | Surround text obect with char and its matching character, ie. ', ", \`, ( and ), { and }, [ and ], or < and >. | `:h surround`
-Visual              | `S[char]`               | Surround selection with char and its matching character, ie. ', ", \`, ( and ), { and }, [ and ], or < and >. |
-Normal              | `cs[oldchar][newchar]`  | Change surrounding characters from old to new                                                      |
-Normal              | `ds[char]`              | Remove closest specified surrounding characters                                                    |
-
-#### Additional Mappings Defined in vimrc
-
-Mode | Keystroke | Function | For more help...
----|---|---|---
-Visual | `Enter`     | Start **EasyAlign** plugin                           | `:h easyalign`
-Normal | `F3`        | Perform `git grep` on word under cursor                | `:h fugitive`
-Visual | `F3`        | Perform `git grep` on visual selection                 |
-Insert | `Tab`       | Highlight next item in autocomplete popup            | `:h neocomplcache`
-Insert | `Shift+Tab` | Highlight previous item in autocomplete popup        |
-Normal | `<leader>u` | Toggle **UndoTree** window                           | `:h undotree.txt`
-Normal | `<leader>o` | Toggle the **NERDTree** window | `:h NERDTreeToggle`
-Normal | `<leader>f` | Find the current file in the **NERDTree** window | `:h NERDTreeFind`
-Insert<br>Selection | `Ctrl+o` | Choose snippet or jump to next field in it  | `:h neosnippet`
-Normal | `<leader>a`         | Toggle the translation of ANSI color codes to vim highlighting | `:h AnsiEsc`
-
-### Window Movement/Sizing
+### Window Movement/Sizing Shortcuts
 
 Mode | Mapping | Function
 ---|---|---
@@ -98,36 +125,3 @@ Normal | `Down` | Resize 5 rows shorter. Same as `5<C-W>-`.
 Normal | `Left` | Resize 10 columns narrower. Same as `10<C-W><`.
 Normal | `Right` | Resize 10 columns wider. Same as `10<C-W>>`.
 Normal | `<leader>x` | Maximize current window. Same as <code>\<C-W>&#124;\<C-W>_</code>.
-
-### Buffer Commands
-
-Mode | Mapping | Function
----|---|---
-Normal | `#`          | Toggle between two most recently used buffers, eg. [`A` `B` ⇄ `C`]
-Normal | `[b`         | Switch to previous buffer in the buffer list, eg. [ ← `A` ← `B` ← `C` ← ]
-Normal | `]b`         | Switch to next buffer in the buffer list, eg. [ → `A` → `B` → `C` → ]
-Normal | `<leader>b`  | Toggle Buffergator. See `:h buffergator`.
-
-### Searching for Text
-
-Mode | Mapping | Function
----|---|---
-Visual | `*`                 | Search forward for selected text
-Normal | `n`                 | Search forward, and center match on screen - `nzzzv`
-Normal | `N`                 | Search backward, and center match on screen - `Nzzzv`
-Normal | `<leader><Space>`   | Hide search result highlighting. See `:h :nohlsearch`
-Normal | `<leader>/`         | Show current file's matches in Quickfix window
-Visual | `<leader>/`         | Search for selection, and show matches in Quickfix window
-
-### Miscellaneous
-
-Mode | Mapping | Function
----|---|---
-Normal | `<leader>cd`        | Change vim's current working directory to match the current buffer's directory
-Normal | `<leader>d<space>`  | Remove trailing spaces, pending confirmation of each instance
-Normal | `<>`                | Convert Erlang list string under cursor to binary string
-Normal | `><`                | Convert Erlang binary string under cursor to list string
-Normal | `-`                 | Toggle cursorline (highlight, or not, the current line)
-Normal | <code>&#124;</code> | Toggle cursorcolumn (highlight, or not, the current column)
-Normal | `+`                 | Toggle both cursorline and cursorcolumn
-Visual | `~`                 | Toggle visual selection between lowercase, Title Case, and UPPERCASE
