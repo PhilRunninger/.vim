@@ -50,10 +50,10 @@ endif
 
 I change my vimrc way more often than is reasonable. As a result, it's hard to keep my key mappings' descriptions, formerly published here, up to date. In its place, I'm just going to list my favorite plugins and reasons why I like them.
 
-### [NERDTree](https://github.com/scrooloose/nerdtree), [nerdtree-bwipeout](https://github.com/PhilRunninger/nerdtree-bwipeout-plugin.git), and [highlight-open-buffers](https://github.com/PhilRunninger/nerdtree-highlight-open-buffers.git)
+### [NERDTree](https://github.com/scrooloose/nerdtree) and [nerdtree-buffer-ops](https://github.com/PhilRunninger/nerdtree-buffer-ops.git)
 NERDTree is a tree explorer, this is useful for displaying your project tree in a side window. My mind grasps the tree paradigm better than others like fuzzy finders. In the spirit of full disclosure, I'm one of the collaborators of that project.
 
-The other two are plugins for a plugin. *(Can you say "recursion"?)* One of them lets you close an open buffer from its location in the NERDTree window. The other changes the color of a file in the NERDTree window if it's open in the vim session.
+The other is a plugin for a plugin. *(Can you say "recursion"?)* One of its two capabilities lets you close an open buffer from its location in the NERDTree window. The other changes the color of a file in the NERDTree window if it's open in the vim session.
 
 ### [Fugitive](https://github.com/tpope/vim-fugitive)
 This is one that I don't use to its fullest extent. It's a very powerful in-Vim interface to Git commands. The commands I find most helpful are `:Gdiff` and `:Gblame` (usually to find out **when** a change occurred, not **who** did it.) When the mood strikes, I'll also use `:Gstatus` to review, stage, and commit changes.
