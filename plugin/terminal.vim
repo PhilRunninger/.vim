@@ -9,7 +9,7 @@ function! ExecuteOSCommand(keep_old, cmd)
     execute 'term ' . a:cmd
 endfunction
 
-command! -nargs=+ -bang Do call ExecuteOSCommand(<bang>0, '<args>')
+command! -nargs=* -bang Do call ExecuteOSCommand(<bang>0, '<args>')
 
 nnoremap <F9> :Do<space>
 cnoremap <F9> <Up>
