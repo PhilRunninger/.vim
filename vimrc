@@ -300,7 +300,7 @@ endif
     let g:snips_github = "https://github.com/PhilRunninger"
 
     " NERDTree   {{{2
-    nnoremap <silent><expr> <leader>o len(filter(map(range(1,winnr('$')),'bufname(winbufnr(v:val))'), 'v:val == "[[buffergator-buffers]]"')) ? ":BuffergatorClose\<CR>:NERDTreeFocus\<CR>" : ":NERDTreeFocus\<CR>"
+    nnoremap <silent> <leader>o :set lazyredraw<CR>:BuffergatorClose<CR>:NERDTreeFocus<CR>:set nolazyredraw<CR>
     nnoremap <silent> <leader>f :NERDTreeFind<CR>
     let NERDTreeAutoCenter =                1
     let NERDTreeAutoCenterThreshold =       5
@@ -312,6 +312,7 @@ endif
     let NERDTreeMinimalUI =                 1
     let NERDTreeCascadeSingleChildDir =     0
     let NERDTreeCascadeOpenSingleChildDir = 1
+    let NERDTreeStatusline =                '%#NonText#'
 
     function! AutoNTFinder()
         if g:NERDTree.IsOpen() && &buftype == ''
@@ -326,7 +327,7 @@ endif
     endfunction
 
     " Buffergator   {{{2
-    nnoremap <silent><expr> <leader>b NERDTree.IsOpen() ? ":NERDTreeClose\<CR>:BuffergatorOpen\<CR>" : ":BuffergatorOpen\<CR>"
+    nnoremap <silent> <leader>b :set lazyredraw<CR>:NERDTreeClose<CR>:BuffergatorOpen<CR>:set nolazyredraw<CR>
     let g:buffergator_split_size = 40
     let g:buffergator_suppress_keymaps = 1
     let g:buffergator_show_full_directory_path = 0
