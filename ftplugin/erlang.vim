@@ -10,12 +10,6 @@ let g:erlang_folding = 1
 nnoremap <> m`f"a>><ESC>,,i<<<ESC>``ll
 nnoremap >< m`f"lxx,,XX``hh
 
-nnoremap <F5> :w<CR>:Dispatch (erlc % && erl -s %:r test -s init stop -noinput)<CR>
-
-" This sed command strips out rebar3's color codes, which interfere with the
-" :cnext and :cprevious commands.
-set makeprg=make\ $*\ \\\|\ sed\ -E\ \"s\/[[:cntrl:]]\\[[;0-9]{1,4}m\/\/g\"
-
 " This function improves Vim's navigation to tags. The default behavior of ^-]
 " doesn't account for the colon separator between module and function. So we
 " just redefine it. Man, I love vim!
