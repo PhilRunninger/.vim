@@ -383,16 +383,19 @@ endif
 " Color Settings and Status Line   {{{1
 colorscheme gruvbox
 
-highlight Normal                             ctermbg=16   " Black Background
-highlight Folded      cterm=none ctermfg=239 ctermbg=232  " Gray on Almost Black
-highlight MatchParen  cterm=bold ctermfg=5   ctermbg=none " Magenta
-highlight! link VertSplit StatusLineNC
-highlight WildMenu    cterm=none ctermfg=16  ctermbg=178  " Black on Gold
+highlight Normal                                ctermbg=16   " Black Background
+highlight Folded         cterm=none ctermfg=239 ctermbg=232  " Gray on Almost Black
+highlight MatchParen     cterm=bold ctermfg=5   ctermbg=none " Magenta
+highlight WildMenu       cterm=none ctermfg=16  ctermbg=178  " Black on Gold
+highlight GitBranch      cterm=none ctermfg=12  ctermbg=17   " Blue on Dark Blue
+highlight Insert         cterm=none ctermfg=15  ctermbg=27   " White on Blue
+highlight NormalMod      cterm=none ctermfg=15  ctermbg=124  " White on Red
+highlight NormalNoMod    cterm=none ctermfg=16  ctermbg=40   " Black on Green
+highlight StatusLineTerm cterm=none ctermfg=16  ctermbg=208  " Black on Gold
 highlight! link Session WildMenu
-highlight GitBranch   cterm=none ctermfg=12  ctermbg=17   " Blue on Dark Blue
-highlight Insert      cterm=none ctermfg=15  ctermbg=27   " White on Blue
-highlight NormalMod   cterm=none ctermfg=15  ctermbg=124  " White on Red
-highlight NormalNoMod cterm=none ctermfg=16  ctermbg=40   " Black on Green
+highlight! link StatusLineTermNC StatusLineNC
+highlight! link VertSplit StatusLineNC
+
 function! StatuslineColor(insertMode)
     exec 'highlight! link StatusLine ' . (a:insertMode ? 'Insert' : (&modified ? 'NormalMod' : 'NormalNoMod'))
 endfunction
