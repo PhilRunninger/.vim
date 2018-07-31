@@ -28,7 +28,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
     " Miscellaneous Utilities
     Plug 'git@github.com:sotte/presenting.vim.git', { 'on': 'PresentingStart' }
     Plug 'git@github.com:Shougo/neocomplete.vim'
-    Plug 'git@github.com:mbbill/undotree', { 'on': 'UndotreeToggle' }
+    Plug 'git@github.com:mbbill/undotree', { 'on': 'UndotreeShow' }
     Plug 'git@github.com:junegunn/vim-easy-align'
     Plug 'git@github.com:mtth/scratch.vim'
     Plug 'git@github.com:PhilRunninger/vim-sessions.git'
@@ -350,11 +350,12 @@ endif
     inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
     " Undotree   {{{2
-    nnoremap <silent> <leader>u :UndotreeToggle<CR>
+    nnoremap <silent> <leader>u :UndotreeShow<CR>
     let g:undotree_TreeNodeShape = '●'
     let g:undotree_SetFocusWhenToggle = 1
     let g:undotree_WindowLayout = 2
     let g:undotree_HelpLine = 0
+    let g:undotree_ShortIndicators = 1
 
     " EasyAlign   {{{2
     vmap <Enter> <Plug>(EasyAlign)
