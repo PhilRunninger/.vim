@@ -1,28 +1,31 @@
-function! ExecuteOSCommand(keep_old, cmd)
-    " regex to look for exising buffer, and list of windows containing it.
-    let buffer_name = "^!" . (a:cmd == '' ? &shell : a:cmd)
-    let containing_windows = filter(range(1, winnr('$')), 'bufname(winbufnr(v:val)) =~ "' . buffer_name . '"')
+function! s:ExecuteOSCommand(keep_old_terminals, cmd)
+    if !a:keep_old_terminals
+        " the buffer name of terminal for this command, and list of windows containing it.
+        let buffer_name = "!" . (a:cmd == '' ? &shell : a:cmd)
+        let cmd_windows = filter(range(1, winnr('$')), 'bufname(winbufnr(v:val)) =~ "^' . buffer_name . '" && term_getstatus(winbufnr(v:val)) =~? "finished"')
+        " Close all finished terminal windows that match the command to be run.
+        while len(cmd_windows) > 0
+            execute cmd_windows[0] 'wincmd c'
+            let cmd_windows = filter(range(1, winnr('$')), 'bufname(winbufnr(v:val)) =~ "^' . buffer_name . '" && term_getstatus(winbufnr(v:val)) =~? "finished"')
+        endwhile
 
-    " If reusing/replacing an old terminal buffer with the same name...
-    if !a:keep_old
-        " Switch to the shell window. Don't close it, 'cuz it's still active.
-        if a:cmd == '' && len(containing_windows) > 0
-            execute containing_windows[0] 'wincmd w'
+        if term_getstatus(buffer_name) =~? 'running'
+            " The terminal is still running. Switch to its window, or open a new split for it.
+            let cmd_windows = filter(range(1, winnr('$')), 'bufname(winbufnr(v:val)) =~ "^' . buffer_name . '"')
+            if len(cmd_windows) > 0
+                execute cmd_windows[0] 'wincmd w'
+            else
+                split
+                execute 'buffer ' . buffer_name
+            endif
             return
         endif
-
-        " Close each window that matches our command to be run.
-        while len(containing_windows) > 0
-            execute containing_windows[0] 'wincmd c'
-            let containing_windows = filter(range(1, winnr('$')), 'bufname(winbufnr(v:val)) =~ "' . buffer_name . '"')
-        endwhile
     endif
 
-    " Start the command in a new terminal window.
     execute 'term ' . a:cmd
 endfunction
 
-command! -nargs=* -bang Do call ExecuteOSCommand(<bang>0, '<args>')
+command! -nargs=* -bang Do call s:ExecuteOSCommand(<bang>0, '<args>')
 
 nnoremap <F9> :Do<space>
 cnoremap <F9> <Up>
