@@ -252,6 +252,18 @@ augroup nerdTreeEvents                 " NERDTree-specific events   {{{2
     autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" | b# | endif
 augroup END
 
+function! AutoNTFinder()
+    if g:NERDTree.IsOpen() && &buftype == ''
+        let l:winnr = winnr()
+        let l:altwinnr = winnr('#')
+
+        :NERDTreeFind
+
+        execute l:altwinnr . 'wincmd w'
+        execute l:winnr . 'wincmd w'
+    endif
+endfunction
+
 if v:version > 703                     " Change statusline color, depending on mode.   {{{2
     augroup setStatuslineColors
         autocmd!
@@ -313,18 +325,6 @@ endif
     let NERDTreeCascadeSingleChildDir =     0
     let NERDTreeCascadeOpenSingleChildDir = 1
     let NERDTreeStatusline =                '%#NonText#'
-
-    function! AutoNTFinder()
-        if g:NERDTree.IsOpen() && &buftype == ''
-            let l:winnr = winnr()
-            let l:altwinnr = winnr('#')
-
-            :NERDTreeFind
-
-            execute l:altwinnr . 'wincmd w'
-            execute l:winnr . 'wincmd w'
-        endif
-    endfunction
 
     " Buffergator   {{{2
     nnoremap <silent> <leader>b :set lazyredraw<CR>:NERDTreeClose<CR>:BuffergatorOpen<CR>:set nolazyredraw<CR>
