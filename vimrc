@@ -28,7 +28,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
     " Miscellaneous Utilities
     Plug 'git@github.com:sotte/presenting.vim.git', { 'on': 'PresentingStart' }
     Plug 'git@github.com:Shougo/neocomplete.vim'
-    Plug 'git@github.com:mbbill/undotree', { 'on': 'UndotreeToggle' }
+    Plug 'git@github.com:mbbill/undotree', { 'on': 'UndotreeShow' }
     Plug 'git@github.com:junegunn/vim-easy-align'
     Plug 'git@github.com:mtth/scratch.vim'
     Plug 'git@github.com:PhilRunninger/vim-sessions.git'
@@ -300,7 +300,7 @@ endif
     let g:snips_github = "https://github.com/PhilRunninger"
 
     " NERDTree   {{{2
-    nnoremap <silent><expr> <leader>o len(filter(map(range(1,winnr('$')),'bufname(winbufnr(v:val))'), 'v:val == "[[buffergator-buffers]]"')) ? ":BuffergatorClose\<CR>:NERDTreeFocus\<CR>" : ":NERDTreeFocus\<CR>"
+    nnoremap <silent> <leader>o :set lazyredraw<CR>:BuffergatorClose<CR>:NERDTreeFocus<CR>:set nolazyredraw<CR>
     nnoremap <silent> <leader>f :NERDTreeFind<CR>
     let NERDTreeAutoCenter =                1
     let NERDTreeAutoCenterThreshold =       5
@@ -312,6 +312,7 @@ endif
     let NERDTreeMinimalUI =                 1
     let NERDTreeCascadeSingleChildDir =     0
     let NERDTreeCascadeOpenSingleChildDir = 1
+    let NERDTreeStatusline =                '%#NonText#'
 
     function! AutoNTFinder()
         if g:NERDTree.IsOpen() && &buftype == ''
@@ -326,7 +327,7 @@ endif
     endfunction
 
     " Buffergator   {{{2
-    nnoremap <silent><expr> <leader>b NERDTree.IsOpen() ? ":NERDTreeClose\<CR>:BuffergatorOpen\<CR>" : ":BuffergatorOpen\<CR>"
+    nnoremap <silent> <leader>b :set lazyredraw<CR>:NERDTreeClose<CR>:BuffergatorOpen<CR>:set nolazyredraw<CR>
     let g:buffergator_split_size = 40
     let g:buffergator_suppress_keymaps = 1
     let g:buffergator_show_full_directory_path = 0
@@ -349,11 +350,12 @@ endif
     inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
     " Undotree   {{{2
-    nnoremap <silent> <leader>u :UndotreeToggle<CR>
+    nnoremap <silent> <leader>u :UndotreeShow<CR>
     let g:undotree_TreeNodeShape = '●'
     let g:undotree_SetFocusWhenToggle = 1
     let g:undotree_WindowLayout = 2
     let g:undotree_HelpLine = 0
+    let g:undotree_ShortIndicators = 1
 
     " EasyAlign   {{{2
     vmap <Enter> <Plug>(EasyAlign)
@@ -381,16 +383,19 @@ endif
 " Color Settings and Status Line   {{{1
 colorscheme gruvbox
 
-highlight Normal                             ctermbg=16   " Black Background
-highlight Folded      cterm=none ctermfg=239 ctermbg=232  " Gray on Almost Black
-highlight MatchParen  cterm=bold ctermfg=5   ctermbg=none " Magenta
-highlight! link VertSplit StatusLineNC
-highlight WildMenu    cterm=none ctermfg=16  ctermbg=178  " Black on Gold
+highlight Normal                                ctermbg=16   " Black Background
+highlight Folded         cterm=none ctermfg=239 ctermbg=232  " Gray on Almost Black
+highlight MatchParen     cterm=bold ctermfg=5   ctermbg=none " Magenta
+highlight WildMenu       cterm=none ctermfg=16  ctermbg=178  " Black on Gold
+highlight GitBranch      cterm=none ctermfg=12  ctermbg=17   " Blue on Dark Blue
+highlight Insert         cterm=none ctermfg=15  ctermbg=27   " White on Blue
+highlight NormalMod      cterm=none ctermfg=15  ctermbg=124  " White on Red
+highlight NormalNoMod    cterm=none ctermfg=16  ctermbg=40   " Black on Green
+highlight StatusLineTerm cterm=none ctermfg=16  ctermbg=208  " Black on Gold
 highlight! link Session WildMenu
-highlight GitBranch   cterm=none ctermfg=12  ctermbg=17   " Blue on Dark Blue
-highlight Insert      cterm=none ctermfg=15  ctermbg=27   " White on Blue
-highlight NormalMod   cterm=none ctermfg=15  ctermbg=124  " White on Red
-highlight NormalNoMod cterm=none ctermfg=16  ctermbg=40   " Black on Green
+highlight! link StatusLineTermNC StatusLineNC
+highlight! link VertSplit StatusLineNC
+
 function! StatuslineColor(insertMode)
     exec 'highlight! link StatusLine ' . (a:insertMode ? 'Insert' : (&modified ? 'NormalMod' : 'NormalNoMod'))
 endfunction
