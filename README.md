@@ -27,11 +27,19 @@ This setup is designed for my primary development environment on a MacBook. Usin
 
 Here is the post_vimrc I use on my Windows environment, on which a different colorscheme looks better.
 
-```
+```vim
 " vim: filetype=vim
 
 let NERDTreeDirArrowExpandable = '►'
 let NERDTreeDirArrowCollapsible = '▼'
+
+function! Map_ff()
+    return &ff
+endfunction
+
+function! Map_ro_mod()
+    return (&modifiable ? (&readonly ? "ro" : "") : "RO") . (&modified ? "+" : "")
+endfunction
 
 if has("gui_win32")
   set guifont=Consolas:h12:w6
