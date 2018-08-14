@@ -410,9 +410,9 @@ endfunction
 
 set statusline=%3p%%\ %4v
 set statusline+=\ %#GitBranch#%(\ %{fugitive#head(8)}\ %)%*
-set statusline+=\ %{Map_ro_mod()}
 set statusline+=\ %{&ft}
 set statusline+=\ %{Map_ff()}
+set statusline+=%(\ %{Map_ro_mod()}%)
 set statusline+=\ %f
 set statusline+=%=
 set statusline+=%#ErrorMsg#%(\ %{LinterStatus()}\ %)%*
