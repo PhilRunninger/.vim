@@ -130,7 +130,11 @@ set splitright      " new window is put right of the current one
 set winminheight=0  " minimum number of lines for any window
 set winminwidth=0   " minimum number of columns for any window
 
+" Shortcut to <C-W> because of the MacBook's stupid Ctrl key placement
+tnoremap <leader>w <C-W>
 nnoremap <silent> <leader>w <C-W>
+
+" Resize windows
 nnoremap <silent> <Up> 5<C-W>+
 nnoremap <silent> <Down> 5<C-W>-
 nnoremap <silent> <Right> 10<C-W>>
