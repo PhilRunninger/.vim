@@ -38,7 +38,6 @@ silent! call plug#begin($VIMHOME.'/bundle')
     Plug 'git@github.com:tpope/vim-unimpaired'
     Plug 'git@github.com:tommcdo/vim-exchange.git'
     Plug 'git@github.com:chrisbra/Recover.vim.git'
-    Plug 'git@github.com:ggVGc/vim-fuzzysearch.git'
     Plug 'git@github.com:lfv89/vim-interestingwords.git'
 
     " Filetype-specific
@@ -273,13 +272,6 @@ if v:version > 703                     " Change statusline color, depending on m
 endif
 
 " Settings for managed plugins {{{1
-    " FuzzySearch   {{{2
-    let g:fuzzysearch_prompt = '🔍'
-    let g:fuzzysearch_hlsearch = 0
-    let g:fuzzysearch_max_history = 50
-    let g:fuzzysearch_match_spaces = 1
-    nnoremap \ :FuzzySearch<CR>
-
     " ALE   {{{2
     let g:ale_linters = {
                       \     'erlang': ['syntaxerl']
