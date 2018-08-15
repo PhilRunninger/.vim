@@ -136,10 +136,6 @@ nnoremap <silent> <Down> 5<C-W>-
 nnoremap <silent> <Right> 10<C-W>>
 nnoremap <silent> <Left> 10<C-W><
 nnoremap <silent> <leader>x <C-W>_<C-W>\|
-nnoremap <silent> <C-H> <C-W>h
-nnoremap <silent> <C-J> <C-W>j
-nnoremap <silent> <C-K> <C-W>k
-nnoremap <silent> <C-L> <C-W>l
 
 " Buffer-related settings and mappings   {{{1
 set hidden          " don't unload buffer when it is abandoned
