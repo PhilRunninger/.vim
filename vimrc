@@ -67,7 +67,7 @@ set backspace=indent,eol,start      " How backspace works at start of line
 set whichwrap+=<,>,[,]              " Allow specified keys to cross line boundaries
 set ttimeoutlen=10                  " Time out time for key codes in milliseconds (Removes delay after <Esc> in Command mode.)
 let g:netrw_dirhistmax = 0          " Prevent creation of .netrwhist files.
-let mapleader='\'                   " Character to use for <leader> mappings
+let mapleader=' '                   " Character to use for <leader> mappings
 syntax on                           " Turn syntax highlighting on.
 
 " Change cursor shape between insert and normal mode in iTerm2.app
@@ -131,7 +131,7 @@ set winminheight=0  " minimum number of lines for any window
 set winminwidth=0   " minimum number of columns for any window
 
 " Shortcut to <C-W> because of the MacBook's stupid Ctrl key placement
-tnoremap <leader>w <C-W>
+tnoremap \w <C-W>
 nnoremap <silent> <leader>w <C-W>
 
 " Resize windows
