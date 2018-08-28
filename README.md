@@ -115,6 +115,7 @@ This is a great plugin for surrounding text with delimiters: `" ' [ ] ( ) { } < 
 
 Mode | Mapping | Function
 ---|---|---
+Terminal | `\w` | Replacement for `<C-W>` in a terminal window, because my leader key, `<space>`, caused annoying delays.
 Normal | `<leader>w` | Shortcut for `<C-W>` because of the Macbook's awkward Control key placement.
 Normal | `<C-H>` or `<leader>wh` | Go to next window to the left.
 Normal | `<C-J>` or `<leader>wj` | Go to next window down.

@@ -141,6 +141,16 @@ nnoremap <silent> <Right> 10<C-W>>
 nnoremap <silent> <Left> 10<C-W><
 nnoremap <silent> <leader>x <C-W>_<C-W>\|
 
+" Navigate Windows
+tnoremap <C-H> <C-W>h
+tnoremap <C-J> <C-W>j
+tnoremap <C-K> <C-W>k
+tnoremap <C-L> <C-W>l
+nnoremap <silent> <C-H> <C-W>h
+nnoremap <silent> <C-J> <C-W>j
+nnoremap <silent> <C-K> <C-W>k
+nnoremap <silent> <C-L> <C-W>l
+
 " Buffer-related settings and mappings   {{{1
 set hidden          " don't unload buffer when it is abandoned
 nnoremap <silent> # :buffer #<CR>
