@@ -19,13 +19,13 @@ $ vim
 
 The rest of the setup takes place in vim. Ignore the error messages when it first starts. They will go away after you run the `:PlugInstall` command and restart vim. This command is part of the [vim-plug](https://github.com/junegunn/vim-plug) plugin manager, which is embedded in this repository. (You should periodically upgrade vim-plug using the `:PlugUpgrade` command.)
 
-## Customized vimrc Post-Processing
+## Customized Post-Processing
 
-This setup is designed for my primary development environment on a MacBook. Using this setup in different environments may require additional steps or different setting values. To facilitate this, a post processing step can be added. This is done with a separate file - **post_vimrc** in the same folder as vimrc - that is sourced by vimrc at the end of its processing. In this file, you can change settings for the particular environment.
+This setup is designed for my primary development environment on a MacBook. Using this setup in different environments may require additional steps or different setting values. To facilitate this, use the `~/.vim/after/plugin` folder. Just add VimScript file there, and it will be executed after the `vimrc` file is finished being sourced. In this file, you can change settings for the particular environment.
 
 ### Example
 
-Here is the post_vimrc I use on my Windows environment, on which a different colorscheme looks better.
+Here is the file I use on my Windows environment, which has only 16 colors.
 
 ```vim
 " vim: filetype=vim
@@ -123,6 +123,7 @@ This is a great plugin for surrounding text with delimiters: `" ' [ ] ( ) { } < 
 
 Mode | Mapping | Function
 ---|---|---
+Terminal | `\w` | Replacement for `<C-W>` in a terminal window, because my leader key, `<space>`, caused annoying delays.
 Normal | `<leader>w` | Shortcut for `<C-W>` because of the Macbook's awkward Control key placement.
 Normal | `<C-H>` or `<leader>wh` | Go to next window to the left.
 Normal | `<C-J>` or `<leader>wj` | Go to next window down.

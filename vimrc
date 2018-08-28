@@ -38,7 +38,6 @@ silent! call plug#begin($VIMHOME.'/bundle')
     Plug 'git@github.com:tpope/vim-unimpaired'
     Plug 'git@github.com:tommcdo/vim-exchange.git'
     Plug 'git@github.com:chrisbra/Recover.vim.git'
-    Plug 'git@github.com:ggVGc/vim-fuzzysearch.git'
     Plug 'git@github.com:lfv89/vim-interestingwords.git'
 
     " Filetype-specific
@@ -68,7 +67,7 @@ set backspace=indent,eol,start      " How backspace works at start of line
 set whichwrap+=<,>,[,]              " Allow specified keys to cross line boundaries
 set ttimeoutlen=10                  " Time out time for key codes in milliseconds (Removes delay after <Esc> in Command mode.)
 let g:netrw_dirhistmax = 0          " Prevent creation of .netrwhist files.
-let mapleader=" "                   " Character to use for <leader> mappings
+let mapleader=' '                   " Character to use for <leader> mappings
 syntax on                           " Turn syntax highlighting on.
 
 " Change cursor shape between insert and normal mode in iTerm2.app
@@ -131,12 +130,22 @@ set splitright      " new window is put right of the current one
 set winminheight=0  " minimum number of lines for any window
 set winminwidth=0   " minimum number of columns for any window
 
+" Shortcut to <C-W> because of the MacBook's stupid Ctrl key placement
+tnoremap \w <C-W>
 nnoremap <silent> <leader>w <C-W>
+
+" Resize windows
 nnoremap <silent> <Up> 5<C-W>+
 nnoremap <silent> <Down> 5<C-W>-
 nnoremap <silent> <Right> 10<C-W>>
 nnoremap <silent> <Left> 10<C-W><
 nnoremap <silent> <leader>x <C-W>_<C-W>\|
+
+" Navigate Windows
+tnoremap <C-H> <C-W>h
+tnoremap <C-J> <C-W>j
+tnoremap <C-K> <C-W>k
+tnoremap <C-L> <C-W>l
 nnoremap <silent> <C-H> <C-W>h
 nnoremap <silent> <C-J> <C-W>j
 nnoremap <silent> <C-K> <C-W>k
@@ -252,6 +261,18 @@ augroup nerdTreeEvents                 " NERDTree-specific events   {{{2
     autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" | b# | endif
 augroup END
 
+function! AutoNTFinder()
+    if g:NERDTree.IsOpen() && &buftype == ''
+        let l:winnr = winnr()
+        let l:altwinnr = winnr('#')
+
+        :NERDTreeFind
+
+        execute l:altwinnr . 'wincmd w'
+        execute l:winnr . 'wincmd w'
+    endif
+endfunction
+
 if v:version > 703                     " Change statusline color, depending on mode.   {{{2
     augroup setStatuslineColors
         autocmd!
@@ -261,13 +282,6 @@ if v:version > 703                     " Change statusline color, depending on m
 endif
 
 " Settings for managed plugins {{{1
-    " FuzzySearch   {{{2
-    let g:fuzzysearch_prompt = '🔍'
-    let g:fuzzysearch_hlsearch = 0
-    let g:fuzzysearch_max_history = 50
-    let g:fuzzysearch_match_spaces = 1
-    nnoremap \ :FuzzySearch<CR>
-
     " ALE   {{{2
     let g:ale_linters = {
                       \     'erlang': ['syntaxerl']
@@ -313,18 +327,6 @@ endif
     let NERDTreeCascadeSingleChildDir =     0
     let NERDTreeCascadeOpenSingleChildDir = 1
     let NERDTreeStatusline =                '%#NonText#'
-
-    function! AutoNTFinder()
-        if g:NERDTree.IsOpen() && &buftype == ''
-            let l:winnr = winnr()
-            let l:altwinnr = winnr('#')
-
-            :NERDTreeFind
-
-            execute l:altwinnr . 'wincmd w'
-            execute l:winnr . 'wincmd w'
-        endif
-    endfunction
 
     " Buffergator   {{{2
     nnoremap <silent> <leader>b :set lazyredraw<CR>:NERDTreeClose<CR>:BuffergatorOpen<CR>:set nolazyredraw<CR>
@@ -384,7 +386,7 @@ endif
 colorscheme gruvbox
 
 highlight Normal                                ctermbg=16   " Black Background
-highlight Folded         cterm=none ctermfg=239 ctermbg=232  " Gray on Almost Black
+highlight Folded         cterm=none ctermfg=8   ctermbg=234  " Gray on Almost Black
 highlight MatchParen     cterm=bold ctermfg=5   ctermbg=none " Magenta
 highlight WildMenu       cterm=none ctermfg=16  ctermbg=178  " Black on Gold
 highlight GitBranch      cterm=none ctermfg=12  ctermbg=17   " Blue on Dark Blue
@@ -410,18 +412,12 @@ endfunction
 
 set statusline=%3p%%\ %4v
 set statusline+=\ %#GitBranch#%(\ %{fugitive#head(8)}\ %)%*
-set statusline+=\ %{Map_ro_mod()}
 set statusline+=\ %{&ft}
 set statusline+=\ %{Map_ff()}
+set statusline+=%(\ %{Map_ro_mod()}%)
 set statusline+=\ %f
 set statusline+=%=
 set statusline+=%#ErrorMsg#%(\ %{LinterStatus()}\ %)%*
 set statusline+=%#Session#%(\ %{SessionNameStatusLineFlag()}\ %)%*
 
 call StatuslineColor(0)
-
-" Custom, machine-specific post processing   {{{1
-let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h') . '/post_vimrc'
-if filereadable(s:path)
-    execute 'source' s:path
-endif
