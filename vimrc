@@ -411,9 +411,3 @@ set statusline+=%#ErrorMsg#%(\ %{LinterStatus()}\ %)%*
 set statusline+=%#Session#%(\ %{SessionNameStatusLineFlag()}\ %)%*
 
 call StatuslineColor(0)
-
-" Custom, machine-specific post processing   {{{1
-let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h') . '/post_vimrc'
-if filereadable(s:path)
-    execute 'source' s:path
-endif
