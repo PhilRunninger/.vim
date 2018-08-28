@@ -386,7 +386,7 @@ endif
 colorscheme gruvbox
 
 highlight Normal                                ctermbg=16   " Black Background
-highlight Folded         cterm=none ctermfg=239 ctermbg=232  " Gray on Almost Black
+highlight Folded         cterm=none ctermfg=8   ctermbg=234  " Gray on Almost Black
 highlight MatchParen     cterm=bold ctermfg=5   ctermbg=none " Magenta
 highlight WildMenu       cterm=none ctermfg=16  ctermbg=178  " Black on Gold
 highlight GitBranch      cterm=none ctermfg=12  ctermbg=17   " Blue on Dark Blue
