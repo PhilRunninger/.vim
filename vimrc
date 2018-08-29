@@ -382,7 +382,9 @@ endif
 
 " Color Settings and Status Line   {{{1
 colorscheme gruvbox
+set background=dark
 
+unlet! g:colors_name
 highlight Normal                                ctermbg=16   " Black Background
 highlight Folded         cterm=none ctermfg=239 ctermbg=232  " Gray on Almost Black
 highlight MatchParen     cterm=bold ctermfg=5   ctermbg=none " Magenta
