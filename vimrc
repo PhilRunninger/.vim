@@ -131,7 +131,6 @@ set winminheight=0  " minimum number of lines for any window
 set winminwidth=0   " minimum number of columns for any window
 
 " Shortcut to <C-W> because of the MacBook's stupid Ctrl key placement
-tnoremap \w <C-W>
 nnoremap <silent> <leader>w <C-W>
 
 " Resize windows
@@ -142,14 +141,19 @@ nnoremap <silent> <Left> 10<C-W><
 nnoremap <silent> <leader>x <C-W>_<C-W>\|
 
 " Navigate Windows
-tnoremap <C-H> <C-W>h
-tnoremap <C-J> <C-W>j
-tnoremap <C-K> <C-W>k
-tnoremap <C-L> <C-W>l
 nnoremap <silent> <C-H> <C-W>h
 nnoremap <silent> <C-J> <C-W>j
 nnoremap <silent> <C-K> <C-W>k
 nnoremap <silent> <C-L> <C-W>l
+
+" Make similar mappings for terminal mode.
+if has("terminal")
+    tnoremap \w <C-W>
+    tnoremap <C-H> <C-W>h
+    tnoremap <C-J> <C-W>j
+    tnoremap <C-K> <C-W>k
+    tnoremap <C-L> <C-W>l
+endif
 
 " Buffer-related settings and mappings   {{{1
 set hidden          " don't unload buffer when it is abandoned
