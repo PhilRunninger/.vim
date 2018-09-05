@@ -7,9 +7,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
 
     " Coding / Development
     Plug 'git@github.com:tpope/vim-fugitive'
-    Plug 'git@github.com:Shougo/neosnippet'
     Plug 'git@github.com:w0rp/ale.git'
-    Plug 'git@github.com:PhilRunninger/vim-snippets'
     Plug 'git@github.com:airblade/vim-gitgutter'
     Plug 'git@github.com:tpope/vim-commentary.git'
     Plug 'git@github.com:diepm/vim-rest-console.git', { 'for': 'rest' }
@@ -19,7 +17,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
     " File Management
     Plug 'git@github.com:scrooloose/nerdtree'
     Plug 'git@github.com:PhilRunninger/nerdtree-buffer-ops.git'
-    Plug 'git@github.com:jeetsukumaran/vim-buffergator.git'
+    Plug 'git@github.com:PhilRunninger/bufselect.vim.git'
 
     " Colorschemes
     Plug 'git@github.com:guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
@@ -318,7 +316,7 @@ endif
     let g:snips_github = "https://github.com/PhilRunninger"
 
     " NERDTree   {{{2
-    nnoremap <silent> <leader>o :set lazyredraw<CR>:BuffergatorClose<CR>:NERDTreeFocus<CR>:set nolazyredraw<CR>
+    nnoremap <silent> <leader>o :NERDTreeFocus<CR>
     nnoremap <silent> <leader>f :NERDTreeFind<CR>
     let NERDTreeAutoCenter =                1
     let NERDTreeAutoCenterThreshold =       5
@@ -332,12 +330,8 @@ endif
     let NERDTreeCascadeOpenSingleChildDir = 1
     let NERDTreeStatusline =                '%#NonText#'
 
-    " Buffergator   {{{2
-    nnoremap <silent> <leader>b :set lazyredraw<CR>:NERDTreeClose<CR>:BuffergatorOpen<CR>:set nolazyredraw<CR>
-    let g:buffergator_split_size = 40
-    let g:buffergator_suppress_keymaps = 1
-    let g:buffergator_show_full_directory_path = 0
-    let g:buffergator_sort_regime = "basename"
+    " BufSelect   {{{2
+    nnoremap <silent> <leader>b :set lazyredraw<CR>:NERDTreeClose<CR>:ShowBufferList<CR>:set nolazyredraw<CR>
 
     " Presenting   {{{2
     let g:presenting_top_margin = 2
