@@ -7,6 +7,8 @@ silent! call plug#begin($VIMHOME.'/bundle')
 
     " Coding / Development
     Plug 'git@github.com:tpope/vim-fugitive'
+    Plug 'git@github.com:Shougo/neosnippet'
+    Plug 'git@github.com:PhilRunninger/vim-snippets'
     Plug 'git@github.com:w0rp/ale.git'
     Plug 'git@github.com:airblade/vim-gitgutter'
     Plug 'git@github.com:tpope/vim-commentary.git'
