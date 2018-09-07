@@ -320,17 +320,15 @@ endif
     " NERDTree   {{{2
     nnoremap <expr><leader>o bufname('%') == '-=[Buffers]=-' ? ":set lazyredraw\<CR>:normal q\<CR>:NERDTreeFocus\<CR>:set nolazyredraw\<CR>" : ":NERDTreeFocus\<CR>"
     nnoremap <silent> <leader>f :NERDTreeFind<CR>
-    let NERDTreeAutoCenter =                1
-    let NERDTreeAutoCenterThreshold =       5
-    let NERDTreeIgnore =                    ['\c^ntuser\..*']
-    let NERDTreeRespectWildIgnore =         1
-    let NERDTreeBookmarksFile =             $VIMHOME.'/cache/.NERDTreeBookmarks'
-    let NERDTreeQuitOnOpen =                1
-    let NERDTreeWinSize =                   40
-    let NERDTreeMinimalUI =                 1
-    let NERDTreeCascadeSingleChildDir =     0
-    let NERDTreeCascadeOpenSingleChildDir = 1
-    let NERDTreeStatusline =                '%#NonText#'
+    let NERDTreeIgnore            = ['\c^ntuser\..*']
+    let NERDTreeRespectWildIgnore = 1
+    let NERDTreeBookmarksFile     = $VIMHOME.'/cache/.NERDTreeBookmarks'
+    let NERDTreeQuitOnOpen        = 1
+    let NERDTreeWinSize           = 40
+    let NERDTreeMinimalUI         = 1
+    let NERDTreeStatusline        = '%#NonText#'
+    let NERDTreeMapOpenSplit      = 's'
+    let NERDTreeMapOpenVSplit     = 'v'
 
     " BufSelect   {{{2
     nnoremap <silent> <leader>b :set lazyredraw<CR>:NERDTreeClose<CR>:ShowBufferList<CR>:set nolazyredraw<CR>
