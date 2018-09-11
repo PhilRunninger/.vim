@@ -8,8 +8,8 @@ silent! call plug#begin($VIMHOME.'/bundle')
     " Coding / Development
     Plug 'git@github.com:tpope/vim-fugitive'
     Plug 'git@github.com:Shougo/neosnippet'
-    Plug 'git@github.com:w0rp/ale.git'
     Plug 'git@github.com:PhilRunninger/vim-snippets'
+    Plug 'git@github.com:w0rp/ale.git'
     Plug 'git@github.com:airblade/vim-gitgutter'
     Plug 'git@github.com:tpope/vim-commentary.git'
     Plug 'git@github.com:diepm/vim-rest-console.git', { 'for': 'rest' }
@@ -19,7 +19,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
     " File Management
     Plug 'git@github.com:scrooloose/nerdtree'
     Plug 'git@github.com:PhilRunninger/nerdtree-buffer-ops.git'
-    Plug 'git@github.com:jeetsukumaran/vim-buffergator.git'
+    Plug 'git@github.com:PhilRunninger/bufselect.vim.git'
 
     " Colorschemes
     Plug 'git@github.com:guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
@@ -131,7 +131,6 @@ set winminheight=0  " minimum number of lines for any window
 set winminwidth=0   " minimum number of columns for any window
 
 " Shortcut to <C-W> because of the MacBook's stupid Ctrl key placement
-tnoremap \w <C-W>
 nnoremap <silent> <leader>w <C-W>
 
 " Resize windows
@@ -142,14 +141,19 @@ nnoremap <silent> <Left> 10<C-W><
 nnoremap <silent> <leader>x <C-W>_<C-W>\|
 
 " Navigate Windows
-tnoremap <C-H> <C-W>h
-tnoremap <C-J> <C-W>j
-tnoremap <C-K> <C-W>k
-tnoremap <C-L> <C-W>l
 nnoremap <silent> <C-H> <C-W>h
 nnoremap <silent> <C-J> <C-W>j
 nnoremap <silent> <C-K> <C-W>k
 nnoremap <silent> <C-L> <C-W>l
+
+" Make similar mappings for terminal mode.
+if has("terminal")
+    tnoremap \w <C-W>
+    tnoremap <C-H> <C-W>h
+    tnoremap <C-J> <C-W>j
+    tnoremap <C-K> <C-W>k
+    tnoremap <C-L> <C-W>l
+endif
 
 " Buffer-related settings and mappings   {{{1
 set hidden          " don't unload buffer when it is abandoned
@@ -314,26 +318,20 @@ endif
     let g:snips_github = "https://github.com/PhilRunninger"
 
     " NERDTree   {{{2
-    nnoremap <silent> <leader>o :set lazyredraw<CR>:BuffergatorClose<CR>:NERDTreeFocus<CR>:set nolazyredraw<CR>
+    nnoremap <expr><leader>o bufname('%') == '-=[Buffers]=-' ? ":set lazyredraw\<CR>:normal q\<CR>:NERDTreeFocus\<CR>:set nolazyredraw\<CR>" : ":NERDTreeFocus\<CR>"
     nnoremap <silent> <leader>f :NERDTreeFind<CR>
-    let NERDTreeAutoCenter =                1
-    let NERDTreeAutoCenterThreshold =       5
-    let NERDTreeIgnore =                    ['\c^ntuser\..*']
-    let NERDTreeRespectWildIgnore =         1
-    let NERDTreeBookmarksFile =             $VIMHOME.'/cache/.NERDTreeBookmarks'
-    let NERDTreeQuitOnOpen =                1
-    let NERDTreeWinSize =                   40
-    let NERDTreeMinimalUI =                 1
-    let NERDTreeCascadeSingleChildDir =     0
-    let NERDTreeCascadeOpenSingleChildDir = 1
-    let NERDTreeStatusline =                '%#NonText#'
+    let NERDTreeIgnore            = ['\c^ntuser\..*']
+    let NERDTreeRespectWildIgnore = 1
+    let NERDTreeBookmarksFile     = $VIMHOME.'/cache/.NERDTreeBookmarks'
+    let NERDTreeQuitOnOpen        = 1
+    let NERDTreeWinSize           = 40
+    let NERDTreeMinimalUI         = 1
+    let NERDTreeStatusline        = '%#NonText#'
+    let NERDTreeMapOpenSplit      = 's'
+    let NERDTreeMapOpenVSplit     = 'v'
 
-    " Buffergator   {{{2
-    nnoremap <silent> <leader>b :set lazyredraw<CR>:NERDTreeClose<CR>:BuffergatorOpen<CR>:set nolazyredraw<CR>
-    let g:buffergator_split_size = 40
-    let g:buffergator_suppress_keymaps = 1
-    let g:buffergator_show_full_directory_path = 0
-    let g:buffergator_sort_regime = "basename"
+    " BufSelect   {{{2
+    nnoremap <silent> <leader>b :set lazyredraw<CR>:NERDTreeClose<CR>:ShowBufferList<CR>:set nolazyredraw<CR>
 
     " Presenting   {{{2
     let g:presenting_top_margin = 2
@@ -384,7 +382,9 @@ endif
 
 " Color Settings and Status Line   {{{1
 colorscheme gruvbox
+set background=dark
 
+unlet! g:colors_name
 highlight Normal                                ctermbg=16   " Black Background
 highlight Folded         cterm=none ctermfg=8   ctermbg=234  " Gray on Almost Black
 highlight MatchParen     cterm=bold ctermfg=5   ctermbg=none " Magenta
