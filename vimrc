@@ -297,7 +297,7 @@ endif
     let g:snips_github = "https://github.com/PhilRunninger"
 
     " NERDTree   {{{2
-    nnoremap <expr><leader>o bufname('%') == '-=[Buffers]=-' ? ":set lazyredraw\<CR>:normal q\<CR>:NERDTreeFocus\<CR>:set nolazyredraw\<CR>" : ":NERDTreeFocus\<CR>"
+    nnoremap <silent> <expr><leader>o bufname('%') == '-=[Buffers]=-' ? ":set lazyredraw\<CR>:normal q\<CR>:NERDTreeFocus\<CR>:set nolazyredraw\<CR>" : ":NERDTreeFocus\<CR>"
     nnoremap <silent> <leader>f :NERDTreeFind<CR>
     let NERDTreeIgnore            = ['\c^ntuser\..*']
     let NERDTreeRespectWildIgnore = 1
