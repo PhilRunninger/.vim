@@ -20,6 +20,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
     Plug 'git@github.com:scrooloose/nerdtree'
     Plug 'git@github.com:PhilRunninger/nerdtree-buffer-ops.git'
     Plug 'git@github.com:PhilRunninger/bufselect.vim.git'
+    Plug 'git@github.com:Xuyuanp/nerdtree-git-plugin.git'
 
     " Colorschemes
     Plug 'git@github.com:guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
@@ -242,7 +243,7 @@ augroup END
 
 augroup pivotalTrackerIDToCommitMesage " Grab PivotalTracker ID and start commit message.  {{{2
     autocmd!
-    autocmd BufReadPost COMMIT_EDITMSG execute "silent! normal! qzq/# On branch.\\{-}\\zs\\d\\{8,}\<CR>\"zy//e\<CR>gg\"zPI[#\<ESC>A] \<ESC>:1,1s/\\[#\\] //\<CR>"
+    autocmd BufReadPost COMMIT_EDITMSG execute "set colorcolumn=72|silent! normal! qzq/# On branch.\\{-}\\zs\\d\\{8,}\<CR>\"zy//e\<CR>gg\"zPI[#\<ESC>A] \<ESC>:1,1s/\\[#\\] //\<CR>"
 augroup END
 
 augroup vhtFileTypes                   " Set filetype of VHT Log files   {{{2
