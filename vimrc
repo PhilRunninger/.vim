@@ -43,7 +43,6 @@ silent! call plug#begin($VIMHOME.'/bundle')
     Plug 'git@github.com:lfv89/vim-interestingwords.git'
 
     " Filetype-specific
-    Plug 'git@github.com:suan/vim-instant-markdown.git', { 'for': 'markdown' }
     Plug 'git@github.com:tpope/vim-markdown', { 'for': 'markdown' }
     Plug 'git@github.com:tpope/vim-jdaddy', { 'for': 'json' }
     Plug 'git@github.com:elzr/vim-json', { 'for': 'json' }
@@ -261,26 +260,6 @@ augroup vhtFileTypes                   " Set filetype of VHT Log files   {{{2
     autocmd BufReadPost *.{[0123456789]}\\\{1,99\} set filetype=vht
 augroup END
 
-augroup nerdTreeEvents                 " NERDTree-specific events   {{{2
-    autocmd!
-    " Focus NERDTree on the current buffer
-    autocmd BufEnter * call AutoNTFinder()
-    " Prevent changing to another buffer in NERDTree window.
-    autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" | b# | endif
-augroup END
-
-function! AutoNTFinder()
-    if g:NERDTree.IsOpen() && &buftype == ''
-        let l:winnr = winnr()
-        let l:altwinnr = winnr('#')
-
-        :NERDTreeFind
-
-        execute l:altwinnr . 'wincmd w'
-        execute l:winnr . 'wincmd w'
-    endif
-endfunction
-
 if v:version > 703                     " Change statusline color, depending on mode.   {{{2
     augroup setStatuslineColors
         autocmd!
@@ -322,7 +301,7 @@ endif
     let g:snips_github = "https://github.com/PhilRunninger"
 
     " NERDTree   {{{2
-    nnoremap <expr><leader>o bufname('%') == '-=[Buffers]=-' ? ":set lazyredraw\<CR>:normal q\<CR>:NERDTreeFocus\<CR>:set nolazyredraw\<CR>" : ":NERDTreeFocus\<CR>"
+    nnoremap <silent> <expr><leader>o bufname('%') == '-=[Buffers]=-' ? ":set lazyredraw\<CR>:normal q\<CR>:NERDTreeFocus\<CR>:set nolazyredraw\<CR>" : ":NERDTreeFocus\<CR>"
     nnoremap <silent> <leader>f :NERDTreeFind<CR>
     let NERDTreeIgnore            = ['\c^ntuser\..*']
     let NERDTreeRespectWildIgnore = 1
