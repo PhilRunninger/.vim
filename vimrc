@@ -27,7 +27,9 @@ silent! call plug#begin($VIMHOME.'/bundle')
 
     " Miscellaneous Utilities
     Plug 'git@github.com:sotte/presenting.vim.git', { 'on': 'PresentingStart' }
-    Plug 'git@github.com:Shougo/neocomplete.vim'
+    if has("lua")
+        Plug 'git@github.com:Shougo/neocomplete.vim'
+    endif
     Plug 'git@github.com:mbbill/undotree', { 'on': 'UndotreeShow' }
     Plug 'git@github.com:junegunn/vim-easy-align'
     Plug 'git@github.com:mtth/scratch.vim'
@@ -51,7 +53,9 @@ silent! call plug#begin($VIMHOME.'/bundle')
     " Games
     Plug 'git@github.com:uguu-org/vim-matrix-screensaver.git', { 'on': 'Matrix' }
     Plug 'git@github.com:PhilRunninger/sokoban.vim.git', { 'on': ['Sokoban','SokobanH','SokobanV']}
-    Plug 'git@github.com:katono/rogue.vim.git', { 'on': [ 'Rogue', 'RogueScores', 'RogueRestore', 'RogueResume' ] }
+    if has("lua")
+        Plug 'git@github.com:katono/rogue.vim.git', { 'on': [ 'Rogue', 'RogueScores', 'RogueRestore', 'RogueResume' ] }
+    endif
 
 call plug#end()
 
@@ -347,7 +351,9 @@ endif
     inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
     inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
     inoremap <expr><Space> pumvisible() ? "\<C-y><Space>" : "\<Space>"
-    inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+    if has("lua")
+        inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+    endif
 
     " Undotree   {{{2
     nnoremap <silent> <leader>u :UndotreeShow<CR>
