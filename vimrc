@@ -370,7 +370,7 @@ colorscheme gruvbox
 set background=dark
 
 unlet! g:colors_name
-highlight Normal                                ctermbg=16   " Black Background
+highlight Normal                                ctermbg=NONE " Use terminal's Background color setting
 highlight Folded         cterm=none ctermfg=8   ctermbg=234  " Gray on Almost Black
 highlight MatchParen     cterm=bold ctermfg=5   ctermbg=none " Magenta
 highlight WildMenu       cterm=none ctermfg=16  ctermbg=178  " Black on Gold
