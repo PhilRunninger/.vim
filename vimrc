@@ -40,6 +40,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
     Plug 'git@github.com:tommcdo/vim-exchange.git'
     Plug 'git@github.com:chrisbra/Recover.vim.git'
     Plug 'git@github.com:lfv89/vim-interestingwords.git'
+    Plug 'git@github.com:chrisbra/unicode.vim.git'
 
     " Filetype-specific
     Plug 'git@github.com:tpope/vim-markdown', { 'for': 'markdown' }
@@ -359,6 +360,10 @@ endif
     let g:rogue#name = 'Ṕḧįḹ'
     let g:rogue#directory = $VIMHOME.'/cache'
     let g:rogue#fruit = 'pizza'
+
+    " unicode   {{{2
+    nnoremap ga :UnicodeName<CR>
+    inoremap <C-K> <Esc>:UnicodeSearch!<space>
 
 " Color Settings and Status Line   {{{1
 colorscheme gruvbox
