@@ -2,18 +2,18 @@
 
 ## Installation
 
-These instructions assume you will be running them from a bash shell. First, clone the repository into your home directory. On Windows, use the folder name `vimfiles`; on all other OSes, use the folder name `.vim`.
+These instructions assume you will be running them from a bash shell. First, clone the repository into your home directory. On Windows, use the folder name `vimfiles`; on all other OSes, use the folder default name.
 
 __Windows__
 
 ```
-$ git clone git@github.com:PhilRunninger/vim.git ~/vimfiles
+$ git clone git@github.com:PhilRunninger/.vim.git ~/vimfiles
 $ vim
 ```
 __Mac or Linux__
 
 ```
-$ git clone git@github.com:PhilRunninger/vim.git ~/.vim
+$ git clone git@github.com:PhilRunninger/.vim.git
 $ vim
 ```
 
