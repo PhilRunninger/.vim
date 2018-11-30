@@ -26,8 +26,8 @@ function! OpenMarkdownPreview() abort
             if b:port == 1
                 let b:port = 40500
             endif
-            if exists("$GRIP_USER") && exists("$GRIP_PASS")
-                let b:job = job_start('grip --user ' . $GRIP_USER . ' --pass ' . $GRIP_PASS . ' --title=' . escape(expand('%:t'),' ') . ' ' . b:tempfile . ' ' . b:port)
+            if exists("$GRIP_TOKEN")
+                let b:job = job_start('grip --pass ' . $GRIP_TOKEN . ' --title=' . escape(expand('%:t'),' ') . ' ' . b:tempfile . ' ' . b:port)
             else
                 let b:job = job_start('grip --title=' . escape(expand('%:t'),' ') . ' ' . b:tempfile . ' ' . b:port)
             endif
