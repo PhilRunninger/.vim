@@ -154,6 +154,7 @@ nnoremap <silent> <C-L> <C-W>l
 " Make similar mappings for terminal mode.
 if has("terminal")
     tnoremap \w <C-W>
+    tnoremap <Esc><Esc> <C-W>N
     tnoremap <C-H> <C-W>h
     tnoremap <C-J> <C-W>j
     tnoremap <C-K> <C-W>k
