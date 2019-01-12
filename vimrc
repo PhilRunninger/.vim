@@ -43,6 +43,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
     Plug 'git@github.com:chrisbra/Recover.vim.git'
     Plug 'git@github.com:lfv89/vim-interestingwords.git'
     Plug 'git@github.com:chrisbra/unicode.vim.git'
+    Plug 'git@github.com:RRethy/vim-illuminate.git'
 
     " Filetype-specific
     Plug 'git@github.com:tpope/vim-markdown', { 'for': 'markdown' }
