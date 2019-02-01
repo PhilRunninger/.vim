@@ -380,7 +380,7 @@ set background=dark
 unlet! g:colors_name
 highlight Normal                                ctermbg=NONE " Use terminal's Background color setting
 highlight Folded         cterm=none ctermfg=8   ctermbg=234  " Gray on Almost Black
-highlight MatchParen     cterm=bold ctermfg=5   ctermbg=none " Magenta
+highlight MatchParen     cterm=bold ctermfg=1   ctermbg=none " Red
 highlight WildMenu       cterm=none ctermfg=16  ctermbg=178  " Black on Gold
 highlight GitBranch      cterm=none ctermfg=12  ctermbg=17   " Blue on Dark Blue
 highlight Insert         cterm=none ctermfg=15  ctermbg=27   " White on Blue
