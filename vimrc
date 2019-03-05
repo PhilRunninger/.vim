@@ -7,20 +7,19 @@ silent! call plug#begin($VIMHOME.'/bundle')
 
     " Coding / Development
     Plug 'git@github.com:tpope/vim-fugitive'
-    Plug 'git@github.com:Shougo/neosnippet'
-    Plug 'git@github.com:PhilRunninger/vim-snippets'
     Plug 'git@github.com:w0rp/ale.git'
     Plug 'git@github.com:airblade/vim-gitgutter'
     Plug 'git@github.com:tpope/vim-commentary.git'
     Plug 'git@github.com:diepm/vim-rest-console.git', { 'for': 'rest' }
     Plug 'git@github.com:scrooloose/vim-slumlord'
     Plug 'git@github.com:aklt/plantuml-syntax', { 'for': 'uml' }
+    Plug 'git@github.com:vim-scripts/AnsiEsc.vim.git'
 
     " File Management
     Plug 'git@github.com:scrooloose/nerdtree'
     Plug 'git@github.com:PhilRunninger/nerdtree-buffer-ops.git'
-    Plug 'git@github.com:PhilRunninger/bufselect.vim.git'
     Plug 'git@github.com:Xuyuanp/nerdtree-git-plugin.git'
+    Plug 'git@github.com:PhilRunninger/bufselect.vim.git'
 
     " Colorschemes
     Plug 'git@github.com:guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
@@ -273,6 +272,9 @@ if v:version > 703                     " Change statusline color, depending on m
 endif
 
 " Settings for managed plugins {{{1
+    " ANSIEsc   {{{2
+    nnoremap <leader>a :AnsiEsc<CR>
+
     " ALE   {{{2
     let g:ale_linters = {
                       \     'erlang': ['syntaxerl']
@@ -289,20 +291,9 @@ endif
     nnoremap <silent> <F3> "zyiw/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
     vnoremap <silent> <F3> "zy/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
 
-    " NeoSnippet   {{{2
-    let g:neosnippet#disable_runtime_snippets = { '_' : 1  }
-    let g:neosnippet#enable_snipmate_compatibility = 1
-    let g:neosnippet#snippets_directory=$VIMHOME.'/bundle/vim-snippets/snippets'
-    let g:neosnippet#data_directory=$VIMHOME.'/cache/neosnippet'
-
     imap <C-O> <Plug>(neosnippet_expand_or_jump)
     smap <C-O> <Plug>(neosnippet_expand_or_jump)
     xmap <C-O> <Plug>(neosnippet_expand_target)
-
-    " vim-snippets   {{{2
-    let g:snips_author = "Phil Runninger"
-    let g:snips_email = "prunninger@vhtcx.com"
-    let g:snips_github = "https://github.com/PhilRunninger"
 
     " NERDTree   {{{2
     nnoremap <silent> <expr><leader>o bufname('%') == '-=[Buffers]=-' ? ":set lazyredraw\<CR>:normal q\<CR>:NERDTreeFocus\<CR>:set nolazyredraw\<CR>" : ":NERDTreeFocus\<CR>"
