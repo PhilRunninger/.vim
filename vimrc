@@ -173,6 +173,7 @@ set smartcase       " no ignore case when pattern has uppercase
 runtime macros/matchit.vim
 nnoremap <silent> n   nzzzv
 nnoremap <silent> N   Nzzzv
+nnoremap <silent> * *<C-O>
 vnoremap <silent> * :<C-U>
   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
   \gvy/<C-R><C-R>=substitute(
@@ -200,11 +201,12 @@ nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 nnoremap <leader>d<space> :%s/\s\+$//c<CR>
 
 " Show what highlighting is used under the cursor {{{1
-map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" ############################ BREAK BAD HABITS! ############################ {{{1
-" I keep pressing o on a fold to open it. Use za, zo, or zr instead, but don't give me a crutch.
+" Don't allow o to work on a fold. {{{1
 nnoremap <expr> o foldclosed('.')==-1 ? "o" : ""
+" Focus on the current fold, opening it and closing all others.
+nnoremap <leader>z zMzvzz
 
 " Auto-command Definitions   {{{1
 augroup reloadVimrc     " Re-source this file when saving it   {{{2
@@ -290,10 +292,7 @@ endif
     " Fugitive   {{{2
     nnoremap <silent> <F3> "zyiw/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
     vnoremap <silent> <F3> "zy/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
-
-    imap <C-O> <Plug>(neosnippet_expand_or_jump)
-    smap <C-O> <Plug>(neosnippet_expand_or_jump)
-    xmap <C-O> <Plug>(neosnippet_expand_target)
+    nnoremap <leader>G :Gstatus<CR>
 
     " NERDTree   {{{2
     nnoremap <silent> <expr><leader>o bufname('%') == '-=[Buffers]=-' ? ":set lazyredraw\<CR>:normal q\<CR>:NERDTreeFocus\<CR>:set nolazyredraw\<CR>" : ":NERDTreeFocus\<CR>"
