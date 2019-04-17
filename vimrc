@@ -13,7 +13,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
     Plug 'git@github.com:diepm/vim-rest-console.git', { 'for': 'rest' }
     Plug 'git@github.com:scrooloose/vim-slumlord'
     Plug 'git@github.com:aklt/plantuml-syntax', { 'for': 'uml' }
-    Plug 'git@github.com:vim-scripts/AnsiEsc.vim.git'
+    Plug 'git@github.com:vim-scripts/Improved-AnsiEsc.git'
 
     " File Management
     Plug 'git@github.com:scrooloose/nerdtree'
@@ -308,6 +308,7 @@ endif
     let NERDTreeMapOpenVSplit     = 'v'
 
     " BufSelect   {{{2
+    let g:BufSelectSortOrder = "Extension"
     nnoremap <silent> <leader>b :set lazyredraw<CR>:NERDTreeClose<CR>:ShowBufferList<CR>:set nolazyredraw<CR>
 
     " Presenting   {{{2
