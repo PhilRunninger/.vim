@@ -11,8 +11,6 @@ silent! call plug#begin($VIMHOME.'/bundle')
     Plug 'git@github.com:airblade/vim-gitgutter'
     Plug 'git@github.com:tpope/vim-commentary.git'
     Plug 'git@github.com:diepm/vim-rest-console.git', { 'for': 'rest' }
-    Plug 'git@github.com:scrooloose/vim-slumlord'
-    Plug 'git@github.com:aklt/plantuml-syntax', { 'for': 'uml' }
     Plug 'git@github.com:vim-scripts/Improved-AnsiEsc.git'
 
     " File Management
