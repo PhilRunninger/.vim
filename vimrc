@@ -71,6 +71,9 @@ set tags=./tags;/                   " List of filenames used by the tag command
 set backspace=indent,eol,start      " How backspace works at start of line
 set whichwrap+=<,>,[,]              " Allow specified keys to cross line boundaries
 set ttimeoutlen=10                  " Time out time for key codes in milliseconds (Removes delay after <Esc> in Command mode.)
+if &diff
+    set diffopt+=iwhite
+endif
 let g:netrw_dirhistmax = 0          " Prevent creation of .netrwhist files.
 let mapleader=' '                   " Character to use for <leader> mappings
 syntax on                           " Turn syntax highlighting on.
@@ -220,11 +223,13 @@ augroup trailingSpaces  " Turn off trailing space indicator in Insert mode   {{{
     autocmd InsertLeave * :set listchars+=trail:■
 augroup END
 
-augroup bufferEvents    " Keep cursor in original position when switching buffers   {{{2
-    autocmd!
-    autocmd bufleave * let b:winview = winsaveview()
-    autocmd bufenter * if(exists('b:winview')) | call winrestview(b:winview) | endif
-augroup END
+if !&diff        " Keep cursor in original position when switching buffers   {{{2
+    augroup bufferEvents
+        autocmd!
+        autocmd bufleave * let b:winview = winsaveview()
+        autocmd bufenter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+    augroup END
+endif
 set nostartofline
 
 augroup vimHelp         " Get help (with K key) when editing vimscript   {{{2
