@@ -256,7 +256,7 @@ augroup END
 
 augroup pivotalTrackerIDToCommitMesage " Grab PivotalTracker ID and start commit message.  {{{2
     autocmd!
-    autocmd BufReadPost COMMIT_EDITMSG execute "set colorcolumn=72|silent! normal! qzq/# On branch.\\{-}\\zs\\d\\{8,}\<CR>\"zy//e\<CR>gg\"zPI[#\<ESC>A] \<ESC>:1,1s/\\[#\\] //\<CR>"
+    autocmd BufReadPost COMMIT_EDITMSG execute "set colorcolumn=72|silent! normal! qzq/# On branch.\\{-}\\zs\\d\\{8,}\<CR>\"zy//e\<CR>:1,1s/\\[#z] //\<CR>ggI[#z] \<ESC>"
 augroup END
 
 augroup vhtFileTypes                   " Set filetype of VHT Log files   {{{2
