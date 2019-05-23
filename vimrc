@@ -61,6 +61,7 @@ silent! call plug#begin($VIMHOME.'/bundle')
 call plug#end()
 
 " Miscellaneous settings   {{{1
+set path+=**                        " search recursively for files with :find
 set autoread                        " automatically read file when changed outside of vim
 set encoding=utf-8                  " Sets the character encoding to use inside vim.
 set scrolloff=3                     " Minimum # of lines above and below cursor
