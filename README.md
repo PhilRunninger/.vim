@@ -1,23 +1,36 @@
 # My Vim Setup
 
 ## Installation
-
-These instructions assume you will be running them from a bash shell. First, clone the repository into your home directory. On Windows, use the folder name `vimfiles`; on all other OSes, use the folder default name.
-
-__Windows__
+### of vim...
+I've moved away from Homebrew for building my vim. Instead I've taken the bold move of building it from the source code. Here are the steps I followed to get the features I want/need.
 
 ```
-$ git clone git@github.com:PhilRunninger/.vim.git ~/vimfiles
-$ vim
+git clone git@github.com/vim/vim.git
+cd vim
 ```
-__Mac or Linux__
+Checkout the branch you want to build.
+```
+./configure --with-lua-prefix=/usr/local/Cellar/lua/5.3.5_1 --enable-luainterp --disable-gui --with-x  --enable-pythoninterp=yes --with-features=huge
+make
+sudo make install
+```
+
+### of this repo...
+These instructions assume you will be running them from a bash shell. First, clone the repository into your home directory. On Windows, use the folder name `vimfiles`; on all other OSes, use `.vim`, the default. Then finish by installing the plugins. The `PlugInstall` command is part of the [vim-plug](https://github.com/junegunn/vim-plug) plugin manager, which is embedded in this repository. (Periodically upgrade vim-plug using the `:PlugUpgrade` command.)
+
+#### Windows
 
 ```
-$ git clone git@github.com:PhilRunninger/.vim.git
-$ vim
+git clone git@github.com:PhilRunninger/.vim.git ~/vimfiles
+vim -c "PlugInstall|qa"
+```
+#### Mac or Linux
+
+```
+git clone git@github.com:PhilRunninger/.vim.git
+vim -c "PlugInstall|qa"
 ```
 
-The rest of the setup takes place in vim. Ignore the error messages when it first starts. They will go away after you run the `:PlugInstall` command and restart vim. This command is part of the [vim-plug](https://github.com/junegunn/vim-plug) plugin manager, which is embedded in this repository. (You should periodically upgrade vim-plug using the `:PlugUpgrade` command.)
 
 ## Customized Post-Processing
 
@@ -58,16 +71,15 @@ endif
 
 I change my vimrc way more often than is reasonable. As a result, it's hard to keep my key mappings' descriptions, formerly published here, up to date. In its place, I'm just going to list my favorite plugins and reasons why I like them.
 
-### [NERDTree](https://github.com/scrooloose/nerdtree) and [nerdtree-buffer-ops](https://github.com/PhilRunninger/nerdtree-buffer-ops.git)
+### [NERDTree](https://github.com/scrooloose/nerdtree)<br/>[nerdtree-buffer-ops](https://github.com/PhilRunninger/nerdtree-buffer-ops.git)<br/>[nerdtree-visual-selection](https://github.com/PhilRunninger/nerdtree-visual-selection.git)
 NERDTree is a tree explorer, useful for displaying your project tree in a side window. My mind grasps the tree paradigm better than others like fuzzy finders. In the spirit of full disclosure, I'm one of the collaborators of that project.
 
-The other is a plugin for a plugin. *(Can you say "recursion"?)* One of its two capabilities lets you close an open buffer from its location in the NERDTree window. The other changes the color of a file in the NERDTree window if it's open in the vim session.
+The others are plugins for a plugin. *(Can you say "recursion"?)* One of `nerdtree-buffer-ops`' two capabilities lets you close an open buffer from its location in the NERDTree window. The other changes the color of a file in the NERDTree window if it's open in the vim session.
+
+`nerdtree-visual-selection` lets you create a visual selection inside NERDTree, then delete the selected files from the disk, or open them in Vim (in the previous window, in split windows, or in separate tabs).
 
 ### [Fugitive](https://github.com/tpope/vim-fugitive)
 This is one that I don't use to its fullest extent. It's a very powerful in-Vim interface to Git commands. The commands I find most helpful are `:Gdiff` and `:Gblame` (usually to find out **when** a change occurred, not **who** did it.) When the mood strikes, I'll also use `:Gstatus` to review, stage, and commit changes.
-
-### [NeoSnippet](https://github.com/Shougo/neosnippet) and [vim-snippets](https://github.com/PhilRunninger/vim-snippets)
-This plugin inserts snippets of text at the current location, useful for stubbing out a new program. I have my own fork of snippets.
 
 ### [](https://github.com/w0rp/ale.git)
 ### [GitGutter](https://github.com/airblade/vim-gitgutter)
@@ -105,39 +117,17 @@ This is a great plugin for surrounding text with delimiters: `"` `'` `[ ]` `( )`
 
 ### [](https://github.com/tpope/vim-unimpaired)
 ### [](https://github.com/tommcdo/vim-exchange.git)
-### [](https://github.com/scrooloose/vim-slumlord)
 ### [](https://github.com/chrisbra/Recover.vim.git)
-### [](https://github.com/ggVGc/vim-fuzzysearch.git)
 ### [](https://github.com/lfv89/vim-interestingwords.git)
-### [](https://github.com/suan/vim-instant-markdown.git)
 ### [](https://github.com/tpope/vim-markdown)
 ### [](https://github.com/elzr/vim-json)
 ### [](https://github.com/vim-scripts/NSIS-syntax-highlighting)
 ### [](https://github.com/chrisbra/csv.vim)
 ### [](https://github.com/tpope/vim-jdaddy)
-### [](https://github.com/aklt/plantuml-syntax)
 
-### [Matrix screensaver](https://github.com/uguu-org/vim-matrix-screensaver.git), [Sokoban](https://github.com/PhilRunninger/sokoban.vim.git), and [Rogue](https://github.com/katono/rogue.vim.git)
+### [Matrix screensaver](https://github.com/uguu-org/vim-matrix-screensaver.git)<br/>[Sokoban](https://github.com/PhilRunninger/sokoban.vim.git)<br/>[Rogue](https://github.com/katono/rogue.vim.git)
 The occasional distractions from the dreary day-to-day work. Someday, I may try getting the Matrix screensaver to work faster.
 
-Sokoban is an old Sega Genesis game I had. The protagonist's goal was to earn enough money pushing boxes to their designated spots in the warehouse, so he could buy a fancy red car to impress his girlfriend. My fork sadly has no such backstory, but I believe it's a lot nicer than the version from which it came.
+Sokoban is an old Sega Genesis game I had. The protagonist's goal was to earn enough money pushing boxes to their designated spots in the warehouse, so he could buy a fancy red car to impress a girl. My fork sadly has no such backstory, but I believe it's a lot nicer than the version from which it came.
 
 Playing Rogue was how I spent A LOT of my time in the college computer lab. Yes, I had no life.
-
-## Custom Key Mappings
-
-### Window Movement/Sizing Shortcuts
-
-Mode | Mapping | Function
----|---|---
-Terminal | `\w` | Replacement for `<C-W>` in a terminal window, because my leader key, `<space>`, caused annoying delays.
-Normal | `<leader>w` | Shortcut for `<C-W>` because of the Macbook's awkward Control key placement.
-Normal | `<C-H>` or `<leader>wh` | Go to next window to the left.
-Normal | `<C-J>` or `<leader>wj` | Go to next window down.
-Normal | `<C-K>` or `<leader>wk` | Go to next window up.
-Normal | `<C-L>` or `<leader>wl` | Go to next window to the right.
-Normal | `Up` | Resize 5 rows taller. Same as `5<C-W>+`.
-Normal | `Down` | Resize 5 rows shorter. Same as `5<C-W>-`.
-Normal | `Left` | Resize 10 columns narrower. Same as `10<C-W><`.
-Normal | `Right` | Resize 10 columns wider. Same as `10<C-W>>`.
-Normal | `<leader>x` | Maximize current window. Same as <code>\<C-W>&#124;\<C-W>_</code>.
