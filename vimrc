@@ -165,11 +165,12 @@ if has("terminal")
     tnoremap <C-L> <C-W>l
 endif
 
-" Buffer-related settings and mappings   {{{1
+" Some helpful remappings {{{1
+" Buffer-related settings and mappings   {{{2
 set hidden          " don't unload buffer when it is abandoned
 nnoremap <silent> # :buffer #<CR>
 
-" Searching settings   {{{1
+" Searching settings   {{{2
 set hlsearch        " highlight matches with last search pattern
 set incsearch       " highlight match wile typing search pattern
 set ignorecase      " ignore case in search patterns
@@ -184,27 +185,28 @@ nnoremap <silent> <leader>/ :vimgrep "<C-R>/" %<CR>n:copen<CR>
 vnoremap <silent> <leader>/ y:vimgrep "<C-R>0" %<CR>/<C-R>0<CR>:copen<CR>
 nnoremap <silent> <leader><space> :nohlsearch<CR>
 
-" Swap j/k and gj/gk   {{{1
+" Swap j/k with gj/gk {{{2
 nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
 
-" Show/hide cursorline and cursorcolumn   {{{1
+" Show/hide cursorline and cursorcolumn   {{{2
 nnoremap <silent> + :set cursorline! cursorcolumn!<CR>
 nnoremap <silent> - :set cursorline!<CR>
 nnoremap <silent> \| :set cursorcolumn!<CR>
 
-" Change cwd to current buffer's directory   {{{1
+" Change cwd to current buffer's directory   {{{2
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
-" Remove trailing spaces   {{{1
+" Remove trailing spaces   {{{2
 nnoremap <leader>d<space> :%s/\s\+$//c<CR>
 
-" Show what highlighting is used under the cursor {{{1
+" Show what highlighting is used under the cursor {{{2
 nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" Don't allow o to work on a fold. {{{1
+" Fold-related mappings {{{2
+" Don't allow o to work on a fold.
 nnoremap <expr> o foldclosed('.')==-1 ? "o" : ""
 " Focus on the current fold, opening it and closing all others.
 nnoremap <leader>z zMzvzz
