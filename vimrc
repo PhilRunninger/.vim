@@ -13,6 +13,10 @@ silent! call plug#begin($VIMHOME.'/bundle')
     Plug 'git@github.com:diepm/vim-rest-console.git', { 'for': 'rest' }
     Plug 'git@github.com:vim-scripts/Improved-AnsiEsc.git'
 
+    " Vimscript Debugging
+    Plug 'git@github.com:vim-scripts/genutils.git'
+    Plug 'git@github.com:albfan/vim-breakpts.git'
+
     " File Management
     Plug 'git@github.com:scrooloose/nerdtree'
     Plug 'git@github.com:PhilRunninger/nerdtree-buffer-ops.git'
