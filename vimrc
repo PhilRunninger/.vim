@@ -175,9 +175,6 @@ set incsearch       " highlight match wile typing search pattern
 set ignorecase      " ignore case in search patterns
 set smartcase       " no ignore case when pattern has uppercase
 runtime macros/matchit.vim
-nnoremap <silent> n   nzzzv
-nnoremap <silent> N   Nzzzv
-nnoremap <silent> * *<C-O>
 vnoremap <silent> * :<C-U>
   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
   \gvy/<C-R><C-R>=substitute(
