@@ -1,3 +1,7 @@
+if !executable("grip")
+    finish
+endif
+
 augroup markdownPreview
     autocmd!
     autocmd BufWinEnter <buffer> call OpenMarkdownPreview()
