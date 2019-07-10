@@ -10,8 +10,11 @@ augroup markdownPreview
 augroup END
 
 function! s:CleanUp()
-    call job_stop(getbufvar(str2nr("<abuf>"), "job"))
-    call delete(getbufvar(str2nr("<abuf>"), "tempfile"))
+    try
+        call job_stop(getbufvar(str2nr("<abuf>"), "job"))
+        call delete(getbufvar(str2nr("<abuf>"), "tempfile"))
+    catch
+    endtry
     autocmd! markdownPreview * <afile>
 endfunction
 
