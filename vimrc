@@ -327,7 +327,7 @@ endif
     " Presenting   {{{2
     let g:presenting_top_margin = 2
 
-    " NeoComplCache   {{{2
+    " NeoComplete   {{{2
     set completeopt=longest,menuone
 
     let g:neocomplete#enable_ignore_case = 1
@@ -407,12 +407,12 @@ function! Map_ro_mod()
     return (&modifiable ? (&readonly ? "🔐" : "") : "🔒") . (&modified ? "🔴" : "")
 endfunction
 
-set statusline=%4l/%4L\ %3v
+set statusline=%3l/%L\ %3v
 set statusline+=\ %#GitBranch#%(\ %{fugitive#head(8)}\ %)%*
 set statusline+=\ %{&ft}
 set statusline+=\ %{Map_ff()}
 set statusline+=%(\ %{Map_ro_mod()}%)
-set statusline+=\ %t
+set statusline+=\ %f
 set statusline+=%=
 set statusline+=%#ErrorMsg#%(\ %{LinterStatus()}\ %)%*
 set statusline+=%#Session#%(\ %{SessionNameStatusLineFlag()}\ %)%*
