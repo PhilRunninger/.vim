@@ -320,6 +320,10 @@ endif
     let g:BufSelectSortOrder = "Extension"
     nnoremap <silent> <leader>b :set lazyredraw<CR>:NERDTreeClose<CR>:ShowBufferList<CR>:set nolazyredraw<CR>
 
+    " REST Console   {{{2
+    let g:vrc_show_command = 1
+    let g:vrc_trigger = '<leader>c'
+
     " Presenting   {{{2
     let g:presenting_top_margin = 2
 
