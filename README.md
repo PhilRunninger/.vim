@@ -7,7 +7,7 @@ I've moved away from Homebrew for building my vim. Instead I've taken the bold m
 ```bash
 git clone git@github.com/vim/vim.git
 cd vim
-git checkout master
+git checkout master  # or other branch/tag
 git pull
 ./configure --with-lua-prefix=/usr/local/Cellar/lua/5.3.5_1 --enable-luainterp --disable-gui --enable-pythoninterp=yes --with-features=huge
 make
@@ -15,21 +15,22 @@ sudo make install
 ```
 
 ### of this repo...
-These instructions assume you will be running them from a bash shell. First, clone the repository into your home directory. On Windows, use the folder name `vimfiles`; on all other OSes, use `.vim`, the default. Then finish by installing the plugins. The `PlugInstall` command is part of the [vim-plug](https://github.com/junegunn/vim-plug) plugin manager, which is embedded in this repository. (Periodically upgrade vim-plug using the `:PlugUpgrade` command.)
+First, clone the repository into your home directory, and then update its submodules. On Windows, use the folder name `vimfiles`; on all other OSes, use `.vim`, the default.
 
 #### Windows
 
 ```bash
 git clone git@github.com:PhilRunninger/.vim.git ~/vimfiles
-vim -c "PlugInstall|qa"
+cd vimfiles
+git submodule update --init
 ```
 #### Mac or Linux
 
 ```bash
 git clone git@github.com:PhilRunninger/.vim.git
-vim -c "PlugInstall|qa"
+cd .vim
+git submodule update --init
 ```
-
 
 ## Customized Post-Processing
 

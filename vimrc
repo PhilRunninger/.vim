@@ -3,62 +3,72 @@
 let $VIMHOME=expand('<sfile>:p:h')
 
 " Plugin Management  {{{1
-silent! call plug#begin($VIMHOME.'/bundle')
+" Add new packages as submodules like so:
+"   cd ~/.vim
+"   git submodule add --name nerdtree git@github.com:scrooloose/nerdtree pack/bundle/opt/nerdtree
+if has("packages")
 
     " Coding / Development
-    Plug 'git@github.com:tpope/vim-fugitive'
-    Plug 'git@github.com:w0rp/ale.git'
-    Plug 'git@github.com:airblade/vim-gitgutter'
-    Plug 'git@github.com:tpope/vim-commentary.git'
-    Plug 'git@github.com:diepm/vim-rest-console.git', { 'for': 'rest' }
-    Plug 'git@github.com:vim-scripts/Improved-AnsiEsc.git'
+    packadd! vim-fugitive
+    packadd! ale
+    packadd! vim-gitgutter
+    packadd! vim-commentary
+    packadd! vim-rest-console
+    packadd! Improved-AnsiEsc
 
     " File Management
-    Plug 'git@github.com:scrooloose/nerdtree'
-    Plug 'git@github.com:PhilRunninger/nerdtree-buffer-ops.git'
-    Plug 'git@github.com:PhilRunninger/nerdtree-visual-selection.git'
-    " Plug 'git@github.com:Xuyuanp/nerdtree-git-plugin.git'
-    " Plug 'git@github.com:ryanoasis/vim-devicons.git'
-    Plug 'git@github.com:PhilRunninger/bufselect.vim.git'
+    packadd! nerdtree
+    packadd! nerdtree-buffer-ops
+    packadd! nerdtree-visual-selection
+    " packadd! nerdtree-git-plugin
+    " packadd! vim-devicons
+    packadd! bufselect
 
     " Colorschemes
-    Plug 'git@github.com:guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
-    Plug 'git@github.com:morhetz/gruvbox.git'
+    packadd! xterm-color-table
+    packadd! gruvbox
 
     " Miscellaneous Utilities
-    Plug 'git@github.com:sotte/presenting.vim.git', { 'on': 'PresentingStart' }
+    packadd! presenting
     if has("lua")
-        Plug 'git@github.com:Shougo/neocomplete.vim'
+        packadd! neocomplete
     endif
-    Plug 'git@github.com:mbbill/undotree', { 'on': 'UndotreeShow' }
-    Plug 'git@github.com:junegunn/vim-easy-align'
-    Plug 'git@github.com:mtth/scratch.vim'
-    Plug 'git@github.com:PhilRunninger/vim-sessions.git'
-    Plug 'git@github.com:kshenoy/vim-signature'
-    Plug 'git@github.com:tpope/vim-repeat'
-    Plug 'git@github.com:tpope/vim-surround'
-    Plug 'git@github.com:tpope/vim-unimpaired'
-    Plug 'git@github.com:tommcdo/vim-exchange.git'
-    Plug 'git@github.com:chrisbra/Recover.vim.git'
-    Plug 'git@github.com:lfv89/vim-interestingwords.git'
-    Plug 'git@github.com:chrisbra/unicode.vim.git'
-    Plug 'git@github.com:RRethy/vim-illuminate.git'
+    packadd! undotree
+    packadd! vim-easy-align
+    packadd! scratch
+    packadd! vim-sessions
+    packadd! vim-signature
+    packadd! vim-repeat
+    packadd! vim-surround
+    packadd! vim-unimpaired
+    packadd! vim-exchange
+    packadd! Recover
+    packadd! vim-interestingwords
+    packadd! unicode
+    packadd! vim-illuminate
 
     " Filetype-specific
-    Plug 'git@github.com:tpope/vim-markdown', { 'for': 'markdown' }
-    Plug 'git@github.com:tpope/vim-jdaddy', { 'for': 'json' }
-    Plug 'git@github.com:elzr/vim-json', { 'for': 'json' }
-    Plug 'git@github.com:vim-scripts/NSIS-syntax-highlighting', { 'for': ['nsi', 'nsh'] }
-    Plug 'git@github.com:chrisbra/csv.vim', { 'for': 'csv' }
+    packadd! vim-markdown
+    packadd! vim-jdaddy
+    packadd! vim-json
+    packadd! NSIS-syntax-highlighting
+    packadd! csv
 
     " Games
-    Plug 'git@github.com:uguu-org/vim-matrix-screensaver.git', { 'on': 'Matrix' }
-    Plug 'git@github.com:PhilRunninger/sokoban.vim.git', { 'on': ['Sokoban','SokobanH','SokobanV']}
+    packadd! vim-matrix-screensaver
+    packadd! sokoban
     if has("lua")
-        Plug 'git@github.com:katono/rogue.vim.git', { 'on': [ 'Rogue', 'RogueScores', 'RogueRestore', 'RogueResume' ] }
+        packadd! rogue
     endif
+else
+    source $VIMHOME/pack/bundle/opt/vim-pathogen/autoload/pathogen
+    call pathogen#infect('pack/bundle/opt/{}')
+endif
 
-call plug#end()
+" Must come AFTER the :packadd! calls above; otherwise, the contents of package 'ftdetect'
+" directories won't be evaluated.
+filetype indent plugin on
+syntax on                           " Turn syntax highlighting on.
 
 " Miscellaneous settings   {{{1
 set path+=**                        " search recursively for files with :find
@@ -77,7 +87,6 @@ if &diff
 endif
 let g:netrw_dirhistmax = 0          " Prevent creation of .netrwhist files.
 let mapleader=' '                   " Character to use for <leader> mappings
-syntax on                           " Turn syntax highlighting on.
 
 " Change cursor shape between insert and normal mode in iTerm2.app
 if $TERM_PROGRAM =~ "iTerm"
