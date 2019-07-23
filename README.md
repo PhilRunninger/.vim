@@ -4,13 +4,12 @@
 ### of vim...
 I've moved away from Homebrew for building my vim. Instead I've taken the bold move of building it from the source code. Here are the steps I followed to get the features I want/need.
 
-```
+```bash
 git clone git@github.com/vim/vim.git
 cd vim
-```
-Checkout the branch you want to build.
-```
-./configure --with-lua-prefix=/usr/local/Cellar/lua/5.3.5_1 --enable-luainterp --disable-gui --with-x  --enable-pythoninterp=yes --with-features=huge
+git checkout master
+git pull
+./configure --with-lua-prefix=/usr/local/Cellar/lua/5.3.5_1 --enable-luainterp --disable-gui --enable-pythoninterp=yes --with-features=huge
 make
 sudo make install
 ```
@@ -20,13 +19,13 @@ These instructions assume you will be running them from a bash shell. First, clo
 
 #### Windows
 
-```
+```bash
 git clone git@github.com:PhilRunninger/.vim.git ~/vimfiles
 vim -c "PlugInstall|qa"
 ```
 #### Mac or Linux
 
-```
+```bash
 git clone git@github.com:PhilRunninger/.vim.git
 vim -c "PlugInstall|qa"
 ```
@@ -128,6 +127,6 @@ This is a great plugin for surrounding text with delimiters: `"` `'` `[ ]` `( )`
 ### [Matrix screensaver](https://github.com/uguu-org/vim-matrix-screensaver.git)<br/>[Sokoban](https://github.com/PhilRunninger/sokoban.vim.git)<br/>[Rogue](https://github.com/katono/rogue.vim.git)
 The occasional distractions from the dreary day-to-day work. Someday, I may try getting the Matrix screensaver to work faster.
 
-Sokoban is an old Sega Genesis game I had. The protagonist's goal was to earn enough money pushing boxes to their designated spots in the warehouse, so he could buy a fancy red car to impress a girl. My fork sadly has no such backstory, but I believe it's a lot nicer than the version from which it came.
+Sokoban is an old [Sega Genesis game](https://segaretro.org/Shove_It!_...The_Warehouse_Game) I had. The protagonist's goal was to earn enough money pushing boxes to their designated spots in the warehouse, so he could buy a fancy red car to impress a girl. My fork sadly has no such backstory, but I believe it's a lot nicer than the fork from which it came.
 
 Playing Rogue was how I spent A LOT of my time in the college computer lab. Yes, I had no life.
