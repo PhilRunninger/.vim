@@ -3,66 +3,44 @@
 let $VIMHOME=expand('<sfile>:p:h')
 
 " Plugin Management  {{{1
+
 " Add new packages as submodules like so:
 "   cd ~/.vim
 "   git submodule add --name nerdtree git@github.com:scrooloose/nerdtree pack/bundle/opt/nerdtree
+
+" In the list below, packages that are specified as:
+"  - "Strings" are added
+"  - {Dictionaries} are added conditionally, based on the "has" or "exists" key.
+"  - Anything else are skipped
+let s:packages  = ['vim-fugitive', 'ale', 'vim-gitgutter', 'vim-commentary', 'vim-rest-console', 'Improved-AnsiEsc'] " Coding / Development
+let s:packages += ['nerdtree', 'nerdtree-buffer-ops', 'nerdtree-visual-selection', ['nerdtree-git-plugin'], ['vim-devicons'], {'name':'bufselect','exists':'*execute'}] " File Management
+let s:packages += ['xterm-color-table', 'gruvbox'] " Colorschemes
+let s:packages += ['presenting', {'name':'neocomplete', 'has':'lua'}, 'undotree', 'vim-easy-align', 'scratch', 'vim-sessions', 'vim-signature'] " Miscellaneous Utilities
+let s:packages += ['vim-repeat', 'vim-surround', 'vim-unimpaired', 'vim-exchange', 'Recover', 'vim-interestingwords', 'unicode', 'vim-illuminate'] " More Miscellaneous Utilities
+let s:packages += ['vim-markdown', 'vim-jdaddy', 'vim-json', 'NSIS-syntax-highlighting', 'csv'] " Filetype-specific
+let s:packages += ['vim-matrix-screensaver', 'sokoban', {'name':'rogue', 'has':'lua'}] " Games
+
+let s:filtered_packages = []
+for s:pkg in s:packages
+    if type(s:pkg) == type("")
+        let s:filtered_packages += [s:pkg]
+    elseif type(s:pkg) == type({})
+        if (!has_key(s:pkg,'has') || has(s:pkg['has'])) && (!has_key(s:pkg,'exists') || exists(s:pkg['exists']))
+            let s:filtered_packages += [s:pkg['name']]
+        endif
+    endif
+    unlet s:pkg
+endfor
+
 if has("packages")
-
-    " Coding / Development
-    packadd! vim-fugitive
-    packadd! ale
-    packadd! vim-gitgutter
-    packadd! vim-commentary
-    packadd! vim-rest-console
-    packadd! Improved-AnsiEsc
-
-    " File Management
-    packadd! nerdtree
-    packadd! nerdtree-buffer-ops
-    packadd! nerdtree-visual-selection
-    " packadd! nerdtree-git-plugin
-    " packadd! vim-devicons
-    packadd! bufselect
-
-    " Colorschemes
-    packadd! xterm-color-table
-    packadd! gruvbox
-
-    " Miscellaneous Utilities
-    packadd! presenting
-    if has("lua")
-        packadd! neocomplete
-    endif
-    packadd! undotree
-    packadd! vim-easy-align
-    packadd! scratch
-    packadd! vim-sessions
-    packadd! vim-signature
-    packadd! vim-repeat
-    packadd! vim-surround
-    packadd! vim-unimpaired
-    packadd! vim-exchange
-    packadd! Recover
-    packadd! vim-interestingwords
-    packadd! unicode
-    packadd! vim-illuminate
-
-    " Filetype-specific
-    packadd! vim-markdown
-    packadd! vim-jdaddy
-    packadd! vim-json
-    packadd! NSIS-syntax-highlighting
-    packadd! csv
-
-    " Games
-    packadd! vim-matrix-screensaver
-    packadd! sokoban
-    if has("lua")
-        packadd! rogue
-    endif
+    for s:pkg in s:filtered_packages
+        execute 'packadd! '.s:pkg
+    endfor
 else
-    source $VIMHOME/pack/bundle/opt/vim-pathogen/autoload/pathogen
-    call pathogen#infect('pack/bundle/opt/{}')
+    source $VIMHOME/pack/bundle/opt/vim-pathogen/autoload/pathogen.vim
+    for s:pkg in s:filtered_packages
+        call pathogen#infect('pack/bundle/opt/'.s:pkg)
+    endfor
 endif
 
 " Must come AFTER the :packadd! calls above; otherwise, the contents of package 'ftdetect'
