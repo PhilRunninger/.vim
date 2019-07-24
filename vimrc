@@ -10,15 +10,52 @@ let $VIMHOME=expand('<sfile>:p:h')
 
 " In the list below, packages that are specified as:
 "  - "Strings" are added
-"  - {Dictionaries} are added conditionally, based on the "has" or "exists" key.
+"  - {Dictionaries} are added conditionally, based on the "has" and "exists" keys.
 "  - Anything else are skipped
-let s:packages  = ['vim-fugitive', 'ale', 'vim-gitgutter', 'vim-commentary', 'vim-rest-console', 'Improved-AnsiEsc'] " Coding / Development
-let s:packages += ['nerdtree', 'nerdtree-buffer-ops', 'nerdtree-visual-selection', ['nerdtree-git-plugin'], ['vim-devicons'], {'name':'bufselect','exists':'*execute'}] " File Management
-let s:packages += ['xterm-color-table', 'gruvbox'] " Colorschemes
-let s:packages += ['presenting', {'name':'neocomplete', 'has':'lua'}, 'undotree', 'vim-easy-align', 'scratch', 'vim-sessions', 'vim-signature'] " Miscellaneous Utilities
-let s:packages += ['vim-repeat', 'vim-surround', 'vim-unimpaired', 'vim-exchange', 'Recover', 'vim-interestingwords', 'unicode', 'vim-illuminate'] " More Miscellaneous Utilities
-let s:packages += ['vim-markdown', 'vim-jdaddy', 'vim-json', 'NSIS-syntax-highlighting', 'csv'] " Filetype-specific
-let s:packages += ['vim-matrix-screensaver', 'sokoban', {'name':'rogue', 'has':'lua'}] " Games
+
+" Coding / Development
+let s:packages  = ['vim-fugitive',
+                 \ 'ale',
+                 \ 'vim-gitgutter',
+                 \ 'vim-commentary',
+                 \ 'vim-rest-console',
+                 \ 'Improved-AnsiEsc']
+" File Management
+let s:packages += ['nerdtree',
+                 \ 'nerdtree-buffer-ops',
+                 \ 'nerdtree-visual-selection',
+                 \ ['nerdtree-git-plugin'],
+                 \ ['vim-devicons'],
+                 \ {'name':'bufselect','exists':'*execute'}]
+" Colorschemes
+let s:packages += ['xterm-color-table',
+                 \ 'gruvbox']
+" Miscellaneous Utilities
+let s:packages += ['presenting',
+                 \ {'name':'neocomplete', 'has':'lua'},
+                 \ 'undotree',
+                 \ 'vim-easy-align',
+                 \ 'scratch',
+                 \ 'vim-sessions',
+                 \ 'vim-signature',
+                 \ 'vim-repeat',
+                 \ 'vim-surround',
+                 \ 'vim-unimpaired',
+                 \ 'vim-exchange',
+                 \ 'Recover',
+                 \ 'vim-interestingwords',
+                 \ 'unicode',
+                 \ 'vim-illuminate']
+" Filetype-specific
+let s:packages += ['vim-markdown',
+                 \ 'vim-jdaddy',
+                 \ 'vim-json',
+                 \ 'NSIS-syntax-highlighting',
+                 \ 'csv']
+" Games
+let s:packages += ['vim-matrix-screensaver',
+                 \ 'sokoban',
+                 \ {'name':'rogue', 'has':'lua'}]
 
 let s:filtered_packages = []
 for s:pkg in s:packages
