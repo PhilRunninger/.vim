@@ -112,3 +112,6 @@
 [submodule "bufselect"]
 	path = pack/bundle/opt/bufselect
 	url = git@github.com:PhilRunninger/bufselect.vim.git
+[submodule "mintree"]
+	path = pack/bundle/opt/mintree
+	url = git@github.com:PhilRunninger/mintree.git
