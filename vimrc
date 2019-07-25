@@ -8,77 +8,70 @@ let $VIMHOME=expand('<sfile>:p:h')
 "   cd ~/.vim
 "   git submodule add --name nerdtree git@github.com:scrooloose/nerdtree pack/bundle/opt/nerdtree
 
-" In the list below, packages that are specified as:
-"  - "Strings" are added
-"  - {Dictionaries} are added conditionally, based on the "has" and "exists" keys.
-"  - Anything else are skipped
+function! s:Install(name, ...)
+    " name - plugin's submodule name as given in `git submodule add` command.
+    " a:1 - an optional dictionary that determines whether to install the plugin.
+    if a:0>0 && ( (has_key(a:1,'has')     && !has(a:1['has'])) ||
+                \ (has_key(a:1,'exists')  && !exists(a:1['exists'])) ||
+                \ (has_key(a:1,'version') && v:version < a:1['version']) )
+        echomsg a:name." was not loaded. Failed Prerequisite: ".string(a:1)
+        return
+    endif
+
+    if has("packages")
+        execute 'packadd! '.a:name
+    else
+        if !exists("*pathogen#infect")
+            source $VIMHOME/pack/bundle/opt/vim-pathogen/autoload/pathogen.vim
+        endif
+        call pathogen#infect('pack/bundle/opt/'.a:name)
+    endif
+endfunction
 
 " Coding / Development
-let s:packages  = ['vim-fugitive',
-                 \ 'ale',
-                 \ 'vim-gitgutter',
-                 \ 'vim-commentary',
-                 \ 'vim-rest-console',
-                 \ 'Improved-AnsiEsc']
+call s:Install('vim-fugitive')
+call s:Install('ale')
+call s:Install('vim-gitgutter')
+call s:Install('vim-commentary')
+call s:Install('vim-rest-console')
+call s:Install('Improved-AnsiEsc')
 " File Management
-let s:packages += ['nerdtree',
-                 \ 'nerdtree-buffer-ops',
-                 \ 'nerdtree-visual-selection',
-                 \ ['nerdtree-git-plugin'],
-                 \ ['vim-devicons'],
-                 \ {'name':'bufselect','exists':'*execute'}]
+" call s:Install('mintree')
+call s:Install('nerdtree')
+call s:Install('nerdtree-buffer-ops')
+call s:Install('nerdtree-visual-selection')
+" call s:Install('nerdtree-git-plugin')
+" call s:Install('vim-devicons')
+call s:Install('bufselect', {'version':'800'})
 " Colorschemes
-let s:packages += ['xterm-color-table',
-                 \ 'gruvbox']
+call s:Install('xterm-color-table')
+call s:Install('gruvbox')
 " Miscellaneous Utilities
-let s:packages += ['presenting',
-                 \ {'name':'neocomplete', 'has':'lua'},
-                 \ 'undotree',
-                 \ 'vim-easy-align',
-                 \ 'scratch',
-                 \ 'vim-sessions',
-                 \ 'vim-signature',
-                 \ 'vim-repeat',
-                 \ 'vim-surround',
-                 \ 'vim-unimpaired',
-                 \ 'vim-exchange',
-                 \ 'Recover',
-                 \ 'vim-interestingwords',
-                 \ 'unicode',
-                 \ 'vim-illuminate']
+call s:Install('presenting')
+call s:Install('neocomplete', {'has':'lua'})
+call s:Install('undotree')
+call s:Install('vim-easy-align')
+call s:Install('scratch')
+call s:Install('vim-sessions')
+call s:Install('vim-signature')
+call s:Install('vim-repeat')
+call s:Install('vim-surround')
+call s:Install('vim-unimpaired')
+call s:Install('vim-exchange')
+call s:Install('Recover')
+call s:Install('vim-interestingwords')
+call s:Install('unicode')
+call s:Install('vim-illuminate')
 " Filetype-specific
-let s:packages += ['vim-markdown',
-                 \ 'vim-jdaddy',
-                 \ 'vim-json',
-                 \ 'NSIS-syntax-highlighting',
-                 \ 'csv']
+call s:Install('vim-markdown')
+call s:Install('vim-jdaddy')
+call s:Install('vim-json')
+call s:Install('NSIS-syntax-highlighting')
+call s:Install('csv')
 " Games
-let s:packages += ['vim-matrix-screensaver',
-                 \ 'sokoban',
-                 \ {'name':'rogue', 'has':'lua'}]
-
-let s:filtered_packages = []
-for s:pkg in s:packages
-    if type(s:pkg) == type("")
-        let s:filtered_packages += [s:pkg]
-    elseif type(s:pkg) == type({})
-        if (!has_key(s:pkg,'has') || has(s:pkg['has'])) && (!has_key(s:pkg,'exists') || exists(s:pkg['exists']))
-            let s:filtered_packages += [s:pkg['name']]
-        endif
-    endif
-    unlet s:pkg
-endfor
-
-if has("packages")
-    for s:pkg in s:filtered_packages
-        execute 'packadd! '.s:pkg
-    endfor
-else
-    source $VIMHOME/pack/bundle/opt/vim-pathogen/autoload/pathogen.vim
-    for s:pkg in s:filtered_packages
-        call pathogen#infect('pack/bundle/opt/'.s:pkg)
-    endfor
-endif
+call s:Install('vim-matrix-screensaver')
+call s:Install('sokoban')
+call s:Install('rogue', {'has':'lua'})
 
 " Must come AFTER the :packadd! calls above; otherwise, the contents of package 'ftdetect'
 " directories won't be evaluated.
