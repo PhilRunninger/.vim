@@ -36,7 +36,7 @@ call s:Install('vim-commentary')
 call s:Install('vim-rest-console')
 call s:Install('Improved-AnsiEsc')
 " File Management
-" call s:Install('mintree')
+call s:Install('mintree')
 call s:Install('nerdtree')
 call s:Install('nerdtree-buffer-ops')
 call s:Install('nerdtree-visual-selection')
@@ -317,8 +317,6 @@ endif
     nnoremap <leader>G :Gstatus<CR>
 
     " NERDTree   {{{2
-    nnoremap <silent> <expr><leader>o bufname('%') == '-=[Buffers]=-' ? ":set lazyredraw\<CR>:normal q\<CR>:NERDTreeFocus\<CR>:set nolazyredraw\<CR>" : ":NERDTreeFocus\<CR>"
-    nnoremap <silent> <leader>f :NERDTreeFind<CR>
     let NERDTreeIgnore            = ['\c^ntuser\..*']
     let NERDTreeRespectWildIgnore = 1
     let NERDTreeBookmarksFile     = $VIMHOME.'/cache/.NERDTreeBookmarks'
@@ -331,7 +329,24 @@ endif
 
     " BufSelect   {{{2
     let g:BufSelectSortOrder = "Extension"
-    nnoremap <silent> <leader>b :set lazyredraw<CR>:NERDTreeClose<CR>:ShowBufferList<CR>:set nolazyredraw<CR>
+
+    " File/Buffer Explorer Setup {{{2
+    let g:MinTree = 0
+    function! s:SwitchFileBrowser()
+        let g:MinTree = !g:MinTree
+        if g:MinTree
+            nnoremap <silent> <expr><leader>o bufname('%') == '-=[Buffers]=-' ? ":set lazyredraw\<CR>:normal q\<CR>:MinTree\<CR>:set nolazyredraw\<CR>" : ":MinTree\<CR>"
+            nnoremap <silent> <leader>f :MinTreeFind<CR>
+            nnoremap <silent> <expr><leader>b bufname('%') == '=MinTree=' ? ":set lazyredraw\<CR>:normal q\<CR>:ShowBufferList\<CR>:set nolazyredraw\<CR>" : ":ShowBufferList\<CR>"
+        else
+            nnoremap <silent> <expr><leader>o bufname('%') == '-=[Buffers]=-' ? ":set lazyredraw\<CR>:normal q\<CR>:NERDTreeFocus\<CR>:set nolazyredraw\<CR>" : ":NERDTreeFocus\<CR>"
+            nnoremap <silent> <leader>f :NERDTreeFind<CR>
+            nnoremap <silent> <leader>b :set lazyredraw<CR>:NERDTreeClose<CR>:ShowBufferList<CR>:set nolazyredraw<CR>
+        endif
+    endfunction
+
+    call s:SwitchFileBrowser()
+    nnoremap <silent> <leader>t :call <SID>SwitchFileBrowser()<CR>:echomsg "Now using ".(g:MinTree?"MinTree.":"NERDTree.")<CR>
 
     " REST Console   {{{2
     let g:vrc_show_command = 1
