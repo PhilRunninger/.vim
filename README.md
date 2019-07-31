@@ -78,6 +78,9 @@ The others are plugins for a plugin. *(Can you say "recursion"?)* One of `nerdtr
 
 `nerdtree-visual-selection` lets you create a visual selection inside NERDTree, then delete the selected files from the disk, or open them in Vim (in the previous window, in split windows, or in separate tabs).
 
+### [MinTree](https://github.com/PhilRunninger/mintree.git)
+MinTree is a minimalist alternative to NERDTree that seeks to provide much faster response time, and an improved overall user experience. It uses many of the same default key mappings that NERDTree uses.
+
 ### [Fugitive](https://github.com/tpope/vim-fugitive)
 This is one that I don't use to its fullest extent. It's a very powerful in-Vim interface to Git commands. The commands I find most helpful are `:Gdiff` and `:Gblame` (usually to find out **when** a change occurred, not **who** did it.) When the mood strikes, I'll also use `:Gstatus` to review, stage, and commit changes.
 
