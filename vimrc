@@ -132,7 +132,6 @@ set number          " print the line number in front of each line
 set list                                            " show <tab> and <eol>
 set listchars=tab:●·,extends:→,precedes:←,trail:■   " characters for displaying in list mode
 set fillchars=stl:\ ,stlnc:\ ,vert:\                " characters to use for displaying special items
-set showtabline=0                                   " tells when the tab pages line is displayed
 set laststatus=2                                    " tells when last window has status line
 
 " Undo/Backup/Swap file settings   {{{1
@@ -395,8 +394,6 @@ endif
     " vim-sessions   {{{2
     set sessionoptions-=help
     set sessionoptions-=blank
-    set sessionoptions-=tabpages
-    let g:pathToSessions = $VIMHOME.'/cache/sessions'
 
     " rogue   {{{2
     let g:rogue#name = 'Ṕḧįḹ'
