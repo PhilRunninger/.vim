@@ -37,7 +37,7 @@ call s:Install('vim-commentary')
 call s:Install('vim-rest-console')
 call s:Install('Improved-AnsiEsc')
 " File Management
-call s:Install('mintree')
+call s:Install('mintree', {'version':'800'})
 call s:Install('nerdtree')
 call s:Install('nerdtree-buffer-ops')
 call s:Install('nerdtree-visual-selection')
