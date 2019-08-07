@@ -165,6 +165,10 @@ nnoremap <silent> <Up> 5<C-W>+
 nnoremap <silent> <Down> 5<C-W>-
 nnoremap <silent> <Right> 10<C-W>>
 nnoremap <silent> <Left> 10<C-W><
+nnoremap <silent> <S-Up> <C-W>+
+nnoremap <silent> <S-Down> <C-W>-
+nnoremap <silent> <S-Right> <C-W>>
+nnoremap <silent> <S-Left> <C-W><
 nnoremap <silent> <leader>x <C-W>_<C-W>\|
 
 " Navigate Windows
