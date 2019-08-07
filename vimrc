@@ -355,7 +355,7 @@ endif
 
     " REST Console   {{{2
     let g:vrc_show_command = 1
-    let g:vrc_trigger = '<leader>c'
+    nnoremap <silent> <leader>c :call VrcQuery()<CR>
 
     " Presenting   {{{2
     let g:presenting_top_margin = 2
