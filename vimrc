@@ -30,6 +30,7 @@ endfunction
 
 " Coding / Development
 call s:Install('vim-fugitive')
+call s:Install('gv')
 call s:Install('ale')
 call s:Install('vim-gitgutter')
 call s:Install('vim-commentary')
@@ -47,6 +48,7 @@ call s:Install('bufselect', {'version':'800'})
 call s:Install('xterm-color-table')
 call s:Install('gruvbox')
 " Miscellaneous Utilities
+call s:Install('tabline')
 call s:Install('presenting')
 call s:Install('neocomplete', {'has':'lua'})
 call s:Install('undotree')
