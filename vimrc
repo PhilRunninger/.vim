@@ -14,7 +14,7 @@ function! s:Install(name, ...)
     if a:0>0 && ( (has_key(a:1,'has')     && !has(a:1['has'])) ||
                 \ (has_key(a:1,'exists')  && !exists(a:1['exists'])) ||
                 \ (has_key(a:1,'version') && v:version < a:1['version']) )
-        echomsg a:name." was not loaded. Failed Prerequisite: ".string(a:1)
+        echomsg "  Plugin ".a:name." was not loaded. Failed Prerequisite: ".string(a:1)
         return
     endif
 
