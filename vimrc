@@ -31,7 +31,7 @@ endfunction
 " Coding / Development
 call s:Install('vim-fugitive')
 call s:Install('gv')
-call s:Install('ale')
+" call s:Install('ale')
 call s:Install('vim-gitgutter')
 call s:Install('vim-commentary')
 call s:Install('vim-rest-console')
@@ -445,7 +445,7 @@ set statusline+=\ %{Map_ff()}
 set statusline+=%(\ %{Map_ro_mod()}%)
 set statusline+=\ %f
 set statusline+=%=
-set statusline+=%#ErrorMsg#%(\ %{LinterStatus()}\ %)%*
+" set statusline+=%#ErrorMsg#%(\ %{LinterStatus()}\ %)%*
 set statusline+=%#Session#%(\ %{SessionNameStatusLineFlag()}\ %)%*
 
 call StatuslineColor(0)
