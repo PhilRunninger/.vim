@@ -355,7 +355,10 @@ endif
 
     " REST Console   {{{2
     let g:vrc_show_command = 1
-    nnoremap <silent> <leader>c :call VrcQuery()<CR>
+    augroup RESTConsole
+        autocmd!
+        autocmd FileType rest nnoremap <silent> <buffer> <leader>c :call VrcQuery()<CR>
+    augroup END
 
     " Presenting   {{{2
     let g:presenting_top_margin = 2
