@@ -30,8 +30,6 @@ endfunction
 
 " Coding / Development
 call s:Install('vim-fugitive')
-call s:Install('gv')
-" call s:Install('ale')
 call s:Install('vim-gitgutter')
 call s:Install('vim-commentary')
 call s:Install('vim-rest-console')
@@ -41,8 +39,6 @@ call s:Install('mintree', {'version':'800'})
 call s:Install('nerdtree')
 call s:Install('nerdtree-buffer-ops')
 call s:Install('nerdtree-visual-selection')
-" call s:Install('nerdtree-git-plugin')
-" call s:Install('vim-devicons')
 call s:Install('bufselect', {'version':'800'})
 " Colorschemes
 call s:Install('xterm-color-table')

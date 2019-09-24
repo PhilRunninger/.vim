@@ -1,9 +1,6 @@
 [submodule "vim-fugitive"]
 	path = pack/bundle/opt/vim-fugitive
 	url = git@github.com:tpope/vim-fugitive
-[submodule "ale"]
-	path = pack/bundle/opt/ale
-	url = git@github.com:w0rp/ale.git
 [submodule "vim-gitgutter"]
 	path = pack/bundle/opt/vim-gitgutter
 	url = git@github.com:airblade/vim-gitgutter
@@ -25,12 +22,6 @@
 [submodule "nerdtree-visual-selection"]
 	path = pack/bundle/opt/nerdtree-visual-selection
 	url = git@github.com:PhilRunninger/nerdtree-visual-selection.git
-[submodule "nerdtree-git-plugin"]
-	path = pack/bundle/opt/nerdtree-git-plugin
-	url = git@github.com:Xuyuanp/nerdtree-git-plugin.git
-[submodule "vim-devicons"]
-	path = pack/bundle/opt/vim-devicons
-	url = git@github.com:ryanoasis/vim-devicons.git
 [submodule "gruvbox"]
 	path = pack/bundle/opt/gruvbox
 	url = git@github.com:morhetz/gruvbox.git
@@ -115,9 +106,6 @@
 [submodule "mintree"]
 	path = pack/bundle/opt/mintree
 	url = git@github.com:PhilRunninger/mintree.git
-[submodule "gv"]
-	path = pack/bundle/opt/gv
-	url = git@github.com:junegunn/gv.vim.git
 [submodule "tabline"]
 	path = pack/bundle/opt/tabline
 	url = git@github.com:mkitt/tabline.vim.git
