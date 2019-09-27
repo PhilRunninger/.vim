@@ -167,20 +167,31 @@ nnoremap <silent> <S-Right> <C-W>>
 nnoremap <silent> <S-Left> <C-W><
 nnoremap <silent> <leader>x <C-W>_<C-W>\|
 
-" Navigate Windows
-nnoremap <silent> <C-H> <C-W>h
+" Navigate Windows and Tabs
+function! HorizontalWinTabSwitch(direction)
+    let info = getwininfo(win_getid())[0]
+    if a:direction == 'h' && info.wincol <= 1
+        execute 'tabprev|99wincmd l'
+    elseif a:direction == 'l' && info.wincol + info.width >= &columns
+        execute 'tabnext|99wincmd h'
+    else
+        execute 'wincmd '.a:direction
+    endif
+endfunction
+
+nnoremap <silent> <C-H> :call HorizontalWinTabSwitch('h')<CR>
 nnoremap <silent> <C-J> <C-W>j
 nnoremap <silent> <C-K> <C-W>k
-nnoremap <silent> <C-L> <C-W>l
+nnoremap <silent> <C-L> :call HorizontalWinTabSwitch('l')<CR>
 
 " Make similar mappings for terminal mode.
 if has("terminal")
     tnoremap \w <C-W>
     tnoremap <Esc><Esc> <C-W>N
-    tnoremap <C-H> <C-W>h
+    tnoremap <silent> <C-H> <C-W>N:call HorizontalWinTabSwitch('h')<CR>
     tnoremap <C-J> <C-W>j
     tnoremap <C-K> <C-W>k
-    tnoremap <C-L> <C-W>l
+    tnoremap <silent> <C-L> <C-W>N:call HorizontalWinTabSwitch('l')<CR>
 endif
 
 " Some helpful remappings {{{1
