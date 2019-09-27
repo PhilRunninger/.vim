@@ -187,7 +187,9 @@ nnoremap <silent> <C-L> :call HorizontalWinTabSwitch('l')<CR>
 " Make similar mappings for terminal mode.
 if has("terminal")
     tnoremap \w <C-W>
-    tnoremap <Esc><Esc> <C-W>N
+    tnoremap <Esc><Esc> <C-W>N:setlocal nonumber<CR>
+    tnoremap <PageUp> <C-W>N<C-B>
+    tnoremap <PageDown> <C-W>N<C-F>
     tnoremap <silent> <C-H> <C-W>N:call HorizontalWinTabSwitch('h')<CR>
     tnoremap <C-J> <C-W>j
     tnoremap <C-K> <C-W>k
