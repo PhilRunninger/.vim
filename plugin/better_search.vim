@@ -8,7 +8,6 @@ function! s:ToggleWord()
     else
         call add(s:words, l:word)
     endif
-    echomsg string(s:words)
     call s:CreateSearchString()
 endfunction
 
@@ -17,6 +16,7 @@ function! s:CreateSearchString()
         let @/ = ''
     else
         let @/ = '\(' . join(s:words,'\|') . '\)'
+        execute 'normal! n'
     endif
 endfunction
 
@@ -25,5 +25,5 @@ function! s:ClearSearchString()
     call s:CreateSearchString()
 endfunction
 
-nnoremap <silent> * :call <SID>ToggleWord()<CR>n
+nnoremap <silent> * :call <SID>ToggleWord()<CR>
 nnoremap <silent> <leader>* :call <SID>ClearSearchString()<CR>

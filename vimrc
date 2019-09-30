@@ -57,7 +57,6 @@ call s:Install('vim-surround')
 call s:Install('vim-unimpaired')
 call s:Install('vim-exchange')
 call s:Install('Recover')
-call s:Install('vim-interestingwords')
 call s:Install('unicode')
 call s:Install('vim-illuminate')
 " Filetype-specific
@@ -214,7 +213,7 @@ vnoremap <silent> * :<C-U>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 nnoremap <silent> <leader>/ :vimgrep "<C-R>/" %<CR>n:copen<CR>
 vnoremap <silent> <leader>/ y:vimgrep "<C-R>0" %<CR>/<C-R>0<CR>:copen<CR>
-nnoremap <silent> <leader><space> :nohlsearch<CR>
+nnoremap <silent> <leader><space> :set hlsearch!<CR>
 
 " Swap j/k with gj/gk {{{2
 nnoremap j gj
