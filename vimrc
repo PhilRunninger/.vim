@@ -312,18 +312,6 @@ endif
     " ANSIEsc   {{{2
     nnoremap <leader>a :AnsiEsc<CR>
 
-    " ALE   {{{2
-    let g:ale_linters = {
-                      \     'erlang': ['syntaxerl']
-                      \ }
-
-    function! LinterStatus() abort
-        let l:counts = ale#statusline#Count(bufnr(''))
-        let l:all_errors = l:counts.error + l:counts.style_error
-        let l:all_non_errors = l:counts.total - l:all_errors
-        return l:counts.total == 0 ? '' : printf( '%dW %dE', all_non_errors, all_errors)
-    endfunction
-
     " Fugitive   {{{2
     nnoremap <silent> <F3> "zyiw/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
     vnoremap <silent> <F3> "zy/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
@@ -456,7 +444,6 @@ set statusline+=\ %{Map_ff()}
 set statusline+=%(\ %{Map_ro_mod()}%)
 set statusline+=\ %f
 set statusline+=%=
-" set statusline+=%#ErrorMsg#%(\ %{LinterStatus()}\ %)%*
 set statusline+=%#Session#%(\ %{SessionNameStatusLineFlag()}\ %)%*
 
 call StatuslineColor(0)
