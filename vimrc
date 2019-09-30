@@ -254,7 +254,7 @@ augroup trailingSpaces  " Turn off trailing space indicator in Insert mode   {{{
     autocmd InsertLeave * :set listchars+=trail:■
 augroup END
 
-if !&diff        " Keep cursor in original position when switching buffers   {{{2
+if !&diff               " Keep cursor in original position when switching buffers   {{{2
     augroup bufferEvents
         autocmd!
         autocmd bufleave * let b:winview = winsaveview()
