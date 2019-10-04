@@ -186,7 +186,7 @@ nnoremap <silent> <C-L> :call WinTabSwitch('l')<CR>
 " Make similar mappings for terminal mode.
 if has("terminal")
     tnoremap \w <C-W>
-    tnoremap <Esc><Esc> <C-W>N:setlocal nonumber<CR>
+    tnoremap <Esc><Esc> <C-W>N<CR>
     tnoremap <PageUp> <C-W>N<C-B>
     tnoremap <PageDown> <C-W>N<C-F>
     tnoremap <silent> <C-H> <C-W>:call WinTabSwitch('h')<CR>
@@ -245,6 +245,11 @@ nnoremap <leader>z zMzvzz
 augroup reloadVimrc     " Re-source this file when saving it   {{{2
     autocmd!
     autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
+augroup END
+
+augroup terminalSettings " Turn off line numbers in Terminal windows.   {{{2
+    autocmd!
+    autocmd TerminalOpen * if &buftype == 'terminal' | setlocal nonumber | endif
 augroup END
 
 augroup trailingSpaces  " Turn off trailing space indicator in Insert mode   {{{2
