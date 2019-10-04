@@ -189,10 +189,10 @@ if has("terminal")
     tnoremap <Esc><Esc> <C-W>N:setlocal nonumber<CR>
     tnoremap <PageUp> <C-W>N<C-B>
     tnoremap <PageDown> <C-W>N<C-F>
-    tnoremap <silent> <C-H> <C-W>N:call WinTabSwitch('h')<CR>
-    tnoremap <silent> <C-J> <C-W>N:call WinTabSwitch('j')<CR>
-    tnoremap <silent> <C-K> <C-W>N:call WinTabSwitch('k')<CR>
-    tnoremap <silent> <C-L> <C-W>N:call WinTabSwitch('l')<CR>
+    tnoremap <silent> <C-H> <C-W>:call WinTabSwitch('h')<CR>
+    tnoremap <silent> <C-J> <C-W>:call WinTabSwitch('j')<CR>
+    tnoremap <silent> <C-K> <C-W>:call WinTabSwitch('k')<CR>
+    tnoremap <silent> <C-L> <C-W>:call WinTabSwitch('l')<CR>
 endif
 
 " Some helpful remappings {{{1
