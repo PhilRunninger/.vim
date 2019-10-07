@@ -272,17 +272,17 @@ augroup vimHelp         " Get help (with K key) when editing vimscript   {{{2
     autocmd FileType vim setlocal keywordprg=:help
 augroup END
 
-augroup checktime       " terminal mode hack for autoread option   {{{2
-    autocmd!
-    if !has("gui_running")
+if !has("gui_running")      " terminal mode hack for autoread option   {{{2
+    augroup checkTime
+        autocmd!
         "silent! necessary; otherwise, throws errors when using command line window.
         autocmd BufEnter        * silent! checktime
         autocmd CursorHold      * silent! checktime
         autocmd CursorHoldI     * silent! checktime
         autocmd CursorMoved     * silent! checktime
         autocmd CursorMovedI    * silent! checktime
-    endif
-augroup END
+    augroup END
+endif
 
 augroup jumpToPreviousLocation         " When editing a file, always jump to its last known cursor position.   {{{2
     autocmd!
