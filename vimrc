@@ -358,7 +358,7 @@ endif
     let g:vrc_show_command = 1
     augroup RESTConsole
         autocmd!
-        autocmd FileType rest nnoremap <silent> <buffer> <leader>c :call VrcQuery()<CR>
+        autocmd FileType rest nnoremap <buffer> <silent> <leader>c :call VrcQuery()<CR>
     augroup END
 
     " Presenting   {{{2
