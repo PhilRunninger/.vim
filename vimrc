@@ -22,7 +22,7 @@ function! s:Install(name, ...)
         execute 'packadd! '.a:name
     else
         if !exists("*pathogen#infect")
-            source $VIMHOME/pack/bundle/opt/vim-pathogen/autoload/pathogen.vim
+            source $VIMHOME/pack/pathogen/opt/vim-pathogen/autoload/pathogen.vim
         endif
         call pathogen#infect('pack/bundle/opt/'.a:name)
     endif

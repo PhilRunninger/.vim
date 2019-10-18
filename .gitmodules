@@ -106,3 +106,6 @@
 [submodule "tabline"]
 	path = pack/bundle/opt/tabline
 	url = git@github.com:mkitt/tabline.vim.git
+[submodule "vim-pathogen"]
+	path = pack/pathogen/opt/vim-pathogen
+	url = git@github.com:tpope/vim-pathogen.git
