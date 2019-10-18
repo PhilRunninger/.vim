@@ -14,7 +14,7 @@ function! s:Install(name, ...)
     if a:0>0 && ( (has_key(a:1,'has')     && !has(a:1['has'])) ||
                 \ (has_key(a:1,'exists')  && !exists(a:1['exists'])) ||
                 \ (has_key(a:1,'version') && v:version < a:1['version']) )
-        echomsg "  Plugin ".a:name." was not loaded. Failed Prerequisite: ".string(a:1)
+        echomsg "  Plugin ".a:name." was not loaded. Disqualifying Prerequisite: ".string(a:1)
         return
     endif
 
@@ -247,18 +247,20 @@ augroup reloadVimrc     " Re-source this file when saving it   {{{2
     autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
 augroup END
 
-augroup terminalSettings " Turn off line numbers in Terminal windows.   {{{2
-    autocmd!
-    autocmd TerminalOpen * if &buftype == 'terminal' | setlocal nonumber | endif
-augroup END
+if has('terminal')       " Turn off line numbers in Terminal windows.   {{{2
+    augroup terminalSettings
+        autocmd!
+        autocmd TerminalOpen * if &buftype == 'terminal' | setlocal nonumber | endif
+    augroup END
+endif
 
-augroup trailingSpaces  " Turn off trailing space indicator in Insert mode   {{{2
+augroup trailingSpaces    " Turn off trailing space indicator in Insert mode   {{{2
     autocmd!
     autocmd InsertEnter * :set listchars-=trail:■
     autocmd InsertLeave * :set listchars+=trail:■
 augroup END
 
-if !&diff               " Keep cursor in original position when switching buffers   {{{2
+if !&diff                   " Keep cursor in original position when switching buffers   {{{2
     augroup bufferEvents
         autocmd!
         autocmd bufleave * let b:winview = winsaveview()
@@ -267,12 +269,12 @@ if !&diff               " Keep cursor in original position when switching buffer
 endif
 set nostartofline
 
-augroup vimHelp         " Get help (with K key) when editing vimscript   {{{2
+augroup vimHelp                 " Get help (with K key) when editing vimscript   {{{2
     autocmd!
     autocmd FileType vim setlocal keywordprg=:help
 augroup END
 
-if !has("gui_running")      " terminal mode hack for autoread option   {{{2
+if !has('gui_running')              " terminal mode hack for autoread option   {{{2
     augroup checkTime
         autocmd!
         "silent! necessary; otherwise, throws errors when using command line window.
@@ -284,7 +286,7 @@ if !has("gui_running")      " terminal mode hack for autoread option   {{{2
     augroup END
 endif
 
-augroup jumpToPreviousLocation         " When editing a file, always jump to its last known cursor position.   {{{2
+augroup jumpToPreviousLocation        " When editing a file, always jump to its last known cursor position.   {{{2
     autocmd!
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
 augroup END
@@ -294,7 +296,7 @@ augroup pivotalTrackerIDToCommitMesage " Grab PivotalTracker ID and start commit
     autocmd BufReadPost COMMIT_EDITMSG execute "set colorcolumn=72|silent! normal! qzq/# On branch.\\{-}\\zs\\d\\{8,}\<CR>\"zy//e\<CR>gg:s/\\[#z\\] //\<CR>I[#z] \<ESC>:s/\\[#\\] //\<CR>"
 augroup END
 
-augroup vhtFileTypes                   " Set filetype of VHT Log files   {{{2
+augroup vhtFileTypes                    " Set filetype of VHT Log files   {{{2
     autocmd!
     autocmd BufReadPost TIALOutputLog*.txt set filetype=vht
     autocmd BufReadPost MainOutputLog*.txt set filetype=vht
@@ -305,7 +307,7 @@ augroup vhtFileTypes                   " Set filetype of VHT Log files   {{{2
     autocmd BufReadPost *.{[0123456789]}\\\{1,99\} set filetype=vht
 augroup END
 
-if v:version > 703                     " Change statusline color, depending on mode.   {{{2
+if v:version > 703                      " Change statusline color, depending on mode.   {{{2
     augroup setStatuslineColors
         autocmd!
         autocmd InsertEnter,InsertChange,TextChangedI * call StatuslineColor(1)
