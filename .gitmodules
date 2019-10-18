@@ -70,9 +70,6 @@
 [submodule "vim-matrix-screensaver"]
 	path = pack/bundle/opt/vim-matrix-screensaver
 	url = git@github.com:uguu-org/vim-matrix-screensaver.git
-[submodule "vim-pathogen"]
-	path = pack/bundle/opt/vim-pathogen
-	url = git@github.com:tpope/vim-pathogen.git
 [submodule "rogue"]
 	path = pack/bundle/opt/rogue
 	url = git@github.com:katono/rogue.vim.git
