@@ -452,7 +452,7 @@ function! Status(winnum)
         let l:statusline.="\ %{&ft}"
         let l:statusline.="\ %{Map_ff()}"
         let l:statusline.="%(\ %{Map_ro_mod()}%)"
-        let l:statusline.="\ %f"
+        let l:statusline.="\ %t"
         let l:statusline.="%="
         let l:statusline.="%#Session#%(\ %{SessionNameStatusLineFlag()}\ %)%*"
     else
@@ -463,8 +463,15 @@ function! Status(winnum)
 endfunction
 
 function! s:RefreshStatus()
+    let l:exempt  = ['']                        " No name (Quickfix/Location list, new file, etc.)
+    let l:exempt += ['.*[/\\]doc[/\\]\w*\.txt'] " Help files
+    let l:exempt += ['=MinTree=']               " MinTree
+    let l:exempt += ['NERD_tree_\d\+']          " NERDTree
+    let l:exempt += ['=Buffers=']               " BufSelect list
     for nr in range(1, winnr('$'))
-        call setwinvar(nr, '&statusline', '%!Status('.nr.')')
+        if bufname(winbufnr(nr)) !~# '^\(' . join(l:exempt,'\|') . '\)$'
+            call setwinvar(nr, '&statusline', '%!Status('.nr.')')
+        endif
     endfor
 endfunction
 
