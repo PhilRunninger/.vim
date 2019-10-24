@@ -444,13 +444,33 @@ function! Map_ro_mod()
     return (&modifiable ? (&readonly ? "🔐" : "") : "🔒") . (&modified ? "🔴" : "")
 endfunction
 
-set statusline=%3l/%L\ %3v
-set statusline+=\ %#GitBranch#%(\ %{fugitive#head(8)}\ %)%*
-set statusline+=\ %{&ft}
-set statusline+=\ %{Map_ff()}
-set statusline+=%(\ %{Map_ro_mod()}%)
-set statusline+=\ %f
-set statusline+=%=
-set statusline+=%#Session#%(\ %{SessionNameStatusLineFlag()}\ %)%*
+function! Status(winnum)
+    let l:statusline=""
+    if a:winnum == winnr()
+        let l:statusline.="%3v"
+        let l:statusline.="\ %#GitBranch#%(\ %{fugitive#head(8)}\ %)%*"
+        let l:statusline.="\ %{&ft}"
+        let l:statusline.="\ %{Map_ff()}"
+        let l:statusline.="%(\ %{Map_ro_mod()}%)"
+        let l:statusline.="\ %f"
+        let l:statusline.="%="
+        let l:statusline.="%#Session#%(\ %{SessionNameStatusLineFlag()}\ %)%*"
+    else
+        let l:statusline.="%(\ %{Map_ro_mod()}%)"
+        let l:statusline.="\ %F"
+    endif
+    return l:statusline
+endfunction
+
+function! s:RefreshStatus()
+    for nr in range(1, winnr('$'))
+        call setwinvar(nr, '&statusline', '%!Status('.nr.')')
+    endfor
+endfunction
+
+augroup StatusLine
+    autocmd!
+    autocmd VimEnter,WinEnter,BufWinEnter * call <SID>RefreshStatus()
+augroup END
 
 call StatuslineColor(0)
