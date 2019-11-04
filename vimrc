@@ -360,6 +360,7 @@ endif
     let g:vrc_show_command = 1
     augroup RESTConsole
         autocmd!
+        autocmd FileType rest nunmap <buffer> <C-J>
         autocmd FileType rest nnoremap <buffer> <silent> <leader>c :call VrcQuery()<CR>
     augroup END
 
