@@ -416,22 +416,26 @@ endif
     inoremap <C-K> <Esc>:UnicodeSearch!<space>
 
 " Color Settings and Status Line   {{{1
-colorscheme gruvbox
-set background=dark
+command! FixColors :call <SID>EstablishColors()
+function! s:EstablishColors()
+    colorscheme gruvbox
+    set background=dark
 
-unlet! g:colors_name
-highlight Normal                                ctermbg=NONE " Use terminal's Background color setting
-highlight Folded         cterm=none ctermfg=8   ctermbg=234  " Gray on Almost Black
-highlight MatchParen     cterm=bold ctermfg=1   ctermbg=none " Red
-highlight WildMenu       cterm=none ctermfg=16  ctermbg=178  " Black on Gold
-highlight GitBranch      cterm=none ctermfg=12  ctermbg=17   " Blue on Dark Blue
-highlight Insert         cterm=none ctermfg=15  ctermbg=27   " White on Blue
-highlight NormalMod      cterm=none ctermfg=15  ctermbg=124  " White on Red
-highlight NormalNoMod    cterm=none ctermfg=16  ctermbg=40   " Black on Green
-highlight StatusLineTerm cterm=none ctermfg=16  ctermbg=208  " Black on Gold
-highlight! link Session WildMenu
-highlight! link StatusLineTermNC StatusLineNC
-highlight! link VertSplit StatusLineNC
+    unlet! g:colors_name
+    highlight Normal                                ctermbg=NONE " Use terminal's Background color setting
+    highlight Folded         cterm=none ctermfg=8   ctermbg=234  " Gray on Almost Black
+    highlight MatchParen     cterm=bold ctermfg=1   ctermbg=none " Red
+    highlight WildMenu       cterm=none ctermfg=16  ctermbg=178  " Black on Gold
+    highlight GitBranch      cterm=none ctermfg=12  ctermbg=17   " Blue on Dark Blue
+    highlight Insert         cterm=none ctermfg=15  ctermbg=27   " White on Blue
+    highlight NormalMod      cterm=none ctermfg=15  ctermbg=124  " White on Red
+    highlight NormalNoMod    cterm=none ctermfg=16  ctermbg=40   " Black on Green
+    highlight StatusLineTerm cterm=none ctermfg=16  ctermbg=208  " Black on Gold
+    highlight! link Session WildMenu
+    highlight! link StatusLineTermNC StatusLineNC
+    highlight! link VertSplit StatusLineNC
+endfunction
+call s:EstablishColors()
 
 function! StatuslineColor(insertMode)
     exec 'highlight! link StatusLine ' . (a:insertMode ? 'Insert' : (&modified ? 'NormalMod' : 'NormalNoMod'))
