@@ -69,7 +69,7 @@ call s:Install('csv')
 call s:Install('vim-matrix-screensaver')
 call s:Install('sokoban')
 call s:Install('rogue', {'has':'lua'})
-call s:Install('vim-robots')
+call s:Install('robots')
 
 " Must come AFTER the :packadd! calls above; otherwise, the contents of package 'ftdetect'
 " directories won't be evaluated.
