@@ -69,6 +69,7 @@ call s:Install('csv')
 call s:Install('vim-matrix-screensaver')
 call s:Install('sokoban')
 call s:Install('rogue', {'has':'lua'})
+call s:Install('vim-robots')
 
 " Must come AFTER the :packadd! calls above; otherwise, the contents of package 'ftdetect'
 " directories won't be evaluated.
@@ -421,7 +422,7 @@ function! s:EstablishColors()
     colorscheme gruvbox
     set background=dark
 
-    unlet! g:colors_name
+    unlet! g:colors_name   " Why? See :h :hi-normal-cterm
     highlight Normal                                ctermbg=NONE " Use terminal's Background color setting
     highlight Folded         cterm=none ctermfg=8   ctermbg=234  " Gray on Almost Black
     highlight MatchParen     cterm=bold ctermfg=1   ctermbg=none " Red
