@@ -109,3 +109,6 @@
 [submodule "vim-pathogen"]
 	path = pack/pathogen/opt/vim-pathogen
 	url = git@github.com:tpope/vim-pathogen.git
+[submodule "robots"]
+	path = pack/bundle/opt/robots
+	url = git@github.com:PhilRunninger/vim-robots.git
