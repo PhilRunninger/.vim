@@ -49,9 +49,6 @@
 [submodule "vim-exchange"]
 	path = pack/bundle/opt/vim-exchange
 	url = git@github.com:tommcdo/vim-exchange.git
-[submodule "vim-interestingwords"]
-	path = pack/bundle/opt/vim-interestingwords
-	url = git@github.com:lfv89/vim-interestingwords.git
 [submodule "vim-illuminate"]
 	path = pack/bundle/opt/vim-illuminate
 	url = git@github.com:RRethy/vim-illuminate.git
