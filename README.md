@@ -9,7 +9,8 @@ git clone git@github.com/vim/vim.git
 cd vim
 git checkout master  # or other branch/tag
 git pull
-./configure --with-lua-prefix=/usr/local/Cellar/lua/5.3.5_1 --enable-luainterp --disable-gui --enable-pythoninterp=yes --with-features=huge
+make clean distclean
+./configure --enable-luainterp --with-lua-prefix=/usr/local/Cellar/lua/5.3.5_1 --enable-python3interp=yes --with-python3-config-dir=$(python3-config --configdir) --disable-gui --with-features=huge --enable-fail-if-missing
 make
 sudo make install
 ```
