@@ -379,9 +379,6 @@ endif
     inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
     inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
     inoremap <expr><Space> pumvisible() ? "\<C-y><Space>" : "\<Space>"
-    if has("lua")
-        inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-    endif
 
     " Undotree   {{{2
     nnoremap <silent> <leader>u :UndotreeShow<CR>
