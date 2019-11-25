@@ -375,7 +375,7 @@ endif
     let g:neocomplete#enable_smart_case = 1
     let g:neocomplete#enable_fuzzy_completion = 1
     let g:neocomplete#enable_at_startup = 1
-    let g:neocomplete#data_dir=$VIMHOME.'/cache/neocomplete'
+    let g:neocomplete#data_directory=$VIMHOME.'/cache/neocomplete'
     inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
     inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
     inoremap <expr><Space> pumvisible() ? "\<C-y><Space>" : "\<Space>"
@@ -447,6 +447,12 @@ function! Map_ro_mod()
     return (&modifiable ? (&readonly ? "🔐" : "") : "🔒") . (&modified ? "🔴" : "")
 endfunction
 
+function! AbbreviatedPath()
+    let path = split(fnamemodify(bufname(),':~'),'/')
+    let path = map(copy(path)[0:-2], {_,v -> substitute(v,'\.\?.\zs.*','','')}) + [path[-1]]
+    return join(path, '/')
+endfunction
+
 function! Status(winnum)
     let l:statusline=""
     if a:winnum == winnr()
@@ -455,7 +461,7 @@ function! Status(winnum)
         let l:statusline.="\ %{&ft}"
         let l:statusline.="\ %{Map_ff()}"
         let l:statusline.="%(\ %{Map_ro_mod()}%)"
-        let l:statusline.="\ %t"
+        let l:statusline.="\ %{AbbreviatedPath()}"
         let l:statusline.="%="
         let l:statusline.="%#Session#%(\ %{SessionNameStatusLineFlag()}\ %)%*"
     else
