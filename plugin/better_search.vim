@@ -1,6 +1,11 @@
 let s:words = []
+let s:savedPattern = @/
 
 function! s:ToggleWord()
+    if s:words == []
+        let s:savedPattern = @/
+    endif
+
     let l:word = '\<' . expand("<cword>") . '\>'
     let l:i = index(s:words, l:word)
     if l:i >= 0
@@ -13,9 +18,11 @@ endfunction
 
 function! s:CreateSearchString()
     if empty(s:words)
-        let @/ = ''
+        let @/ = s:savedPattern
+        highlight Search term=reverse cterm=reverse ctermfg=214 ctermbg=235 gui=reverse guifg=#fabd2f guibg=#282828
     else
         let @/ = '\(' . join(s:words,'\|') . '\)'
+        highlight Search term=reverse cterm=reverse ctermfg=208 ctermbg=235 gui=reverse guifg=#fabd2f guibg=#282828
         execute 'normal! n'
     endif
 endfunction
