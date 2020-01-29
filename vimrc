@@ -448,8 +448,8 @@ function! Map_ro_mod()
 endfunction
 
 function! AbbreviatedPath()
-    let path = split(fnamemodify(bufname(),':~'),'/')
-    let path = map(copy(path)[0:-2], {_,v -> substitute(v,'\.\?.\zs.*','','')}) + [path[-1]]
+    let path = split(fnamemodify(bufname('%'),':.'), '[/\\]')
+    let path = map(copy(path)[0:-2], 'substitute(v:val,"\\.\\?.\\zs.*","","")') + [path[-1]]
     return join(path, '/')
 endfunction
 
