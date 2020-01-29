@@ -7,6 +7,9 @@ let $VIMHOME=expand('<sfile>:p:h')
 " Add new packages as submodules like so:
 "   cd ~/.vim
 "   git submodule add --name nerdtree git@github.com:scrooloose/nerdtree pack/bundle/opt/nerdtree
+"
+" Remove submodules with these instructions:
+"   https://davidwalsh.name/git-remove-submodule
 
 function! s:Install(name, ...)
     " name - plugin's submodule name as given in `git submodule add` command.
@@ -65,11 +68,6 @@ call s:Install('vim-jdaddy')
 call s:Install('vim-json')
 call s:Install('NSIS-syntax-highlighting')
 call s:Install('csv')
-" Games
-call s:Install('vim-matrix-screensaver')
-call s:Install('sokoban')
-call s:Install('rogue', {'has':'lua'})
-call s:Install('robots')
 
 " Must come AFTER the :packadd! calls above; otherwise, the contents of package 'ftdetect'
 " directories won't be evaluated.
