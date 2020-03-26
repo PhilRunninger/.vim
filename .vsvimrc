@@ -13,17 +13,14 @@ set incsearch   " incremental searching
 set ignorecase  " case insensitive search
 set smartcase   " ... unless using capital letters
 
-nnoremap <silent> n   nzzzv
-nnoremap <silent> N   Nzzzv
+" nnoremap <silent> n   nzzzv
+" nnoremap <silent> N   Nzzzv
 
 set backspace=indent,eol,start  " backspace and cursor keys wrap to previous/next line
 set whichwrap+=<,>,[,]
 
 set autoindent
 set smartindent
-set softtabstop=2
-set tabstop=2
-set shiftwidth=2
 set expandtab
 
 set showmatch
