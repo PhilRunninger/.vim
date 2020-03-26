@@ -11,7 +11,7 @@ let $VIMHOME=expand('<sfile>:p:h')
 " Remove submodules with these instructions:
 "   https://davidwalsh.name/git-remove-submodule
 
-function! s:Install(name, ...)
+function! s:Install(name, ...)   "{{{2
     " name - plugin's submodule name as given in `git submodule add` command.
     " a:1 - an optional dictionary that determines whether to install the plugin.
     if a:0>0 && ( (has_key(a:1,'has')     && !has(a:1['has'])) ||
@@ -29,7 +29,7 @@ function! s:Install(name, ...)
         endif
         call pathogen#infect('pack/bundle/opt/'.a:name)
     endif
-endfunction
+endfunction  "}}}2
 
 " Coding / Development
 call s:Install('vim-fugitive')
@@ -68,6 +68,11 @@ call s:Install('vim-jdaddy')
 call s:Install('vim-json')
 call s:Install('NSIS-syntax-highlighting')
 call s:Install('csv')
+" Fun & Games
+call s:Install('sokoban')
+call s:Install('rogue')
+call s:Install('robots')
+
 
 " Must come AFTER the :packadd! calls above; otherwise, the contents of package 'ftdetect'
 " directories won't be evaluated.
