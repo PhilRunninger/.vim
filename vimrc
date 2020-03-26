@@ -338,6 +338,8 @@ endif
     let NERDTreeStatusline        = '%#NonText#'
     let NERDTreeMapOpenSplit      = 's'
     let NERDTreeMapOpenVSplit     = 'v'
+    let NERDTreeDirArrowCollapsible = ''
+    let NERDTreeDirArrowExpandable = ''
 
     " BufSelect   {{{2
     let g:BufSelectSortOrder = "Extension"
