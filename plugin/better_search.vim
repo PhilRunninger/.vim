@@ -23,7 +23,13 @@ function! s:CreateSearchString()
     else
         let @/ = '\(' . join(s:words,'\|') . '\)'
         highlight Search term=reverse cterm=reverse ctermfg=208 ctermbg=235 gui=reverse guifg=#fabd2f guibg=#282828
-        execute 'normal! n'
+        try
+            execute 'normal! n'
+        catch
+            echohl Error
+            echo v:exception
+            echohl None
+        endtry
     endif
 endfunction
 
