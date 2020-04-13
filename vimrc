@@ -305,15 +305,9 @@ augroup pivotalTrackerIDToCommitMesage " Grab PivotalTracker ID and start commit
     autocmd BufReadPost COMMIT_EDITMSG execute "set colorcolumn=72|silent! normal! qzq/# On branch.\\{-}\\zs\\d\\{8,}\<CR>\"zy//e\<CR>gg:s/\\[#z\\] //\<CR>I[#z] \<ESC>:s/\\[#\\] //\<CR>"
 augroup END
 
-augroup vhtFileTypes                    " Set filetype of VHT Log files   {{{2
+augroup customFileTypes                    " Set filetype of files, based on extension  {{{2
     autocmd!
-    autocmd BufReadPost TIALOutputLog*.txt set filetype=vht
-    autocmd BufReadPost MainOutputLog*.txt set filetype=vht
-    autocmd BufReadPost IVROutputLog*.txt set filetype=vht
-    autocmd BufReadPost info.log set filetype=vht
-    autocmd BufReadPost debug.log set filetype=vht
-    autocmd BufReadPost error.log set filetype=vht
-    autocmd BufReadPost *.{[0123456789]}\\\{1,99\} set filetype=vht
+    autocmd BufReadPost *.ldr set filetype=ldraw
 augroup END
 
 if v:version > 703                      " Change statusline color, depending on mode.   {{{2

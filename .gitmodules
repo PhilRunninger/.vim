@@ -109,3 +109,6 @@
 [submodule "robots"]
 	path = pack/bundle/opt/robots
 	url = git@github.com:PhilRunninger/vim-robots.git
+[submodule "ldraw"]
+	path = pack/bundle/opt/ldraw
+	url = git@github.com:vim-scripts/ldraw.vim.git
