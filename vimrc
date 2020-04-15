@@ -69,6 +69,7 @@ call s:Install('vim-json')
 call s:Install('NSIS-syntax-highlighting')
 call s:Install('csv')
 " Fun & Games
+call s:Install('ldraw')
 call s:Install('sokoban')
 call s:Install('rogue')
 call s:Install('robots')
