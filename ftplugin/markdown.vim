@@ -1,3 +1,5 @@
+setlocal wrap linebreak nolist nonumber
+
 if !executable("grip")
     finish
 endif
