@@ -27,7 +27,7 @@ function! s:Install(name, ...)   "{{{2
         if !exists("*pathogen#infect")
             source $VIMHOME/pack/pathogen/opt/vim-pathogen/autoload/pathogen.vim
         endif
-        call pathogen#infect('pack/bundle/opt/'.a:name)
+        call pathogen#infect('pack/**/opt/'.a:name)
     endif
 endfunction  "}}}2
 
