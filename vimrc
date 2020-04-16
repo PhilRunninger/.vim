@@ -308,7 +308,7 @@ augroup END
 
 augroup customFileTypes                    " Set filetype of files, based on extension  {{{2
     autocmd!
-    autocmd BufReadPost *.ldr set filetype=ldraw
+    autocmd BufReadPost *.ldr,*.mpd set filetype=ldraw
 augroup END
 
 if v:version > 703                      " Change statusline color, depending on mode.   {{{2
