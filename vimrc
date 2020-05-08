@@ -91,9 +91,7 @@ set confirm                         " Ask what to do with unsave/read-only files
 set tags=./tags;/                   " List of filenames used by the tag command
 set backspace=indent,eol,start      " How backspace works at start of line
 set ttimeoutlen=10                  " Time out time for key codes in milliseconds (Removes delay after <Esc> in Command mode.)
-if &diff
-    set diffopt+=iwhite
-endif
+set diffopt+=iwhite
 let g:netrw_dirhistmax = 0          " Prevent creation of .netrwhist files.
 let mapleader=' '                   " Character to use for <leader> mappings
 
@@ -105,12 +103,9 @@ endif
 
 " Command line options   {{{1
 set history=1000                    " number of command-lines that are remembered.
-set wildmenu                        " use menu for command line completion
 set wildmode=full                   " mode for 'wildchar' command-line expansion
-if v:version > 703
-  set wildignorecase                " specifies how command line completion is done
-endif
 set wildignore+=*.a,*.o,*.beam      " files matching these patterns are not completed
+set wildmenu wildignorecase
 set wildignore+=*.bmp,*.gif,*.jpg,*.ico,*.png
 set wildignore+=.DS_Store,.git,.ht,.svn
 set wildignore+=*~,*.swp,*.tmp
@@ -310,13 +305,11 @@ augroup customFileTypes                    " Set filetype of files, based on ext
     autocmd BufReadPost *.ldr,*.mpd set filetype=ldraw
 augroup END
 
-if v:version > 703                      " Change statusline color, depending on mode.   {{{2
-    augroup setStatuslineColors
-        autocmd!
-        autocmd InsertEnter,InsertChange,TextChangedI * call StatuslineColor(1)
-        autocmd InsertLeave,TextChanged,BufWritePost,BufEnter * call StatuslineColor(0)
-    augroup END
-endif
+augroup setStatuslineColors    " Change statusline color, depending on mode.   {{{2
+    autocmd!
+    autocmd InsertEnter,InsertChange,TextChangedI * call StatuslineColor(1)
+    autocmd InsertLeave,TextChanged,BufWritePost,BufEnter * call StatuslineColor(0)
+augroup END
 
 " Settings for managed plugins {{{1
     " ANSIEsc   {{{2
