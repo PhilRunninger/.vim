@@ -90,7 +90,6 @@ set sidescroll=1                    " Minimum number of columns to scroll horizo
 set confirm                         " Ask what to do with unsave/read-only files
 set tags=./tags;/                   " List of filenames used by the tag command
 set backspace=indent,eol,start      " How backspace works at start of line
-set whichwrap+=<,>,[,]              " Allow specified keys to cross line boundaries
 set ttimeoutlen=10                  " Time out time for key codes in milliseconds (Removes delay after <Esc> in Command mode.)
 if &diff
     set diffopt+=iwhite
@@ -333,9 +332,7 @@ endif
     let NERDTreeRespectWildIgnore = 1
     let NERDTreeBookmarksFile     = $VIMHOME.'/cache/.NERDTreeBookmarks'
     let NERDTreeQuitOnOpen        = 1
-    let NERDTreeWinSize           = 40
     let NERDTreeMinimalUI         = 1
-    let NERDTreeStatusline        = '%#NonText#'
     let NERDTreeMapOpenSplit      = 's'
     let NERDTreeMapOpenVSplit     = 'v'
     let NERDTreeDirArrowCollapsible = ''
@@ -370,9 +367,6 @@ endif
         autocmd FileType rest nnoremap <buffer> <silent> <leader>c :call VrcQuery()<CR>
     augroup END
 
-    " Presenting   {{{2
-    let g:presenting_top_margin = 2
-
     " NeoComplete   {{{2
     set completeopt=longest,menuone
 
@@ -387,7 +381,6 @@ endif
 
     " Undotree   {{{2
     nnoremap <silent> <leader>u :UndotreeShow<CR>
-    let g:undotree_TreeNodeShape = '●'
     let g:undotree_SetFocusWhenToggle = 1
     let g:undotree_WindowLayout = 2
     let g:undotree_HelpLine = 0
