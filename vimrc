@@ -211,13 +211,6 @@ set incsearch       " highlight match wile typing search pattern
 set ignorecase      " ignore case in search patterns
 set smartcase       " no ignore case when pattern has uppercase
 runtime macros/matchit.vim
-vnoremap <silent> * :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy/<C-R><C-R>=substitute(
-  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
-nnoremap <silent> <leader>/ :vimgrep "<C-R>/" %<CR>n:copen<CR>
-vnoremap <silent> <leader>/ y:vimgrep "<C-R>0" %<CR>/<C-R>0<CR>:copen<CR>
 nnoremap <silent> <leader><space> :set hlsearch!<CR>
 
 " Swap j/k with gj/gk {{{2

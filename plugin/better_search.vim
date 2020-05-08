@@ -40,3 +40,11 @@ endfunction
 
 nnoremap <silent> * :call <SID>ToggleWord()<CR>
 nnoremap <silent> <leader>* :call <SID>ClearSearchString()<CR>
+
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+nnoremap <silent> <leader>/ :vimgrep "<C-R>/" %<CR>n:copen<CR>
+vnoremap <silent> <leader>/ y:vimgrep "<C-R>0" %<CR>/<C-R>0<CR>:copen<CR>
