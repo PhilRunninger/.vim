@@ -251,6 +251,10 @@ inoremap Dt =strftime("%-m/%-d/%y %-H:%M:%S")<CR><Space>
 inoremap Dd =strftime("%-m/%-d/%y")<CR><Space>
 inoremap Tt =strftime("%-H:%M:%S")<CR><Space>
 
+" Move visual selection up/down with ease {{{2
+xnoremap K :move '<-2<CR>gv-gv
+xnoremap J :move '>+1<CR>gv-gv
+
 " Auto-command Definitions   {{{1
 augroup reloadVimrc     " Re-source this file when saving it   {{{2
     autocmd!
