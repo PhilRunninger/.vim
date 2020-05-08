@@ -234,8 +234,6 @@ nnoremap <silent> \| :set cursorcolumn!<CR>
 " Change cwd to current buffer's directory   {{{2
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
-" Remove trailing spaces   {{{2
-nnoremap <leader>d<space> :%s/\s\+$//c<CR>
 
 " Show what highlighting is used under the cursor {{{2
 nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
@@ -259,6 +257,11 @@ xnoremap J :move '>+1<CR>gv-gv
 augroup reloadVimrc     " Re-source this file when saving it   {{{2
     autocmd!
     autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
+augroup END
+
+augroup removeTrailingSpaces   " Remove trailing on save {{{2
+    autocmd!
+    autocmd BufWrite * %s/\s\+$//ce
 augroup END
 
 if has('terminal')       " Turn off line numbers in Terminal windows.   {{{2
