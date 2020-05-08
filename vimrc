@@ -247,9 +247,9 @@ nnoremap <expr> o foldclosed('.')==-1 ? "o" : ""
 nnoremap <leader>z zMzvzz
 
 " Insert current date and/or time in insert mode {{{2
-inoremap DT =strftime("%-m/%-d/%y %-H:%M:%S")<CR><Space>
-inoremap DD =strftime("%-m/%-d/%y")<CR><Space>
-inoremap TT =strftime("%-H:%M:%S")<CR><Space>
+inoremap Dt =strftime("%-m/%-d/%y %-H:%M:%S")<CR><Space>
+inoremap Dd =strftime("%-m/%-d/%y")<CR><Space>
+inoremap Tt =strftime("%-H:%M:%S")<CR><Space>
 
 " Auto-command Definitions   {{{1
 augroup reloadVimrc     " Re-source this file when saving it   {{{2
