@@ -84,9 +84,10 @@ syntax on                           " Turn syntax highlighting on.
 set path+=**                        " search recursively for files with :find
 set autoread                        " automatically read file when changed outside of vim
 set encoding=utf-8                  " Sets the character encoding to use inside vim.
-set scrolloff=3                     " Minimum # of lines above and below cursor
-set sidescrolloff=3                 " minimum nr. of columns to left and right of cursor
+set scrolloff=3 sidescrolloff=3     " minimum # of rows/columns from cursor to edge of window
 set sidescroll=1                    " Minimum number of columns to scroll horizontal
+set nostartofline                   " [do not] move cursor to first non-blank column when paging
+set hidden                          " don't unload buffer when it is abandoned
 set confirm                         " Ask what to do with unsave/read-only files
 set tags=./tags;/                   " List of filenames used by the tag command
 set backspace=indent,eol,start      " How backspace works at start of line
@@ -101,55 +102,47 @@ if $TERM_PROGRAM =~ "iTerm"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif
 
+" Searching settings   {{{2
+set hlsearch incsearch
+set ignorecase smartcase
+
 " Command line options   {{{1
-set history=1000                    " number of command-lines that are remembered.
-set wildmode=full                   " mode for 'wildchar' command-line expansion
-set wildignore+=*.a,*.o,*.beam      " files matching these patterns are not completed
+set history=1000
 set wildmenu wildignorecase
+set wildignore+=*.a,*.o,*.beam
 set wildignore+=*.bmp,*.gif,*.jpg,*.ico,*.png
 set wildignore+=.DS_Store,.git,.ht,.svn
 set wildignore+=*~,*.swp,*.tmp
 
 " Tab settings and behavior   {{{1
-set autoindent      " take indent for new line from previous line
-set smartindent     " smart autoindenting for c programs
-set softtabstop=4   " number of spaces that <tab> uses when editing
-set tabstop=4       " number of spaces that <tab> in file uses
-set shiftwidth=4    " number of spaces to use for (auto)indent step
-set expandtab       " use spaces when <tab> is inserted
+set autoindent smartindent
+set softtabstop=4 tabstop=4 shiftwidth=4 expandtab
 
 " Which things are displayed on screen?   {{{1
 set showcmd         " show (partial) command in last line of screen
 set noshowmode      " [no] message on status line show current mode
 set showmatch       " briefly jump to matching bracket if inserting one
 set number          " print the line number in front of each line
-set list                                            " show <tab> and <eol>
-set listchars=tab:●·,extends:→,precedes:←,trail:■   " characters for displaying in list mode
-set fillchars=stl:\ ,stlnc:\ ,vert:\                " characters to use for displaying special items
-set laststatus=2                                    " tells when last window has status line
+set list listchars=tab:●·,extends:→,precedes:←,trail:■  " characters for displaying in list mode
+set fillchars=stl:\ ,stlnc:\ ,vert:\                    " characters to use for displaying special items
+set laststatus=2                                        " tells when last window has status line
 
 " Undo/Backup/Swap file settings   {{{1
-set undolevels=100                        " maximum number of changes that can be undone
-set undofile                              " automatically save undo history to an undo file
-set undodir=$VIMHOME/cache/undo//         " list of directory names for undo files
-set directory=$VIMHOME/cache/swapfiles//  " list of directory names for swap files
-set nobackup                              " [do not] keep backup file after overwriting a file
-set backupdir=$VIMHOME/cache/backups//    " list of directory namde for the backup file
-
+set undolevels=500 undofile undodir=$VIMHOME/cache/undo//
 if !isdirectory(&undodir) | call mkdir(&undodir, 'p') | endif
+
+set directory=$VIMHOME/cache/swapfiles//
 if !isdirectory(&directory) | call mkdir(&directory, 'p') | endif
+
+set nobackup backupdir=$VIMHOME/cache/backups//
 if !isdirectory(&backupdir) | call mkdir(&backupdir, 'p') | endif
 
 " Disable the bells (audible and visual).   {{{1
-set noerrorbells    " [do not] ring the bells for error messages
-set visualbell      " use visual bell instead of beeping
-set t_vb=
+set noerrorbells visualbell t_vb=
 
 " Window behavior and commands   {{{1
-set splitbelow      " new window from split is below the current one
-set splitright      " new window is put right of the current one
-set winminheight=0  " minimum number of lines for any window
-set winminwidth=0   " minimum number of columns for any window
+set splitbelow splitright          " new window is put below or right of the current one
+set winminheight=0 winminwidth=0   " minimum number of rows or columns for any window
 
 " Shortcut to <C-W> because of the MacBook's stupid Ctrl key placement
 nnoremap <silent> <leader>w <C-W>
@@ -195,15 +188,10 @@ if has("terminal")
 endif
 
 " Some helpful remappings {{{1
-" Buffer-related settings and mappings   {{{2
-set hidden          " don't unload buffer when it is abandoned
+" Make # go to the alternate buffer   {{{2
 nnoremap <silent> # :buffer #<CR>
 
-" Searching settings   {{{2
-set hlsearch        " highlight matches with last search pattern
-set incsearch       " highlight match wile typing search pattern
-set ignorecase      " ignore case in search patterns
-set smartcase       " no ignore case when pattern has uppercase
+" Improved searching mappings   {{{2
 runtime macros/matchit.vim
 nnoremap <silent> <leader><space> :set hlsearch!<CR>
 
@@ -220,7 +208,6 @@ nnoremap <silent> \| :set cursorcolumn!<CR>
 
 " Change cwd to current buffer's directory   {{{2
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
-
 
 " Show what highlighting is used under the cursor {{{2
 nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
@@ -241,7 +228,7 @@ xnoremap K :move '<-2<CR>gv-gv
 xnoremap J :move '>+1<CR>gv-gv
 
 " Auto-command Definitions   {{{1
-augroup reloadVimrc     " Re-source this file when saving it   {{{2
+augroup reloadVimrc            " Re-source this file when saving it   {{{2
     autocmd!
     autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
 augroup END
@@ -251,34 +238,33 @@ augroup removeTrailingSpaces   " Remove trailing on save {{{2
     autocmd BufWrite * %s/\s\+$//ce
 augroup END
 
-if has('terminal')       " Turn off line numbers in Terminal windows.   {{{2
+if has('terminal')             " Turn off line numbers in Terminal windows.   {{{2
     augroup terminalSettings
         autocmd!
         autocmd TerminalOpen * if &buftype == 'terminal' | setlocal nonumber | endif
     augroup END
 endif
 
-augroup trailingSpaces    " Turn off trailing space indicator in Insert mode   {{{2
+augroup trailingSpaces         " Turn off trailing space indicator in Insert mode   {{{2
     autocmd!
     autocmd InsertEnter * :set listchars-=trail:■
     autocmd InsertLeave * :set listchars+=trail:■
 augroup END
 
-if !&diff                   " Keep cursor in original position when switching buffers   {{{2
+if !&diff                      " Keep cursor in original position when switching buffers   {{{2
     augroup bufferEvents
         autocmd!
-        autocmd bufleave * let b:winview = winsaveview()
-        autocmd bufenter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+        autocmd BufLeave * let b:winview = winsaveview()
+        autocmd BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
     augroup END
 endif
-set nostartofline
 
-augroup vimHelp                 " Get help (with K key) when editing vimscript   {{{2
+augroup vimHelp                " Get help (with K key) when editing vimscript   {{{2
     autocmd!
     autocmd FileType vim setlocal keywordprg=:help
 augroup END
 
-if !has('gui_running')              " terminal mode hack for autoread option   {{{2
+if !has('gui_running')         " terminal mode hack for autoread option   {{{2
     augroup checkTime
         autocmd!
         "silent! necessary; otherwise, throws errors when using command line window.
@@ -290,17 +276,17 @@ if !has('gui_running')              " terminal mode hack for autoread option   {
     augroup END
 endif
 
-augroup jumpToPreviousLocation        " When editing a file, always jump to its last known cursor position.   {{{2
+augroup jumpToPreviousLocation " When editing a file, always jump to its last known cursor position.   {{{2
     autocmd!
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
 augroup END
 
-augroup pivotalTrackerIDToCommitMesage " Grab PivotalTracker ID and start commit message.  {{{2
+augroup TicketIDToCommitMesage " Grab Ticket ID and start commit message.  {{{2
     autocmd!
     autocmd BufReadPost COMMIT_EDITMSG execute "set colorcolumn=72|silent! normal! qzq/# On branch.\\{-}\\zs\\d\\{8,}\<CR>\"zy//e\<CR>gg:s/\\[#z\\] //\<CR>I[#z] \<ESC>:s/\\[#\\] //\<CR>"
 augroup END
 
-augroup customFileTypes                    " Set filetype of files, based on extension  {{{2
+augroup customFileTypes        " Set filetype of files, based on extension  {{{2
     autocmd!
     autocmd BufReadPost *.ldr,*.mpd set filetype=ldraw
 augroup END
@@ -362,7 +348,6 @@ augroup END
 
     " NeoComplete   {{{2
     set completeopt=longest,menuone
-
     let g:neocomplete#enable_ignore_case = 1
     let g:neocomplete#enable_smart_case = 1
     let g:neocomplete#enable_fuzzy_completion = 1
