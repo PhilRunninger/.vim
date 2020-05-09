@@ -88,9 +88,6 @@
 [submodule "neocomplete"]
 	path = pack/bundle/opt/neocomplete
 	url = git@github.com:Shougo/neocomplete.vim
-[submodule "presenting"]
-	path = pack/bundle/opt/presenting
-	url = git@github.com:sotte/presenting.vim.git
 [submodule "xterm-color-table"]
 	path = pack/bundle/opt/xterm-color-table
 	url = git@github.com:guns/xterm-color-table.vim
