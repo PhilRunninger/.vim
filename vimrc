@@ -48,7 +48,6 @@ call s:Install('xterm-color-table')
 call s:Install('gruvbox')
 " Miscellaneous Utilities
 call s:Install('tabline')
-call s:Install('presenting')
 call s:Install('neocomplete', {'has':'lua'})
 call s:Install('undotree')
 call s:Install('vim-easy-align')
@@ -73,6 +72,7 @@ call s:Install('ldraw')
 call s:Install('sokoban')
 call s:Install('rogue')
 call s:Install('robots')
+call s:Install('vim-matrix-screensaver')
 
 
 " Must come AFTER the :packadd! calls above; otherwise, the contents of package 'ftdetect'
