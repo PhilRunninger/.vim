@@ -40,9 +40,8 @@ call s:Install('Improved-AnsiEsc')
 " File Management
 call s:Install('mintree', {'version':'800'})
 call s:Install('nerdtree')
-call s:Install('vim-devicons')
-" call s:Install('nerdtree-buffer-ops')
-" call s:Install('nerdtree-visual-selection')
+call s:Install('nerdtree-buffer-ops')
+call s:Install('nerdtree-visual-selection')
 call s:Install('bufselect', {'version':'800'})
 " Colorschemes
 call s:Install('xterm-color-table')
@@ -74,7 +73,6 @@ call s:Install('sokoban')
 call s:Install('rogue')
 call s:Install('robots')
 call s:Install('vim-matrix-screensaver')
-
 
 " Must come AFTER the :packadd! calls above; otherwise, the contents of package 'ftdetect'
 " directories won't be evaluated.
