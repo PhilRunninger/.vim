@@ -40,8 +40,9 @@ call s:Install('Improved-AnsiEsc')
 " File Management
 call s:Install('mintree', {'version':'800'})
 call s:Install('nerdtree')
-call s:Install('nerdtree-buffer-ops')
-call s:Install('nerdtree-visual-selection')
+call s:Install('vim-devicons')
+" call s:Install('nerdtree-buffer-ops')
+" call s:Install('nerdtree-visual-selection')
 call s:Install('bufselect', {'version':'800'})
 " Colorschemes
 call s:Install('xterm-color-table')
@@ -281,11 +282,6 @@ augroup jumpToPreviousLocation " When editing a file, always jump to its last kn
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
 augroup END
 
-augroup TicketIDToCommitMesage " Grab Ticket ID and start commit message.  {{{2
-    autocmd!
-    autocmd BufReadPost COMMIT_EDITMSG execute "set colorcolumn=72|silent! normal! qzq/# On branch.\\{-}\\zs\\d\\{8,}\<CR>\"zy//e\<CR>gg:s/\\[#z\\] //\<CR>I[#z] \<ESC>:s/\\[#\\] //\<CR>"
-augroup END
-
 augroup customFileTypes        " Set filetype of files, based on extension  {{{2
     autocmd!
     autocmd BufReadPost *.ldr,*.mpd set filetype=ldraw
@@ -314,8 +310,8 @@ augroup END
     let NERDTreeMinimalUI         = 1
     let NERDTreeMapOpenSplit      = 's'
     let NERDTreeMapOpenVSplit     = 'v'
-    let NERDTreeDirArrowCollapsible = ''
-    let NERDTreeDirArrowExpandable = ''
+    " let NERDTreeDirArrowCollapsible = ''
+    " let NERDTreeDirArrowExpandable = ''
 
     " BufSelect   {{{2
     let g:BufSelectSortOrder = "Extension"
