@@ -93,8 +93,11 @@ set tags=./tags;/                   " List of filenames used by the tag command
 set backspace=indent,eol,start      " How backspace works at start of line
 set ttimeoutlen=10                  " Time out time for key codes in milliseconds (Removes delay after <Esc> in Command mode.)
 set diffopt+=iwhite
-let g:netrw_dirhistmax = 0          " Prevent creation of .netrwhist files.
 let mapleader=' '                   " Character to use for <leader> mappings
+
+" Disable netrw
+let g:loaded_netrw       = 1
+let g:loaded_netrwPlugin = 1
 
 " Change cursor shape between insert and normal mode in iTerm2.app
 if $TERM_PROGRAM =~ "iTerm"
