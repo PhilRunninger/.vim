@@ -317,6 +317,7 @@ augroup END
     let NERDTreeMapOpenVSplit     = 'v'
     " let NERDTreeDirArrowCollapsible = ''
     " let NERDTreeDirArrowExpandable = ''
+    let NERDTreeNaturalSort=1
 
     " BufSelect   {{{2
     let g:BufSelectSortOrder = "Extension"
