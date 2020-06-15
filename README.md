@@ -123,7 +123,6 @@ This is a great plugin for surrounding text with delimiters: `"` `'` `[ ]` `( )`
 ### [](https://github.com/tommcdo/vim-exchange.git)
 ### [](https://github.com/chrisbra/Recover.vim.git)
 ### [](https://github.com/lfv89/vim-interestingwords.git)
-### [](https://github.com/tpope/vim-markdown)
 ### [](https://github.com/elzr/vim-json)
 ### [](https://github.com/vim-scripts/NSIS-syntax-highlighting)
 ### [](https://github.com/chrisbra/csv.vim)

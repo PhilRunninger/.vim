@@ -63,7 +63,6 @@ endfunction  "}}}2
     call s:Install('unicode')
     call s:Install('vim-illuminate')
 " Filetype-specific
-    call s:Install('vim-markdown')
     call s:Install('vim-jdaddy')
     call s:Install('vim-json')
     call s:Install('NSIS-syntax-highlighting')
@@ -98,6 +97,10 @@ let mapleader=' '                   " Character to use for <leader> mappings
 " Disable netrw
 let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
+
+" Markdown settings
+let g:markdown_folding = 1
+let g:markdown_fenced_languages = ['vim']
 
 " Change cursor shape between insert and normal mode in iTerm2.app
 if $TERM_PROGRAM =~ "iTerm"
