@@ -52,9 +52,6 @@
 [submodule "vim-illuminate"]
 	path = pack/bundle/opt/vim-illuminate
 	url = git@github.com:RRethy/vim-illuminate.git
-[submodule "vim-markdown"]
-	path = pack/bundle/opt/vim-markdown
-	url = git@github.com:tpope/vim-markdown
 [submodule "vim-jdaddy"]
 	path = pack/bundle/opt/vim-jdaddy
 	url = git@github.com:tpope/vim-jdaddy
