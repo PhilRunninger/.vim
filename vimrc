@@ -261,7 +261,7 @@ if !&diff                      " Keep cursor in original position when switching
     augroup bufferEvents
         autocmd!
         autocmd BufLeave * let b:winview = winsaveview()
-        autocmd BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+        autocmd BufEnter * if exists('b:winview') | call winrestview(b:winview) | endif
     augroup END
 endif
 
