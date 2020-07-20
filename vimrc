@@ -41,6 +41,8 @@ endfunction  "}}}2
     call s:Install('mintree', {'version':'800'})
     call s:Install('nerdtree')
     " call s:Install('vim-devicons')
+    " call s:Install('nerdtree-git-plugin')
+    " call s:Install('vim-nerdtree-syntax-highlight')
     call s:Install('nerdtree-buffer-ops')
     call s:Install('nerdtree-visual-selection')
     call s:Install('bufselect', {'version':'800'})
