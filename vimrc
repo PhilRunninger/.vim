@@ -416,6 +416,12 @@ function! s:StatuslineColor(insertMode)
     exec 'highlight! link StatusLine ' . (a:insertMode ? 'Insert' : (&modified ? 'NormalMod' : 'NormalNoMod'))
 endfunction
 
+" Status Line Settings   {{{1
+augroup setStatuslineText    " Change statusline text, depending on mode.
+    autocmd!
+    autocmd VimEnter,WinEnter,BufWinEnter * call <SID>StatusLineText()
+augroup END
+
 function! Map_ff()
     return get({ "unix": "␊", "mac": "␍", "dos": "␍␊" }, &ff, "?")
 endfunction
@@ -448,7 +454,7 @@ function! Status(winnum)
     return l:statusline
 endfunction
 
-function! s:RefreshStatus()
+function! s:StatusLineText()
     let l:exempt  = ['']                        " No name (Quickfix/Location list, new file, etc.)
     let l:exempt += ['.*[/\\]doc[/\\]\w*\.txt'] " Help files
     let l:exempt += ['=MinTree=']               " MinTree
@@ -460,8 +466,3 @@ function! s:RefreshStatus()
         endif
     endfor
 endfunction
-
-augroup StatusLine
-    autocmd!
-    autocmd VimEnter,WinEnter,BufWinEnter * call <SID>RefreshStatus()
-augroup END
