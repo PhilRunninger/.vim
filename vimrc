@@ -295,12 +295,6 @@ augroup customFileTypes        " Set filetype of files, based on extension  {{{2
     autocmd BufReadPost *.ldr,*.mpd set filetype=ldraw
 augroup END
 
-augroup setStatuslineColors    " Change statusline color, depending on mode.   {{{2
-    autocmd!
-    autocmd InsertEnter,InsertChange,TextChangedI * call StatuslineColor(1)
-    autocmd InsertLeave,TextChanged,BufWritePost,BufEnter * call StatuslineColor(0)
-augroup END
-
 " Settings for managed plugins {{{1
     " ANSIEsc   {{{2
     nnoremap <leader>a :AnsiEsc<CR>
@@ -394,29 +388,31 @@ augroup END
     nnoremap ga :UnicodeName<CR>
     inoremap <C-K> <Esc>:UnicodeSearch!<space>
 
-" Color Settings and Status Line   {{{1
-command! FixColors :call <SID>EstablishColors()
-function! s:EstablishColors()
-    colorscheme gruvbox
-    set background=dark
+" Color Settings   {{{1
+augroup setStatuslineColor    " Change statusline color, depending on mode.
+    autocmd!
+    autocmd InsertEnter,InsertChange,TextChangedI * call <SID>StatuslineColor(1)
+    autocmd VimEnter,InsertLeave,TextChanged,BufWritePost,BufEnter * call <SID>StatuslineColor(0)
+augroup END
 
-    unlet! g:colors_name   " Why? See :h :hi-normal-cterm
-    highlight Normal                                ctermbg=NONE " Use terminal's Background color setting
-    highlight Folded         cterm=none ctermfg=8   ctermbg=234  " Gray on Almost Black
-    highlight MatchParen     cterm=bold ctermfg=1   ctermbg=none " Red
-    highlight WildMenu       cterm=none ctermfg=16  ctermbg=178  " Black on Gold
-    highlight GitBranch      cterm=none ctermfg=12  ctermbg=17   " Blue on Dark Blue
-    highlight Insert         cterm=none ctermfg=15  ctermbg=27   " White on Blue
-    highlight NormalMod      cterm=none ctermfg=15  ctermbg=124  " White on Red
-    highlight NormalNoMod    cterm=none ctermfg=16  ctermbg=40   " Black on Green
-    highlight StatusLineTerm cterm=none ctermfg=16  ctermbg=208  " Black on Gold
-    highlight! link Session WildMenu
-    highlight! link StatusLineTermNC StatusLineNC
-    highlight! link VertSplit StatusLineNC
-endfunction
-call s:EstablishColors()
+augroup tweakColorScheme
+    autocmd!
+    autocmd ColorScheme * highlight Normal                               ctermbg=NONE " Use terminal's Background color setting
+    autocmd ColorScheme * highlight Folded         cterm=none ctermfg=8  ctermbg=234  " Gray on Almost Black
+    autocmd ColorScheme * highlight MatchParen     cterm=bold ctermfg=1  ctermbg=none " Red
+    autocmd ColorScheme * highlight WildMenu       cterm=none ctermfg=16 ctermbg=178  " Black on Gold
+    autocmd ColorScheme * highlight GitBranch      cterm=none ctermfg=12 ctermbg=17   " Blue on Dark Blue
+    autocmd ColorScheme * highlight Insert         cterm=none ctermfg=15 ctermbg=27   " White on Blue
+    autocmd ColorScheme * highlight NormalMod      cterm=none ctermfg=15 ctermbg=124  " White on Red
+    autocmd ColorScheme * highlight NormalNoMod    cterm=none ctermfg=16 ctermbg=40   " Black on Green
+    autocmd ColorScheme * highlight StatusLineTerm cterm=none ctermfg=16 ctermbg=208  " Black on Gold
+    autocmd ColorScheme * highlight! link Session WildMenu
+    autocmd ColorScheme * highlight! link StatusLineTermNC StatusLineNC
+    autocmd ColorScheme * highlight! link VertSplit StatusLineNC
+augroup END
+colorscheme gruvbox
 
-function! StatuslineColor(insertMode)
+function! s:StatuslineColor(insertMode)
     exec 'highlight! link StatusLine ' . (a:insertMode ? 'Insert' : (&modified ? 'NormalMod' : 'NormalNoMod'))
 endfunction
 
@@ -469,5 +465,3 @@ augroup StatusLine
     autocmd!
     autocmd VimEnter,WinEnter,BufWinEnter * call <SID>RefreshStatus()
 augroup END
-
-call StatuslineColor(0)
