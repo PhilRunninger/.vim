@@ -1,4 +1,4 @@
-setlocal wrap linebreak nolist nonumber spell
+setlocal wrap linebreak nonumber spell
 
 if !executable("grip")
     finish

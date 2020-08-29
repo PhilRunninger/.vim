@@ -232,9 +232,11 @@ inoremap Dt =strftime("%-m/%-d/%y %-H:%M:%S")<CR><Space>
 inoremap Dd =strftime("%-m/%-d/%y")<CR><Space>
 inoremap Tt =strftime("%-H:%M:%S")<CR><Space>
 
-" Move visual selection up/down with ease {{{2
-xnoremap K :move '<-2<CR>gv-gv
-xnoremap J :move '>+1<CR>gv-gv
+" Fix previous misspelling quickly and return to Insert mode {{{2
+inoremap <F2> <Esc>mM[s1z=`MdmMi
+
+" Make an easier redo mapping. Who uses U anyway? {{{2
+nnoremap U <C-R>
 
 " Auto-command Definitions   {{{1
 augroup reloadVimrc            " Re-source this file when saving it   {{{2
@@ -342,7 +344,7 @@ augroup END
     augroup RESTConsole
         autocmd!
         autocmd FileType rest nunmap <buffer> <C-J>
-        autocmd FileType rest nnoremap <buffer> <silent> <leader>c :call VrcQuery()<CR>
+        autocmd FileType rest nnoremap <buffer> <silent> <leader>r :call VrcQuery()<CR>
     augroup END
 
     " NeoComplete   {{{2

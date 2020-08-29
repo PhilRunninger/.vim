@@ -1,3 +1,5 @@
+set shiftwidth=2 tabstop=2
+
 inoremap ;; <Esc>/◆<CR>"_s
 
 inoremap ;html <html>♥</html>◆<Esc>F♥"_s
@@ -24,6 +26,12 @@ inoremap ;th <th>♥</th>◆<Esc>F♥"_s
 inoremap ;tr <tr>♥</tr>◆<Esc>F♥"_s
 inoremap ;td <td>♥</td>◆<Esc>F♥"_s
 inoremap ;br <br />
+inoremap ;label <label>♥</label>◆<Esc>F♥"_s
+inoremap ;input <input>♥</input>◆<Esc>F♥"_s
 
+" Angular
+inoremap ;{ {{♥}}◆<Esc>F♥"_s
+
+" Ruby on Rails
 inoremap ;% <% ♥ %>◆<Esc>F♥"_s
 inoremap ;%= <%= ♥ %>◆<Esc>F♥"_s
