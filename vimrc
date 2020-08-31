@@ -2,79 +2,26 @@
 
 let $VIMHOME=expand('<sfile>:p:h')
 
-" Plugin Management  {{{1
+" Plugins   {{{1
+" NERDTree and its Extensions
+    packadd! nerdtree
+    packadd! nerdtree-buffer-ops
+    packadd! nerdtree-visual-selection
+    " packadd! vim-devicons
+    " packadd! nerdtree-git-plugin
+    " packadd! vim-nerdtree-syntax-highlight
 
-" Add new packages as submodules like so:
-"   cd ~/.vim
-"   git submodule add --name nerdtree git@github.com:scrooloose/nerdtree pack/bundle/opt/nerdtree
-"
-" Remove submodules with these instructions:
-"   https://davidwalsh.name/git-remove-submodule
+" My Other Plugins
+    packadd! vim-sessions
+    packadd! bufselect.vim
+    packadd! mintree
 
-function! s:Install(name, ...)   "{{{2
-    " name - plugin's submodule name as given in `git submodule add` command.
-    " a:1 - an optional dictionary that determines whether to install the plugin.
-    if a:0>0 && ( (has_key(a:1,'has')     && !has(a:1['has'])) ||
-                \ (has_key(a:1,'exists')  && !exists(a:1['exists'])) ||
-                \ (has_key(a:1,'version') && v:version < a:1['version']) )
-        echomsg "  Plugin ".a:name." was not loaded. Disqualifying Prerequisite: ".string(a:1)
-        return
-    endif
-
-    if has("packages")
-        execute 'packadd! '.a:name
-    else
-        if !exists("*pathogen#infect")
-            source $VIMHOME/pack/pathogen/opt/vim-pathogen/autoload/pathogen.vim
-        endif
-        call pathogen#infect('pack/**/opt/'.a:name)
-    endif
-endfunction  "}}}2
-
-" Coding / Development
-    call s:Install('vim-fugitive')
-    call s:Install('vim-gitgutter')
-    call s:Install('vim-commentary')
-    call s:Install('vim-rest-console')
-    call s:Install('Improved-AnsiEsc')
-" File Management
-    call s:Install('mintree', {'version':'800'})
-    call s:Install('nerdtree')
-    " call s:Install('vim-devicons')
-    " call s:Install('nerdtree-git-plugin')
-    " call s:Install('vim-nerdtree-syntax-highlight')
-    call s:Install('nerdtree-buffer-ops')
-    call s:Install('nerdtree-visual-selection')
-    call s:Install('bufselect', {'version':'800'})
-" Colorschemes
-    call s:Install('xterm-color-table')
-    call s:Install('gruvbox')
-" Miscellaneous Utilities
-    call s:Install('tabline')
-    call s:Install('neocomplete', {'has':'lua'})
-    call s:Install('undotree')
-    call s:Install('vim-easy-align')
-    call s:Install('scratch')
-    call s:Install('vim-sessions')
-    call s:Install('vim-signature')
-    call s:Install('vim-repeat')
-    call s:Install('vim-surround')
-    call s:Install('vim-unimpaired')
-    call s:Install('vim-exchange')
-    call s:Install('Recover')
-    call s:Install('unicode')
-    call s:Install('vim-illuminate')
-" Filetype-specific
-    call s:Install('vim-jdaddy')
-    call s:Install('vim-json')
-    call s:Install('NSIS-syntax-highlighting')
-    call s:Install('csv')
 " Fun & Games
-    call s:Install('ldraw')
-    call s:Install('sokoban')
-    call s:Install('rogue')
-    call s:Install('robots')
-    call s:Install('vim-matrix-screensaver')
+    packadd! ldraw.vim
+    packadd! sokoban.vim
+    packadd! rogue.vim
+    packadd! vim-robots
+    packadd! vim-matrix-screensaver
 
 " Must come AFTER the :packadd! calls above; otherwise, the contents of package 'ftdetect'
 " directories won't be evaluated.
