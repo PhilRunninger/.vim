@@ -37,25 +37,10 @@ set sidescroll=1                    " Minimum number of columns to scroll horizo
 set nostartofline                   " [do not] move cursor to first non-blank column when paging
 set hidden                          " don't unload buffer when it is abandoned
 set confirm                         " Ask what to do with unsave/read-only files
-set tags=./tags;/                   " List of filenames used by the tag command
 set backspace=indent,eol,start      " How backspace works at start of line
 set ttimeoutlen=10                  " Time out time for key codes in milliseconds (Removes delay after <Esc> in Command mode.)
 set diffopt+=iwhite
 let mapleader=' '                   " Character to use for <leader> mappings
-
-" Disable netrw
-let g:loaded_netrw       = 1
-let g:loaded_netrwPlugin = 1
-
-" Markdown settings
-let g:markdown_folding = 1
-let g:markdown_fenced_languages = ['vim']
-
-" Change cursor shape between insert and normal mode in iTerm2.app
-if $TERM_PROGRAM =~ "iTerm"
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
-endif
 
 " Searching settings   {{{2
 set hlsearch incsearch
@@ -91,9 +76,6 @@ if !isdirectory(&directory) | call mkdir(&directory, 'p') | endif
 
 set nobackup backupdir=$VIMHOME/cache/backups//
 if !isdirectory(&backupdir) | call mkdir(&backupdir, 'p') | endif
-
-" Disable the bells (audible and visual).   {{{1
-set noerrorbells visualbell t_vb=
 
 " Window behavior and commands   {{{1
 set splitbelow splitright          " new window is put below or right of the current one
@@ -179,29 +161,12 @@ inoremap Dt =strftime("%-m/%-d/%y %-H:%M:%S")<CR><Space>
 inoremap Dd =strftime("%-m/%-d/%y")<CR><Space>
 inoremap Tt =strftime("%-H:%M:%S")<CR><Space>
 
-" Fix previous misspelling quickly and return to Insert mode {{{2
-inoremap <F2> <Esc>mM[s1z=`MdmMi
-
-" Make an easier redo mapping. Who uses U anyway? {{{2
-nnoremap U <C-R>
-
 " Auto-command Definitions   {{{1
-augroup reloadVimrc            " Re-source this file when saving it   {{{2
-    autocmd!
-    autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
-augroup END
 
 augroup removeTrailingSpaces   " Remove trailing on save {{{2
     autocmd!
     autocmd BufWrite * %s/\s\+$//ce
 augroup END
-
-if has('terminal')             " Turn off line numbers in Terminal windows.   {{{2
-    augroup terminalSettings
-        autocmd!
-        autocmd TerminalOpen * if &buftype == 'terminal' | setlocal nonumber | endif
-    augroup END
-endif
 
 augroup trailingSpaces         " Turn off trailing space indicator in Insert mode   {{{2
     autocmd!
@@ -239,31 +204,19 @@ augroup jumpToPreviousLocation " When editing a file, always jump to its last kn
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
 augroup END
 
-augroup customFileTypes        " Set filetype of files, based on extension  {{{2
-    autocmd!
-    autocmd BufReadPost *.ldr,*.mpd set filetype=ldraw
-augroup END
-
 " Settings for managed plugins {{{1
-    " ANSIEsc   {{{2
-    nnoremap <leader>a :AnsiEsc<CR>
-
-    " Fugitive   {{{2
-    nnoremap <silent> <F3> "zyiw/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
-    vnoremap <silent> <F3> "zy/<C-R>z<CR>:Ggrep -e '<C-R>z'<CR><CR>:copen<CR>:redraw!<CR>
-    nnoremap <leader>G :Gstatus<CR>
-
     " NERDTree   {{{2
     let NERDTreeIgnore            = ['\c^ntuser\..*']
     let NERDTreeRespectWildIgnore = 1
     let NERDTreeBookmarksFile     = $VIMHOME.'/cache/.NERDTreeBookmarks'
-    let NERDTreeQuitOnOpen        = 1
+    let NERDTreeQuitOnOpen        = 0
     let NERDTreeMinimalUI         = 1
     let NERDTreeMapOpenSplit      = 's'
     let NERDTreeMapOpenVSplit     = 'v'
     " let NERDTreeDirArrowCollapsible = ''
     " let NERDTreeDirArrowExpandable = ''
     let NERDTreeNaturalSort=1
+    let NERDTreeCustomOpenArgs= {'file': {'reuse': 'all', 'where': 'p', 'keepopen':0, 'stay':0}, 'dir':{}}
 
     " BufSelect   {{{2
     let g:BufSelectSortOrder = "Extension"
@@ -286,132 +239,10 @@ augroup END
     call s:SwitchFileBrowser()
     nnoremap <silent> <leader>t :call <SID>SwitchFileBrowser()<CR>:echomsg "Now using ".(g:MinTree?"MinTree.":"NERDTree.")<CR>
 
-    " REST Console   {{{2
-    let g:vrc_show_command = 1
-    augroup RESTConsole
-        autocmd!
-        autocmd FileType rest nunmap <buffer> <C-J>
-        autocmd FileType rest nnoremap <buffer> <silent> <leader>r :call VrcQuery()<CR>
-    augroup END
-
-    " NeoComplete   {{{2
-    set completeopt=longest,menuone
-    let g:neocomplete#enable_ignore_case = 1
-    let g:neocomplete#enable_smart_case = 1
-    let g:neocomplete#enable_fuzzy_completion = 1
-    let g:neocomplete#enable_at_startup = 1
-    let g:neocomplete#data_directory=$VIMHOME.'/cache/neocomplete'
-    inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-    inoremap <expr><Space> pumvisible() ? "\<C-y><Space>" : "\<Space>"
-
-    " Undotree   {{{2
-    nnoremap <silent> <leader>u :UndotreeShow<CR>
-    let g:undotree_SetFocusWhenToggle = 1
-    let g:undotree_WindowLayout = 2
-    let g:undotree_HelpLine = 0
-    let g:undotree_ShortIndicators = 1
-
-    " EasyAlign   {{{2
-    vmap <Enter> <Plug>(EasyAlign)
-
-    " Scratch   {{{2
-    let g:scratch_insert_autohide = 0
-    let g:scratch_no_mappings = 1
-    let g:scratch_persistence_file = $VIMHOME.'/cache/scratch.txt'
-    nnoremap gs :Scratch<CR>
-    nnoremap gS :Scratch!<CR>
-    xnoremap gs :ScratchSelection<CR>
-    xnoremap gS :ScratchSelection!<CR>
-
     " vim-sessions   {{{2
-    set sessionoptions-=help
-    set sessionoptions-=blank
+    set sessionoptions-=help sessionoptions-=blank
 
     " rogue   {{{2
     let g:rogue#name = 'Ṕḧįḹ'
     let g:rogue#directory = $VIMHOME.'/cache'
     let g:rogue#fruit = 'pizza'
-
-    " unicode   {{{2
-    nnoremap ga :UnicodeName<CR>
-    inoremap <C-K> <Esc>:UnicodeSearch!<space>
-
-" Color Settings   {{{1
-augroup setStatuslineColor    " Change statusline color, depending on mode.
-    autocmd!
-    autocmd InsertEnter,InsertChange,TextChangedI * call <SID>StatuslineColor(1)
-    autocmd VimEnter,InsertLeave,TextChanged,BufWritePost,BufEnter * call <SID>StatuslineColor(0)
-augroup END
-
-augroup tweakColorScheme
-    autocmd!
-    autocmd ColorScheme * highlight Normal                               ctermbg=NONE " Use terminal's Background color setting
-    autocmd ColorScheme * highlight Folded         cterm=none ctermfg=8  ctermbg=234  " Gray on Almost Black
-    autocmd ColorScheme * highlight MatchParen     cterm=bold ctermfg=1  ctermbg=none " Red
-    autocmd ColorScheme * highlight WildMenu       cterm=none ctermfg=16 ctermbg=178  " Black on Gold
-    autocmd ColorScheme * highlight GitBranch      cterm=none ctermfg=12 ctermbg=17   " Blue on Dark Blue
-    autocmd ColorScheme * highlight Insert         cterm=none ctermfg=15 ctermbg=27   " White on Blue
-    autocmd ColorScheme * highlight NormalMod      cterm=none ctermfg=15 ctermbg=124  " White on Red
-    autocmd ColorScheme * highlight NormalNoMod    cterm=none ctermfg=16 ctermbg=40   " Black on Green
-    autocmd ColorScheme * highlight StatusLineTerm cterm=none ctermfg=16 ctermbg=208  " Black on Gold
-    autocmd ColorScheme * highlight! link Session WildMenu
-    autocmd ColorScheme * highlight! link StatusLineTermNC StatusLineNC
-    autocmd ColorScheme * highlight! link VertSplit StatusLineNC
-augroup END
-colorscheme gruvbox
-
-function! s:StatuslineColor(insertMode)
-    exec 'highlight! link StatusLine ' . (a:insertMode ? 'Insert' : (&modified ? 'NormalMod' : 'NormalNoMod'))
-endfunction
-
-" Status Line Settings   {{{1
-augroup setStatuslineText    " Change statusline text, depending on mode.
-    autocmd!
-    autocmd VimEnter,WinEnter,BufWinEnter * call <SID>StatusLineText()
-augroup END
-
-function! Map_ff()
-    return get({ "unix": "␊", "mac": "␍", "dos": "␍␊" }, &ff, "?")
-endfunction
-
-function! Map_ro_mod()
-    return (&modifiable ? (&readonly ? "🔐" : "") : "🔒") . (&modified ? "🔴" : "")
-endfunction
-
-function! AbbreviatedPath()
-    let path = split(fnamemodify(bufname('%'),':.'), '[/\\]')
-    let path = map(copy(path)[0:-2], 'substitute(v:val,"\\.\\?.\\zs.*","","")') + [path[-1]]
-    return join(path, '/')
-endfunction
-
-function! Status(winnum)
-    let l:statusline=""
-    if a:winnum == winnr()
-        let l:statusline.="%3v"
-        let l:statusline.="\ %#GitBranch#%(\ %{fugitive#head(8)}\ %)%*"
-        let l:statusline.="\ %{&ft}"
-        let l:statusline.="\ %{Map_ff()}"
-        let l:statusline.="%(\ %{Map_ro_mod()}%)"
-        let l:statusline.="\ %{AbbreviatedPath()}"
-        let l:statusline.="%="
-        let l:statusline.="%#Session#%(\ %{SessionNameStatusLineFlag()}\ %)%*"
-    else
-        let l:statusline.="%(\ %{Map_ro_mod()}%)"
-        let l:statusline.="\ %F"
-    endif
-    return l:statusline
-endfunction
-
-function! s:StatusLineText()
-    let l:exempt  = ['']                        " No name (Quickfix/Location list, new file, etc.)
-    let l:exempt += ['.*[/\\]doc[/\\]\w*\.txt'] " Help files
-    let l:exempt += ['=MinTree=']               " MinTree
-    let l:exempt += ['NERD_tree_\d\+']          " NERDTree
-    let l:exempt += ['=Buffers=']               " BufSelect list
-    for nr in range(1, winnr('$'))
-        if bufname(winbufnr(nr)) !~# '^\(' . join(l:exempt,'\|') . '\)$'
-            call setwinvar(nr, '&statusline', '%!Status('.nr.')')
-        endif
-    endfor
-endfunction
